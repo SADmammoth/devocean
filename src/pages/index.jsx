@@ -1,12 +1,9 @@
-import { Link } from "umi";
+import HomePageContent from "../layouts/HomePageContent";
 
 export default function IndexPage() {
   return (
-    <div>
-      <h1 className="title">Page index</h1>
-      <div>
-        <Link to="another">Go to another</Link>
-      </div>
-    </div>
+    <>
+      <HomePageContent />
+    </>
   );
 }
