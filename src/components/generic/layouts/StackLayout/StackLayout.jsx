@@ -11,7 +11,14 @@ import styles from "./StackLayout.styles";
 
 const useStyles = createUseStyles(styles);
 
-const StackLayout = ({ className, children, orientation, alignX, alignY }) => {
+const StackLayout = ({
+  className,
+  children,
+  orientation,
+  alignX,
+  alignY,
+  gap,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -28,6 +35,7 @@ const StackLayout = ({ className, children, orientation, alignX, alignY }) => {
         classes[alignYClass],
         classes[alignXClass],
       ])}
+      style={{ gap }}
     >
       {children}
     </div>
@@ -38,6 +46,7 @@ StackLayout.propTypes = {
   orientation: PropTypes.oneOf(Object.keys(orientations)),
   alignY: PropTypes.oneOf(Object.keys(aligns)),
   alignX: PropTypes.oneOf(Object.keys(aligns)),
+  gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 };
 
 StackLayout.defaultProps = {

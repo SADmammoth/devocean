@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import clockUpdater from "./clockUpdater.js";
 import { createUseStyles } from "react-jss";
 import styles from "./DateTime.styles";
-import dateToString from "../../helpers/dateToString.js";
+import dateToString from "../../../helpers/dateToString.js";
 
 const useStyles = createUseStyles(styles);
 

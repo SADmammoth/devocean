@@ -1,9 +1,10 @@
 import React from "react";
-import StackLayout from "../../components/layouts/StackLayout";
-import Sidebar from "../../components/Sidebar";
-
+import NotificationsList from "../../components/specific/NotificationsList";
+import StackLayout from "../../components/generic/layouts/StackLayout";
+import Sidebar from "../../components/generic/Sidebar";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./HomePageContent.styles";
+import notifications from "./notifications";
 
 const useStyles = createUseStyles(styles);
 
@@ -17,6 +18,7 @@ const HomePageContent = () => {
         <Sidebar />
         <StackLayout className={classes.content} orientation="vertical">
           <h1 className="title">Page index</h1>
+          <NotificationsList items={notifications} />
         </StackLayout>
       </StackLayout>
     </>

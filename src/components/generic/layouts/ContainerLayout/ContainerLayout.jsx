@@ -1,14 +1,14 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Container.styles";
+import styles from "./ContainerLayout.styles";
 
 const useStyles = createUseStyles(styles);
 
-const Container = ({ children }) => {
+const ContainerLayout = ({ children }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  return <div class={classes.container}>{children}</div>;
+  return <div class={classes.containerLayout}>{children}</div>;
 };
 
-export default Container;
+export default ContainerLayout;

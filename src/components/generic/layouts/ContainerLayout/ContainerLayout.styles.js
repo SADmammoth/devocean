@@ -1,5 +1,5 @@
 const styles = {
-  container: {
+  containerLayout: {
     maxWidth: "98vw",
     width: (theme) => theme.contentWidth,
     position: "relative",

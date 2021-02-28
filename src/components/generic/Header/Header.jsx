@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container";
+import ContainerLayout from "../layouts/ContainerLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Header.styles";
 
@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Container>Header</Container>
+      <ContainerLayout>Header</ContainerLayout>
     </header>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Container from "../Container";
+import ContainerLayout from "../layouts/ContainerLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Footer.styles";
 
@@ -11,7 +11,7 @@ const Footer = () => {
 
   return (
     <footer className={classes.footer}>
-      <Container>Footer</Container>
+      <ContainerLayout>Footer</ContainerLayout>
     </footer>
   );
 };
