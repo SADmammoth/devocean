@@ -4,7 +4,6 @@ import StackLayout from "../../components/generic/layouts/StackLayout";
 import Sidebar from "../../components/generic/Sidebar";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./HomePageContent.styles";
-import notifications from "../../components/specific/NotificationsList/notificationsFaked";
 
 const useStyles = createUseStyles(styles);
 

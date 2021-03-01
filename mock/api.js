@@ -1,4 +1,4 @@
-export default [
+const notifications = [
   {
     id: "1",
     time: "2h ago",
@@ -24,3 +24,19 @@ export default [
     author: "Ners",
   },
 ];
+
+export default {
+  "GET /api/notifications": notifications,
+
+  "POST /api/notifications": (req, res) => {
+    console.log(req.body);
+    notifications.push({
+      time: "4h ago",
+      title: "Notification",
+      author: "Doe",
+    });
+
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.send(200);
+  },
+};
