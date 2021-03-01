@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
+import { useRecoilState } from "recoil";
+import notificationsState from "../../../recoil/atoms/notificationsState";
 import Client from "../../../helpers/Client";
 import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
 import StackLayout from "../../generic/layouts/StackLayout";
 import AddNotification from "../AddNotification";
 import NotificationContent from "../NotificationContent";
+import notificationsFaked from "./notificationsFaked";
 
 const NotificationsList = ({ items }) => {
   const composite = useCompositeState();
-  const [notifications, setNotifications] = useState([]);
+  const [notifications, setNotifications] = useRecoilState(notificationsState);
 
   useEffect(() => {
-    const request = async () => {
-      setNotifications(
-        await Client.getNotifications().then(setTimeout(request, 1000))
-      );
-    };
-
-    request();
+    setNotifications(notificationsFaked);
   }, []);
 
   const renderNotification = ({ id, time, title, author }) => {

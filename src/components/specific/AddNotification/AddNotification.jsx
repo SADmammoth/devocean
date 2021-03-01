@@ -1,6 +1,9 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import { Button } from "reakit";
+import notificationsState, {
+  useNotificationsState_add,
+} from "../../../recoil/atoms/notificationsState";
 import Client from "../../../helpers/Client";
 import styles from "./AddNotification.styles";
 
@@ -10,17 +13,11 @@ const AddNotification = () => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const addNotification = (notification) => {
-    const request = async () => {
-      await Client.postNotifications(notification);
-    };
-
-    request();
-  };
+  const addNotification = useNotificationsState_add();
 
   return (
     <>
-      <Button onClick={() => addNotification({ empty: true })}>
+      <Button onClick={() => addNotification(fakeNotification)}>
         Add notification
       </Button>
     </>
