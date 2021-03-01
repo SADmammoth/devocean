@@ -17,9 +17,7 @@ const AddNotification = () => {
 
   return (
     <>
-      <Button onClick={() => addNotification(fakeNotification)}>
-        Add notification
-      </Button>
+      <Button onClick={() => addNotification()}>Add notification</Button>
     </>
   );
 };
