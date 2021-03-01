@@ -4,7 +4,7 @@ import StackLayout from "../../components/generic/layouts/StackLayout";
 import Sidebar from "../../components/generic/Sidebar";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./HomePageContent.styles";
-import notifications from "./notifications";
+import notifications from "../../components/specific/NotificationsList/notificationsFaked";
 
 const useStyles = createUseStyles(styles);
 
@@ -18,7 +18,7 @@ const HomePageContent = () => {
         <Sidebar />
         <StackLayout className={classes.content} orientation="vertical">
           <h1 className="title">Page index</h1>
-          <NotificationsList items={notifications} />
+          <NotificationsList />
         </StackLayout>
       </StackLayout>
     </>
