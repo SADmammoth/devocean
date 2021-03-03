@@ -6,7 +6,7 @@ export default {
   getNotifications: async () => {
     const response = await fetch(concatPath(apiPath, "notifications"));
 
-    return response.json();
+    return await response.json();
   },
 
   postNotifications: async (notification) => {

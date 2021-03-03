@@ -20,6 +20,7 @@
     "@umijs/preset-react": "1.x",
     "classnames": "^2.2.6",
     "jss-plugin-global": "^10.5.1",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "react-icons": "^4.2.0",
     "react-jss": "^10.5.1",
