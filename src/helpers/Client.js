@@ -1,20 +1,15 @@
-import concatPath from "./concatPath";
+import request from "superagent";
+import prefix from "superagent-prefix";
 
-const apiPath = "api";
+const apiPath = prefix("api");
 
 export default {
   getNotifications: async () => {
-    const response = await fetch(concatPath(apiPath, "notifications"));
-
-    return await response.json();
+    const response = await request.get("/notifications").use(apiPath);
+    return response.body;
   },
 
   postNotifications: async (notification) => {
-    const response = await fetch(concatPath(apiPath, "notifications"), {
-      method: "POST",
-      body: JSON.stringify(notification),
-    });
-
-    return response;
+    await request.post("/notifications").use(apiPath).send(notification);
   },
 };
