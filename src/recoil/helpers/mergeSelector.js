@@ -6,6 +6,7 @@ export default function mergeSelector(baseKey, atom) {
     get: ({ get }) => get(atom),
     set: ({ get, set }, updateValue) => {
       const currentValue = get(atom);
+
       if (updateValue instanceof Array) {
         set([...currentValue, ...updateValue]);
       } else {

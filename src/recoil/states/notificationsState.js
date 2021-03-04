@@ -6,10 +6,10 @@ import mergeSelector from "../helpers/mergeSelector";
 
 const baseKey = "notificationsState_";
 
-const postState = async (newValue, oldValue) => {
+const postState = (newValue, oldValue) => {
   const diff = _.difference(newValue, oldValue);
   if (diff.length === 1) {
-    await Client.postNotifications(diff[0]);
+    return Client.postNotifications(diff[0]);
   }
 };
 

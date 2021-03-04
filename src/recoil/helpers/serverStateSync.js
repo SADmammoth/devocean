@@ -1,4 +1,4 @@
-export default function serverStateSync(get, post) {
+export default function serverStateSync(get, post, abortGet, abortPost) {
   return ({ onSet, trigger, setSelf }) => {
     if (trigger === "get") {
       const getData = async () => setSelf(await get());
@@ -6,10 +6,24 @@ export default function serverStateSync(get, post) {
       getData();
     }
 
-    onSet((newValue, oldValue) => {
-      post(newValue, oldValue).catch(() => {
+    onSet(async (newValue, oldValue) => {
+      return await post(newValue, oldValue).catch(() => {
         setSelf(oldValue);
       });
     });
+
+    return () => {
+      if (get.abort) {
+        get.abort();
+      } else if (abortGet) {
+        abortGet();
+      }
+
+      if (post.abort) {
+        post.abort();
+      } else if (abortPost) {
+        abortPost();
+      }
+    };
   };
 }

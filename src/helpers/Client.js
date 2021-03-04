@@ -3,13 +3,17 @@ import prefix from "superagent-prefix";
 
 const apiPath = prefix("api");
 
-export default {
-  getNotifications: async () => {
-    const response = await request.get("/notifications").use(apiPath);
-    return response.body;
+const Client = {
+  getNotifications: () => {
+    return request
+      .get("/notifications")
+      .use(apiPath)
+      .then((res) => res.body);
   },
 
-  postNotifications: async (notification) => {
-    await request.post("/notifications").use(apiPath).send(notification);
+  postNotifications: (notification) => {
+    return request.post("/notifications").use(apiPath).send(notification);
   },
 };
+
+export default Client;
