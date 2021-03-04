@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import { useRecoilValueLoadable } from "recoil";
-import notificationsState from "../../../recoil/atoms/notificationsState";
+import notificationsState from "../../../recoil/states/notificationsState";
 import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
 import StackLayout from "../../generic/layouts/StackLayout";
 import AddNotification from "../AddNotification";

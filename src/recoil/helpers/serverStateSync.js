@@ -1,8 +1,15 @@
-export default function serverStateSync(getDefaultValue, syncState) {
+export default function serverStateSync(get, post) {
   return ({ onSet, trigger, setSelf }) => {
     if (trigger === "get") {
-      (async () => setSelf(await getDefaultValue()))();
+      const getData = async () => setSelf(await get());
+
+      getData();
     }
-    onSet(syncState);
+
+    onSet((newValue, oldValue) => {
+      post(newValue, oldValue).catch(() => {
+        setSelf(oldValue);
+      });
+    });
   };
 }

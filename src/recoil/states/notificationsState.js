@@ -1,24 +1,27 @@
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { atom, selector, useSetRecoilState } from "recoil";
+import { atom, selector } from "recoil";
 import _ from "lodash";
-
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
+import mergeSelector from "../helpers/mergeSelector";
 
 const baseKey = "notificationsState_";
 
-const syncState = async (newValue, oldValue) => {
+const postState = async (newValue, oldValue) => {
   const diff = _.difference(newValue, oldValue);
   if (diff.length === 1) {
     await Client.postNotifications(diff[0]);
   }
 };
 
-const notificationsState = atom({
+const getState = () => Client.getNotifications();
+
+const notificationsStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(Client.getNotifications, syncState)],
+  effects_UNSTABLE: [serverStateSync(getState, postState)],
 });
+
+const notificationsState = mergeSelector(baseKey, notificationsStateAtom);
 
 export const notificationsState_count = selector({
   key: baseKey + "count",
@@ -27,18 +30,5 @@ export const notificationsState_count = selector({
     return notifications.length;
   },
 });
-
-export const useNotificationsState_add = () => {
-  const setNotifications = useSetRecoilState(notificationsState);
-
-  return (newNotification) => {
-    setNotifications((notifications) => {
-      return [
-        ...notifications,
-        { id: notifications.length, ...newNotification },
-      ];
-    });
-  };
-};
 
 export default notificationsState;

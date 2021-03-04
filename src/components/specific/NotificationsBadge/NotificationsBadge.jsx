@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import { useRecoilValueLoadable } from "recoil";
-import { notificationsState_count } from "../../../recoil/atoms/notificationsState";
+import { notificationsState_count } from "../../../recoil/states/notificationsState";
 import Badge from "../../generic/Badge";
 import styles from "./NotificationsBadge.styles";
 
