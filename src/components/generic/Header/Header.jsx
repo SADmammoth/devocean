@@ -5,6 +5,7 @@ import styles from "./Header.styles";
 import NotificationsBadge from "../../specific/NotificationsBadge/NotificationsBadge";
 import LanguageSwitcher from "../../specific/LanguageSwitcher/LanguageSwitcher";
 import StackLayout from "../layouts/StackLayout";
+import Text from "../Text";
 
 const useStyles = createUseStyles(styles);
 
@@ -16,7 +17,7 @@ const Header = () => {
     <header className={classes.header}>
       <ContainerLayout>
         <StackLayout>
-          <p>Header</p>
+          <Text type="big">Header</Text>
           <NotificationsBadge />
           <LanguageSwitcher />
         </StackLayout>
