@@ -5,6 +5,7 @@ import Sidebar from "../../components/generic/Sidebar";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./HomePageContent.styles";
 import useLocale from "../../helpers/useLocale";
+import Text from "../../components/generic/Text";
 
 const useStyles = createUseStyles(styles);
 
@@ -18,7 +19,9 @@ const HomePageContent = () => {
       <StackLayout>
         <Sidebar />
         <StackLayout className={classes.content} orientation="vertical">
-          <h1 className="title">{locale("Index page")}</h1>
+          <Text type="h1" alignment="center" className="title">
+            {locale("Index page")}
+          </Text>
           <NotificationsList />
         </StackLayout>
       </StackLayout>
