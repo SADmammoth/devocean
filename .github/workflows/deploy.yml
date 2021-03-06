@@ -15,4 +15,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "devocean-front" #Must be unique in Heroku
           heroku_email: "lo.ma200018@gmail.com"
-          helthcheck: "http://devocean-front.herokuapp.com"
+          healthcheck: "http://devocean-front.herokuapp.com"
