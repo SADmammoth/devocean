@@ -3,6 +3,8 @@ import ContainerLayout from "../layouts/ContainerLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Header.styles";
 import NotificationsBadge from "../../specific/NotificationsBadge/NotificationsBadge";
+import LanguageSwitcher from "../../specific/LanguageSwitcher/LanguageSwitcher";
+import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
@@ -12,8 +14,13 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <ContainerLayout>Header</ContainerLayout>
-      <NotificationsBadge />
+      <ContainerLayout>
+        <StackLayout>
+          <p>Header</p>
+          <NotificationsBadge />
+          <LanguageSwitcher />
+        </StackLayout>
+      </ContainerLayout>
     </header>
   );
 };

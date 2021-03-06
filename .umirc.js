@@ -7,4 +7,11 @@ export default {
   devServer: {
     writeToDisk: true,
   },
+  locale: {
+    default: "en-EN",
+    antd: false,
+    title: false,
+    baseNavigator: true,
+    baseSeparator: "-",
+  },
 };
