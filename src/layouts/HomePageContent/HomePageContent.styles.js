@@ -1,6 +1,9 @@
 const styles = {
   content: {
-    padding: "20px",
+    height: "100%",
+  },
+  appname: {
+    display: "inline",
   },
 };
 

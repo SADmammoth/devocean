@@ -15,19 +15,15 @@ const styles = {
   },
   h1: {
     fontSize: (theme) => theme.fontSizes.biggest,
-    fontWeight: "bold",
   },
   h1Small: {
     fontSize: (theme) => theme.fontSizes.bigger,
-    fontWeight: "bold",
   },
   h2: {
     fontSize: (theme) => theme.fontSizes.bigger,
-    fontWeight: "bold",
   },
   h3: {
     fontSize: (theme) => theme.fontSizes.big,
-    fontWeight: "bold",
   },
   h4: {
     fontSize: (theme) => theme.fontSizes.big,

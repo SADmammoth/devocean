@@ -6,8 +6,8 @@ const theme = {
     button: "#003c58",
   },
   background: {
-    dark: "#82d1ff",
-    common: "#d5f2ff",
+    dark: "#EAEAEA",
+    common: "#F9F9F9",
     light: "#ffffff",
     button: "#82d1ff",
   },
@@ -18,7 +18,7 @@ const theme = {
   noTypeList: {
     listStyleType: "none",
   },
-  contentWidth: "500px",
+  contentWidth: "1200px",
   fontSizes: {
     biggest: "1.79rem", //34px
     bigger: "1.47rem", //28px
@@ -30,6 +30,7 @@ const theme = {
     special: "4.37rem", //83px
     specialSmall: "2.58rem", //49px
   },
+  headerHeight: "7vh",
 };
 
 export default theme;
