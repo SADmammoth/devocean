@@ -18,6 +18,7 @@ const StackLayout = ({
   alignX,
   alignY,
   gap,
+  style,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -35,7 +36,7 @@ const StackLayout = ({
         classes[alignYClass],
         classes[alignXClass],
       ])}
-      style={{ gap }}
+      style={{ ...style, gap }}
     >
       {children}
     </div>
