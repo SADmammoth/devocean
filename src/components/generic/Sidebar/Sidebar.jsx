@@ -1,24 +1,19 @@
 import React from "react";
+import classNames from "classnames";
 import StackLayout from "../layouts/StackLayout";
-import { FaCog } from "react-icons/fa";
-import { Button } from "reakit";
 import { useTheme, createUseStyles } from "react-jss";
-import Clock from "../Clock";
 import styles from "./Sidebar.styles";
 
 const useStyles = createUseStyles(styles);
 
-const Sidebar = () => {
+const Sidebar = ({ children, className, style }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <aside className={classes.sidebar}>
+    <aside className={classNames(classes.sidebar, className)} style={style}>
       <StackLayout orientation="vertical" alignX="center">
-        <Clock city="Belarus, Minsk" />
-        <Button>
-          <FaCog /> Change settings
-        </Button>
+        {children}
       </StackLayout>
     </aside>
   );

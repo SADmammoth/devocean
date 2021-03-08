@@ -41,6 +41,7 @@ const alignsStyles = Object.assign(
 const styles = {
   stack: {
     display: "flex",
+    flexWrap: "wrap",
   },
 
   vertical: {

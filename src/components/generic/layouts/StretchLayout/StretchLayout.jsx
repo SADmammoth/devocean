@@ -1,19 +1,15 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import classNames from "classnames";
-import styles from "./ContainerLayout.styles";
+import styles from "./StretchLayout.styles";
 
 const useStyles = createUseStyles(styles);
 
-const ContainerLayout = ({ children, className }) => {
+export default function StretchLayout({ className, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <div className={classNames(classes.containerLayout, className)}>
-      {children}
-    </div>
+    <div className={classNames(className, classes.container)}>{children}</div>
   );
-};
-
-export default ContainerLayout;
+}
