@@ -14,4 +14,5 @@ export default {
     baseNavigator: true,
     baseSeparator: "-",
   },
+  outputPath: "./build",
 };
