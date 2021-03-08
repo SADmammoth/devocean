@@ -2,8 +2,11 @@ const styles = {
   content: {
     height: "100%",
   },
-  paddingTop: {
-    paddingTop: "5vh",
+  marginTop: {
+    marginTop: "5vh",
+  },
+  icon: {
+    fontSize: (theme) => theme.fontSizes.bigger,
   },
 };
 

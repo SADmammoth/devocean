@@ -3,14 +3,19 @@ import PropTypes from "prop-types";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import Interactive from "../Interactive";
 
-const NavItems = ({ items, itemClass, itemContainerClass }) => {
-  const composite = useCompositeState();
+const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
+  const composite = useCompositeState({ loop: true });
 
   return (
-    <Composite {...composite}>
-      {items.map(({ label, link, onClick }) => {
+    <Composite as={as} {...composite}>
+      {items.map(({ id, title, label, link, onClick }) => {
         return (
-          <li key={label} className={itemContainerClass}>
+          <li
+            key={id}
+            title={title}
+            aria-label={title}
+            className={itemContainerClass}
+          >
             {Interactive(
               <CompositeItem {...composite} className={itemClass}>
                 {label}

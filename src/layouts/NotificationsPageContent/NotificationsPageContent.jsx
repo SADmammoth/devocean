@@ -1,4 +1,5 @@
 import React from "react";
+import { FaPlusCircle, FaTrash } from "react-icons/fa";
 import classNames from "classnames";
 import Text from "../../components/generic/Text";
 import StackLayout from "../../components/generic/layouts/StackLayout";
@@ -9,6 +10,7 @@ import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationsPageContent.styles";
 import NotificationsList from "../../components/specific/NotificationsList";
 import StretchLayout from "../../components/generic/layouts/StretchLayout";
+import ToolBar from "../../components/generic/ToolBar";
 
 const useStyles = createUseStyles(styles);
 
@@ -23,7 +25,7 @@ const NotificationsPageContent = () => {
         <ClockSidebar column={3} className={classes.sidebar} />
         <StackLayout
           orientation="vertical"
-          className={classes.paddingTop}
+          className={classes.marginTop}
           alignX="start"
           column={8}
         >
@@ -32,6 +34,17 @@ const NotificationsPageContent = () => {
             <NotificationsList />
           </StretchLayout>
         </StackLayout>
+        <ToolBar
+          name={"Notifications toolbar"}
+          className={classes.marginTop}
+          items={[
+            {
+              title: "New notification",
+              label: <FaPlusCircle className={classes.icon} />,
+              link: "/notifications/new",
+            },
+          ]}
+        />
       </GridLayout>
     </>
   );

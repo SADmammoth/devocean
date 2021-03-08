@@ -1,27 +1,26 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./NavList.styles";
-import classNames from "classnames";
 import NavItems from "../NavItems";
+import classNames from "classnames";
+import { useTheme, createUseStyles } from "react-jss";
+import styles from "./ToolBar.styles";
 import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-const NavList = ({ items }) => {
+const ToolBar = ({ className, items, style }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <nav className={classes.container}>
+    <aside className={classNames(classes.toolbar, className)} style={style}>
       <NavItems
         as={({ children }) => (
           <StackLayout
+            className={classes.list}
             as="ul"
             orientation="vertical"
-            alignX="left"
-            gap="0.7rem"
-            className={classes.list}
+            alignX="center"
+            gap="1rem"
           >
             {children}
           </StackLayout>
@@ -30,10 +29,8 @@ const NavList = ({ items }) => {
         itemClass={classes.item}
         itemContainerClass={classes.itemContainer}
       />
-    </nav>
+    </aside>
   );
 };
 
-NavList.propTypes = {};
-
-export default NavList;
+export default ToolBar;
