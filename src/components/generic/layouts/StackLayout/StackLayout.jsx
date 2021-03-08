@@ -19,6 +19,8 @@ const StackLayout = ({
   alignY,
   gap,
   style,
+
+  as,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -27,8 +29,10 @@ const StackLayout = ({
   const alignYClass = orientationPrefix(orientationClass, aligns[alignY], "Y");
   const alignXClass = orientationPrefix(orientationClass, aligns[alignX], "X");
 
+  const RenderTag = as;
+
   return (
-    <div
+    <RenderTag
       className={classNames([
         className,
         classes.stack,
@@ -39,7 +43,7 @@ const StackLayout = ({
       style={{ ...style, gap }}
     >
       {children}
-    </div>
+    </RenderTag>
   );
 };
 
@@ -48,12 +52,16 @@ StackLayout.propTypes = {
   alignY: PropTypes.oneOf(Object.keys(aligns)),
   alignX: PropTypes.oneOf(Object.keys(aligns)),
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
 
 StackLayout.defaultProps = {
   orientation: "horizontal",
   alignY: "stretch",
   alignX: "stretch",
+
+  as: "div",
 };
 
 export default StackLayout;

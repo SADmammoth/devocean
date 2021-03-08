@@ -5,6 +5,9 @@ const styles = {
   appname: {
     display: "inline",
   },
+  topPadding: {
+    paddingTop: "15vh",
+  },
 };
 
 export default styles;

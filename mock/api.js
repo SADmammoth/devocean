@@ -34,4 +34,22 @@ export default {
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.sendStatus(203);
   },
+
+  "GET /api/navitems": [
+    {
+      label: "Agenda",
+    },
+    {
+      label: "Manage team",
+    },
+    {
+      label: "Manage tasks",
+    },
+    {
+      label: "Review statistics",
+    },
+    {
+      label: "Show all projects",
+    },
+  ],
 };

@@ -7,7 +7,7 @@ import types from "./types";
 
 const useStyles = createUseStyles(styles);
 
-const Text = ({ type, children, className, bold, italics, alignment }) => {
+const Text = ({ type, children, className, bold, italic, alignment }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -21,7 +21,7 @@ const Text = ({ type, children, className, bold, italics, alignment }) => {
         classes[alignments[alignment] + "-alignment"],
         {
           [classes.bold]: bold,
-          [classes.italics]: italics,
+          [classes.italic]: italic,
         }
       )}
     >

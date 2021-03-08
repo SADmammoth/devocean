@@ -18,7 +18,7 @@ const theme = {
   noTypeList: {
     listStyleType: "none",
   },
-  contentWidth: "1200px",
+  contentWidth: "1400px",
   fontSizes: {
     biggest: "1.79rem", //34px
     bigger: "1.47rem", //28px

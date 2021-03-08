@@ -29,6 +29,9 @@ const styles = {
     fontSize: (theme) => theme.fontSizes.big,
   },
   sub: {
+    fontSize: (theme) => theme.fontSizes.bigger,
+  },
+  subSmall: {
     fontSize: (theme) => theme.fontSizes.default,
   },
   hint: {
@@ -46,8 +49,8 @@ const styles = {
   bold: {
     fontWeight: "bold",
   },
-  italics: {
-    fontStyle: "italics",
+  italic: {
+    fontStyle: "italic",
   },
 
   ...alignmentStyles,
