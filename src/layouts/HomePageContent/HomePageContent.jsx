@@ -10,10 +10,6 @@ import styles from "./HomePageContent.styles";
 import useLocale from "../../helpers/useLocale";
 import Text from "../../components/generic/Text";
 import Clock from "../../components/generic/Clock";
-import {
-  aligns,
-  orientations,
-} from "../../components/generic/layouts/StackLayout/maps";
 import GridLayout from "../../components/generic/layouts/GridLayout";
 import AppName from "./AppName";
 import Skip from "../../components/generic/layouts/GridLayout/Skip";
