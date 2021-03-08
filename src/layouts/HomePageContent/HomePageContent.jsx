@@ -55,7 +55,7 @@ const HomePageContent = () => {
         >
           {Marked(<Text type="h2">{locale("Notifications")}</Text>)}
           <StretchLayout>
-            <NotificationsList />
+            <NotificationsList showCount={3} />
           </StretchLayout>
         </StackLayout>
       </GridLayout>

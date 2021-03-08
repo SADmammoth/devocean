@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import { useRecoilValueLoadable } from "recoil";
 import notificationsState from "../../../recoil/states/notificationsState";
 import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
 import StackLayout from "../../generic/layouts/StackLayout";
-import AddNotification from "../AddNotification";
 import NotificationContent from "../NotificationContent";
+import Interactive from "../../generic/Interactive";
 
-const NotificationsList = ({ items }) => {
+const NotificationsList = ({ items, showCount }) => {
   const composite = useCompositeState();
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
 
@@ -23,16 +23,38 @@ const NotificationsList = ({ items }) => {
       </InteractiveCard>
     );
   };
+
+  const notificationsToShow = useMemo(() => {
+    if (notificationsLoadable.state === "hasValue") {
+      if (showCount) {
+        return notificationsLoadable.contents.slice(0, showCount);
+      }
+      return notificationsLoadable.contents;
+    }
+    return [];
+  }, [notificationsLoadable]);
+
+  const notShownCount = useMemo(
+    () => notificationsLoadable.contents.length - notificationsToShow.length,
+    [notificationsLoadable, notificationsToShow]
+  );
+
   return (
     <StackLayout orientation="vertical" gap="10px">
       {notificationsLoadable.state === "hasValue" ? (
         <Composite {...composite}>
-          {notificationsLoadable.contents.map(renderNotification)}
+          {notificationsToShow.map(renderNotification)}
+          {!(showCount && notShownCount > 0) ||
+            Interactive(
+              <CompositeItem
+                {...composite}
+              >{`${notShownCount} more`}</CompositeItem>,
+              { link: "/notifications" }
+            )}
         </Composite>
       ) : (
         "Loading..."
       )}
-      <AddNotification />
     </StackLayout>
   );
 };
