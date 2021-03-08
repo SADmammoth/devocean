@@ -8,6 +8,24 @@ const styles = {
 
   cityText: {
     margin: 0,
+    textAlign: "center",
+    marginBottom: "-10%",
+  },
+
+  big: {
+    "& $cityText": {
+      fontSize: (theme) => theme.fontSizes.default,
+    },
+  },
+  small: {
+    "& $cityText": {
+      fontSize: (theme) => theme.fontSizes.smaller,
+    },
+  },
+  mini: {
+    "& $cityText": {
+      display: "none",
+    },
   },
 };
 

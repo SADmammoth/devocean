@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
+import classNames from "classnames";
 import clockUpdater from "./clockUpdater.js";
-import { createUseStyles } from "react-jss";
+import { createUseStyles, useTheme } from "react-jss";
 import styles from "./DateTime.styles";
 import dateToString from "../../../helpers/dateToString.js";
 
@@ -21,8 +22,11 @@ const months = [
   "Dec",
 ];
 
-export default function DateTime() {
-  const classes = useStyles();
+const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+export default function DateTime({ size }) {
+  const theme = useTheme();
+  const classes = useStyles(theme);
 
   const [minutesUpdater] = useState(clockUpdater());
   const [date, setDate] = useState({
@@ -48,8 +52,21 @@ export default function DateTime() {
     };
   }, [minutesUpdater]);
 
+  const weekday = useMemo(() => {
+    const index = new Date(
+      new Date().getFullYear(),
+      date.month - 1,
+      date.day
+    ).getDay();
+
+    return weekdays[index];
+  }, [date]);
+
   return (
-    <time className={classes.dateTime} dateTime={dateToString(date)}>
+    <time
+      className={classNames(classes.dateTime, classes[size])}
+      dateTime={dateToString(date)}
+    >
       <div className={classes.time}>
         <span>{date.hours.toString().padStart(2, "0")}</span>
         <span className={classes.blinking}>:</span>
@@ -57,8 +74,7 @@ export default function DateTime() {
       </div>
       <hr className={classes.divider} />
       <div className={classes.date}>
-        <span>{months[date.month]}</span>
-        <span>, {date.day}</span>
+        <span>{`${weekday}, ${months[date.month - 1]} ${date.day}`}</span>
       </div>
     </time>
   );

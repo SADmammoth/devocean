@@ -16,28 +16,48 @@ const styles = {
   },
 
   dateTime: {
-    width: "80px",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
 
   time: {
-    fontSize: "2.1rem",
     marginBottom: 0,
     padding: 0,
   },
 
   divider: {
-    height: "2px",
+    height: "1px",
     width: "100%",
     margin: 0,
+    background: (theme) => theme.text.common,
+    border: "none",
   },
 
   date: {
-    fontSize: "1.1rem",
     marginTop: 0,
     padding: 0,
+  },
+
+  big: {
+    "& $time": {
+      fontSize: (theme) => theme.fontSizes.special,
+    },
+    "& $date": { fontSize: (theme) => theme.fontSizes.bigger },
+  },
+
+  small: {
+    "& $time": {
+      fontSize: (theme) => theme.fontSizes.specialSmall,
+    },
+    "& $date": { fontSize: (theme) => theme.fontSizes.default },
+  },
+
+  mini: {
+    "& $time": {
+      fontSize: (theme) => theme.fontSizes.bigger,
+    },
+    "& $date": { fontSize: (theme) => theme.fontSizes.default },
   },
 };
 

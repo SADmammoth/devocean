@@ -17,6 +17,7 @@ import StretchLayout from "../../components/generic/layouts/StretchLayout";
 import NavList from "../../components/generic/NavList";
 import { useRecoilValue } from "recoil";
 import navitemsState from "../../recoil/states/navitemsState";
+import ClockSidebar from "../../components/specific/ClockSidebar/ClockSidebar";
 
 const useStyles = createUseStyles(styles);
 
@@ -30,9 +31,7 @@ const HomePageContent = () => {
   return (
     <>
       <GridLayout className={classes.content} stretchLast>
-        <Sidebar column={3} className={classes.sidebar}>
-          <Clock city="Belarus, Minsk" />
-        </Sidebar>
+        <ClockSidebar column={3} className={classes.sidebar} />
         <Skip column={1} />
         <StackLayout
           column={3}
