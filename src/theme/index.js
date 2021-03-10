@@ -31,6 +31,11 @@ const theme = {
     specialSmall: "2.58rem", //49px
   },
   headerHeight: "7vh",
+  spinner: {
+    size: "10px",
+    background: "#ffffff",
+    color: "#005c86",
+  },
 };
 
 export default theme;
