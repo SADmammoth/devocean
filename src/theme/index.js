@@ -36,6 +36,10 @@ const theme = {
     background: "#ffffff",
     color: "#005c86",
   },
+  spaces: {
+    big: "15vh",
+    small: "5vh",
+  },
 };
 
 export default theme;

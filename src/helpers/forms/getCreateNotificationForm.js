@@ -1,4 +1,4 @@
-export default ({ shortText, fullText, dateTime }) => [
+export default ({ shortText, fullText, dateTime, addressee }) => [
   {
     type: "text",
     name: "shortText",
@@ -22,6 +22,7 @@ export default ({ shortText, fullText, dateTime }) => [
   {
     type: "text",
     name: "dateTime",
+    label: "Date and time",
     placeholder: "MM-dd-yyyy hh:mm",
     validator: "dateTimeByChar",
     mask: `99-99-${new Date()
@@ -30,5 +31,11 @@ export default ({ shortText, fullText, dateTime }) => [
       .replace("9", "9\\")} 99:99`,
     maskType: "invisible",
     value: dateTime,
+  },
+  {
+    type: "addressee",
+    name: "addressee",
+    label: "Addressee",
+    value: addressee,
   },
 ];

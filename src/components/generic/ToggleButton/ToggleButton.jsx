@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
-import { Button } from "reakit";
 import styles from "./ToggleButton.styles";
+import Button from "../Button";
 
 const useStyles = createUseStyles(styles);
 

@@ -6,7 +6,7 @@ const styles = {
     display: "inline",
   },
   topPadding: {
-    paddingTop: "15vh",
+    paddingTop: (theme) => theme.spaces.big,
   },
 };
 

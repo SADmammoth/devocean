@@ -39,18 +39,19 @@ const NotificationsList = ({ items, showCount }) => {
     [notificationsLoadable, notificationsToShow]
   );
 
+  const InteractiveCompositeItem = Interactive(CompositeItem);
+
   return (
     <StackLayout orientation="vertical" gap="10px">
       {notificationsLoadable.state === "hasValue" ? (
         <Composite {...composite}>
           {notificationsToShow.map(renderNotification)}
-          {!(showCount && notShownCount > 0) ||
-            Interactive(
-              <CompositeItem
-                {...composite}
-              >{`${notShownCount} more`}</CompositeItem>,
-              { link: "/notifications" }
-            )}
+          {!(showCount && notShownCount > 0) || (
+            <InteractiveCompositeItem
+              link="/notifications"
+              {...composite}
+            >{`${notShownCount} more`}</InteractiveCompositeItem>
+          )}
         </Composite>
       ) : (
         "Loading..."

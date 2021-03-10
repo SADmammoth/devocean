@@ -1,9 +1,9 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
-import { Button } from "reakit";
 import { useSetRecoilState } from "recoil";
 import notificationsState from "../../../recoil/states/notificationsState";
 import styles from "./AddNotification.styles";
+import Button from "../../generic/Button";
 
 const useStyles = createUseStyles(styles);
 
