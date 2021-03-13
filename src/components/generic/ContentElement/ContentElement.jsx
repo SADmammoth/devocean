@@ -1,7 +1,7 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ContentElement.styles";
-import ContainerLayout from "../../components/generic/layouts/ContainerLayout";
+import ContainerLayout from "../layouts/ContainerLayout";
 
 const useStyles = createUseStyles(styles);
 

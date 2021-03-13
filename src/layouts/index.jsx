@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import Header from "../components/generic/Header";
-import ContentElement from "./ContentElement";
+import ContentElement from "../components/generic/ContentElement";
 
 function _layout({ children }) {
   return (
