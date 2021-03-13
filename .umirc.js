@@ -15,4 +15,7 @@ export default {
     baseSeparator: "-",
   },
   outputPath: "./build",
+  define: {
+    API_PATH: "http://localhost:8001/api",
+  },
 };

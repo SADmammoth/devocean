@@ -18,7 +18,11 @@ const NotificationsList = ({ items, showCount }) => {
 
   const renderNotification = ({ id, time, title, author }) => {
     return (
-      <InteractiveCard key={id} composite={composite} link={id}>
+      <InteractiveCard
+        key={id}
+        composite={composite}
+        link={`/notifications/${id}`}
+      >
         <NotificationContent time={time} title={title} author={author} />
       </InteractiveCard>
     );

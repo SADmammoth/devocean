@@ -1,4 +1,4 @@
-import { atom, selector } from "recoil";
+import { atom, selector, selectorFamily } from "recoil";
 import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
@@ -28,6 +28,16 @@ export const notificationsState_count = selector({
   get: ({ get }) => {
     const notifications = get(notificationsState);
     return notifications.length;
+  },
+});
+
+export const notificationsState_getById = selectorFamily({
+  key: baseKey + "getById",
+  get: (targetId) => ({ get }) => {
+    const notifications = get(notificationsState);
+    return (
+      notifications.find(({ id }) => id === targetId) || notifications[targetId]
+    );
   },
 });
 
