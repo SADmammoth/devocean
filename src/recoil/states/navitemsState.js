@@ -11,8 +11,17 @@ const navitemsState = selector({
       title: "Agenda",
       label: "Agenda",
     },
-    { id: "manageteam", title: "Manage team", label: "Manage team" },
-    { id: "managetasks", title: "Manage tasks", label: "Manage tasks" },
+    {
+      id: "manageteam",
+      title: "Manage team",
+      label: "Manage team",
+    },
+    {
+      id: "managetasks",
+      title: "Manage tasks",
+      label: "Manage tasks",
+      link: "/tasks",
+    },
     {
       id: "reviewstatistics",
       title: "Review statistics",
