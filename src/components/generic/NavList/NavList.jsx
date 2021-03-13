@@ -19,7 +19,7 @@ const NavList = ({ items }) => {
           <StackLayout
             as="ul"
             orientation="vertical"
-            alignX="left"
+            alignX="start"
             gap="0.7rem"
             className={classes.list}
           >

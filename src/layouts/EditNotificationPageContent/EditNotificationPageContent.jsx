@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
-import useLocale from "../../helpers/useLocale";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./EditNotificationPageContent.styles";
 import Sidebar from "../../components/generic/Sidebar";
@@ -9,6 +8,9 @@ import GridLayout from "../../components/generic/layouts/GridLayout";
 import Form from "../../components/generic/Form";
 import getCreateNotificationForm from "../../helpers/forms/getCreateNotificationForm";
 import StretchLayout from "../../components/generic/layouts/StretchLayout";
+import useLocalizedForm from "../../helpers/forms/useLocalizedForm";
+import useLocale from "../../helpers/useLocale";
+import Text from "../../components/generic/Text";
 
 const useStyles = createUseStyles(styles);
 
@@ -17,32 +19,56 @@ const EditNotificationPageContent = ({ initialValues }) => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  let shortText, fullText, dateTime;
+  let shortText, fullText, dateTime, addressee;
 
   if (initialValues) {
-    ({ shortText, fullText, dateTime } = initialValues);
+    ({ shortText, fullText, dateTime, addressee } = initialValues);
   }
 
+  const localizedForm = useLocalizedForm(
+    getCreateNotificationForm({
+      shortText,
+      fullText,
+      dateTime,
+      addressee,
+    })
+  );
+
+  const [inputs, setInputs] = useState({});
+
+  const onInputsUpdate = (inputs) => {
+    setInputs(inputs);
+  };
+
   return (
-    <div>
-      <GridLayout>
-        <Sidebar column={3}></Sidebar>
-        <StackLayout column={5}>
+    <>
+      <GridLayout className={classes.content}>
+        <Sidebar column={3} className={classes.sidebar}>
+          {inputs.dateTime}
+          {inputs.addressee}
+        </Sidebar>
+        <StackLayout
+          column={5}
+          className={classes.marginTop}
+          orientation="vertical"
+          alignY="start"
+        >
+          <Text type="h1">{locale("New notification")}</Text>
           <StretchLayout>
             <Form
-              inputs={getCreateNotificationForm({
-                shortText,
-                fullText,
-                dateTime,
-              })}
+              inputs={localizedForm}
               onSubmit={(data) => {
                 console.log(data);
               }}
-            />
+              onInputsUpdate={onInputsUpdate}
+            >
+              {inputs.shortText}
+              {inputs.fullText}
+            </Form>
           </StretchLayout>
         </StackLayout>
       </GridLayout>
-    </div>
+    </>
   );
 };
 

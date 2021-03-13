@@ -1,4 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
+
+import useLocale from "../../../helpers/useLocale";
+
+import Button from "../../generic/Button";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import { useRecoilValueLoadable } from "recoil";
 import notificationsState from "../../../recoil/states/notificationsState";
@@ -10,16 +14,16 @@ import Interactive from "../../generic/Interactive";
 const NotificationsList = ({ items, showCount }) => {
   const composite = useCompositeState();
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
+  const locale = useLocale();
 
   const renderNotification = ({ id, time, title, author }) => {
     return (
-      <InteractiveCard composite={composite} link={id}>
-        <NotificationContent
-          time={time}
-          title={title}
-          author={author}
-          composite={composite}
-        />
+      <InteractiveCard
+        key={id}
+        composite={composite}
+        link={`/notifications/${id}`}
+      >
+        <NotificationContent time={time} title={title} author={author} />
       </InteractiveCard>
     );
   };
@@ -39,19 +43,22 @@ const NotificationsList = ({ items, showCount }) => {
     [notificationsLoadable, notificationsToShow]
   );
 
+  const InteractiveButton = Interactive(Button);
+
   return (
     <StackLayout orientation="vertical" gap="10px">
       {notificationsLoadable.state === "hasValue" ? (
-        <Composite {...composite}>
-          {notificationsToShow.map(renderNotification)}
-          {!(showCount && notShownCount > 0) ||
-            Interactive(
-              <CompositeItem
-                {...composite}
-              >{`${notShownCount} more`}</CompositeItem>,
-              { link: "/notifications" }
-            )}
-        </Composite>
+        <>
+          <Composite {...composite} aria-label={locale("Notifications")}>
+            {notificationsToShow.map(renderNotification)}
+          </Composite>
+          {!(showCount && notShownCount > 0) || (
+            <InteractiveButton
+              link="/notifications"
+              {...composite}
+            >{`${notShownCount} more`}</InteractiveButton>
+          )}
+        </>
       ) : (
         "Loading..."
       )}

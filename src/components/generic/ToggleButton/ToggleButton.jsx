@@ -1,8 +1,8 @@
 import React, { useState, useCallback } from "react";
 import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
-import { Button } from "reakit";
 import styles from "./ToggleButton.styles";
+import Button from "../Button";
 
 const useStyles = createUseStyles(styles);
 
@@ -33,10 +33,12 @@ const ToggleButton = ({ states, current }) => {
 };
 
 ToggleButton.propTypes = {
-  states: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    action: PropTypes.func.isRequired,
-  }).isRequired,
+  states: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      action: PropTypes.func.isRequired,
+    })
+  ).isRequired,
   current: PropTypes.number,
 };
 

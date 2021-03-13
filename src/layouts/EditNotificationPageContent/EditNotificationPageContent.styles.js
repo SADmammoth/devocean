@@ -3,10 +3,13 @@ const styles = {
     height: "100%",
   },
   marginTop: {
-    marginTop: "5vh",
+    marginTop: (theme) => theme.spaces.small,
   },
   icon: {
     fontSize: (theme) => theme.fontSizes.bigger,
+  },
+  sidebar: {
+    paddingTop: (theme) => theme.spaces.small,
   },
 };
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import PropTypes from "prop-types";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import Interactive from "../Interactive";
@@ -6,9 +6,11 @@ import Interactive from "../Interactive";
 const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
   const composite = useCompositeState({ loop: true });
 
-  return (
-    <Composite as={as} {...composite}>
-      {items.map(({ id, title, label, link, onClick }) => {
+  const InteractiveCompositeItem = Interactive(CompositeItem);
+
+  const renderItems = useMemo(
+    () =>
+      items.map(({ id, title, label, link, onClick }) => {
         return (
           <li
             key={id}
@@ -16,18 +18,25 @@ const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
             aria-label={title}
             className={itemContainerClass}
           >
-            {Interactive(
-              <CompositeItem {...composite} className={itemClass}>
+            {
+              <InteractiveCompositeItem
+                {...composite}
+                onClick={onClick}
+                link={link}
+                className={itemClass}
+              >
                 {label}
-              </CompositeItem>,
-              {
-                onClick,
-                link,
-              }
-            )}
+              </InteractiveCompositeItem>
+            }
           </li>
         );
-      })}
+      }),
+    [items]
+  );
+
+  return (
+    <Composite as={as} {...composite}>
+      {renderItems}
     </Composite>
   );
 };
