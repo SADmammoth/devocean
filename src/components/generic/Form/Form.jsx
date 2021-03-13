@@ -23,7 +23,7 @@ function Form({ submitText = "Submit", ...props }) {
 
   return (
     <FormModule.default
-      renderInput={renderInput}
+      render={{ input: renderInput }}
       submitButton={SubmitButton}
       {...props}
     ></FormModule.default>

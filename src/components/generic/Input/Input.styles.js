@@ -6,7 +6,7 @@ const styles = {
     width: "100%",
     boxSizing: "border-box",
     margin: 0,
-    padding: 0,
+    padding: "2px",
     fontSize: (theme) => theme.fontSizes.default,
   },
 

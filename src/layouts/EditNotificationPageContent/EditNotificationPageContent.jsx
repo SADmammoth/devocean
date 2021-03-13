@@ -34,18 +34,18 @@ const EditNotificationPageContent = ({ initialValues }) => {
     })
   );
 
-  // const [inputs, setInputs] = useState({});
+  const [inputs, setInputs] = useState({});
 
-  // const onInputsUpdate = (inputs) => {
-  //   setInputs(inputs);
-  // };
+  const onInputsUpdate = (inputs) => {
+    setInputs(inputs);
+  };
 
   return (
     <>
       <GridLayout className={classes.content}>
         <Sidebar column={3} className={classes.sidebar}>
-          {/* {inputs.dateTime}
-          {inputs.addressee} */}
+          {inputs.dateTime}
+          {inputs.addressee}
         </Sidebar>
         <StackLayout
           column={5}
@@ -60,10 +60,10 @@ const EditNotificationPageContent = ({ initialValues }) => {
               onSubmit={(data) => {
                 console.log(data);
               }}
-              //   onInputsUpdate={onInputsUpdate}
+              onInputsUpdate={onInputsUpdate}
             >
-              {/* {inputs.shortText}
-              {inputs.fullText} */}
+              {inputs.shortText}
+              {inputs.fullText}
             </Form>
           </StretchLayout>
         </StackLayout>

@@ -8,29 +8,31 @@ const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
 
   const InteractiveCompositeItem = Interactive(CompositeItem);
 
-  const renderItems = useMemo(() => {
-    items.map(({ id, title, label, link, onClick }) => {
-      return (
-        <li
-          key={id}
-          title={title}
-          aria-label={title}
-          className={itemContainerClass}
-        >
-          {
-            <InteractiveCompositeItem
-              {...composite}
-              onClick={onClick}
-              link={link}
-              className={itemClass}
-            >
-              {label}
-            </InteractiveCompositeItem>
-          }
-        </li>
-      );
-    });
-  }, [JSON.stringify(items)]);
+  const renderItems = useMemo(
+    () =>
+      items.map(({ id, title, label, link, onClick }) => {
+        return (
+          <li
+            key={id}
+            title={title}
+            aria-label={title}
+            className={itemContainerClass}
+          >
+            {
+              <InteractiveCompositeItem
+                {...composite}
+                onClick={onClick}
+                link={link}
+                className={itemClass}
+              >
+                {label}
+              </InteractiveCompositeItem>
+            }
+          </li>
+        );
+      }),
+    [items]
+  );
 
   return (
     <Composite as={as} {...composite}>
