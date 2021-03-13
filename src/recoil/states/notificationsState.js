@@ -9,11 +9,11 @@ const baseKey = "notificationsState_";
 const postState = (newValue, oldValue) => {
   const diff = _.difference(newValue, oldValue);
   if (diff.length === 1) {
-    return Client.postNotifications(diff[0]);
+    return Client.notifications.post(diff[0]);
   }
 };
 
-const getState = () => Client.getNotifications();
+const getState = () => Client.notifications.get();
 
 const notificationsStateAtom = atom({
   key: baseKey,
