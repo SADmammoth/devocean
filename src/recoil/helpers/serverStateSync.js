@@ -1,25 +1,36 @@
+import { node } from "prop-types";
+
 export default function serverStateSync(get, post, abortGet, abortPost) {
-  return ({ onSet, trigger, setSelf }) => {
-    if (trigger === "get") {
-      const getData = async () => setSelf(await get());
+  return ({ node, onSet, trigger, setSelf }) => {
+    if (get && trigger === "get") {
+      const initialize = async (value) =>
+        JSON.stringify(value) === JSON.stringify(node.default)
+          ? await get()
+          : value;
+
+      const getData = async () => {
+        setSelf(await initialize());
+      };
 
       getData();
     }
 
-    onSet(async (newValue, oldValue) => {
-      return await post(newValue, oldValue).catch(() => {
-        setSelf(oldValue);
+    if (post) {
+      onSet(async (newValue, oldValue) => {
+        return await post(newValue, oldValue).catch(() => {
+          setSelf(oldValue);
+        });
       });
-    });
+    }
 
     return () => {
-      if (get.abort) {
+      if (get && get.abort) {
         get.abort();
       } else if (abortGet) {
         abortGet();
       }
 
-      if (post.abort) {
+      if (post && post.abort) {
         post.abort();
       } else if (abortPost) {
         abortPost();

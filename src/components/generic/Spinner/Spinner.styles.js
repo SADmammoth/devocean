@@ -14,8 +14,6 @@ const scaleSector = (calcParameter) => {
     }
   }
 
-  console.log(animation);
-
   return animation;
 };
 

@@ -6,7 +6,7 @@ import { notificationsState_getById } from "../../recoil/states/notificationsSta
 export default function Notification({ match: { params } }) {
   const { id } = params;
   const notification = useRecoilValueLoadable(notificationsState_getById(id));
-  console.log(notification);
+
   return (
     <>
       {notification.state === "hasValue" ? (

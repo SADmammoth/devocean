@@ -40,6 +40,7 @@ const theme = {
     big: "15vh",
     small: "5vh",
   },
+  draggableAreaDefaultSize: "50px",
 };
 
 export default theme;

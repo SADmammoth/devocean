@@ -1,5 +1,6 @@
 import request from "superagent";
 import prefix from "superagent-prefix";
+import Duration from "./Duration";
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 
@@ -13,7 +14,11 @@ const Client = {
     },
 
     post: (notification) => {
-      return request.post("/notifications").use(apiPath).send(notification);
+      return request
+        .post("/notifications")
+        .use(apiPath)
+        .send(notification)
+        .then((res) => res.body);
     },
   },
   user: {
@@ -29,6 +34,42 @@ const Client = {
         .post("/register")
         .use(apiPath)
         .send({ login, password })
+        .then((res) => res.body);
+    },
+  },
+
+  tasks: {
+    get: () => {
+      return request
+        .get("/tasks")
+        .use(apiPath)
+        .then(({ body }) =>
+          body.map(({ estimate, reportedTime, ...other }) => ({
+            estimate: new Duration(estimate),
+            reportedTime: new Duration(reportedTime),
+            ...other,
+          }))
+        );
+    },
+    post: (task) => {
+      const body = {
+        estimate: task.estimate.getTime(),
+        reportedTime: task.reportedTime.getTime(),
+        ...task,
+      };
+
+      return request
+        .post("/tasks")
+        .use(apiPath)
+        .send(body)
+        .then((res) => res.body);
+    },
+  },
+  folders: {
+    get: () => {
+      return request
+        .get("/folders")
+        .use(apiPath)
         .then((res) => res.body);
     },
   },
