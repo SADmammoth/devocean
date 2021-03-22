@@ -1,11 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { useTheme } from "react-jss";
 import Spinner from "../../../components/generic/Spinner";
 import { useRecoilValueLoadable } from "recoil";
 import { tasksState_getByFolder } from "../../../recoil/states/tasksState";
 import DraggableList from "../../../components/generic/DraggableList/DraggableList";
-import { currentFolderState_tasks } from "./currentFolderState";
-import { useTheme } from "theming";
-import folderTreeState from "../../../recoil/states/folderTreeState";
 import DraggableTask from "../../../components/specific/DraggableTask/DraggableTask";
 
 export default function ListViewTasks({ folderId }) {

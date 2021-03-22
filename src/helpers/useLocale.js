@@ -5,7 +5,7 @@ export default function useLocale() {
   const intl = useIntl();
 
   return _.memoize((id, vars = {}) => {
-    if (id) {
+    if (!id) {
       return id;
     }
     let newMessage;
