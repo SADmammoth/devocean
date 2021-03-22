@@ -2,6 +2,7 @@ import { atom, selectorFamily } from "recoil";
 import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
+import getParentsOfFolderTree from "../helpers/getParentsOfFolderTree";
 
 const baseKey = "folderTreeState_";
 
@@ -31,5 +32,16 @@ export const folderTreeState_getById = selectorFamily({
     return folders.find(({ id }) => folderId === id);
   },
 });
+
+// export const folderTreeState_traverseUp = selectorFamily({
+//   key: baseKey + "getById",
+//   get: (folderId) => ({ get }) => {
+//     const folders = get(folderTreeStateAtom);
+//     const foldersMap = treeArrayToMap(folders);
+//     const parentFolders = getParentsOfFolderTree(folderId, foldersMap);
+
+//     return parentFolders;
+//   },
+// });
 
 export default folderTreeState;

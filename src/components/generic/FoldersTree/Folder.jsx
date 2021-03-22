@@ -15,52 +15,28 @@ function Folder({
   selected,
   childrenIds,
   requestFolderProps,
+  selectedParent,
 }) {
   const InteractiveButton = Interactive(as);
-  const [selectedState, setSelectedState] = useState(selected);
-  const [childSelected, setChildSelected] = useState(false);
-
-  useEffect(() => {
-    setSelectedState(selected);
-  }, [selected]);
-
-  useEffect(() => {
-    if (!childSelected && !selected && selectedState) {
-      setSelectedState(false);
-    }
-  }, [childSelected, selected, selectedState]);
 
   const renderSubFolders = useCallback(() => {
     const subfolders =
-      childrenIds && childrenIds.length && (selectedState || childSelected)
+      childrenIds && childrenIds.length && (selected || selectedParent)
         ? childrenIds.map((id) => {
             const folder = requestFolderProps(id);
-            if (
-              folder.selected &&
-              !childSelected &&
-              (!selectedState || !selected)
-            )
-              setChildSelected(true);
-
             if (folder) return <Folder key={id} {...folder} />;
           })
         : null;
 
     return subfolders;
-  }, [
-    selectedState,
-    childSelected,
-    selected,
-    childrenIds,
-    id,
-    requestFolderProps,
-  ]);
+  }, [selected, selectedParent, childrenIds, id, requestFolderProps]);
 
   return (
     <div>
       <InteractiveButton
         className={classNames(classes[type], {
           [classes.selected]: selected,
+          [classes.selectedParent]: selectedParent,
         })}
         onClick={() => onClick(id)}
       >
