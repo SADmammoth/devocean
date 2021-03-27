@@ -21,6 +21,7 @@ const StackLayout = ({
   style,
 
   as,
+  ...other
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -41,6 +42,7 @@ const StackLayout = ({
         classes[alignXClass],
       ])}
       style={{ ...style, "--gap": gap }}
+      {...other}
     >
       {children}
     </RenderTag>

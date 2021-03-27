@@ -2,12 +2,17 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
-import ProgressBar from "../../generic/ProgressBar/ProgressBar";
 import PriorityBadge from "../PriorityBadge/PriorityBadge";
 import styles from "./TaskCard.styles";
 import sizes from "./sizes";
 import Text from "../../generic/Text";
-import StackLayout from "../../generic/layouts/StackLayout";
+import TaskInfo from "./TaskInfo";
+import useLocale from "../../../helpers/useLocale";
+import priorities from "../PriorityBadge/priorities";
+import { Composite, CompositeItem } from "reakit";
+import useProgress from "../../../helpers/useProgress";
+import TaskHeader from "./TaskHeader";
+import TaskTag from "./TaskTag";
 
 const useStyles = createUseStyles(styles);
 
@@ -21,54 +26,47 @@ const TaskCard = ({
   tag,
 
   size,
+
+  composite,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
-  const progress = useMemo(() => {
-    return reportedTime.getTime() / estimate.getTime();
-  }, [reportedTime, estimate]);
+  let statusText = locale(status);
+  if (!statusText) {
+    statusText = _.capitalize(status);
+  }
 
-  let tagColor, tagName;
-  if (tag) ({ color: tagColor, name: tagName } = tag);
+  const progress = useProgress(reportedTime, estimate);
+
+  const label = locale("Task", {
+    title,
+    priority: priorities[priority],
+    status: statusText,
+    reportedTime: reportedTime.toString(),
+    estimate: estimate.toString(),
+    progress: progress * 100,
+  });
 
   return (
-    <article
+    <CompositeItem
+      as={"article"}
+      {...composite}
       className={classNames(classes.task, className, classes[sizes[size]])}
+      aria-label={label}
     >
-      <aside
-        className={classes.colorTag}
-        style={{ background: tagColor }}
-        aria-label={tagName}
-      >
-        {tagName}
-      </aside>
-      <header className={classes.header}>
-        <Text type="small" bold className={classes.title} lines={2}>
-          {title}
-        </Text>
-      </header>
+      <TaskTag tag={tag} classes={classes} />
+      <TaskHeader title={title} classes={classes} />
       <PriorityBadge className={classes.priority} priority={priority} />
-      <aside className={classes.info}>
-        <Text type="hint" className={classes.status}>
-          {status}
-        </Text>
-        <StackLayout
-          orientation="vertical"
-          gap="0"
-          className={classes.fraction}
-        >
-          <Text type="hint" className={classes.reported}>
-            {reportedTime.toString() + "h"}
-          </Text>
-          <hr className={classes.divider} />
-          <Text type="hint" className={classes.estimate}>
-            {estimate.toString() + "h"}
-          </Text>
-        </StackLayout>
-        <ProgressBar className={classes.progressbar} progress={progress} />
-      </aside>
-    </article>
+      <TaskInfo
+        classes={classes}
+        estimate={estimate}
+        reportedTime={reportedTime}
+        progress={progress}
+        status={status}
+      />
+    </CompositeItem>
   );
 };
 

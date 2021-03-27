@@ -5,25 +5,27 @@ import priorities from "./priorities";
 import styles from "./PriorityBadge.styles";
 import icons from "./icons";
 import StackLayout from "../../generic/layouts/StackLayout";
+import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
 const PriorityBadge = ({ className, priority }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
-  console.log(icons[priority]);
+  const locale = useLocale();
+
+  const priorityText = locale(priorities[priority] + "Priority");
+  const priorityLabel = locale("priorityLabel", { priority: priorityText });
+
   return (
-    <div
-      className={classNames(className)}
-      aria-label={`${priorities[priority]} priority`}
-    >
+    <div className={classNames(className)} aria-label={priorityLabel}>
       <StackLayout
         alignY="center"
         gap="5px"
         className={classes[priorities[priority]]}
       >
         {icons[priority]}
-        <span>{priorities[priority]} priority</span>
+        <span>{priorityLabel}</span>
       </StackLayout>
     </div>
   );

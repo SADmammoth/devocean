@@ -7,12 +7,15 @@ import DraggableTask from "../../../components/specific/DraggableTask/DraggableT
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ListViewContent.styles";
+import { Composite, CompositeItem, useCompositeState } from "reakit";
+import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
 export default function ListViewTasks({ folderId, style }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const tasks = useRecoilValueLoadable(tasksState_getByFolder(folderId));
 
@@ -20,12 +23,19 @@ export default function ListViewTasks({ folderId, style }) {
     theme.draggableAreaDefaultSize
   );
 
+  const composite = useCompositeState({
+    orientation: "horizontal",
+    wrap: true,
+    unstable_virtual: true,
+  });
+
   const getList = useCallback(() => {
     return tasks.contents
       .map((task) => {
         if (task)
           return (
             <DraggableTask
+              {...composite}
               {...task}
               onDragStart={({ height }) => {
                 setDraggableAreaSize(height);
@@ -43,10 +53,13 @@ export default function ListViewTasks({ folderId, style }) {
     <div style={style}>
       {tasks.state === "hasValue" ? (
         <StackLayout
+          as={Composite}
+          {...composite}
           className={classes.list}
           orientation="horizontal"
           alignX="start"
           gap="10px"
+          aria-label={locale("TaskList")}
         >
           <DraggableList
             list={getList()}

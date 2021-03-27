@@ -33,7 +33,7 @@ const tasks = [
     estimate: "2h",
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
-    status: "Open",
+    status: "open",
   },
   {
     id: "2",
@@ -42,7 +42,7 @@ const tasks = [
     estimate: "2h",
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
-    status: "Open",
+    status: "open",
   },
   {
     id: "3",
@@ -51,7 +51,7 @@ const tasks = [
     estimate: "2h",
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
-    status: "Open",
+    status: "open",
   },
   {
     id: "4",
@@ -60,7 +60,7 @@ const tasks = [
     estimate: "2h",
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
-    status: "Open",
+    status: "open",
   },
 ];
 

@@ -14,4 +14,33 @@ export default {
   "Date and time": "Дата и время",
   Addressee: "Получатели",
   "MM-dd-yyyy hh:mm": "ММ-дд-гггг чч:мм",
+
+  vowels: "аеёиоуыэю",
+  consonants: "бвгджзклмнпрстфхцчшщ",
+
+  progressFractionLabel:
+    "{reportedTime} часов затрачено от расчетных {estimate} часов",
+  priorityLabel: "{priority} приоритет",
+  progressLabel: "Прогресс {progress} процентов",
+  statusLabel: "Статус {status}",
+
+  highPriority: "Высокий",
+  highestPriority: "Наивысший",
+  mediumPriority: "Средний",
+  lowPriority: "Низкий",
+  blockerPriority: "Блокирующий",
+
+  open: "Открыта",
+  wip: "В работе",
+  closed: "Закрыта",
+
+  Task:
+    "Задача {title}: {priority} приоритет, статус {status}, {reportedTime} часов затрачено от расчетных {estimate} часов, прогресс {progress} процентов",
+  TaskList: "Task list",
+  TaskList: "Список задач",
+
+  folder: "Папка задач {name}",
+  list: "Список задач {name}",
+  Folders: "Список папок задач",
+  Subfolders: "Подпапки папки {name}",
 };

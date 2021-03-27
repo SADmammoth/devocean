@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import useLocale from "../../../helpers/useLocale";
 import { useTheme, createUseStyles } from "react-jss";
 import { Composite, useCompositeState } from "reakit";
 import styles from "./FoldersTree.styles";
@@ -38,13 +39,16 @@ const FoldersTree = ({ folders, onSelectedChange }) => {
     return folders.map(({ id, parent }, index) => {
       if (!parent) {
         folderProps = createFolderProps(id, index);
-        if (folderProps) return <Folder key={id} {...folderProps} />;
+        if (folderProps)
+          return <Folder composite={composite} key={id} {...folderProps} />;
       }
     });
   }, [selectedIndex, folders, classes]);
 
+  const locale = useLocale();
+
   return (
-    <Composite {...composite}>
+    <Composite {...composite} aria-label={locale("Folders")}>
       {folders && folders.length ? renderFolders() : "No folders"}
     </Composite>
   );

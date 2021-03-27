@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import alignments from "./alignments";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Text.styles";
 import types from "./types";
+import useHyphenate from "../../../helpers/useHyphenate";
+import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
@@ -16,12 +18,21 @@ const Text = ({
   alignment,
   ellipsis,
   lines,
-  wordWrap,
+  hyphenated,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   const TextTag = types[type];
+
+  const locale = useLocale();
+  const hyphenate = useHyphenate(locale("vowels"), locale("consonants"));
+  let text;
+  useEffect(() => {
+    if (typeof children === "string" && hyphenated) {
+      text = hyphenate(children);
+    }
+  }, [hyphenated, children]);
 
   return (
     <TextTag
@@ -33,12 +44,12 @@ const Text = ({
           [classes.bold]: bold,
           [classes.italic]: italic,
           [classes.ellipsis]: ellipsis || !!lines,
-          [classes.wordWrap]: wordWrap,
+          [classes.hyphenated]: hyphenated,
         }
       )}
       style={{ "--lines": lines }}
     >
-      {children}
+      {text || children}
     </TextTag>
   );
 };

@@ -8,7 +8,7 @@ import styles from "./Button.styles";
 
 const useStyles = createUseStyles(styles);
 
-const Button = ({ className, type, onClick, children, size }) => {
+const Button = ({ className, type, onClick, children, size, label, props }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -17,6 +17,8 @@ const Button = ({ className, type, onClick, children, size }) => {
       type={type}
       className={classNames(className, classes.button, classes[sizes[size]])}
       onClick={onClick}
+      aria-label={label}
+      {...props}
     >
       {children}
     </ReakitButton>

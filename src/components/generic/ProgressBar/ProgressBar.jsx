@@ -4,12 +4,14 @@ import classNames from "classnames";
 import orientations from "./orientations";
 import styles from "./ProgressBar.styles";
 import PropTypes from "prop-types";
+import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
 const ProgressBar = ({ className, progress, orientation }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   return (
     <div
@@ -19,7 +21,7 @@ const ProgressBar = ({ className, progress, orientation }) => {
         classes[orientations[orientation]]
       )}
       style={{ "--progress": `${progress * 100}%` }}
-      aria-label={`Progress – ${progress * 100}%`}
+      aria-label={locale("progressLabel", { progress: progress * 100 })}
     >
       <div className={classes.value}>{progress}</div>
     </div>
