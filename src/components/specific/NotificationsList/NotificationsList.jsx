@@ -10,6 +10,7 @@ import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
 import StackLayout from "../../generic/layouts/StackLayout";
 import NotificationContent from "../NotificationContent";
 import Interactive from "../../generic/Interactive";
+import StateMonade from "../../../helpers/StateMonade";
 
 const NotificationsList = ({ items, showCount }) => {
   const composite = useCompositeState();
@@ -47,21 +48,17 @@ const NotificationsList = ({ items, showCount }) => {
 
   return (
     <StackLayout orientation="vertical" gap="10px">
-      {notificationsLoadable.state === "hasValue" ? (
-        <>
-          <Composite {...composite} aria-label={locale("Notifications")}>
-            {notificationsToShow.map(renderNotification)}
-          </Composite>
-          {!(showCount && notShownCount > 0) || (
-            <InteractiveButton
-              link="/notifications"
-              {...composite}
-            >{`${notShownCount} more`}</InteractiveButton>
-          )}
-        </>
-      ) : (
-        "Loading..."
-      )}
+      <StateMonade state={notificationsLoadable.state}>
+        <Composite {...composite} aria-label={locale("Notifications")}>
+          {notificationsToShow.map(renderNotification)}
+        </Composite>
+        {!(showCount && notShownCount > 0) || (
+          <InteractiveButton
+            link="/notifications"
+            {...composite}
+          >{`${notShownCount} more`}</InteractiveButton>
+        )}
+      </StateMonade>
     </StackLayout>
   );
 };

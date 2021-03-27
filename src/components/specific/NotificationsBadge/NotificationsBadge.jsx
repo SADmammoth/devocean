@@ -1,6 +1,7 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import { useRecoilValueLoadable } from "recoil";
+import StateMonade from "../../../helpers/StateMonade";
 import { notificationsState_count } from "../../../recoil/states/notificationsState";
 import Badge from "../../generic/Badge";
 import styles from "./NotificationsBadge.styles";
@@ -16,9 +17,9 @@ const NotificationsBadge = () => {
 
   return (
     <Badge className={classes.notificationsBadge}>
-      {notificationsCountLoadable.state === "hasValue"
-        ? notificationsCountLoadable.contents
-        : "Loading..."}
+      <StateMonade state={notificationsCountLoadable.state}>
+        {notificationsCountLoadable.contents}
+      </StateMonade>
     </Badge>
   );
 };

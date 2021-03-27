@@ -9,6 +9,7 @@ import styles from "./ListViewContent.styles";
 import FoldersTree from "../../../components/generic/FoldersTree";
 import ListViewTasks from "./ListViewTasks";
 import currentFolderState from "./localState/currentFolderState";
+import StateMonade from "../../../helpers/StateMonade";
 
 const useStyles = createUseStyles(styles);
 
@@ -34,22 +35,20 @@ const ListViewContent = () => {
     <>
       <GridLayout>
         <Sidebar column={3}>
-          {folders.state === "hasValue" ? (
+          <StateMonade state={folders.state}>
             <FoldersTree
               folders={folders.contents}
               onSelectedChange={(index) => {
                 setCurrentFolder(index);
               }}
             />
-          ) : (
-            <Spinner />
-          )}
+          </StateMonade>
         </Sidebar>
-        {currentFolderId ? (
-          <ListViewTasks column={7} folderId={currentFolderId} />
-        ) : (
-          <Spinner />
-        )}
+        <div column={7}>
+          <StateMonade state={!!currentFolderId}>
+            <ListViewTasks folderId={currentFolderId} />
+          </StateMonade>
+        </div>
       </GridLayout>
     </>
   );

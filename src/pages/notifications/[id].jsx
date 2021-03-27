@@ -2,6 +2,7 @@ import React from "react";
 import NotificationPageContent from "../../pagesContent/NotificationPageContent/NotificationPageContent";
 import { useRecoilValueLoadable } from "recoil";
 import { notificationsState_getById } from "../../recoil/states/notificationsState";
+import StateMonade from "../../helpers/StateMonade";
 
 export default function Notification({ match: { params } }) {
   const { id } = params;
@@ -9,11 +10,9 @@ export default function Notification({ match: { params } }) {
 
   return (
     <>
-      {notification.state === "hasValue" ? (
+      <StateMonade state={notification.state}>
         <NotificationPageContent {...notification.contents} />
-      ) : (
-        "Loading..."
-      )}
+      </StateMonade>
     </>
   );
 }

@@ -9,6 +9,7 @@ import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ListViewContent.styles";
 import { Composite, CompositeItem, useCompositeState } from "reakit";
 import useLocale from "../../../helpers/useLocale";
+import StateMonade from "../../../helpers/StateMonade";
 
 const useStyles = createUseStyles(styles);
 
@@ -35,7 +36,7 @@ export default function ListViewTasks({ folderId, style }) {
         if (task)
           return (
             <DraggableTask
-              {...composite}
+              composite={composite}
               {...task}
               onDragStart={({ height }) => {
                 setDraggableAreaSize(height);
@@ -50,26 +51,22 @@ export default function ListViewTasks({ folderId, style }) {
   }, [folderId, tasks]);
 
   return (
-    <div style={style}>
-      {tasks.state === "hasValue" ? (
-        <StackLayout
-          as={Composite}
-          {...composite}
-          className={classes.list}
-          orientation="horizontal"
-          alignX="start"
-          gap="10px"
-          aria-label={locale("TaskList")}
-        >
-          <DraggableList
-            list={getList()}
-            draggableType="task"
-            draggableAreaSize={draggableAreaSize}
-          />
-        </StackLayout>
-      ) : (
-        <Spinner />
-      )}
-    </div>
+    <StateMonade state={tasks.state}>
+      <StackLayout
+        as={Composite}
+        {...composite}
+        className={classes.list}
+        orientation="horizontal"
+        alignX="start"
+        gap="10px"
+        aria-label={locale("TaskList")}
+      >
+        <DraggableList
+          list={getList()}
+          draggableType="task"
+          draggableAreaSize={draggableAreaSize}
+        />
+      </StackLayout>
+    </StateMonade>
   );
 }

@@ -1,3 +1,5 @@
+import _ from "lodash";
+
 const scaleSector = (calcParameter) => {
   const angleStep = 1.8;
   const animation = {};
