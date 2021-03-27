@@ -1,7 +1,7 @@
 export default {
-  low: "low",
-  medium: "medium",
-  high: "high",
-  highest: "highest",
-  blocker: "blocker",
+  low: "Low",
+  medium: "Medium",
+  high: "High",
+  highest: "Highest",
+  blocker: "Blocker",
 };

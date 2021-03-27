@@ -53,6 +53,14 @@ const styles = {
     fontStyle: "italic",
   },
 
+  ellipsis: {
+    margin: 0,
+    lineClamp: "var(--lines, 1)",
+    display: "-webkit-box",
+    boxOrient: "vertical",
+    overflow: "hidden",
+  },
+
   ...alignmentStyles,
 };
 

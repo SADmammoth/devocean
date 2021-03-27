@@ -1,5 +1,5 @@
 import React from "react";
-import NotificationsPageContent from "../../layouts/NotificationsPageContent/NotificationsPageContent";
+import NotificationsPageContent from "../../pagesContent/NotificationsPageContent";
 
 export default function Notifications() {
   return (

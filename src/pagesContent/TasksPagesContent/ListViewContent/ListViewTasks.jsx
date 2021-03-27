@@ -1,13 +1,18 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { useTheme } from "react-jss";
+import React, { useCallback, useState } from "react";
 import Spinner from "../../../components/generic/Spinner";
 import { useRecoilValueLoadable } from "recoil";
 import { tasksState_getByFolder } from "../../../recoil/states/tasksState";
 import DraggableList from "../../../components/generic/DraggableList/DraggableList";
 import DraggableTask from "../../../components/specific/DraggableTask/DraggableTask";
+import StackLayout from "../../../components/generic/layouts/StackLayout";
+import { useTheme, createUseStyles } from "react-jss";
+import styles from "./ListViewContent.styles";
 
-export default function ListViewTasks({ folderId }) {
+const useStyles = createUseStyles(styles);
+
+export default function ListViewTasks({ folderId, style }) {
   const theme = useTheme();
+  const classes = useStyles(theme);
 
   const tasks = useRecoilValueLoadable(tasksState_getByFolder(folderId));
 
@@ -35,13 +40,20 @@ export default function ListViewTasks({ folderId }) {
   }, [folderId, tasks]);
 
   return (
-    <div column={7}>
+    <div style={style}>
       {tasks.state === "hasValue" ? (
-        <DraggableList
-          list={getList()}
-          draggableType="task"
-          draggableAreaSize={draggableAreaSize}
-        />
+        <StackLayout
+          className={classes.list}
+          orientation="horizontal"
+          alignX="start"
+          gap="10px"
+        >
+          <DraggableList
+            list={getList()}
+            draggableType="task"
+            draggableAreaSize={draggableAreaSize}
+          />
+        </StackLayout>
       ) : (
         <Spinner />
       )}

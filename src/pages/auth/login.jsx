@@ -1,5 +1,5 @@
 import React from "react";
-import LoginContent from "../../layouts/LoginContent";
+import LoginContent from "../../pagesContent/LoginContent";
 
 export default function login() {
   return (

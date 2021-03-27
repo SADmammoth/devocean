@@ -7,7 +7,17 @@ import types from "./types";
 
 const useStyles = createUseStyles(styles);
 
-const Text = ({ type, children, className, bold, italic, alignment }) => {
+const Text = ({
+  type,
+  children,
+  className,
+  bold,
+  italic,
+  alignment,
+  ellipsis,
+  lines,
+  wordWrap,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -22,8 +32,11 @@ const Text = ({ type, children, className, bold, italic, alignment }) => {
         {
           [classes.bold]: bold,
           [classes.italic]: italic,
+          [classes.ellipsis]: ellipsis || !!lines,
+          [classes.wordWrap]: wordWrap,
         }
       )}
+      style={{ "--lines": lines }}
     >
       {children}
     </TextTag>

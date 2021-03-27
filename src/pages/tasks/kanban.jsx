@@ -1,6 +1,6 @@
 import React from "react";
 
-import KanbanViewContent from "../../layouts/Tasks/KanbanViewContent/KanbanViewContent";
+import KanbanViewContent from "../../pagesContent/TasksPagesContent/KanbanViewContent";
 
 export default function Kanban() {
   const setLastView = useSetRecoilState(lastTaskViewState);

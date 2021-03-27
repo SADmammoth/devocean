@@ -19,16 +19,14 @@ const DraggableList = ({
   const userId = useRecoilValue(userState);
 
   return (
-    <StackLayout orientation="horizontal" gap="30px">
-      <Dnd.DraggableList
-        list={list}
-        onOrderChange={onOrderChange}
-        indexKey="id"
-        accept={{ "data-type": draggableType, userId }}
-        dropAreaSize={draggableAreaSize}
-        gap="10px"
-      />
-    </StackLayout>
+    <Dnd.DraggableList
+      list={list}
+      onOrderChange={onOrderChange}
+      indexKey="id"
+      accept={{ "data-type": draggableType, userId }}
+      dropAreaSize={draggableAreaSize}
+      gap="10px"
+    />
   );
 };
 

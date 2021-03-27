@@ -32,6 +32,8 @@ const tasks = [
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "Open",
   },
   {
     id: "2",
@@ -39,6 +41,8 @@ const tasks = [
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "Open",
   },
   {
     id: "3",
@@ -46,6 +50,8 @@ const tasks = [
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "Open",
   },
   {
     id: "4",
@@ -53,6 +59,8 @@ const tasks = [
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "Open",
   },
 ];
 

@@ -42,6 +42,7 @@ const styles = {
   stack: {
     display: "flex",
     flexWrap: "wrap",
+    gap: "var(--gap, 0)",
   },
 
   vertical: {

@@ -2,20 +2,13 @@ import React, { useEffect, useState } from "react";
 import folderTreeState from "../../../recoil/states/folderTreeState";
 import Spinner from "../../../components/generic/Spinner";
 import { useTheme, createUseStyles } from "react-jss";
-import {
-  useRecoilState,
-  useRecoilStateLoadable,
-  useRecoilValueLoadable,
-} from "recoil";
-import DraggableList from "../../../components/generic/DraggableList/DraggableList";
+import { useRecoilStateLoadable, useRecoilValueLoadable } from "recoil";
 import GridLayout from "../../../components/generic/layouts/GridLayout";
 import Sidebar from "../../../components/generic/Sidebar";
-import DraggableTask from "../../../components/specific/DraggableTask/DraggableTask";
-import tasksState from "../../../recoil/states/tasksState";
 import styles from "./ListViewContent.styles";
 import FoldersTree from "../../../components/generic/FoldersTree";
 import ListViewTasks from "./ListViewTasks";
-import currentFolderState from "./currentFolderState";
+import currentFolderState from "./localState/currentFolderState";
 
 const useStyles = createUseStyles(styles);
 
@@ -53,7 +46,7 @@ const ListViewContent = () => {
           )}
         </Sidebar>
         {currentFolderId ? (
-          <ListViewTasks folderId={currentFolderId} />
+          <ListViewTasks column={7} folderId={currentFolderId} />
         ) : (
           <Spinner />
         )}

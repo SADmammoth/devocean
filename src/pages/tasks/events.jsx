@@ -1,5 +1,5 @@
 import React from "react";
-import EventsView from "../../layouts/Tasks/EventsViewContent";
+import EventsViewContent from "../../pagesContent/TasksPagesContent/EventsViewContent";
 
 export default function Events() {
   return (

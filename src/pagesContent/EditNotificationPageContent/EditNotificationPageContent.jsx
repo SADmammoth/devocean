@@ -37,6 +37,7 @@ const EditNotificationPageContent = ({ initialValues }) => {
   const [inputs, setInputs] = useState({});
 
   const onInputsUpdate = (inputs) => {
+    console.log(inputs);
     setInputs(inputs);
   };
 
@@ -62,8 +63,7 @@ const EditNotificationPageContent = ({ initialValues }) => {
               }}
               onInputsUpdate={onInputsUpdate}
             >
-              {inputs.shortText}
-              {inputs.fullText}
+              {inputs.$list}
             </Form>
           </StretchLayout>
         </StackLayout>

@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@bit/sadmammoth.components.react-dnd": "^2.0.6",
-    "@bit/sadmammoth.components.react-form": "^1.5.9",
+    "@bit/sadmammoth.components.react-form": "^1.5.12",
     "@umijs/preset-react": "1.x",
     "classnames": "^2.2.6",
     "jss-plugin-global": "^10.5.1",

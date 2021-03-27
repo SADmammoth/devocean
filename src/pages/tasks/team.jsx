@@ -1,5 +1,5 @@
 import React from "react";
-import TeamViewContent from "../../layouts/Tasks/TeamViewContent";
+import TeamViewContent from "../../pagesContent/TasksPagesContent/TeamViewContent";
 
 export default function Team() {
   return (

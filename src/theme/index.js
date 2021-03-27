@@ -10,6 +10,8 @@ const theme = {
     common: "#F9F9F9",
     light: "#ffffff",
     button: "#82d1ff",
+
+    card: "#fdfdfd",
   },
   "@global": {
     fontFamily: "SF Pro Display",

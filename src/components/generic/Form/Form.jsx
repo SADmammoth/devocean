@@ -7,7 +7,7 @@ import styles from "./Form.styles";
 
 const useStyles = createUseStyles(styles);
 
-function Form({ submitText = "Submit", ...props }) {
+function Form({ submitText = "Submit", children, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -23,10 +23,12 @@ function Form({ submitText = "Submit", ...props }) {
 
   return (
     <FormModule.default
-      render={{ input: renderInput }}
+      render={{ Input: renderInput }}
       submitButton={SubmitButton}
       {...props}
-    ></FormModule.default>
+    >
+      {children}
+    </FormModule.default>
   );
 }
 

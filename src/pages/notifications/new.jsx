@@ -1,5 +1,5 @@
 import React from "react";
-import EditNotificationPageContent from "../../layouts/EditNotificationPageContent";
+import EditNotificationPageContent from "../../pagesContent/EditNotificationPageContent";
 
 export default function NewNotification() {
   return (

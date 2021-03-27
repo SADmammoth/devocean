@@ -1,5 +1,5 @@
 import React from "react";
-import NotificationPageContent from "../../layouts/NotificationPageContent/NotificationPageContent";
+import NotificationPageContent from "../../pagesContent/NotificationPageContent/NotificationPageContent";
 import { useRecoilValueLoadable } from "recoil";
 import { notificationsState_getById } from "../../recoil/states/notificationsState";
 

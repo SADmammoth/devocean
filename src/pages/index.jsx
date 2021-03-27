@@ -1,4 +1,4 @@
-import HomePageContent from "../layouts/HomePageContent";
+import HomePageContent from "../pagesContent/HomePageContent";
 
 export default function IndexPage() {
   return (

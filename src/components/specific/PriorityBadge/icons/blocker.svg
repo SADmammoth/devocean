@@ -1,0 +1,28 @@
+<svg id="blocker" data-name="blocker" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 15 15">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #ff7474;
+        stroke: #ff7474;
+        stroke-width: 2px;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        stroke: none;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <g id="Ellipse_44" data-name="Ellipse 44" class="cls-1">
+    <circle class="cls-3" cx="7.5" cy="7.5" r="7.5"/>
+    <circle class="cls-4" cx="7.5" cy="7.5" r="6.5"/>
+  </g>
+  <rect id="Rectangle_12" data-name="Rectangle 12" class="cls-2" width="9" height="1.5" transform="translate(3 7.105)"/>
+</svg>

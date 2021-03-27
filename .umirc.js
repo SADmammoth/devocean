@@ -16,6 +16,6 @@ export default {
   },
   outputPath: "./build",
   define: {
-    API_PATH: "http://localhost:8001/api",
+    API_PATH: "http://localhost:8000/api",
   },
 };

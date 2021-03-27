@@ -40,7 +40,7 @@ const StackLayout = ({
         classes[alignYClass],
         classes[alignXClass],
       ])}
-      style={{ ...style, gap }}
+      style={{ ...style, "--gap": gap }}
     >
       {children}
     </RenderTag>
