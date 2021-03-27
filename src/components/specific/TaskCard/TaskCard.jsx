@@ -5,11 +5,11 @@ import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
 import ProgressBar from "../../generic/ProgressBar/ProgressBar";
 import PriorityBadge from "../PriorityBadge/PriorityBadge";
-import styles from "./TaskContent.styles";
+import styles from "./TaskCard.styles";
 
 const useStyles = createUseStyles(styles);
 
-const TaskContent = ({
+const TaskCard = ({
   className,
   title,
   priority,
@@ -43,4 +43,4 @@ const TaskContent = ({
   );
 };
 
-export default TaskContent;
+export default TaskCard;
