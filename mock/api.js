@@ -60,7 +60,7 @@ const tasks = [
     estimate: "2h",
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
-    status: "open",
+    status: "backlog",
   },
   {
     id: "5",
@@ -124,6 +124,25 @@ const folders = [
   },
 ];
 
+const statuses = [
+  {
+    id: "open",
+    tasks: ["1", "2", "3"],
+  },
+  {
+    id: "wip",
+    tasks: ["5", "6"],
+  },
+  {
+    id: "closed",
+    tasks: [],
+  },
+  {
+    id: "backlog",
+    tasks: ["4"],
+  },
+];
+
 export default {
   "GET /api/notifications": notifications,
 
@@ -160,4 +179,5 @@ export default {
   },
 
   "GET /api/folders": folders,
+  "GET /api/statuses": statuses,
 };

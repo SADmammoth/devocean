@@ -33,6 +33,7 @@ export default {
   open: "Open",
   wip: "WIP",
   closed: "Closed",
+  backlog: "Backlog",
 
   Task:
     "Task {title}: {priority} priority, status {status}, {reportedTime} hours reported of {estimate} hours estimate, progress {progress} percent",

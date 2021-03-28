@@ -42,7 +42,7 @@ export const tasksState_getByFolder = selectorFamily({
 
     const foldersMap = treeArrayToMap(folders);
     const taskIds = getTasksOfFolderTree(folderId, foldersMap);
-    console.log(taskIds);
+
     return taskIds.map((id) => get(tasksState_getById(id)));
   },
 });

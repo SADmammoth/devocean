@@ -73,6 +73,14 @@ const Client = {
         .then((res) => res.body);
     },
   },
+  statuses: {
+    get: () => {
+      return request
+        .get("/statuses")
+        .use(apiPath)
+        .then((res) => res.body);
+    },
+  },
 };
 
 export default Client;

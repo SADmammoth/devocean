@@ -33,6 +33,7 @@ export default {
   open: "Открыта",
   wip: "В работе",
   closed: "Закрыта",
+  backlog: "Идеи",
 
   Task:
     "Задача {title}: {priority} приоритет, статус {status}, {reportedTime} часов затрачено от расчетных {estimate} часов, прогресс {progress} процентов",
