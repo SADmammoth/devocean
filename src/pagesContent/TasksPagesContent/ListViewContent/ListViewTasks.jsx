@@ -31,6 +31,7 @@ export default function ListViewTasks({ folderId, style }) {
   });
 
   const getList = useCallback(() => {
+    console.log(tasks.state, tasks.contents);
     return (
       tasks.state === "hasValue" &&
       tasks.contents

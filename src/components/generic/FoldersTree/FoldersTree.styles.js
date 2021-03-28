@@ -17,7 +17,7 @@ const styles = {
   folderTree: {
     marginRight: "5px",
   },
-  selectedTree: {},
+  selectedTree: { marginBottom: "5px" },
 };
 
 export default styles;

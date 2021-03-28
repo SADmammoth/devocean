@@ -5,8 +5,16 @@ export default function getTasksOfFolderTree(folderId, treeMap) {
   let newItems;
 
   const getTasks = (items) => {
+    console.log(items);
     newItems = items
-      .map(({ children, tasks }) => {
+      .map((item) => {
+        if (typeof item === "string") {
+          noChildrenItemsCount++;
+          return item;
+        }
+
+        const { children, tasks } = item;
+
         if (children) {
           return children.map((id) => {
             return treeMap[id];
