@@ -2,6 +2,7 @@ import { node } from "prop-types";
 
 export default function serverStateSync(get, post, abortGet, abortPost) {
   return ({ node, onSet, trigger, setSelf }) => {
+    console.log(trigger, node);
     if (get && trigger === "get") {
       const initialize = async (value) =>
         JSON.stringify(value) === JSON.stringify(node.default)

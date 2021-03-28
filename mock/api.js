@@ -62,6 +62,24 @@ const tasks = [
     tag: { color: "#de1111", name: "backend" },
     status: "open",
   },
+  {
+    id: "5",
+    title: "Tilwerewr wererwer 5",
+    priority: "blocker",
+    estimate: "2h",
+    reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "wip",
+  },
+  {
+    id: "6",
+    title: "Tilwerewr wererwer 6",
+    priority: "blocker",
+    estimate: "2h",
+    reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: "wip",
+  },
 ];
 
 const folders = [
@@ -74,7 +92,7 @@ const folders = [
     id: "2",
     name: "Subfolder",
     parent: "1",
-    children: ["3"],
+    children: ["3", "6"],
   },
   {
     id: "3",
@@ -86,6 +104,23 @@ const folders = [
     id: "4",
     name: "List 2",
     tasks: ["4"],
+  },
+  {
+    id: "5",
+    name: "List 3",
+    tasks: ["5"],
+  },
+  {
+    id: "6",
+    parent: "2",
+    name: "List 4",
+    children: ["7"],
+  },
+  {
+    id: "7",
+    parent: "6",
+    name: "List 5",
+    tasks: ["6"],
   },
 ];
 

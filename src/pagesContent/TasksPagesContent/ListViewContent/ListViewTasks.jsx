@@ -7,7 +7,7 @@ import DraggableTask from "../../../components/specific/DraggableTask/DraggableT
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ListViewContent.styles";
-import { Composite, CompositeItem, useCompositeState } from "reakit";
+import { Composite, useCompositeState } from "reakit";
 import useLocale from "../../../helpers/useLocale";
 import StateMonade from "../../../helpers/StateMonade";
 
@@ -31,23 +31,26 @@ export default function ListViewTasks({ folderId, style }) {
   });
 
   const getList = useCallback(() => {
-    return tasks.contents
-      .map((task) => {
-        if (task)
-          return (
-            <DraggableTask
-              composite={composite}
-              {...task}
-              onDragStart={({ height }) => {
-                setDraggableAreaSize(height);
-              }}
-              onDragEnd={() =>
-                setDraggableAreaSize(theme.draggableAreaDefaultSize)
-              }
-            />
-          );
-      })
-      .filter((item) => !!item);
+    return (
+      tasks.state === "hasValue" &&
+      tasks.contents
+        .map((task) => {
+          if (task)
+            return (
+              <DraggableTask
+                composite={composite}
+                {...task}
+                onDragStart={({ height }) => {
+                  setDraggableAreaSize(height);
+                }}
+                onDragEnd={() =>
+                  setDraggableAreaSize(theme.draggableAreaDefaultSize)
+                }
+              />
+            );
+        })
+        .filter((item) => !!item)
+    );
   }, [folderId, tasks]);
 
   return (

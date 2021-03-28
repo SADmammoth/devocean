@@ -10,12 +10,14 @@ import useSelectedFolder from "./useSelectedFolder";
 
 const useStyles = createUseStyles(styles);
 
-const FoldersTree = ({ folders, onSelectedChange }) => {
+const FoldersTree = ({ className, folders, onSelectedChange }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const composite = useCompositeState();
 
-  const FolderBase = (props) => <Button {...props} {...composite} />;
+  const FolderBase = (props) => (
+    <Button size="wide" {...props} {...composite} />
+  );
 
   const [selectedIndex, selectedParents, onClickFolder] = useSelectedFolder(
     folders
@@ -48,7 +50,11 @@ const FoldersTree = ({ folders, onSelectedChange }) => {
   const locale = useLocale();
 
   return (
-    <Composite {...composite} aria-label={locale("Folders")}>
+    <Composite
+      className={className}
+      {...composite}
+      aria-label={locale("Folders")}
+    >
       {folders && folders.length ? renderFolders() : "No folders"}
     </Composite>
   );

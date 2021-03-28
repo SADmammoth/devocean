@@ -36,7 +36,7 @@ export default {
 
   Task:
     "Task {title}: {priority} priority, status {status}, {reportedTime} hours reported of {estimate} hours estimate, progress {progress} percent",
-  TaskList: "Task list",
+  TaskList: "Tasks by lists",
 
   folder: "Tasks folder {name}",
   list: "Tasks list {name}",

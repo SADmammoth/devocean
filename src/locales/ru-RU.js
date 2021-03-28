@@ -36,8 +36,7 @@ export default {
 
   Task:
     "Задача {title}: {priority} приоритет, статус {status}, {reportedTime} часов затрачено от расчетных {estimate} часов, прогресс {progress} процентов",
-  TaskList: "Task list",
-  TaskList: "Список задач",
+  TaskList: "Задачи по спискам",
 
   folder: "Папка задач {name}",
   list: "Список задач {name}",

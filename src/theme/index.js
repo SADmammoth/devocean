@@ -6,6 +6,7 @@ const theme = {
     button: "#003c58",
   },
   background: {
+    shadows: "#c4c4c4",
     dark: "#EAEAEA",
     common: "#F9F9F9",
     light: "#ffffff",

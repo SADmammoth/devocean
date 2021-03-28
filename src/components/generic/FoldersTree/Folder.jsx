@@ -1,10 +1,18 @@
 import React, { useCallback, useEffect, useState } from "react";
 import Interactive from "../Interactive";
-import { FaArrowRight } from "react-icons/fa";
+import {
+  FaFolder,
+  FaList,
+  FaArrowRight,
+  FaArrowDown,
+  FaArrowUp,
+} from "react-icons/fa";
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import { Button, CompositeItem, CompositeGroup } from "reakit";
 import useLocale from "../../../helpers/useLocale";
+import Text from "../Text";
+import StackLayout from "../layouts/StackLayout";
 
 function Folder({
   id,
@@ -34,6 +42,14 @@ function Folder({
     return subfolders;
   }, [selected, selectedParent, childrenIds, id, requestFolderProps]);
 
+  const Icon = type === "folder" ? FaFolder : FaList;
+  const OpenActionIcon =
+    type === "folder"
+      ? selected || selectedParent
+        ? FaArrowUp
+        : FaArrowDown
+      : FaArrowRight;
+
   const Button = (props) => (
     <InteractiveButton
       {...props}
@@ -45,13 +61,22 @@ function Folder({
       onClick={() => onClick(id)}
       label={locale(type, { name })}
     >
-      {name}
-      <FaArrowRight />
+      <StackLayout alignX="start" alignY="center" gap="5px">
+        <Icon />
+        <Text type="common" ellipsis>
+          {name}
+        </Text>
+        <OpenActionIcon />
+      </StackLayout>
     </InteractiveButton>
   );
 
   return (
-    <div>
+    <div
+      className={classNames(classes.folderTree, {
+        [classes.selectedTree]: selected,
+      })}
+    >
       <CompositeItem as={Button} {...composite}></CompositeItem>
       <CompositeGroup
         {...composite}

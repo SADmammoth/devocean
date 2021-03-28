@@ -10,6 +10,9 @@ import FoldersTree from "../../../components/generic/FoldersTree";
 import ListViewTasks from "./ListViewTasks";
 import currentFolderState from "./localState/currentFolderState";
 import StateMonade from "../../../helpers/StateMonade";
+import StackLayout from "../../../components/generic/layouts/StackLayout";
+import Text from "../../../components/generic/Text";
+import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
@@ -31,12 +34,15 @@ const ListViewContent = () => {
     }
   }, [folders, currentFolder]);
 
+  const locale = useLocale();
+
   return (
     <>
-      <GridLayout>
-        <Sidebar column={3}>
+      <GridLayout className={classes.grid}>
+        <Sidebar column={3} className={classes.paddingTop}>
           <StateMonade state={folders.state}>
             <FoldersTree
+              className={classes.folders}
               folders={folders.contents}
               onSelectedChange={(index) => {
                 setCurrentFolder(index);
@@ -44,11 +50,17 @@ const ListViewContent = () => {
             />
           </StateMonade>
         </Sidebar>
-        <div column={7}>
+        <StackLayout
+          orientation="vertical"
+          column={7}
+          alignY="start"
+          className={classes.paddingTop}
+        >
+          <Text type="h1">{locale("TaskList")}</Text>
           <StateMonade state={!!currentFolderId}>
             <ListViewTasks folderId={currentFolderId} />
           </StateMonade>
-        </div>
+        </StackLayout>
       </GridLayout>
     </>
   );
