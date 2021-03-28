@@ -43,4 +43,6 @@ export default {
   list: "Список задач {name}",
   Folders: "Список папок задач",
   Subfolders: "Подпапки папки {name}",
+
+  Unassigned: "Не назначенные",
 };

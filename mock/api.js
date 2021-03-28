@@ -34,6 +34,7 @@ const tasks = [
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "open",
+    assignee: "1",
   },
   {
     id: "2",
@@ -43,6 +44,7 @@ const tasks = [
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "open",
+    assignee: "1",
   },
   {
     id: "3",
@@ -52,6 +54,7 @@ const tasks = [
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "open",
+    assignee: "1",
   },
   {
     id: "4",
@@ -61,6 +64,7 @@ const tasks = [
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "backlog",
+    assignee: "2",
   },
   {
     id: "5",
@@ -70,6 +74,7 @@ const tasks = [
     reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "wip",
+    assignee: "2",
   },
   {
     id: "6",
@@ -143,6 +148,30 @@ const statuses = [
   },
 ];
 
+const teammates = [
+  {
+    id: "1",
+    name: "Mike",
+    lastName: "Foster",
+    assignedTasks: ["1", "2", "3"],
+    referAs: "he",
+  },
+  {
+    id: "2",
+    name: "Daniel",
+    lastName: "Macros",
+    assignedTasks: ["4", "5"],
+    referAs: "he",
+  },
+  {
+    id: "3",
+    name: "Constantine",
+    lastName: "Switzwerdengen",
+    assignedTasks: [],
+    referAs: "she",
+  },
+];
+
 export default {
   "GET /api/notifications": notifications,
 
@@ -180,4 +209,5 @@ export default {
 
   "GET /api/folders": folders,
   "GET /api/statuses": statuses,
+  "GET /api/teammates": teammates,
 };

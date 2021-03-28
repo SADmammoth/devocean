@@ -19,6 +19,8 @@ const Text = ({
   ellipsis,
   lines,
   hyphenated,
+
+  ...props
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -48,6 +50,7 @@ const Text = ({
         }
       )}
       style={{ "--lines": lines }}
+      {...props}
     >
       {text || children}
     </TextTag>

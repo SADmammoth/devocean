@@ -43,4 +43,6 @@ export default {
   list: "Tasks list {name}",
   Folders: "List of tasks folders",
   Subfolders: "Subfolders of {name} folder",
+
+  Unassigned: "Unassigned",
 };

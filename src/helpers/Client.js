@@ -81,6 +81,14 @@ const Client = {
         .then((res) => res.body);
     },
   },
+  teammates: {
+    get: () => {
+      return request
+        .get("/teammates")
+        .use(apiPath)
+        .then((res) => res.body);
+    },
+  },
 };
 
 export default Client;
