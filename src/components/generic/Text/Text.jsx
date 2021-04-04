@@ -39,6 +39,7 @@ const Text = ({
   return (
     <TextTag
       className={classNames(
+        classes.text,
         classes[type],
         className,
         classes[alignments[alignment] + "-alignment"],

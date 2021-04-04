@@ -47,4 +47,9 @@ export const tasksState_getByFolder = selectorFamily({
   },
 });
 
+export const tasksState_requestContent = selectorFamily({
+  key: baseKey + "requestContent",
+  get: (taskId) => ({ get }) => Client.tasks.getById(taskId),
+});
+
 export default tasksState;

@@ -4,7 +4,7 @@ import styles from "./Avatar.styles";
 
 const useStyles = createUseStyles(styles);
 
-const Avatar = ({ image, displayName, labelledby }) => {
+const Avatar = ({ size, image, displayName, labelledby }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -16,6 +16,7 @@ const Avatar = ({ image, displayName, labelledby }) => {
       src={displayImage}
       alt="avatar"
       aria-labelledby={labelledby}
+      style={{ width: size, height: size }}
     />
   );
 };

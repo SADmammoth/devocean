@@ -51,6 +51,24 @@ const Client = {
           }))
         );
     },
+    getById: (id) => {
+      return request
+        .get("/tasks")
+        .query({ id })
+        .use(apiPath)
+        .then(({ body: { estimate, reportedTime, assignee, ...other } }) => ({
+          estimate: estimate ? new Duration(estimate) : null,
+          reportedTime: estimate ? new Duration(reportedTime) : null,
+          assignee: assignee
+            ? {
+                displayName: `${assignee.name} ${assignee.lastName[0]}.`,
+                id: assignee.id,
+                dateAssigned: assignee.dateAssigned,
+              }
+            : null,
+          ...other,
+        }));
+    },
     post: (task) => {
       const body = {
         estimate: task.estimate.getTime(),

@@ -1,3 +1,12 @@
+const description = `
+hi altaLorem markdownum elabique calido, in orbam inmutat dederat, qui, esse. Quae
+gelido Martis **per** consilium! Aliis et fama boves est dum: si meae fatigant.
+Genitor venit **membra forsitan pendet**. Deus est: subcubuisse in fugit
+viscata agros albis quicumque via loco umerique et nymphae Persea!  
+Repetito praemia profundi inde contermina draconem Atlas, numina aura, Aurora
+inposita longae effetum. Mihi verba, a detulit puppim amplexu dare ferro cum
+habitura cumque. A sibila?;`;
+
 const notifications = [
   {
     id: "1",
@@ -40,8 +49,6 @@ const tasks = [
     id: "2",
     title: "Tilwerewr wererwer 2",
     priority: "high",
-    estimate: "2h",
-    reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "open",
     assignee: "1",
@@ -50,8 +57,6 @@ const tasks = [
     id: "3",
     title: "Tilwerewr wererwer 3",
     priority: "high",
-    estimate: "2h",
-    reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "open",
     assignee: "1",
@@ -60,11 +65,8 @@ const tasks = [
     id: "4",
     title: "Tilwerewr wererwer 4",
     priority: "high",
-    estimate: "2h",
-    reportedTime: "1h",
     tag: { color: "#de1111", name: "backend" },
     status: "backlog",
-    assignee: "2",
   },
   {
     id: "5",
@@ -172,9 +174,91 @@ const teammates = [
   },
 ];
 
+const fullTasks = [
+  {
+    id: "1",
+    title: "Tilwerewr wererwer 1",
+    priority: "high",
+    estimate: "2h",
+    reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "open", timeInStatus: "2d" },
+    assignee: {
+      id: "1",
+      name: "Mike",
+      lastName: "Foster",
+      dateAssigned: "2d ago",
+    },
+    description,
+  },
+  {
+    id: "2",
+    title: "Tilwerewr wererwer 2",
+    priority: "high",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "open", timeInStatus: "2d" },
+    assignee: {
+      id: "1",
+      name: "Mike",
+      lastName: "Foster",
+      dateAssigned: "2d ago",
+    },
+    description,
+  },
+  {
+    id: "3",
+    title: "Tilwerewr wererwer 3",
+    priority: "high",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "open", timeInStatus: "2d" },
+    assignee: {
+      id: "2",
+      name: "Daniel",
+      lastName: "Macros",
+      dateAssigned: "4d ago",
+    },
+    description,
+  },
+  {
+    id: "4",
+    title: "Tilwerewr wererwer 4",
+    priority: "high",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "backlog", timeInStatus: "2d" },
+    description,
+  },
+  {
+    id: "5",
+    title: "Tilwerewr wererwer 5",
+    priority: "blocker",
+    estimate: "2h",
+    reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "wip", timeInStatus: "2d" },
+    performance: "low",
+    assignee: {
+      id: "2",
+      name: "Mike",
+      lastName: "Foster",
+      dateAssigned: "2d ago",
+    },
+    description,
+  },
+  {
+    id: "6",
+    title: "Tilwerewr wererwer 6",
+    priority: "blocker",
+    estimate: "2h",
+    reportedTime: "1h",
+    tag: { color: "#de1111", name: "backend" },
+    status: { name: "wip", timeInStatus: "2d" },
+    performance: "low",
+    description,
+  },
+];
+
 export default {
   "GET /api/notifications": notifications,
-
   "POST /api/notifications": (req, res) => {
     notifications.push(req.body);
 
@@ -198,8 +282,14 @@ export default {
     res.sendStatus(200);
   },
 
-  "GET /api/tasks": tasks,
+  "GET /api/tasks": ({ query }, res) => {
+    if (query && query.id) {
+      res.send(fullTasks.find(({ id }) => id === query.id));
+      return;
+    }
 
+    res.send(tasks);
+  },
   "POST /api/tasks": (req, res) => {
     tasks.push(req.body);
 

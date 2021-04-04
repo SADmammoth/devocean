@@ -30,6 +30,8 @@ export default {
   lowPriority: "Low",
   blockerPriority: "Blocker",
 
+  Status: "Status {status}",
+  TimeInStatus: "{time} in status",
   open: "Open",
   wip: "WIP",
   closed: "Closed",
@@ -45,4 +47,7 @@ export default {
   Subfolders: "Subfolders of {name} folder",
 
   Unassigned: "Unassigned",
+
+  Reported: "Reported",
+  "from estimate": "from {estimate} estimate",
 };

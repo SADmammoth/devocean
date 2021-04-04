@@ -1,12 +1,11 @@
 const styles = {
   sidebar: {
     background: (theme) => theme.background.dark,
+    paddingLeft: "30px",
+    paddingRight: "30px",
   },
   root: {
     position: "relative",
-  },
-  fullHeight: {
-    height: "100%",
   },
 };
 

@@ -36,7 +36,7 @@ Duration.prototype.getTime = function () {
 };
 
 Duration.prototype.toString = function () {
-  return this.getHours().toString();
+  return this.getHours().toString() + "h";
 };
 
 export default Duration;

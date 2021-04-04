@@ -30,6 +30,8 @@ export default {
   lowPriority: "Низкий",
   blockerPriority: "Блокирующий",
 
+  Status: "Статус {status}",
+  TimeInStatus: "{time} в статусе",
   open: "Открыта",
   wip: "В работе",
   closed: "Закрыта",
@@ -45,4 +47,7 @@ export default {
   Subfolders: "Подпапки папки {name}",
 
   Unassigned: "Не назначенные",
+
+  Reported: "Затрачено",
+  "from estimate": "от расчетных {estimate}",
 };

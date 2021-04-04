@@ -10,23 +10,32 @@ const alignmentStyles = Object.fromEntries(
 );
 
 const styles = {
+  text: {
+    margin: 0,
+    padding: 0,
+  },
   common: {
     fontSize: (theme) => theme.fontSizes.default,
   },
   h1: {
     fontSize: (theme) => theme.fontSizes.biggest,
+    marginBottom: "20px",
   },
   h1Small: {
     fontSize: (theme) => theme.fontSizes.bigger,
+    marginBottom: "20px",
   },
   h2: {
     fontSize: (theme) => theme.fontSizes.bigger,
+    marginBottom: "20px",
   },
   h3: {
     fontSize: (theme) => theme.fontSizes.big,
+    marginBottom: "20px",
   },
   h4: {
     fontSize: (theme) => theme.fontSizes.big,
+    marginBottom: "20px",
   },
   sub: {
     fontSize: (theme) => theme.fontSizes.bigger,
