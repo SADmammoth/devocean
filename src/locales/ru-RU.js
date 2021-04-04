@@ -18,8 +18,7 @@ export default {
   vowels: "аеёиоуыэю",
   consonants: "бвгджзклмнпрстфхцчшщ",
 
-  progressFractionLabel:
-    "{reportedTime} часов затрачено от расчетных {estimate} часов",
+  progressFractionLabel: "{reportedTime} затрачено от расчетных {estimate}",
   priorityLabel: "{priority} приоритет",
   progressLabel: "Прогресс {progress} процентов",
   statusLabel: "Статус {status}",
@@ -37,8 +36,9 @@ export default {
   closed: "Закрыта",
   backlog: "Идеи",
 
-  Task:
-    "Задача {title}: {priority} приоритет, статус {status}, {reportedTime} часов затрачено от расчетных {estimate} часов, прогресс {progress} процентов",
+  Task: "Задача {title}: {priority} приоритет, статус {status}",
+  "Task estimated":
+    "Задача {title}: {priority} приоритет, статус {status}, {reportedTime} затрачено от расчетных {estimate}, прогресс {progress} процентов",
   TaskList: "Задачи по спискам",
 
   folder: "Папка задач {name}",

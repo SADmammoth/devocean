@@ -18,8 +18,7 @@ export default {
   vowels: "aeiouy",
   consonants: "bcdfghjklmnpqrstvwxz",
 
-  progressFractionLabel:
-    "{reportedTime} hours reported of {estimate} hours estimate",
+  progressFractionLabel: "{reportedTime} hours reported of {estimate} estimate",
   priorityLabel: "{priority} priority",
   progressLabel: "Progress {progress} percent",
   statusLabel: "Status {status}",
@@ -37,8 +36,9 @@ export default {
   closed: "Closed",
   backlog: "Backlog",
 
-  Task:
-    "Task {title}: {priority} priority, status {status}, {reportedTime} hours reported of {estimate} hours estimate, progress {progress} percent",
+  Task: "Task {title}: {priority} priority, status {status}",
+  "Task estimated":
+    "Task {title}: {priority} priority, status {status}, {reportedTime} reported of {estimate} estimate, progress {progress} percent",
   TaskList: "Tasks by lists",
 
   folder: "Tasks folder {name}",

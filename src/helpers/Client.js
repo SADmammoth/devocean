@@ -45,8 +45,8 @@ const Client = {
         .use(apiPath)
         .then(({ body }) =>
           body.map(({ estimate, reportedTime, ...other }) => ({
-            estimate: new Duration(estimate),
-            reportedTime: new Duration(reportedTime),
+            estimate: estimate ? new Duration(estimate) : null,
+            reportedTime: reportedTime ? new Duration(reportedTime) : null,
             ...other,
           }))
         );
@@ -58,7 +58,7 @@ const Client = {
         .use(apiPath)
         .then(({ body: { estimate, reportedTime, assignee, ...other } }) => ({
           estimate: estimate ? new Duration(estimate) : null,
-          reportedTime: estimate ? new Duration(reportedTime) : null,
+          reportedTime: reportedTime ? new Duration(reportedTime) : null,
           assignee: assignee
             ? {
                 displayName: `${assignee.name} ${assignee.lastName[0]}.`,

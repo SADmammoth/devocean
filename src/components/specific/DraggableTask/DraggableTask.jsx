@@ -21,6 +21,7 @@ const DraggableTask = ({
 
   const content = (
     <TaskCard
+      id={id}
       {...composite}
       estimate={estimate}
       reportedTime={reportedTime}
@@ -29,6 +30,7 @@ const DraggableTask = ({
   );
   const avatar = (
     <TaskCard
+      id={id}
       className={classes.avatar}
       estimate={estimate}
       reportedTime={reportedTime}
@@ -36,11 +38,16 @@ const DraggableTask = ({
     />
   );
 
+  const duration =
+    estimate && reportedTime
+      ? estimate.getHours() - reportedTime.getHours()
+      : 1;
+
   return (
     <DraggableElement
       draggableType="task"
       id={id}
-      height={estimate.getHours() - reportedTime.getHours() || 1}
+      height={duration}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
       content={content}
