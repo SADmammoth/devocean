@@ -1,4 +1,7 @@
 import { atom, selectorFamily, waitForAll } from "recoil";
+
+import entriesArrangementSelector from "../helpers/entriesArrangementSelector";
+
 import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
@@ -51,5 +54,11 @@ export const tasksState_requestContent = selectorFamily({
   key: baseKey + "requestContent",
   get: (taskId) => ({ get }) => Client.tasks.getById(taskId),
 });
+
+export const tasksState_arrange = entriesArrangementSelector(
+  baseKey,
+  tasksStateAtom,
+  Client.tasks.arrange
+);
 
 export default tasksState;

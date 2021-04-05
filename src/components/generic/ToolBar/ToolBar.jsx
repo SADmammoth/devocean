@@ -7,14 +7,14 @@ import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-const ToolBar = ({ className, items, style }) => {
+const ToolBar = ({ className, items, style, children }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
     <aside className={classNames(classes.toolbar, className)} style={style}>
       <NavItems
-        as={({ children }) => (
+        as={({ children: navItems }) => (
           <StackLayout
             className={classes.list}
             as="ul"
@@ -22,10 +22,11 @@ const ToolBar = ({ className, items, style }) => {
             alignX="center"
             gap="1rem"
           >
+            {navItems}
             {children}
           </StackLayout>
         )}
-        items={items}
+        items={items || []}
         itemClass={classes.item}
         itemContainerClass={classes.itemContainer}
       />

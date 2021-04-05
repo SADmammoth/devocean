@@ -1,9 +1,13 @@
 import React, { useCallback } from "react";
+import ToolBar from "../../../components/generic/ToolBar";
+import SortTool from "../../../components/specific/SortTool";
+import FilterTool from "../../../components/specific/FilterTool";
 import { useTheme, createUseStyles } from "react-jss";
 import { useRecoilValueLoadable } from "recoil";
 import GridLayout from "../../../components/generic/layouts/GridLayout";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import Sidebar from "../../../components/generic/Sidebar";
+import { teamView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
 import StateMonade from "../../../helpers/StateMonade";
 import useLocale from "../../../helpers/useLocale";
 import { teammatesState_getWithTasks } from "../../../recoil/states/teammatesState";
@@ -59,6 +63,16 @@ const TeamViewContent = () => {
       >
         <StateMonade state={teammatesTasks.state}>{renderLists()}</StateMonade>
       </StackLayout>
+      <ToolBar>
+        <FilterTool
+          filters={teamView.filters}
+          applyFilter={(...data) => console.log(data)}
+        />
+        <SortTool
+          sorts={teamView.sorts}
+          applySorts={(...data) => console.log(data)}
+        />
+      </ToolBar>
     </GridLayout>
   );
 };

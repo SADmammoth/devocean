@@ -1,4 +1,11 @@
 import React, { useEffect, useState } from "react";
+
+import SortTool from "../../../components/specific/SortTool";
+
+import { listView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
+
+import ToolBar from "../../../components/generic/ToolBar";
+
 import folderTreeState from "../../../recoil/states/folderTreeState";
 import Spinner from "../../../components/generic/Spinner";
 import { useTheme, createUseStyles } from "react-jss";
@@ -13,6 +20,7 @@ import StateMonade from "../../../helpers/StateMonade";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import Text from "../../../components/generic/Text";
 import useLocale from "../../../helpers/useLocale";
+import FilterTool from "../../../components/specific/FilterTool/FilterTool";
 
 const useStyles = createUseStyles(styles);
 
@@ -61,6 +69,16 @@ const ListViewContent = () => {
             <ListViewTasks folderId={currentFolderId} />
           </StateMonade>
         </StackLayout>
+        <ToolBar>
+          <FilterTool
+            filters={listView.filters}
+            applyFilter={(...data) => console.log(data)}
+          />
+          <SortTool
+            sorts={listView.sorts}
+            applySorts={(...data) => console.log(data)}
+          />
+        </ToolBar>
       </GridLayout>
     </>
   );

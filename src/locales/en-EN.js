@@ -50,4 +50,8 @@ export default {
 
   Reported: "Reported",
   "from estimate": "from {estimate} estimate",
+
+  Priority: "Priority",
+  Status: "Status",
+  "Reported time": "Reported time",
 };

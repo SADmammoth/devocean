@@ -290,6 +290,9 @@ export default {
 
     res.send(tasks);
   },
+  "GET /api/tasks/arrange": ({ body }, res) => {
+    res.send(tasks.map((item, id) => id));
+  },
   "POST /api/tasks": (req, res) => {
     tasks.push(req.body);
 

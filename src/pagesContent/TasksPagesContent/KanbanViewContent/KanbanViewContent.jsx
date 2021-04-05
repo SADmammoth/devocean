@@ -1,4 +1,7 @@
 import React, { useCallback } from "react";
+import SortTool from "../../../components/specific/SortTool";
+import FilterTool from "../../../components/specific/FilterTool";
+import ToolBar from "../../../components/generic/ToolBar";
 import { useTheme, createUseStyles } from "react-jss";
 import { useRecoilValueLoadable } from "recoil";
 import classNames from "classnames";
@@ -10,6 +13,7 @@ import useLocale from "../../../helpers/useLocale";
 import { statusesState_getWithTasks } from "../../../recoil/states/statusesState";
 import KanbanStatusList from "./KanbanStatusList";
 import styles from "./KanbanViewContent.styles";
+import { kanbanView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
 
 const useStyles = createUseStyles(styles);
 
@@ -57,6 +61,16 @@ const KanbanViewContent = () => {
           {renderStatusesLists()}
         </StateMonade>
       </StackLayout>
+      <ToolBar>
+        <FilterTool
+          filters={kanbanView.filters}
+          applyFilter={(...data) => console.log(data)}
+        />
+        <SortTool
+          sorts={kanbanView.sorts}
+          applySorts={(...data) => console.log(data)}
+        />
+      </ToolBar>
     </GridLayout>
   );
 };

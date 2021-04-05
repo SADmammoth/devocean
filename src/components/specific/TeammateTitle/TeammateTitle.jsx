@@ -14,6 +14,7 @@ const TeammateTitle = ({ image, displayName }) => {
   return (
     <StackLayout orientation="horizontal" alignY="center" gap="10px">
       <Avatar
+        size="30px"
         displayName={displayName}
         image={image}
         labelledby={displayName}

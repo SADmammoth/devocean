@@ -1,6 +1,7 @@
 import request from "superagent";
 import prefix from "superagent-prefix";
 import Duration from "./Duration";
+import { fullTaskConverter, taskConverter } from "./responseConverters";
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 
@@ -10,7 +11,7 @@ const Client = {
       return request
         .get("/notifications")
         .use(apiPath)
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
 
     post: (notification) => {
@@ -18,7 +19,7 @@ const Client = {
         .post("/notifications")
         .use(apiPath)
         .send(notification)
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
   },
   user: {
@@ -27,47 +28,27 @@ const Client = {
         .post("/login")
         .use(apiPath)
         .send({ login, password })
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
     register: (login, password) => {
       return request
         .post("/register")
         .use(apiPath)
         .send({ login, password })
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
   },
 
   tasks: {
     get: () => {
-      return request
-        .get("/tasks")
-        .use(apiPath)
-        .then(({ body }) =>
-          body.map(({ estimate, reportedTime, ...other }) => ({
-            estimate: estimate ? new Duration(estimate) : null,
-            reportedTime: reportedTime ? new Duration(reportedTime) : null,
-            ...other,
-          }))
-        );
+      return request.get("/tasks").use(apiPath).then(taskConverter);
     },
     getById: (id) => {
       return request
         .get("/tasks")
         .query({ id })
         .use(apiPath)
-        .then(({ body: { estimate, reportedTime, assignee, ...other } }) => ({
-          estimate: estimate ? new Duration(estimate) : null,
-          reportedTime: reportedTime ? new Duration(reportedTime) : null,
-          assignee: assignee
-            ? {
-                displayName: `${assignee.name} ${assignee.lastName[0]}.`,
-                id: assignee.id,
-                dateAssigned: assignee.dateAssigned,
-              }
-            : null,
-          ...other,
-        }));
+        .then(fullTaskConverter);
     },
     post: (task) => {
       const body = {
@@ -80,7 +61,18 @@ const Client = {
         .post("/tasks")
         .use(apiPath)
         .send(body)
-        .then((res) => res.body);
+        .then(({ body }) => body);
+    },
+
+    arrange: (sort, filters) => {
+      return request
+        .get("/tasks/arrange")
+        .use(apiPath)
+        .send({
+          sort,
+          filters,
+        })
+        .then(({ body }) => body);
     },
   },
   folders: {
@@ -88,7 +80,7 @@ const Client = {
       return request
         .get("/folders")
         .use(apiPath)
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
   },
   statuses: {
@@ -96,7 +88,7 @@ const Client = {
       return request
         .get("/statuses")
         .use(apiPath)
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
   },
   teammates: {
@@ -104,7 +96,7 @@ const Client = {
       return request
         .get("/teammates")
         .use(apiPath)
-        .then((res) => res.body);
+        .then(({ body }) => body);
     },
   },
 };

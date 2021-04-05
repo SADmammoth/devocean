@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import StackLayout from "../../generic/layouts/StackLayout";
+import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./PanelCard.styles";
 
