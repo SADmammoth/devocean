@@ -1,6 +1,5 @@
 import React from "react";
-import Form from "../../generic/Form";
-import convertSortsToInputs from "./convertSortsToInputs";
+import { SortForm } from "@sadmammoth/react-list";
 import { FaSort } from "react-icons/fa";
 import PopupButton from "../../generic/PopupButton";
 import { useTheme, createUseStyles } from "react-jss";
@@ -14,7 +13,7 @@ const SortTool = ({ sorts, applySorts }) => {
 
   return (
     <PopupButton buttonContent={<FaSort />}>
-      <Form inputs={convertSortsToInputs(sorts)} onSubmit={applySorts} />
+      {/* <SortForm inputs={sorts || {}} onSubmit={applySorts} /> */}
     </PopupButton>
   );
 };

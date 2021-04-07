@@ -1,9 +1,5 @@
 import React from "react";
-
-import convertFiltersToInputs from "./convertFiltersToInputs";
-
-import Form from "../../generic/Form";
-
+import { FilterForm } from "@sadmammoth/react-list";
 import { FaFilter } from "react-icons/fa";
 import PopupButton from "../../generic/PopupButton";
 import { useTheme, createUseStyles } from "react-jss";
@@ -17,7 +13,7 @@ const FilterTool = ({ filters, applyFilter }) => {
 
   return (
     <PopupButton buttonContent={<FaFilter />}>
-      <Form inputs={convertFiltersToInputs(filters)} onSubmit={applyFilter} />
+      <FilterForm inputs={filters} onSubmit={applyFilter} />
     </PopupButton>
   );
 };
