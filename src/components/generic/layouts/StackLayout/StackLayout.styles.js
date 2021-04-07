@@ -43,12 +43,22 @@ const styles = {
     display: "flex",
     flexWrap: "wrap",
     gap: "var(--gap, 0)",
+    "&$scroll": {
+      overflowY: "initial",
+      overflowX: "auto",
+    },
   },
 
   vertical: {
     flexDirection: "column",
+    "&$scroll": {
+      overflowY: "auto",
+      overflowX: "initial",
+    },
   },
-
+  scroll: {
+    flexWrap: "nowrap",
+  },
   ...alignsStyles,
 };
 

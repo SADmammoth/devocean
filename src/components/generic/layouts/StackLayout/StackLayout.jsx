@@ -19,6 +19,7 @@ const StackLayout = ({
   alignY,
   gap,
   style,
+  scroll,
 
   as,
   ...other
@@ -34,13 +35,14 @@ const StackLayout = ({
 
   return (
     <RenderTag
-      className={classNames([
+      className={classNames(
         className,
         classes.stack,
         classes[orientationClass],
         classes[alignYClass],
         classes[alignXClass],
-      ])}
+        { [classes.scroll]: scroll }
+      )}
       style={{ ...style, "--gap": gap }}
       {...other}
     >
@@ -54,6 +56,7 @@ StackLayout.propTypes = {
   alignY: PropTypes.oneOf(Object.keys(aligns)),
   alignX: PropTypes.oneOf(Object.keys(aligns)),
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  scroll: PropTypes.bool,
 
   as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
 };
@@ -62,6 +65,7 @@ StackLayout.defaultProps = {
   orientation: "horizontal",
   alignY: "stretch",
   alignX: "stretch",
+  scroll: false,
 
   as: "div",
 };

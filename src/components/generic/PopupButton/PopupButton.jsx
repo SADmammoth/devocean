@@ -21,6 +21,7 @@ const PopupButton = ({
   return (
     <>
       <Button
+        size="fluid"
         onClick={() => {
           setShow((show) => !show);
         }}

@@ -56,6 +56,7 @@ const KanbanViewContent = () => {
         column={7}
         orientation="horizontal"
         gap="20px"
+        scroll
       >
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
