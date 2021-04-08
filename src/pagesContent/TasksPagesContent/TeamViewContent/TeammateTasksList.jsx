@@ -46,7 +46,7 @@ export default function TeammateTasksList({ displayName, avatar, tasks }) {
   }, [tasks]);
 
   return (
-    <StackLayout orientation="vertical" alignY="start">
+    <StackLayout orientation="vertical" alignY="start" scroll>
       {displayName && (
         <TeammateTitle displayName={displayName} image={avatar} />
       )}

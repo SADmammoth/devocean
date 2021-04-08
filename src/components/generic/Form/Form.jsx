@@ -1,4 +1,5 @@
 import React from "react";
+import FormLabel from "./FormLabel";
 import ReactForm from "@sadmammoth/react-form";
 import Input from "../Input";
 import Button from "../Button";
@@ -19,7 +20,7 @@ function Form({ submitText = "Submit", children, ...props }) {
 
   return (
     <ReactForm
-      render={{ Input }}
+      render={{ Input, Label: FormLabel }}
       submitButton={SubmitButton}
       notify={(data) => console.log(data)}
       {...props}

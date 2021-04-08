@@ -47,6 +47,7 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
         alignY="start"
         gap="5px"
         aria-label={locale("TaskList")}
+        scroll
       >
         <DraggableList
           list={getList()}

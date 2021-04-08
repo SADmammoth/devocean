@@ -60,6 +60,7 @@ const TeamViewContent = () => {
         orientation="horizontal"
         gap="30px"
         className={classes.paddingTop}
+        scroll
       >
         <StateMonade state={teammatesTasks.state}>{renderLists()}</StateMonade>
       </StackLayout>

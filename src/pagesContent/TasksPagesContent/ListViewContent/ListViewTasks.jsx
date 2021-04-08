@@ -64,6 +64,7 @@ export default function ListViewTasks({ folderId, style }) {
         alignX="start"
         gap="10px"
         aria-label={locale("TaskList")}
+        scroll
       >
         <DraggableList
           list={getList()}

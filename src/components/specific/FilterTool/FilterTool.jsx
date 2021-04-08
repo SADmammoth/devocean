@@ -1,4 +1,7 @@
 import React from "react";
+import FormLabel from "../../generic/Form/FormLabel";
+import Input from "../../generic/Input/Input";
+import PanelCard from "../../generic/PanelCard";
 import { FilterForm } from "@sadmammoth/react-list";
 import { FaFilter } from "react-icons/fa";
 import PopupButton from "../../generic/PopupButton";
@@ -12,8 +15,10 @@ const FilterTool = ({ filters, applyFilter }) => {
   const classes = useStyles(theme);
 
   return (
-    <PopupButton buttonContent={<FaFilter />}>
-      <FilterForm inputs={filters} onSubmit={applyFilter} />
+    <PopupButton buttonContent={<FaFilter />} position="right">
+      <PanelCard className={classes.popup}>
+        <FilterForm inputs={filters} onSubmit={applyFilter} />
+      </PanelCard>
     </PopupButton>
   );
 };

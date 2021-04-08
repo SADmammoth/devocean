@@ -1,3 +1,5 @@
-const styles = {};
+const styles = {
+  popup: {},
+};
 
 export default styles;

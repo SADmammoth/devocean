@@ -5,6 +5,7 @@ import Popup from "../Popup";
 import { useTheme, createUseStyles } from "react-jss";
 import Button from "../Button";
 import styles from "./PopupButton.styles";
+import positions from "./positions";
 
 const useStyles = createUseStyles(styles);
 
@@ -13,14 +14,16 @@ const PopupButton = ({
   children,
   showSubmitButton,
   submitText,
+  position,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [show, setShow] = useState(false);
 
   return (
-    <>
+    <div className={classes.container}>
       <Button
+        className={classes.button}
         size="fluid"
         onClick={() => {
           setShow((show) => !show);
@@ -30,6 +33,7 @@ const PopupButton = ({
       </Button>
       {show ? (
         <Popup
+          className={classes[`${positions[position]}Popup`]}
           showSubmitButton={showSubmitButton}
           submitText={submitText}
           closeSelf={() => setShow(false)}
@@ -37,7 +41,7 @@ const PopupButton = ({
           {children}
         </Popup>
       ) : null}
-    </>
+    </div>
   );
 };
 

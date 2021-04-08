@@ -3,16 +3,23 @@ import Button from "../Button";
 import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Popup.styles";
+import classNames from "classnames";
 
 const useStyles = createUseStyles(styles);
 
-const Popup = ({ children, showSubmitButton, submitText, closeSelf }) => {
+const Popup = ({
+  className,
+  children,
+  showSubmitButton,
+  submitText,
+  closeSelf,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <StackLayout>
-      <div>{children}</div>
+    <StackLayout className={classNames(classes.popup, className)}>
+      {children}
       {showSubmitButton ? (
         <Button onClick={closeSelf}>{submitText}</Button>
       ) : null}
