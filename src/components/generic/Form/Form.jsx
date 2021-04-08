@@ -1,5 +1,5 @@
 import React from "react";
-import FormModule from "@bit/sadmammoth.components.react-form";
+import ReactForm from "@sadmammoth/react-form";
 import Input from "../Input";
 import Button from "../Button";
 import { useTheme, createUseStyles } from "react-jss";
@@ -11,10 +11,6 @@ function Form({ submitText = "Submit", children, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const renderInput = (props) => {
-    return <Input {...props} />;
-  };
-
   const SubmitButton = (
     <Button type="submit" className={classes.submit}>
       {submitText}
@@ -22,13 +18,14 @@ function Form({ submitText = "Submit", children, ...props }) {
   );
 
   return (
-    <FormModule.default
-      render={{ Input: renderInput }}
+    <ReactForm
+      render={{ Input }}
       submitButton={SubmitButton}
+      notify={(data) => console.log(data)}
       {...props}
     >
       {children}
-    </FormModule.default>
+    </ReactForm>
   );
 }
 
