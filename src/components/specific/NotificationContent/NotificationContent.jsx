@@ -11,7 +11,7 @@ const NotificationContent = ({ title, time, author }) => {
 
   return (
     <>
-      <time dateTime={time}>{time}</time>
+      <time dateTime={time.value.toString()}>{time.toString()}</time>
       <p>{title}</p>
       <p>by {author}</p>
     </>

@@ -27,8 +27,8 @@ export const statusesState_getWithTasks = selector({
 
     console.log(statuses);
 
-    statuses.forEach(({ id, tasks }) => {
-      statusesTasks[id] = tasks.map((taskId) => {
+    statuses.forEach(({ name, tasks }) => {
+      statusesTasks[name] = tasks.map((taskId) => {
         return get(tasksState_getById(taskId));
       });
     });

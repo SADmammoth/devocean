@@ -1,5 +1,7 @@
 import Duration from "./Duration";
 
+import RelativeDate from "./RelativeDate";
+
 export function taskConverter({ body }) {
   return body.map(({ estimate, reportedTime, ...other }) => ({
     estimate: estimate ? new Duration(estimate) : null,
@@ -21,5 +23,13 @@ export function fullTaskConverter({ body }) {
         }
       : null,
     ...other,
+  };
+}
+
+export function notificationConverter({ author, time, ...rest }) {
+  return {
+    ...rest,
+    time: new RelativeDate(time),
+    author: `${author.name} ${author.lastName[0]}`,
   };
 }

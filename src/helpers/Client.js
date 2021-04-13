@@ -1,7 +1,11 @@
 import request from "superagent";
 import prefix from "superagent-prefix";
 import Duration from "./Duration";
-import { fullTaskConverter, taskConverter } from "./responseConverters";
+import {
+  fullTaskConverter,
+  notificationConverter,
+  taskConverter,
+} from "./responseConverters";
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 
@@ -11,7 +15,7 @@ const Client = {
       return request
         .get("/notifications")
         .use(apiPath)
-        .then(({ body }) => body);
+        .then(({ body }) => body.map(notificationConverter));
     },
 
     post: (notification) => {

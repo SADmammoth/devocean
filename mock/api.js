@@ -37,7 +37,7 @@ const notifications = [
 const tasks = [
   {
     id: "1",
-    title: "Tilwerewr wererwer 1",
+    title: "Tilwerewr wererwer 1 1 Tilwerewr wererwer 1",
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",
@@ -133,19 +133,19 @@ const folders = [
 
 const statuses = [
   {
-    id: "open",
+    name: "open",
     tasks: ["1", "2", "3"],
   },
   {
-    id: "wip",
+    name: "wip",
     tasks: ["5", "6"],
   },
   {
-    id: "closed",
+    name: "closed",
     tasks: [],
   },
   {
-    id: "backlog",
+    name: "backlog",
     tasks: ["4"],
   },
 ];
@@ -177,7 +177,7 @@ const teammates = [
 const fullTasks = [
   {
     id: "1",
-    title: "Tilwerewr wererwer 1",
+    title: "Tilwerewr wererwer 1 Tilwerewr wererwer 1",
     priority: "high",
     estimate: "2h",
     reportedTime: "1h",

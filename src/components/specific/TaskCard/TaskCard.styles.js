@@ -1,8 +1,8 @@
 const styles = {
   default: {
-    "--heightUnit": "95px",
+    "--heightUnit": "88px",
     width: "258px",
-    minHeight: "95px",
+    minHeight: "var(--heightUnit)",
   },
   task: {
     boxShadow: (theme) =>
@@ -15,6 +15,7 @@ const styles = {
   },
   title: {
     width: "85%",
+    lineHeight: "1.2",
   },
   status: {
     position: "absolute",

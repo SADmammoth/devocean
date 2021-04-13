@@ -44,7 +44,6 @@ const styles = {
     flexWrap: "wrap",
     gap: "var(--gap, 0)",
   },
-
   horizontal: {
     "&$scroll": {
       overflowX: "auto",
