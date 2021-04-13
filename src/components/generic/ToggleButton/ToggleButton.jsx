@@ -6,7 +6,7 @@ import Button from "../Button";
 
 const useStyles = createUseStyles(styles);
 
-const ToggleButton = ({ states, current }) => {
+const ToggleButton = ({ className, states, current, size }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [index, setIndex] = useState(current);
@@ -21,11 +21,13 @@ const ToggleButton = ({ states, current }) => {
 
   return (
     <Button
+      className={className}
       onClick={() => {
         const currentIndex = getNextIndex();
         setIndex(currentIndex);
         states[currentIndex].action();
       }}
+      size={size}
     >
       {states[getNextIndex()].label}
     </Button>

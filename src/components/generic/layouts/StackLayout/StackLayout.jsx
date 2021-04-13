@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./StackLayout.styles";
+import StackItems from "./StackItems";
 
 const useStyles = createUseStyles(styles);
 
@@ -46,7 +47,9 @@ const StackLayout = ({
       style={{ ...style, "--gap": gap }}
       {...other}
     >
-      {children}
+      <StackItems classes={classes} orientation={orientation}>
+        {children}
+      </StackItems>
     </RenderTag>
   );
 };

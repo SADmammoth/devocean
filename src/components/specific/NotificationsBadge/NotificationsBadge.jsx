@@ -5,6 +5,7 @@ import StateMonade from "../../../helpers/StateMonade";
 import { notificationsState_count } from "../../../recoil/states/notificationsState";
 import Badge from "../../generic/Badge";
 import styles from "./NotificationsBadge.styles";
+import Text from "../../generic/Text";
 
 const useStyles = createUseStyles(styles);
 
@@ -16,11 +17,11 @@ const NotificationsBadge = () => {
   );
 
   return (
-    <Badge className={classes.notificationsBadge}>
-      <StateMonade state={notificationsCountLoadable.state}>
-        {notificationsCountLoadable.contents}
-      </StateMonade>
-    </Badge>
+    <StateMonade state={notificationsCountLoadable.state}>
+      <Badge className={classes.notificationsBadge}>
+        <Text type="common">{notificationsCountLoadable.contents}</Text>
+      </Badge>
+    </StateMonade>
   );
 };
 
