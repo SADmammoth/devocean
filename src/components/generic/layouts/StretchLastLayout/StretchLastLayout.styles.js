@@ -1,6 +1,12 @@
 const styles = {
-  stretchLast: {
+  normal: {
     "&>*:last-child": {
+      flexGrow: 1,
+    },
+  },
+
+  reversed: {
+    "&>*:first-child": {
       flexGrow: 1,
     },
   },

@@ -2,10 +2,12 @@ import React from "react";
 import ContainerLayout from "../layouts/ContainerLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Header.styles";
-import NotificationsBadge from "../../specific/NotificationsBadge/NotificationsBadge";
-import LanguageSwitcher from "../../specific/LanguageSwitcher/LanguageSwitcher";
+import NotificationsBadge from "../../specific/NotificationsBadge";
+import LanguageSwitcher from "../../specific/LanguageSwitcher";
 import StackLayout from "../layouts/StackLayout";
-import Text from "../Text";
+import AppLogo from "../../specific/AppLogo";
+import AppName from "../../specific/AppName";
+import StretchLastLayout from "../layouts/StretchLastLayout";
 
 const useStyles = createUseStyles(styles);
 
@@ -16,11 +18,19 @@ const Header = () => {
   return (
     <header className={classes.header}>
       <ContainerLayout>
-        <StackLayout>
-          <Text type="big">Header</Text>
+        <StretchLastLayout
+          gap="10px"
+          className={classes.stack}
+          reverse
+          alignY="center"
+        >
+          <StackLayout className={classes.branding} alignY="center">
+            <AppLogo />
+            <AppName />
+          </StackLayout>
           <NotificationsBadge />
           <LanguageSwitcher />
-        </StackLayout>
+        </StretchLastLayout>
       </ContainerLayout>
     </header>
   );

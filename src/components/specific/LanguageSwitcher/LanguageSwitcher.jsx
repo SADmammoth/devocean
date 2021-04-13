@@ -7,7 +7,7 @@ import styles from "./LanguageSwitcher.styles";
 
 const useStyles = createUseStyles(styles);
 
-const LanguageSwitcher = () => {
+const LanguageSwitcher = ({ className }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [locale, setLocale] = useRecoilState(localeState);
@@ -26,7 +26,14 @@ const LanguageSwitcher = () => {
     [locale, validLocales]
   );
 
-  return <ToggleButton states={states} current={current} />;
+  return (
+    <ToggleButton
+      className={className}
+      states={states}
+      current={current}
+      size="fluid"
+    />
+  );
 };
 
 export default LanguageSwitcher;

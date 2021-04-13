@@ -3,7 +3,7 @@ const styles = {
     height: "100%",
   },
   appname: {
-    display: "inline",
+    "&>*": { display: "inline" },
   },
   topPadding: {
     paddingTop: (theme) => theme.spaces.big,
