@@ -21,7 +21,7 @@ export default function TaskSidebar({ classes, fullTask }) {
         <PanelCard>
           <AssigneeBadge
             displayName={assignee.displayName}
-            dateAssigned={assignee.dateAssigned}
+            assignedDate={assignee.assignedDate}
           />
         </PanelCard>
       ) : null}

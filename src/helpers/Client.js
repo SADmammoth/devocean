@@ -48,16 +48,13 @@ const Client = {
       return request.get("/tasks").use(apiPath).then(taskConverter);
     },
     getById: (id) => {
-      return request
-        .get("/tasks")
-        .query({ id })
-        .use(apiPath)
-        .then(fullTaskConverter);
+      return request.get(`/tasks/${id}`).use(apiPath).then(fullTaskConverter);
     },
     post: (task) => {
       const body = {
         estimate: task.estimate.getTime(),
         reportedTime: task.reportedTime.getTime(),
+        timeInStatus: new Duration(new Date(task.timeInStatus)),
         ...task,
       };
 

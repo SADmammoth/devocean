@@ -61,7 +61,11 @@ StackLayout.propTypes = {
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   scroll: PropTypes.bool,
 
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.node,
+  ]),
 };
 
 StackLayout.defaultProps = {

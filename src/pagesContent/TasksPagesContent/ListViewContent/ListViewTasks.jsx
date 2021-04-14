@@ -39,6 +39,7 @@ export default function ListViewTasks({ folderId, style }) {
           if (task)
             return (
               <DraggableTask
+                key={task.id}
                 composite={composite}
                 {...task}
                 onDragStart={({ height }) => {

@@ -15,7 +15,6 @@ export default function StackItems({ classes, children, orientation }) {
       ? orientationPrefix(orientationClass, aligns[child.props.alignX], "XItem")
       : "";
 
-    console.log(alignXClass);
     return {
       ...child,
       props: {

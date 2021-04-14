@@ -52,6 +52,5 @@ export default {
   "from estimate": "от расчетных {estimate}",
 
   Priority: "Приоритет",
-  Status: "Статус",
   "Reported time": "Затраченное время",
 };

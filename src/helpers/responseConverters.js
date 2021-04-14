@@ -19,7 +19,7 @@ export function fullTaskConverter({ body }) {
       ? {
           displayName: `${assignee.name} ${assignee.lastName[0]}.`,
           id: assignee.id,
-          dateAssigned: assignee.dateAssigned,
+          assignedDate: new Duration(assignee.assignedDate),
         }
       : null,
     ...other,

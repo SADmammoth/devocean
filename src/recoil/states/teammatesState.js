@@ -28,8 +28,8 @@ export const teammatesState_getWithTasks = selector({
     teammates.forEach(({ id, name, lastName, assignedTasks }) => {
       teammatesTasks[id] = {
         displayName: `${name} ${lastName[0]}.`,
-        assignedTasks: assignedTasks.map((taskId) => {
-          return get(tasksState_getById(taskId));
+        assignedTasks: assignedTasks.map(({ task }) => {
+          return get(tasksState_getById(task));
         }),
       };
     });

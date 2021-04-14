@@ -29,6 +29,7 @@ const KanbanViewContent = () => {
     return Object.entries(statusesList).map(([name, tasks]) => {
       return (
         <KanbanStatusList
+          key={name}
           classes={classes}
           statusTitle={locale(name)}
           statusKey={name}

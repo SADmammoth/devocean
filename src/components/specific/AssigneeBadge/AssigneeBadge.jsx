@@ -7,7 +7,7 @@ import styles from "./AssigneeBadge.styles";
 
 const useStyles = createUseStyles(styles);
 
-const AssigneeBadge = ({ displayName, dateAssigned }) => {
+const AssigneeBadge = ({ displayName, assignedDate }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -20,7 +20,7 @@ const AssigneeBadge = ({ displayName, dateAssigned }) => {
         <Text type="common" bold ellipsis>
           {displayName}
         </Text>
-        <Text type="small">{dateAssigned}</Text>
+        <Text type="small">{assignedDate.toString()}</Text>
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );
