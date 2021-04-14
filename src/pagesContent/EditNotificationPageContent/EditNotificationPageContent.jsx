@@ -41,7 +41,6 @@ const EditNotificationPageContent = ({ initialValues }) => {
   const [inputs, setInputs] = useState({});
 
   const onInputsUpdate = (inputs) => {
-    console.log(inputs);
     setInputs(inputs);
   };
 

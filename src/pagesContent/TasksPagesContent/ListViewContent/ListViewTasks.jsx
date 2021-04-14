@@ -68,6 +68,7 @@ export default function ListViewTasks({ folderId, style }) {
         scroll
       >
         <DraggableList
+          id="list"
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}

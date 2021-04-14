@@ -12,8 +12,8 @@ export default {
 
   "Full text": "Full text",
   "Date and time": "Date and time",
-  Addressee: "Addressee",
-  "MM-dd-yyyy hh:mm": "MM-dd-yyyy hh:mm",
+  Author: "Addressee",
+  "dd-MM-yyyy hh:mm": "dd-MM-yyyy hh:mm",
 
   vowels: "aeiouy",
   consonants: "bcdfghjklmnpqrstvwxz",

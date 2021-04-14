@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
-import Dnd from "@bit/sadmammoth.components.react-dnd";
+import { DraggableElement as DndDraggableElement } from "@sadmammoth/react-dnd";
 import styles from "./DraggableElement.styles";
 import TaskCard from "../../specific/TaskCard/TaskCard";
 
@@ -20,7 +20,7 @@ const DraggableElement = ({
   const classes = useStyles(theme);
 
   return (
-    <Dnd.DraggableElement
+    <DndDraggableElement
       id={id}
       key={id}
       data={{ "data-type": draggableType, id, ...data }}
@@ -31,7 +31,7 @@ const DraggableElement = ({
       onDragEnd={onDragEnd}
     >
       {content}
-    </Dnd.DraggableElement>
+    </DndDraggableElement>
   );
 };
 

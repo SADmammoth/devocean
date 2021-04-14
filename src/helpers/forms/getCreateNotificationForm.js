@@ -1,5 +1,6 @@
 export default ({ title, description, time, author }) => [
   {
+    id: "title",
     type: "text",
     name: "title",
     placeholder: "Short text (5-50 chars)",
@@ -10,6 +11,7 @@ export default ({ title, description, time, author }) => [
     value: title,
   },
   {
+    id: "fulltext",
     type: "textarea",
     name: "description",
     placeholder: "Full text",
@@ -20,19 +22,16 @@ export default ({ title, description, time, author }) => [
     value: description,
   },
   {
+    id: "time",
     type: "text",
     name: "time",
     label: "Date and time",
-    placeholder: "MM-dd-yyyy hh:mm",
-    validator: "dateTimeByChar",
-    mask: `99-99-${new Date()
-      .getFullYear()
-      .toString()
-      .replace("9", "9\\")} 99:99`,
-    maskType: "invisible",
+    placeholder: "dd-MM-yyyy hh:mm",
+    validator: "dateTimeByCharWithInvisibleMask",
     value: time,
   },
   {
+    id: "author",
     type: "text",
     name: "author",
     label: "Author",

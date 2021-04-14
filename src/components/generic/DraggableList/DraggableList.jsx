@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Dnd from "@bit/sadmammoth.components.react-dnd";
+import { DraggableList as DndDraggableList } from "@sadmammoth/react-dnd";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./DraggableList.styles";
 import { useRecoilValue } from "recoil";
@@ -9,6 +9,7 @@ import StackLayout from "../layouts/StackLayout";
 const useStyles = createUseStyles(styles);
 
 const DraggableList = ({
+  id,
   list,
   onOrderChange,
   draggableType,
@@ -19,12 +20,13 @@ const DraggableList = ({
   const userId = useRecoilValue(userState);
 
   return (
-    <Dnd.DraggableList
+    <DndDraggableList
+      id={id}
       list={list}
       onOrderChange={onOrderChange}
       indexKey="id"
-      accept={{ "data-type": draggableType, userId }}
-      dropAreaSize={draggableAreaSize}
+      // accept={{ "data-type": draggableType, userId }}
+      dropAreaSize="50px"
       gap="10px"
     />
   );

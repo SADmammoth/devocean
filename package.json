@@ -17,8 +17,8 @@
     ]
   },
   "dependencies": {
-    "@bit/sadmammoth.components.react-dnd": "^2.0.6",
-    "@sadmammoth/react-form": "^1.5.13",
+    "@sadmammoth/react-dnd": "^2.1.1",
+    "@sadmammoth/react-form": "^1.5.14",
     "@sadmammoth/react-list": "^1.0.1",
     "@umijs/preset-react": "1.x",
     "classnames": "^2.2.6",
