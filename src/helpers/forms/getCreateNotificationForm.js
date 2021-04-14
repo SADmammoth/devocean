@@ -1,27 +1,27 @@
-export default ({ shortText, fullText, dateTime, addressee }) => [
+export default ({ title, description, time, author }) => [
   {
     type: "text",
-    name: "shortText",
+    name: "title",
     placeholder: "Short text (5-50 chars)",
     label: "Short text",
     minSymbols: 5,
     maxSymbols: 50,
     required: true,
-    value: shortText,
+    value: title,
   },
   {
     type: "textarea",
-    name: "fullText",
+    name: "description",
     placeholder: "Full text",
     label: "Full text",
     minSymbols: 5,
     maxSymbols: 1000,
     required: true,
-    value: fullText,
+    value: description,
   },
   {
     type: "text",
-    name: "dateTime",
+    name: "time",
     label: "Date and time",
     placeholder: "MM-dd-yyyy hh:mm",
     validator: "dateTimeByChar",
@@ -30,12 +30,12 @@ export default ({ shortText, fullText, dateTime, addressee }) => [
       .toString()
       .replace("9", "9\\")} 99:99`,
     maskType: "invisible",
-    value: dateTime,
+    value: time,
   },
   {
-    type: "addressee",
-    name: "addressee",
-    label: "Addressee",
-    value: addressee,
+    type: "text",
+    name: "author",
+    label: "Author",
+    value: author,
   },
 ];

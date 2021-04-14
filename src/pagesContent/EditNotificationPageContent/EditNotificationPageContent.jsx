@@ -11,6 +11,8 @@ import StretchLayout from "../../components/generic/layouts/StretchLayout";
 import useLocalizedForm from "../../helpers/forms/useLocalizedForm";
 import useLocale from "../../helpers/useLocale";
 import Text from "../../components/generic/Text";
+import { useSetRecoilState } from "recoil";
+import notificationsState from "../../recoil/states/notificationsState";
 
 const useStyles = createUseStyles(styles);
 
@@ -19,18 +21,20 @@ const EditNotificationPageContent = ({ initialValues }) => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  let shortText, fullText, dateTime, addressee;
+  let title, description, time, author;
 
   if (initialValues) {
-    ({ shortText, fullText, dateTime, addressee } = initialValues);
+    ({ title, description, time, author } = initialValues);
   }
+
+  const addNotification = useSetRecoilState(notificationsState);
 
   const localizedForm = useLocalizedForm(
     getCreateNotificationForm({
-      shortText,
-      fullText,
-      dateTime,
-      addressee,
+      title,
+      description,
+      time,
+      author,
     })
   );
 
@@ -45,8 +49,8 @@ const EditNotificationPageContent = ({ initialValues }) => {
     <>
       <GridLayout className={classes.content}>
         <Sidebar column={3} className={classes.sidebar}>
-          {inputs.dateTime}
-          {inputs.addressee}
+          {inputs.time}
+          {inputs.author}
         </Sidebar>
         <StackLayout
           column={5}
@@ -58,12 +62,13 @@ const EditNotificationPageContent = ({ initialValues }) => {
           <StretchLayout>
             <Form
               inputs={localizedForm}
-              onSubmit={(data) => {
-                console.log(data);
+              onSubmit={async (data) => {
+                return addNotification(data);
               }}
               onInputsUpdate={onInputsUpdate}
             >
-              {inputs.$list}
+              {inputs.title}
+              {inputs.description}
             </Form>
           </StretchLayout>
         </StackLayout>
