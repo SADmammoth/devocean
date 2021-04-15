@@ -1,4 +1,4 @@
-export default ({ title, description, time, author }) => [
+export default ({ title, fullText, time, author }) => [
   {
     id: "title",
     type: "text",
@@ -13,13 +13,13 @@ export default ({ title, description, time, author }) => [
   {
     id: "fulltext",
     type: "textarea",
-    name: "description",
+    name: "fullText",
     placeholder: "Full text",
     label: "Full text",
     minSymbols: 5,
     maxSymbols: 1000,
     required: true,
-    value: description,
+    value: fullText,
   },
   {
     id: "time",

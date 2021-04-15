@@ -11,31 +11,16 @@ import StretchLayout from "../../components/generic/layouts/StretchLayout";
 import useLocalizedForm from "../../helpers/forms/useLocalizedForm";
 import useLocale from "../../helpers/useLocale";
 import Text from "../../components/generic/Text";
-import { useSetRecoilState } from "recoil";
-import notificationsState from "../../recoil/states/notificationsState";
 
 const useStyles = createUseStyles(styles);
 
-const EditNotificationPageContent = ({ initialValues }) => {
+const EditNotificationPageContent = ({ initialValues = {}, onSubmit }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  let title, description, time, author;
-
-  if (initialValues) {
-    ({ title, description, time, author } = initialValues);
-  }
-
-  const addNotification = useSetRecoilState(notificationsState);
-
   const localizedForm = useLocalizedForm(
-    getCreateNotificationForm({
-      title,
-      description,
-      time,
-      author,
-    })
+    getCreateNotificationForm(initialValues)
   );
 
   const [inputs, setInputs] = useState({});
@@ -61,13 +46,11 @@ const EditNotificationPageContent = ({ initialValues }) => {
           <StretchLayout>
             <Form
               inputs={localizedForm}
-              onSubmit={async (data) => {
-                return addNotification(data);
-              }}
+              onSubmit={onSubmit}
               onInputsUpdate={onInputsUpdate}
             >
               {inputs.title}
-              {inputs.description}
+              {inputs.fullText}
             </Form>
           </StretchLayout>
         </StackLayout>

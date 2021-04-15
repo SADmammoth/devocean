@@ -11,11 +11,18 @@ const apiPath = prefix(process.env.API_PATH || API_PATH);
 
 const Client = {
   notifications: {
+    getForTeammate: (id) => {
+      return request
+        .get(`/notifications/${id}`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+
     get: () => {
       return request
-        .get("/notifications")
+        .get("/notifications/receive")
         .use(apiPath)
-        .then(({ body }) => body.map(notificationConverter));
+        .then(({ body }) => body);
     },
 
     post: (notification) => {
@@ -23,6 +30,21 @@ const Client = {
         .post("/notifications")
         .use(apiPath)
         .send(notification)
+        .then(({ body }) => body);
+    },
+
+    patch: (id, notification) => {
+      return request
+        .patch(`/notifications/${id}`)
+        .use(apiPath)
+        .send(notification)
+        .then(({ body }) => body);
+    },
+
+    cancel: (id) => {
+      return request
+        .patch(`/notifications/${id}/cancel`)
+        .use(apiPath)
         .then(({ body }) => body);
     },
   },

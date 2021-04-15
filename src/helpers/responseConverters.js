@@ -25,11 +25,3 @@ export function fullTaskConverter({ body }) {
     ...other,
   };
 }
-
-export function notificationConverter({ author, time, ...rest }) {
-  return {
-    ...rest,
-    time: new RelativeDate(time),
-    author: `${author.name} ${author.lastName[0]}`,
-  };
-}

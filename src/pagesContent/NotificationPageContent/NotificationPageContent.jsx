@@ -7,16 +7,44 @@ import GridLayout from "../../components/generic/layouts/GridLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationPageContent.styles";
 import ClockSidebar from "../../components/specific/ClockSidebar/ClockSidebar";
+import Button from "../../components/generic/Button";
+import { useSetRecoilState } from "recoil";
+import { notificationsState_cancel } from "../../recoil/states/notificationsState";
+import useLocale from "../../helpers/useLocale";
+import Interactive from "../../components/generic/Interactive";
 
 const useStyles = createUseStyles(styles);
 
-const NotificationPageContent = ({ id, title, time, author }) => {
+const NotificationPageContent = ({ id, title, time, author, status }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
+
+  const InteractiveButton = Interactive(Button);
+
+  const cancelNotification = useSetRecoilState(notificationsState_cancel(id));
 
   return (
     <GridLayout className={classes.content} stretchLast>
-      <ClockSidebar column={3} className={classes.sidebar} />
+      <Sidebar column={3} className={classes.sidebar}>
+        <StackLayout>
+          <Text type="common">
+            {locale("Status", {
+              status: <Text type="common">{locale(status)}</Text>,
+            })}
+          </Text>
+        </StackLayout>
+        <InteractiveButton link={`${id}/edit`}>
+          {locale("Update")}
+        </InteractiveButton>
+        <Button
+          onClick={() => {
+            cancelNotification(id);
+          }}
+        >
+          {locale("Cancel")}
+        </Button>
+      </Sidebar>
       <Skip column={1} />
       <StackLayout
         column={3}
