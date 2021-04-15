@@ -52,9 +52,9 @@ const Client = {
     },
     post: (task) => {
       const body = {
-        estimate: task.estimate.getTime(),
-        reportedTime: task.reportedTime.getTime(),
-        timeInStatus: new Duration(new Date(task.timeInStatus)),
+        // estimate: task.estimate.getTime(),
+        // reportedTime: task.reportedTime.getTime(),
+        // timeInStatus: new Duration(new Date(task.timeInStatus)),
         ...task,
       };
 

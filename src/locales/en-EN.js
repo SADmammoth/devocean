@@ -53,4 +53,6 @@ export default {
 
   Priority: "Priority",
   "Reported time": "Reported time",
+
+  Description: "Description",
 };

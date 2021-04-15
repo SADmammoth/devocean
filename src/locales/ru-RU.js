@@ -53,4 +53,6 @@ export default {
 
   Priority: "Приоритет",
   "Reported time": "Затраченное время",
+
+  Description: "Описание",
 };

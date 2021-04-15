@@ -4,6 +4,9 @@ import { aligns, orientations } from "./maps";
 import orientationPrefix from "./orientationPrefix";
 
 export default function StackItems({ classes, children, orientation }) {
+  if (!children) {
+    return null;
+  }
   const orientationClass = orientations[orientation];
   return React.Children.map(children, (child) => {
     if (!child) return child;
