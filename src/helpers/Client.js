@@ -20,6 +20,13 @@ const Client = {
 
     get: () => {
       return request
+        .get("/notifications")
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+
+    receive: () => {
+      return request
         .get("/notifications/receive")
         .use(apiPath)
         .then(({ body }) => body);

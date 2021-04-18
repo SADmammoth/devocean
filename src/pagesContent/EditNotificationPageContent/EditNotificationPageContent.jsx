@@ -14,7 +14,11 @@ import Text from "../../components/generic/Text";
 
 const useStyles = createUseStyles(styles);
 
-const EditNotificationPageContent = ({ initialValues = {}, onSubmit }) => {
+const EditNotificationPageContent = ({
+  isCreatingNew,
+  initialValues = {},
+  onSubmit,
+}) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -29,6 +33,10 @@ const EditNotificationPageContent = ({ initialValues = {}, onSubmit }) => {
     setInputs(inputs);
   };
 
+  const title = isCreatingNew
+    ? locale("New notification")
+    : locale("Edit notification");
+
   return (
     <>
       <GridLayout className={classes.content}>
@@ -42,7 +50,7 @@ const EditNotificationPageContent = ({ initialValues = {}, onSubmit }) => {
           orientation="vertical"
           alignY="start"
         >
-          <Text type="h1">{locale("New notification")}</Text>
+          <Text type="h1">{title}</Text>
           <StretchLayout>
             <Form
               inputs={localizedForm}

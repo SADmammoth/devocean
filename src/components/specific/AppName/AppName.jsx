@@ -3,7 +3,7 @@ import useLocale from "../../../helpers/useLocale";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./AppName.styles";
 import Text from "../../generic/Text";
-import { Link } from "umi";
+import HiddenLink from "../../generic/HiddenLink/HiddenLink";
 
 const useStyles = createUseStyles(styles);
 
@@ -14,7 +14,7 @@ const AppName = () => {
 
   return (
     <Text type="h1" bold className={classes.appname}>
-      <Link to="/">{locale("appname")}</Link>
+      <HiddenLink to="/">{locale("appname")}</HiddenLink>
     </Text>
   );
 };

@@ -7,6 +7,7 @@ export default function NewNotification() {
   return (
     <>
       <EditNotificationPageContent
+        isCreatingNew={true}
         onSubmit={async (data) => {
           await addNotification(data);
         }}

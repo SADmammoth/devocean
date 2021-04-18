@@ -3,10 +3,7 @@ import { Validator } from "@sadmammoth/react-form";
 import StateMonade from "../../../helpers/StateMonade";
 import { useRecoilStateLoadable } from "recoil";
 import EditNotificationPageContent from "../../../pagesContent/EditNotificationPageContent";
-import {
-  notificationsState_getById,
-  notificationsState_update,
-} from "../../../recoil/states/notificationsState";
+import { notificationsState_update } from "../../../recoil/states/notificationsState";
 
 export default function EditNotification({ match: { params } }) {
   const { id } = params;

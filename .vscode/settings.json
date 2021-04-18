@@ -5,7 +5,10 @@
     "**/.hg": true,
     "**/CVS": true,
     "**/.DS_Store": true,
-    "**/.umi": true
+    "**/.umi": true,
+    "**/node_modules": true,
+    "**/build": true,
+    "**/yarn.lock": true
   },
   "explorerExclude.backup": null,
   "workbench.colorCustomizations": {
