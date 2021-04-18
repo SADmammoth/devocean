@@ -1,6 +1,4 @@
 import React from "react";
-import FormLabel from "../../generic/Form/FormLabel";
-import Input from "../../generic/Input/Input";
 import PanelCard from "../../generic/PanelCard";
 import { FilterForm } from "@sadmammoth/react-list";
 import { FaFilter } from "react-icons/fa";

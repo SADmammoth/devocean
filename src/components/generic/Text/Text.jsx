@@ -11,6 +11,7 @@ const useStyles = createUseStyles(styles);
 
 const Text = ({
   type,
+  as,
   children,
   className,
   bold,
@@ -25,7 +26,7 @@ const Text = ({
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const TextTag = types[type];
+  const TextTag = as || types[type];
 
   const locale = useLocale();
   const hyphenate = useHyphenate(locale("vowels"), locale("consonants"));

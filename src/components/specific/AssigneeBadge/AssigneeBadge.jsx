@@ -2,7 +2,7 @@ import React from "react";
 import Text from "../../generic/Text";
 import Avatar from "../../generic/Avatar";
 import { useTheme, createUseStyles } from "react-jss";
-import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout/BlockDescriptionLayout";
+import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
 import styles from "./AssigneeBadge.styles";
 
 const useStyles = createUseStyles(styles);

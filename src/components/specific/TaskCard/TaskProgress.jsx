@@ -2,7 +2,7 @@ import React from "react";
 import useLocale from "../../../helpers/useLocale";
 import useProgress from "../../../helpers/useProgress";
 import StackLayout from "../../generic/layouts/StackLayout";
-import ProgressBar from "../../generic/ProgressBar/ProgressBar";
+import ProgressBar from "../../generic/ProgressBar";
 import Text from "../../generic/Text";
 
 export default function TaskProgress({ classes, reportedTime, estimate }) {

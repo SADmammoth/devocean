@@ -12,7 +12,7 @@ import StretchLayout from "../../components/generic/layouts/StretchLayout";
 import NavList from "../../components/generic/NavList";
 import { useRecoilValue } from "recoil";
 import navitemsState from "../../recoil/states/navitemsState";
-import ClockSidebar from "../../components/specific/ClockSidebar/ClockSidebar";
+import ClockSidebar from "../../components/specific/ClockSidebar";
 import AppName from "../../components/specific/AppName";
 
 const useStyles = createUseStyles(styles);

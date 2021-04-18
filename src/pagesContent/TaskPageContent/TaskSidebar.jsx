@@ -1,5 +1,5 @@
 import React from "react";
-import StatusBadge from "../../components/specific/StatusBadge/StatusBadge";
+import StatusBadge from "../../components/specific/StatusBadge";
 import TimeReportsBadge from "../../components/specific/TimeReportsBadge";
 import AssigneeBadge from "../../components/specific/AssigneeBadge";
 import PanelCard from "../../components/generic/PanelCard";

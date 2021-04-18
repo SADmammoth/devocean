@@ -12,7 +12,7 @@ const StatusBadge = ({ status, timeInStatus }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
-  console.log(locale(status).toUpperCase());
+
   return (
     <StackLayout orientation="vertical" alignX="start" gap="0">
       <Text type="common">

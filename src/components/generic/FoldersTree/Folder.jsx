@@ -9,10 +9,11 @@ import {
 } from "react-icons/fa";
 import classNames from "classnames";
 import PropTypes from "prop-types";
-import { Button, CompositeItem, CompositeGroup } from "reakit";
+import { Button as ReakitButton } from "reakit";
 import useLocale from "../../../helpers/useLocale";
 import Text from "../Text";
 import StackLayout from "../layouts/StackLayout";
+import FolderButton from "./FolderButton";
 
 function Folder({
   id,
@@ -25,9 +26,7 @@ function Folder({
   childrenIds,
   requestFolderProps,
   selectedParent,
-  composite,
 }) {
-  const InteractiveButton = Interactive(as);
   const locale = useLocale();
 
   const renderSubFolders = useCallback(() => {
@@ -50,40 +49,25 @@ function Folder({
         : FaArrowDown
       : FaArrowRight;
 
-  const Button = (props) => (
-    <InteractiveButton
-      {...props}
-      focusable={false}
-      className={classNames(classes[type], {
-        [classes.selected]: selected,
-        [classes.selectedParent]: selectedParent,
-      })}
-      onClick={() => onClick(id)}
-      label={locale(type, { name })}
-    >
-      <StackLayout alignX="start" alignY="center" gap="5px">
-        <Icon />
-        <Text type="common" ellipsis>
-          {name}
-        </Text>
-        <OpenActionIcon />
-      </StackLayout>
-    </InteractiveButton>
-  );
-
   return (
     <div
       className={classNames(classes.folderTree, {
         [classes.selectedTree]: selected,
       })}
     >
-      <CompositeItem as={Button} {...composite}></CompositeItem>
-      <CompositeGroup
-        {...composite}
-        aria-label={locale("Subfolders", { name })}
-      >
+      <FolderButton
+        as={as}
+        classes={classes}
+        type={type}
+        selected={selected}
+        selectedParent={selectedParent}
+        name={name}
+        id={id}
+        onClick={onClick}
+      />
+      <div aria-label={locale("Subfolders", { name })}>
         {renderSubFolders()}
-      </CompositeGroup>
+      </div>
     </div>
   );
 }
@@ -98,7 +82,7 @@ Folder.propTypes = {
 
 Folder.defaultProps = {
   type: "folder",
-  as: Button,
+  as: ReakitButton,
   onClick: () => {},
   selected: false,
 };

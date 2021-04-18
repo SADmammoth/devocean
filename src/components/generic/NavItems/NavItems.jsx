@@ -1,13 +1,9 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import { Composite, CompositeItem, useCompositeState } from "reakit";
 import Interactive from "../Interactive";
 
 const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
-  const composite = useCompositeState({ loop: true });
-
-  const InteractiveCompositeItem = Interactive(CompositeItem);
-
+  const InteractiveButton = Interactive("button");
   const renderItems = useMemo(
     () =>
       items.map(({ id, title, label, link, onClick }) => {
@@ -19,14 +15,13 @@ const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
             className={itemContainerClass}
           >
             {
-              <InteractiveCompositeItem
-                {...composite}
+              <InteractiveButton
                 onClick={onClick}
                 link={link}
                 className={itemClass}
               >
                 {label}
-              </InteractiveCompositeItem>
+              </InteractiveButton>
             }
           </li>
         );
@@ -34,11 +29,9 @@ const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
     [items]
   );
 
-  return (
-    <Composite as={as} {...composite}>
-      {renderItems}
-    </Composite>
-  );
+  const As = as;
+
+  return <As>{renderItems}</As>;
 };
 
 NavItems.propTypes = {

@@ -1,5 +1,5 @@
 import React from "react";
-import ProgressBar from "../../generic/ProgressBar/ProgressBar";
+import ProgressBar from "../../generic/ProgressBar";
 import Text from "../../generic/Text";
 import StackLayout from "../../generic/layouts/StackLayout";
 import useLocale from "../../../helpers/useLocale";

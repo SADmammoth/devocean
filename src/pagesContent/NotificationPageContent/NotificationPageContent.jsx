@@ -6,7 +6,7 @@ import Sidebar from "../../components/generic/Sidebar";
 import GridLayout from "../../components/generic/layouts/GridLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationPageContent.styles";
-import ClockSidebar from "../../components/specific/ClockSidebar/ClockSidebar";
+import ClockSidebar from "../../components/specific/ClockSidebar";
 import Button from "../../components/generic/Button";
 import { useSetRecoilState } from "recoil";
 import { notificationsState_cancel } from "../../recoil/states/notificationsState";

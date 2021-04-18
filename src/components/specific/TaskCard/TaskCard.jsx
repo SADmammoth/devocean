@@ -1,15 +1,13 @@
-import React, { useMemo } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
-import PriorityBadge from "../PriorityBadge/PriorityBadge";
+import PriorityBadge from "../PriorityBadge";
 import styles from "./TaskCard.styles";
 import sizes from "./sizes";
-import Text from "../../generic/Text";
 import TaskInfo from "./TaskInfo";
 import useLocale from "../../../helpers/useLocale";
 import priorities from "../PriorityBadge/priorities";
-import { Composite, CompositeItem } from "reakit";
 import useProgress from "../../../helpers/useProgress";
 import TaskHeader from "./TaskHeader";
 import TaskTag from "./TaskTag";
@@ -28,8 +26,6 @@ const TaskCard = ({
   tag,
 
   size,
-
-  composite,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -58,7 +54,6 @@ const TaskCard = ({
 
   return (
     <InteractiveCard
-      {...composite}
       className={classNames(classes.task, className, classes[sizes[size]])}
       aria-label={label}
       link={`/tasks/${id}`}

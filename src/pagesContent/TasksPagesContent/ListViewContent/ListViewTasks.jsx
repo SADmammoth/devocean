@@ -1,13 +1,11 @@
 import React, { useCallback, useState } from "react";
-import Spinner from "../../../components/generic/Spinner";
 import { useRecoilValueLoadable } from "recoil";
 import { tasksState_getByFolder } from "../../../recoil/states/tasksState";
-import DraggableList from "../../../components/generic/DraggableList/DraggableList";
-import DraggableTask from "../../../components/specific/DraggableTask/DraggableTask";
+import DraggableList from "../../../components/generic/DraggableList";
+import DraggableTask from "../../../components/specific/DraggableTask";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ListViewContent.styles";
-import { Composite, useCompositeState } from "reakit";
 import useLocale from "../../../helpers/useLocale";
 import StateMonade from "../../../helpers/StateMonade";
 
@@ -24,14 +22,7 @@ export default function ListViewTasks({ folderId, style }) {
     theme.draggableAreaDefaultSize
   );
 
-  const composite = useCompositeState({
-    orientation: "horizontal",
-    wrap: true,
-    unstable_virtual: true,
-  });
-
   const getList = useCallback(() => {
-    console.log(tasks.state, tasks.contents);
     return (
       tasks.state === "hasValue" &&
       tasks.contents
@@ -40,7 +31,6 @@ export default function ListViewTasks({ folderId, style }) {
             return (
               <DraggableTask
                 key={task.id}
-                composite={composite}
                 {...task}
                 onDragStart={({ height }) => {
                   setDraggableAreaSize(height);
@@ -58,8 +48,6 @@ export default function ListViewTasks({ folderId, style }) {
   return (
     <StateMonade state={tasks.state}>
       <StackLayout
-        as={Composite}
-        {...composite}
         className={classes.list}
         orientation="horizontal"
         alignX="start"

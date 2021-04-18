@@ -54,14 +54,7 @@ function getDiffs(date, now) {
   const hours = date.getHours() - now.getHours();
   const minutes = date.getMinutes() - now.getMinutes();
   const seconds = date.getSeconds() - now.getSeconds();
-  console.log({
-    years,
-    months,
-    days,
-    hours,
-    minutes,
-    seconds,
-  });
+
   return {
     years,
     months,

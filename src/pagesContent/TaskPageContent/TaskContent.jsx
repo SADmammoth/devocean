@@ -5,7 +5,7 @@ import Text from "../../components/generic/Text";
 
 export default function TaskContent({ classes, fullTask }) {
   const { title, description } = fullTask;
-  console.log(fullTask);
+
   return (
     <StackLayout>
       <Text type="h1">{title}</Text>

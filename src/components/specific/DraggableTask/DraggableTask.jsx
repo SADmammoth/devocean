@@ -1,8 +1,7 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
-import { Composite } from "reakit";
-import DraggableElement from "../../generic/DraggableElement/DraggableElement";
-import TaskCard from "../TaskCard/TaskCard";
+import DraggableElement from "../../generic/DraggableElement";
+import TaskCard from "../TaskCard";
 import styles from "./DraggableTask.styles";
 
 const useStyles = createUseStyles(styles);
@@ -13,7 +12,6 @@ const DraggableTask = ({
   reportedTime,
   onDragStart,
   onDragEnd,
-  composite,
   ...taskProps
 }) => {
   const theme = useTheme();
@@ -22,7 +20,6 @@ const DraggableTask = ({
   const content = (
     <TaskCard
       id={id}
-      {...composite}
       estimate={estimate}
       reportedTime={reportedTime}
       {...taskProps}

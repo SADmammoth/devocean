@@ -1,5 +1,5 @@
 import React from "react";
-import TaskPageContent from "../../pagesContent/TaskPageContent/TaskPageContent";
+import TaskPageContent from "../../pagesContent/TaskPageContent";
 
 function TaskPage({
   match: {

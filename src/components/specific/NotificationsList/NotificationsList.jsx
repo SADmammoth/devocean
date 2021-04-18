@@ -1,29 +1,21 @@
-import React, { useEffect, useMemo, useState } from "react";
-
+import React, { useMemo } from "react";
 import useLocale from "../../../helpers/useLocale";
-
 import Button from "../../generic/Button";
-import { Composite, CompositeItem, useCompositeState } from "reakit";
 import { useRecoilValueLoadable } from "recoil";
 import notificationsState from "../../../recoil/states/notificationsState";
-import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
+import InteractiveCard from "../../generic/InteractiveCard";
 import StackLayout from "../../generic/layouts/StackLayout";
 import NotificationContent from "../NotificationContent";
 import Interactive from "../../generic/Interactive";
 import StateMonade from "../../../helpers/StateMonade";
 
 const NotificationsList = ({ items, showCount }) => {
-  const composite = useCompositeState();
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
   const locale = useLocale();
 
   const renderNotification = ({ id, time, title, author }) => {
     return (
-      <InteractiveCard
-        key={id}
-        composite={composite}
-        link={`/notifications/${id}`}
-      >
+      <InteractiveCard key={id} link={`/notifications/${id}`}>
         <NotificationContent time={time} title={title} author={author} />
       </InteractiveCard>
     );
@@ -49,14 +41,11 @@ const NotificationsList = ({ items, showCount }) => {
   return (
     <StackLayout orientation="vertical" gap="10px">
       <StateMonade state={notificationsLoadable.state}>
-        <Composite {...composite} aria-label={locale("Notifications")}>
+        <div aria-label={locale("Notifications")}>
           {notificationsToShow.map(renderNotification)}
-        </Composite>
+        </div>
         {!(showCount && notShownCount > 0) || (
-          <InteractiveButton
-            link="/notifications"
-            {...composite}
-          >{`${notShownCount} more`}</InteractiveButton>
+          <InteractiveButton link="/notifications">{`${notShownCount} more`}</InteractiveButton>
         )}
       </StateMonade>
     </StackLayout>

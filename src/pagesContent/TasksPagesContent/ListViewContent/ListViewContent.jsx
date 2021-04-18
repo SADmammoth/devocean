@@ -20,7 +20,7 @@ import StateMonade from "../../../helpers/StateMonade";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
 import Text from "../../../components/generic/Text";
 import useLocale from "../../../helpers/useLocale";
-import FilterTool from "../../../components/specific/FilterTool/FilterTool";
+import FilterTool from "../../../components/specific/FilterTool";
 
 const useStyles = createUseStyles(styles);
 

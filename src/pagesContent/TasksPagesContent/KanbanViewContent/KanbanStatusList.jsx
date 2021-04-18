@@ -1,15 +1,13 @@
 import React, { useCallback, useState } from "react";
 import PropTypes from "prop-types";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
-import DraggableList from "../../../components/generic/DraggableList/DraggableList";
-import { Composite, useCompositeState } from "reakit";
+import DraggableList from "../../../components/generic/DraggableList";
 import useLocale from "../../../helpers/useLocale";
 import { useTheme } from "react-jss";
 import Text from "../../../components/generic/Text";
-import DraggableTask from "../../../components/specific/DraggableTask/DraggableTask";
+import DraggableTask from "../../../components/specific/DraggableTask";
 
 function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
-  const composite = useCompositeState();
   const locale = useLocale();
   const theme = useTheme();
   const [draggableAreaSize, setDraggableAreaSize] = useState(
@@ -23,7 +21,6 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
           return (
             <DraggableTask
               key={task.id}
-              composite={composite}
               {...task}
               onDragStart={({ height }) => {
                 setDraggableAreaSize(height);
@@ -41,8 +38,6 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
     <StackLayout orientation="vertical" alignY="start">
       {statusTitle && <Text type="big">{statusTitle}</Text>}
       <StackLayout
-        as={Composite}
-        {...composite}
         className={classes.list}
         orientation="vertical"
         alignY="start"

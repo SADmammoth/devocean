@@ -4,7 +4,7 @@ import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./Sidebar.styles";
 import Text from "../Text";
-import StretchLastLayout from "../layouts/StretchLastLayout/StretchLastLayout";
+import StretchLastLayout from "../layouts/StretchLastLayout";
 
 const useStyles = createUseStyles(styles);
 

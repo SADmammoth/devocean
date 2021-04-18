@@ -1,4 +1,4 @@
-import CircleProgressBar from "../components/generic/CircleProgressBar/CircleProgressBar";
+import CircleProgressBar from "../components/generic/CircleProgressBar";
 import HomePageContent from "../pagesContent/HomePageContent";
 
 export default function IndexPage() {

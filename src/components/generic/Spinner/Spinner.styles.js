@@ -71,6 +71,7 @@ const styles = {
     },
   },
   "@keyframes scale": scaleSector(sectorGradient),
+  centered: {},
 };
 
 export default styles;

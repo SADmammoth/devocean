@@ -2,7 +2,6 @@ import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
 import { DraggableElement as DndDraggableElement } from "@sadmammoth/react-dnd";
 import styles from "./DraggableElement.styles";
-import TaskCard from "../../specific/TaskCard/TaskCard";
 
 const useStyles = createUseStyles(styles);
 
