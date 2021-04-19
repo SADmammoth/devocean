@@ -7,7 +7,7 @@ import { identity } from "lodash";
 
 const useStyles = createUseStyles(styles);
 
-const MarkdownOutput = ({ name, children }) => {
+function MarkdownOutput({ name, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -24,9 +24,10 @@ const MarkdownOutput = ({ name, children }) => {
       }}
     />
   );
-};
+}
 
 MarkdownOutput.propTypes = {
+  name: PropTypes.string.isRequired,
   children: PropTypes.string.isRequired,
 };
 

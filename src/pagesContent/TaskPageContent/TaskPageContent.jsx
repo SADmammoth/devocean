@@ -1,4 +1,5 @@
-import React, { useCallback } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import Sidebar from "../../components/generic/Sidebar";
 import StackLayout from "../../components/generic/layouts/StackLayout";
 import GridLayout from "../../components/generic/layouts/GridLayout";
@@ -12,16 +13,33 @@ import TaskContent from "./TaskContent";
 
 const useStyles = createUseStyles(styles);
 
-const TaskPageContent = ({ id }) => {
+function TaskPageContent({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const fullTask = useRecoilValueLoadable(tasksState_requestContent(id));
+
+  const {
+    title,
+    description,
+    priority,
+    assignee,
+    status,
+    estimate,
+    reportedTime,
+  } = fullTask.contents || {};
 
   return (
     <GridLayout className={classes.content}>
       <Sidebar className={classes.paddingTop} column={3}>
         <StateMonade state={fullTask.state}>
-          <TaskSidebar classes={classes} fullTask={fullTask.contents} />
+          <TaskSidebar
+            classes={classes}
+            priority={priority}
+            assignee={assignee}
+            status={status}
+            estimate={estimate}
+            reportedTime={reportedTime}
+          />
         </StateMonade>
       </Sidebar>
       <StackLayout
@@ -31,11 +49,19 @@ const TaskPageContent = ({ id }) => {
         alignY="start"
       >
         <StateMonade state={fullTask.state}>
-          <TaskContent classes={classes} fullTask={fullTask.contents} />
+          <TaskContent
+            classes={classes}
+            title={title}
+            description={description}
+          />
         </StateMonade>
       </StackLayout>
     </GridLayout>
   );
+}
+
+TaskPageContent.propTypes = {
+  id: PropTypes.string.isRequired,
 };
 
 export default TaskPageContent;

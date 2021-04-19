@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import useLocale from "../../../helpers/useLocale";
 import Button from "../../generic/Button";
 import { useRecoilValueLoadable } from "recoil";
@@ -9,7 +10,7 @@ import NotificationContent from "../NotificationContent";
 import Interactive from "../../generic/Interactive";
 import StateMonade from "../../../helpers/StateMonade";
 
-const NotificationsList = ({ items, showCount }) => {
+function NotificationsList({ items, showCount }) {
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
   const locale = useLocale();
 
@@ -50,6 +51,11 @@ const NotificationsList = ({ items, showCount }) => {
       </StateMonade>
     </StackLayout>
   );
+}
+
+NotificationsList.propTypes = {
+  items: PropTypes.array.isRequired,
+  showCount: PropTypes.number,
 };
 
 export default NotificationsList;

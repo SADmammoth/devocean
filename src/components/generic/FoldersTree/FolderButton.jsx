@@ -1,6 +1,15 @@
 import React from "react";
-import Text from "../Text";
 import PropTypes from "prop-types";
+import Interactive from "../Interactive";
+import {
+  FaFolder,
+  FaList,
+  FaArrowRight,
+  FaArrowDown,
+  FaArrowUp,
+} from "react-icons/fa";
+import Text from "../Text";
+import StackLayout from "../layouts/StackLayout";
 
 function FolderButton({
   as,
@@ -14,6 +23,14 @@ function FolderButton({
   ...props
 }) {
   const InteractiveButton = Interactive(as);
+
+  const Icon = type === "folder" ? FaFolder : FaList;
+  const OpenActionIcon =
+    type === "folder"
+      ? selected || selectedParent
+        ? FaArrowUp
+        : FaArrowDown
+      : FaArrowRight;
 
   return (
     <InteractiveButton
@@ -37,6 +54,15 @@ function FolderButton({
   );
 }
 
-FolderButton.propTypes = {};
+FolderButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  classes: PropTypes.object.isRequired,
+  type: PropTypes.oneOf(["list", "folder"]),
+  selected: PropTypes.bool,
+  selectedParent: PropTypes.bool,
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
+};
 
 export default FolderButton;

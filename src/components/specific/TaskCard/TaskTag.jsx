@@ -1,16 +1,22 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-export default function TaskTag({ classes, tag }) {
-  let tagColor, tagName;
-  if (tag) ({ color: tagColor, name: tagName } = tag);
-
+function TaskTag({ classes, color, name }) {
   return (
     <aside
       className={classes.colorTag}
-      style={{ background: tagColor }}
-      aria-label={tagName}
+      style={{ background: color }}
+      aria-label={name}
     >
-      {tagName}
+      {name}
     </aside>
   );
 }
+
+TaskTag.propTypes = {
+  classes: PropTypes.object.isRequired,
+  color: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+};
+
+export default TaskTag;

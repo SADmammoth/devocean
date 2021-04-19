@@ -25,6 +25,8 @@ const InteractiveCard = ({ className, onClick, link, children }) => {
 };
 
 InteractiveCard.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
   onClick: PropTypes.func,
   link: PropTypes.string,
 };

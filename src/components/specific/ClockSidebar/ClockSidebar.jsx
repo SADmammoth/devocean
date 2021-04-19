@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import Clock from "../../generic/Clock";
 import Sidebar from "../../generic/Sidebar";
@@ -8,7 +9,7 @@ import StackLayout from "../../generic/layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-const ClockSidebar = ({ className, ...props }) => {
+function ClockSidebar({ className, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -27,6 +28,10 @@ const ClockSidebar = ({ className, ...props }) => {
       </StackLayout>
     </Sidebar>
   );
+}
+
+ClockSidebar.propTypes = {
+  className: PropTypes.string,
 };
 
 export default ClockSidebar;

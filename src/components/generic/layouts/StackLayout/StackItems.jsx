@@ -1,9 +1,10 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { aligns, orientations } from "./maps";
 import orientationPrefix from "./orientationPrefix";
 
-export default function StackItems({ classes, children, orientation }) {
+function StackItems({ classes, children, orientation }) {
   if (!children) {
     return null;
   }
@@ -32,3 +33,11 @@ export default function StackItems({ classes, children, orientation }) {
     };
   });
 }
+
+StackItems.propTypes = {
+  classes: PropTypes.object.isRequired,
+  children: PropTypes.node.isRequired,
+  orientation: PropTypes.oneOf(Object.keys(orientations)),
+};
+
+export default StackItems;

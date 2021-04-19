@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import PropTypes from "prop-types";
 import { useRecoilValueLoadable } from "recoil";
 import { tasksState_getByFolder } from "../../../recoil/states/tasksState";
 import DraggableList from "../../../components/generic/DraggableList";
@@ -11,7 +12,7 @@ import StateMonade from "../../../helpers/StateMonade";
 
 const useStyles = createUseStyles(styles);
 
-export default function ListViewTasks({ folderId, style }) {
+function ListViewTasks({ folderId, style }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -65,3 +66,10 @@ export default function ListViewTasks({ folderId, style }) {
     </StateMonade>
   );
 }
+
+ListViewTasks.propTypes = {
+  folderId: PropTypes.string,
+  style: PropTypes.object,
+};
+
+export default ListViewTasks;

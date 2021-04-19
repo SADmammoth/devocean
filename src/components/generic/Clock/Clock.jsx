@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
 import DateTime from "../DateTime";
@@ -6,7 +7,7 @@ import styles from "./Clock.styles";
 
 const useStyles = createUseStyles(styles);
 
-export default function Clock({ city, size }) {
+function Clock({ city, size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -17,3 +18,10 @@ export default function Clock({ city, size }) {
     </div>
   );
 }
+
+Clock.propTypes = {
+  city: PropTypes.string,
+  size: PropTypes.string,
+};
+
+export default Clock;

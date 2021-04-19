@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { Input as ReakitInput } from "reakit";
 import { useTheme, createUseStyles } from "react-jss";
@@ -7,7 +8,7 @@ import customTypes from "./customTypes";
 
 const useStyles = createUseStyles(styles);
 
-const Input = ({ type, ...props }) => {
+function Input({ type, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -27,6 +28,10 @@ const Input = ({ type, ...props }) => {
       />
     </div>
   );
+}
+
+Input.propTypes = {
+  type: PropTypes.string,
 };
 
 export default Input;

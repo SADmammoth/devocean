@@ -1,5 +1,5 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import Text from "../../generic/Text";
 import { useTheme, createUseStyles } from "react-jss";
 import useLocale from "../../../helpers/useLocale";
@@ -8,7 +8,7 @@ import styles from "./StatusBadge.styles";
 
 const useStyles = createUseStyles(styles);
 
-const StatusBadge = ({ status, timeInStatus }) => {
+function StatusBadge({ status, timeInStatus }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -21,6 +21,11 @@ const StatusBadge = ({ status, timeInStatus }) => {
       <Text type="small">{locale("TimeInStatus", { time: timeInStatus })}</Text>
     </StackLayout>
   );
+}
+
+StatusBadge.propTypes = {
+  status: PropTypes.string.isRequired,
+  timeInStatus: PropTypes.string,
 };
 
 export default StatusBadge;

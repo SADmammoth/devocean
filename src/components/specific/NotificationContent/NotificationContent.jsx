@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import InteractiveCard from "../../generic/InteractiveCard";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationContent.styles";
 
 const useStyles = createUseStyles(styles);
 
-const NotificationContent = ({ title, time, author }) => {
+function NotificationContent({ title, time, author }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -16,6 +17,14 @@ const NotificationContent = ({ title, time, author }) => {
       <p>by {author}</p>
     </>
   );
+}
+
+NotificationContent.propTypes = {
+  title: PropTypes.string,
+  time: PropTypes.shape({
+    toString: PropTypes.func,
+  }),
+  author: PropTypes.string,
 };
 
 export default NotificationContent;

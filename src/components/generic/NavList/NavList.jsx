@@ -8,7 +8,7 @@ import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-const NavList = ({ items }) => {
+function NavList({ items }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -32,8 +32,16 @@ const NavList = ({ items }) => {
       />
     </nav>
   );
-};
+}
 
-NavList.propTypes = {};
+NavList.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      link: PropTypes.string,
+      onClick: PropTypes.func,
+    })
+  ).isRequired,
+};
 
 export default NavList;

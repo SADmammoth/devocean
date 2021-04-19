@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
 import classNames from "classnames";
 import priorities from "./priorities";
@@ -9,7 +10,7 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-const PriorityBadge = ({ className, priority }) => {
+function PriorityBadge({ className, priority }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -29,6 +30,11 @@ const PriorityBadge = ({ className, priority }) => {
       </StackLayout>
     </div>
   );
+}
+
+PriorityBadge.propTypes = {
+  className: PropTypes.string,
+  priority: PropTypes.oneOf(Object.keys(priorities)).isRequired,
 };
 
 export default PriorityBadge;

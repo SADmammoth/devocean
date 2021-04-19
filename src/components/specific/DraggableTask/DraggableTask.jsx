@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
 import DraggableElement from "../../generic/DraggableElement";
 import TaskCard from "../TaskCard";
@@ -6,14 +7,14 @@ import styles from "./DraggableTask.styles";
 
 const useStyles = createUseStyles(styles);
 
-const DraggableTask = ({
+function DraggableTask({
   id,
   estimate,
   reportedTime,
   onDragStart,
   onDragEnd,
   ...taskProps
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -52,6 +53,14 @@ const DraggableTask = ({
       data={taskProps}
     />
   );
+}
+
+DraggableTask.propTypes = {
+  id: PropTypes.string,
+  estimate: PropTypes.object,
+  reportedTime: PropTypes.object,
+  onDragStart: PropTypes.func,
+  onDragEnd: PropTypes.func,
 };
 
 export default DraggableTask;

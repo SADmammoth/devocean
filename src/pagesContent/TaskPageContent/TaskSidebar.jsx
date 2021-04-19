@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import StatusBadge from "../../components/specific/StatusBadge";
 import TimeReportsBadge from "../../components/specific/TimeReportsBadge";
 import AssigneeBadge from "../../components/specific/AssigneeBadge";
@@ -6,8 +7,14 @@ import PanelCard from "../../components/generic/PanelCard";
 import StackLayout from "../../components/generic/layouts/StackLayout";
 import PriorityBadge from "../../components/specific/PriorityBadge";
 
-export default function TaskSidebar({ classes, fullTask }) {
-  const { priority, assignee, status, estimate, reportedTime } = fullTask;
+function TaskSidebar({
+  classes,
+  priority,
+  assignee,
+  status,
+  estimate,
+  reportedTime,
+}) {
   return (
     <StackLayout
       className={classes.sidebarContent}
@@ -39,3 +46,14 @@ export default function TaskSidebar({ classes, fullTask }) {
     </StackLayout>
   );
 }
+
+TaskSidebar.propTypes = {
+  classes: PropTypes.object.isRequired,
+  priority: PropTypes.string,
+  assignee: PropTypes.string,
+  status: PropTypes.string,
+  estimate: PropTypes.object,
+  reportedTime: PropTypes.object,
+};
+
+export default TaskSidebar;

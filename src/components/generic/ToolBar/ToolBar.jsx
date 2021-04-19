@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import NavItems from "../NavItems";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
@@ -7,7 +8,7 @@ import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-const ToolBar = ({ className, items, style, children }) => {
+function ToolBar({ className, items, style, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -32,6 +33,13 @@ const ToolBar = ({ className, items, style, children }) => {
       />
     </aside>
   );
+}
+
+ToolBar.propTypes = {
+  className: PropTypes.string,
+  items: PropTypes.array.isRequired,
+  style: PropTypes.object,
+  children: PropTypes.node,
 };
 
 export default ToolBar;

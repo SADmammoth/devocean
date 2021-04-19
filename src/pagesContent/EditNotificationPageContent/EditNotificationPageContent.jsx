@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./EditNotificationPageContent.styles";
@@ -14,11 +15,11 @@ import Text from "../../components/generic/Text";
 
 const useStyles = createUseStyles(styles);
 
-const EditNotificationPageContent = ({
+function EditNotificationPageContent({
   isCreatingNew,
-  initialValues = {},
+  initialValues,
   onSubmit,
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -65,6 +66,17 @@ const EditNotificationPageContent = ({
       </GridLayout>
     </>
   );
+}
+
+EditNotificationPageContent.propTypes = {
+  isCreatingNew: PropTypes.bool,
+  initialValues: PropTypes.shape({
+    title: PropTypes.string,
+    fullText: PropTypes.string,
+    time: PropTypes.string,
+    author: PropTypes.string,
+  }),
+  onSubmit: PropTypes.func,
 };
 
 export default EditNotificationPageContent;

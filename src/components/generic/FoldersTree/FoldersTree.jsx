@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import useLocale from "../../../helpers/useLocale";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./FoldersTree.styles";
@@ -9,7 +10,7 @@ import useSelectedFolder from "./useSelectedFolder";
 
 const useStyles = createUseStyles(styles);
 
-const FoldersTree = ({ className, folders, onSelectedChange }) => {
+function FoldersTree({ className, folders, onSelectedChange }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -49,6 +50,12 @@ const FoldersTree = ({ className, folders, onSelectedChange }) => {
       {folders && folders.length ? renderFolders() : "No folders"}
     </div>
   );
+}
+
+FoldersTree.propTypes = {
+  className: PropTypes.string,
+  folders: PropTypes.array.isRequired,
+  onSelectedChange: PropTypes.func.isRequired,
 };
 
 export default FoldersTree;

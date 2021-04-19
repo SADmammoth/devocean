@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Text from "../../components/generic/Text";
 import StackLayout from "../../components/generic/layouts/StackLayout";
 import Skip from "../../components/generic/layouts/GridLayout/Skip";
@@ -15,7 +16,7 @@ import Interactive from "../../components/generic/Interactive";
 
 const useStyles = createUseStyles(styles);
 
-const NotificationPageContent = ({ id, title, time, author, status }) => {
+function NotificationPageContent({ id, title, time, author, status }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -60,6 +61,14 @@ const NotificationPageContent = ({ id, title, time, author, status }) => {
       </StackLayout>
     </GridLayout>
   );
+}
+
+NotificationPageContent.propTypes = {
+  id: PropTypes.string,
+  title: PropTypes.string,
+  time: PropTypes.string,
+  author: PropTypes.string,
+  status: PropTypes.string,
 };
 
 export default NotificationPageContent;

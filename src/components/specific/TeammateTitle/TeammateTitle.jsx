@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
 import Avatar from "../../generic/Avatar";
 import StackLayout from "../../generic/layouts/StackLayout";
@@ -7,7 +8,7 @@ import styles from "./TeammateTitle.styles";
 
 const useStyles = createUseStyles(styles);
 
-const TeammateTitle = ({ image, displayName }) => {
+function TeammateTitle({ image, displayName }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -24,6 +25,11 @@ const TeammateTitle = ({ image, displayName }) => {
       </Text>
     </StackLayout>
   );
+}
+
+TeammateTitle.propTypes = {
+  image: PropTypes.string,
+  displayName: PropTypes.string,
 };
 
 export default TeammateTitle;

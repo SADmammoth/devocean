@@ -1,11 +1,10 @@
 import React from "react";
-import ProgressBar from "../../generic/ProgressBar";
+import PropTypes from "prop-types";
 import Text from "../../generic/Text";
-import StackLayout from "../../generic/layouts/StackLayout";
 import useLocale from "../../../helpers/useLocale";
 import TaskProgress from "./TaskProgress";
 
-export default function TaskInfo({ classes, status, reportedTime, estimate }) {
+function TaskInfo({ classes, status, reportedTime, estimate }) {
   const locale = useLocale();
   let statusText = locale(status);
   if (!statusText) {
@@ -31,3 +30,12 @@ export default function TaskInfo({ classes, status, reportedTime, estimate }) {
     </aside>
   );
 }
+
+TaskInfo.propTypes = {
+  classes: PropTypes.object.isRequired,
+  status: PropTypes.string.isRequired,
+  reportedTime: PropTypes.object,
+  estimate: PropTypes.object,
+};
+
+export default TaskInfo;

@@ -55,6 +55,11 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
   );
 }
 
-KanbanStatusList.propTypes = {};
+KanbanStatusList.propTypes = {
+  classes: PropTypes.object.isRequired,
+  tasks: PropTypes.array.isRequired,
+  statusTitle: PropTypes.string.isRequired,
+  statusKey: PropTypes.string,
+};
 
 export default KanbanStatusList;

@@ -3,10 +3,11 @@ import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ToggleButton.styles";
 import Button from "../Button";
+import sizes from "../Button/sizes";
 
 const useStyles = createUseStyles(styles);
 
-const ToggleButton = ({ className, states, current, size }) => {
+function ToggleButton({ className, states, current, size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [index, setIndex] = useState(current);
@@ -32,9 +33,10 @@ const ToggleButton = ({ className, states, current, size }) => {
       {states[getNextIndex()].label}
     </Button>
   );
-};
+}
 
 ToggleButton.propTypes = {
+  className: PropTypes.string,
   states: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -42,6 +44,7 @@ ToggleButton.propTypes = {
     })
   ).isRequired,
   current: PropTypes.number,
+  size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
 ToggleButton.defaultProps = {

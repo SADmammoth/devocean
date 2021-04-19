@@ -1,9 +1,6 @@
 import React from "react";
-
 import orientationPrefix from "./orientationPrefix";
-
 import { aligns, orientations } from "./maps";
-
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
@@ -21,7 +18,6 @@ const StackLayout = ({
   gap,
   style,
   scroll,
-
   as,
   ...other
 }) => {
@@ -55,12 +51,14 @@ const StackLayout = ({
 };
 
 StackLayout.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  style: PropTypes.object,
   orientation: PropTypes.oneOf(Object.keys(orientations)),
   alignY: PropTypes.oneOf(Object.keys(aligns)),
   alignX: PropTypes.oneOf(Object.keys(aligns)),
   gap: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   scroll: PropTypes.bool,
-
   as: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.element,
@@ -73,7 +71,6 @@ StackLayout.defaultProps = {
   alignY: "stretch",
   alignX: "stretch",
   scroll: false,
-
   as: "div",
 };
 

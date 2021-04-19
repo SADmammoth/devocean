@@ -1,30 +1,16 @@
 import React, { useEffect, useState, useMemo } from "react";
+import PropTypes from "prop-types";
+import { months, weekdays } from "./enums";
 import classNames from "classnames";
 import clockUpdater from "./clockUpdater.js";
 import { createUseStyles, useTheme } from "react-jss";
 import styles from "./DateTime.styles";
 import dateToString from "../../../helpers/dateToString.js";
+import sizes from "./sizes";
 
 const useStyles = createUseStyles(styles);
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-export default function DateTime({ size }) {
+function DateTime({ size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -79,3 +65,13 @@ export default function DateTime({ size }) {
     </time>
   );
 }
+
+DateTime.propTypes = {
+  size: PropTypes.oneOf(sizes),
+};
+
+DateTime.defaultProps = {
+  size: "small",
+};
+
+export default DateTime;

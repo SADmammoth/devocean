@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import alignments from "./alignments";
 import classNames from "classnames";
 import { useTheme, createUseStyles } from "react-jss";
@@ -9,7 +10,7 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-const Text = ({
+function Text({
   type,
   as,
   children,
@@ -22,7 +23,7 @@ const Text = ({
   hyphenated,
 
   ...props
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -57,6 +58,19 @@ const Text = ({
       {text || children}
     </TextTag>
   );
+}
+
+Text.propTypes = {
+  type: PropTypes.oneOf(Object.keys(types)),
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  children: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  bold: PropTypes.bool,
+  italic: PropTypes.bool,
+  alignment: PropTypes.oneOf(Object.keys(alignments)),
+  ellipsis: PropTypes.bool,
+  lines: PropTypes.number,
+  hyphenated: PropTypes.bool,
 };
 
 export default Text;

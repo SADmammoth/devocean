@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-
+import PropTypes from "prop-types";
 import Popup from "../Popup";
-
 import { useTheme, createUseStyles } from "react-jss";
 import Button from "../Button";
 import styles from "./PopupButton.styles";
@@ -9,13 +8,13 @@ import positions from "./positions";
 
 const useStyles = createUseStyles(styles);
 
-const PopupButton = ({
+function PopupButton({
   buttonContent,
   children,
   showSubmitButton,
   submitText,
   position,
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [show, setShow] = useState(false);
@@ -43,6 +42,14 @@ const PopupButton = ({
       ) : null}
     </div>
   );
+}
+
+PopupButton.propTypes = {
+  buttonContent: PropTypes.node.isRequired,
+  children: PropTypes.node.isRequired,
+  showSubmitButton: PropTypes.bool,
+  submitText: PropTypes.string,
+  position: PropTypes.oneOf(Object.keys(positions)),
 };
 
 export default PopupButton;

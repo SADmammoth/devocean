@@ -8,7 +8,7 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-const ProgressBar = ({ className, progress, orientation }) => {
+function ProgressBar({ className, progress, orientation }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -26,15 +26,16 @@ const ProgressBar = ({ className, progress, orientation }) => {
       <div className={classes.value}>{progress}</div>
     </div>
   );
+}
+
+ProgressBar.propTypes = {
+  className: PropTypes.string,
+  progress: PropTypes.number.isRequired,
+  orientation: PropTypes.oneOf(Object.keys(orientations)),
 };
 
 ProgressBar.defaultProps = {
   orientation: "vertical",
-};
-
-ProgressBar.propTypes = {
-  progress: PropTypes.number.isRequired,
-  orientation: PropTypes.oneOf(Object.keys(orientations)),
 };
 
 export default ProgressBar;

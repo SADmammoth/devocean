@@ -5,7 +5,7 @@ import styles from "./Spinner.styles";
 
 const useStyles = createUseStyles(styles);
 
-const Spinner = () => {
+function Spinner() {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -16,6 +16,6 @@ const Spinner = () => {
       aria-live="polite"
     />
   );
-};
+}
 
 export default Spinner;

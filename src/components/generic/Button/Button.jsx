@@ -26,6 +26,10 @@ const Button = ({ className, type, onClick, children, size, label, props }) => {
 };
 
 Button.propTypes = {
+  className: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  children: PropTypes.node,
   size: PropTypes.oneOf(Object.keys(sizes)),
 };
 

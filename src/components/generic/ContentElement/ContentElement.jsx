@@ -1,11 +1,12 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./ContentElement.styles";
 import ContainerLayout from "../layouts/ContainerLayout";
 
 const useStyles = createUseStyles(styles);
 
-const ContentElement = ({ children }) => {
+function ContentElement({ children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -14,6 +15,10 @@ const ContentElement = ({ children }) => {
       <ContainerLayout className={classes.content}>{children}</ContainerLayout>
     </main>
   );
+}
+
+ContentElement.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default ContentElement;

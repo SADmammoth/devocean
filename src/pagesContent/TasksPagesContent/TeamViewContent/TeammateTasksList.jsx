@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import PropTypes from "prop-types";
 import DraggableList from "../../../components/generic/DraggableList";
 import DraggableTask from "../../../components/specific/DraggableTask";
 import StackLayout from "../../../components/generic/layouts/StackLayout";
@@ -9,7 +10,7 @@ import TeammateTitle from "../../../components/specific/TeammateTitle";
 
 const useStyles = createUseStyles(styles);
 
-export default function TeammateTasksList({ displayName, avatar, tasks }) {
+function TeammateTasksList({ displayName, avatar, tasks }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -58,3 +59,11 @@ export default function TeammateTasksList({ displayName, avatar, tasks }) {
     </StackLayout>
   );
 }
+
+TeammateTasksList.propTypes = {
+  displayName: PropTypes.string.isRequired,
+  avatar: PropTypes.string,
+  tasks: PropTypes.array.isRequired,
+};
+
+export default TeammateTasksList;

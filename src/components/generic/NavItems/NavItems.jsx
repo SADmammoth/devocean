@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Interactive from "../Interactive";
 
-const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
+function NavItems({ as, items, itemClass, itemContainerClass }) {
   const InteractiveButton = Interactive("button");
   const renderItems = useMemo(
     () =>
@@ -32,9 +32,10 @@ const NavItems = ({ as, items, itemClass, itemContainerClass }) => {
   const As = as;
 
   return <As>{renderItems}</As>;
-};
+}
 
 NavItems.propTypes = {
+  as: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,
@@ -42,6 +43,8 @@ NavItems.propTypes = {
       onClick: PropTypes.func,
     })
   ).isRequired,
+  itemClass: PropTypes.string,
+  itemContainerClass: PropTypes.string,
 };
 
 export default NavItems;

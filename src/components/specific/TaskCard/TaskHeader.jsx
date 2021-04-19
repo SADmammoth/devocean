@@ -1,7 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Text from "../../generic/Text";
 
-export default function TaskHeader({ classes, title }) {
+function TaskHeader({ classes, title }) {
   return (
     <header className={classes.header}>
       <Text type="common" bold className={classes.title} lines={2} hyphenated>
@@ -10,3 +11,10 @@ export default function TaskHeader({ classes, title }) {
     </header>
   );
 }
+
+TaskHeader.propTypes = {
+  classes: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+export default TaskHeader;

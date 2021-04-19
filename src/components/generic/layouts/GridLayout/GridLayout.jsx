@@ -65,6 +65,7 @@ GridLayout.propTypes = {
   columns: PropTypes.number,
   gap: PropTypes.string,
   stretchLast: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 
 GridLayout.defaultProps = {

@@ -1,4 +1,5 @@
 import React, { useMemo } from "react";
+import PropTypes from "prop-types";
 import ToggleButton from "../../generic/ToggleButton";
 import { useTheme, createUseStyles } from "react-jss";
 import { useRecoilState } from "recoil";
@@ -7,7 +8,7 @@ import styles from "./LanguageSwitcher.styles";
 
 const useStyles = createUseStyles(styles);
 
-const LanguageSwitcher = ({ className }) => {
+function LanguageSwitcher({ className }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [locale, setLocale] = useRecoilState(localeState);
@@ -34,6 +35,10 @@ const LanguageSwitcher = ({ className }) => {
       size="fluid"
     />
   );
+}
+
+LanguageSwitcher.propTypes = {
+  className: PropTypes.string,
 };
 
 export default LanguageSwitcher;

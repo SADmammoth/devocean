@@ -1,28 +1,29 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./CircleProgressBar.styles";
 
 const useStyles = createUseStyles(styles);
 
-const CircleProgressBar = ({
+function CircleProgressBar({
   progress,
   children,
-  background,
-  foreground,
-  backdrop,
+  backgroundColor,
+  foregroundColor,
+  backdropColor,
   size,
   width,
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles({
     ...theme,
-    size: size || "50px",
-    width: width || "10px",
+    size: size,
+    width: width,
     progress: progress * 100,
-    progressbarBackdrop: backdrop || theme.background.dark,
-    progressbarBackground: background || theme.background.common,
-    progressbarForeground: foreground || theme.text.highlighted,
+    progressbarBackdrop: backdropColor || theme.background.dark,
+    progressbarBackground: backgroundColor || theme.background.common,
+    progressbarForeground: foregroundColor || theme.text.highlighted,
   });
 
   return (
@@ -34,6 +35,21 @@ const CircleProgressBar = ({
       <div className={classes.content}>{children}</div>
     </StackLayout>
   );
+}
+
+CircleProgressBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+  children: PropTypes.node,
+  backgroundColor: PropTypes.string,
+  foregroundColor: PropTypes.string,
+  backdropColor: PropTypes.string,
+  size: PropTypes.string,
+  width: PropTypes.string,
+};
+
+CircleProgressBar.defaultProps = {
+  size: "50px",
+  width: "10px",
 };
 
 export default CircleProgressBar;

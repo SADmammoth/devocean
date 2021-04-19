@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
@@ -8,7 +9,7 @@ import StretchLastLayout from "../layouts/StretchLastLayout";
 
 const useStyles = createUseStyles(styles);
 
-const Sidebar = ({ children, className, style, title }) => {
+function Sidebar({ children, className, style, title }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -41,6 +42,13 @@ const Sidebar = ({ children, className, style, title }) => {
       </StretchLastLayout>
     );
   }
+}
+
+Sidebar.propTypes = {
+  children: PropTypes.node,
+  className: PropTypes.string,
+  style: PropTypes.object,
+  title: PropTypes.string,
 };
 
 export default Sidebar;

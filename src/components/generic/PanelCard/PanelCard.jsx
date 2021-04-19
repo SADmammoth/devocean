@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import classNames from "classnames";
 import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
@@ -6,7 +7,7 @@ import styles from "./PanelCard.styles";
 
 const useStyles = createUseStyles(styles);
 
-const PanelCard = ({ className, children, ...props }) => {
+function PanelCard({ className, children, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -18,6 +19,11 @@ const PanelCard = ({ className, children, ...props }) => {
       {children}
     </StackLayout>
   );
+}
+
+PanelCard.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default PanelCard;

@@ -8,7 +8,6 @@ import sizes from "./sizes";
 import TaskInfo from "./TaskInfo";
 import useLocale from "../../../helpers/useLocale";
 import priorities from "../PriorityBadge/priorities";
-import useProgress from "../../../helpers/useProgress";
 import TaskHeader from "./TaskHeader";
 import TaskTag from "./TaskTag";
 import InteractiveCard from "../../generic/InteractiveCard";
@@ -24,7 +23,6 @@ const TaskCard = ({
   estimate,
   status,
   tag,
-
   size,
 }) => {
   const theme = useTheme();
@@ -58,7 +56,9 @@ const TaskCard = ({
       aria-label={label}
       link={`/tasks/${id}`}
     >
-      <TaskTag tag={tag} classes={classes} />
+      {tag ? (
+        <TaskTag color={tag.color} name={tag.name} classes={classes} />
+      ) : null}
       <TaskHeader title={title} classes={classes} />
       <PriorityBadge className={classes.priority} priority={priority} />
       <TaskInfo
@@ -71,12 +71,23 @@ const TaskCard = ({
   );
 };
 
-TaskCard.defaultProps = {
-  size: "default",
+TaskCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  className: PropTypes.string,
+  title: PropTypes.string.isRequired,
+  priority: PropTypes.string.isRequired,
+  reportedTime: PropTypes.object,
+  estimate: PropTypes.object,
+  status: PropTypes.string,
+  tag: PropTypes.shape({
+    color: PropTypes.string,
+    name: PropTypes.string,
+  }),
+  size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
-TaskCard.propTypes = {
-  size: PropTypes.oneOf(Object.keys(sizes)),
+TaskCard.defaultProps = {
+  size: "default",
 };
 
 export default TaskCard;

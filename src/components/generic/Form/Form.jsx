@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FormLabel from "./FormLabel";
 import ReactForm from "@sadmammoth/react-form";
 import Input from "../Input";
@@ -8,7 +9,7 @@ import styles from "./Form.styles";
 
 const useStyles = createUseStyles(styles);
 
-function Form({ submitText = "Submit", children, ...props }) {
+function Form({ submitText, children, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -29,5 +30,14 @@ function Form({ submitText = "Submit", children, ...props }) {
     </ReactForm>
   );
 }
+
+Form.propTypes = {
+  submitText: PropTypes.string,
+  children: PropTypes.node,
+};
+
+Form.defaultProps = {
+  submitText: "Submit",
+};
 
 export default Form;

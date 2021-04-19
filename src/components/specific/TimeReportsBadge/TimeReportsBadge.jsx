@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import useProgress from "../../../helpers/useProgress";
@@ -9,7 +10,7 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-const TimeReportsBadge = ({ estimate, reportedTime }) => {
+function TimeReportsBadge({ estimate, reportedTime }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -21,8 +22,8 @@ const TimeReportsBadge = ({ estimate, reportedTime }) => {
         <CircleProgressBar
           progress={progress}
           width="5px"
-          backdrop={theme.background.light}
-          background={theme.background.dark}
+          backdropColor={theme.background.light}
+          backgroundColor={theme.background.dark}
         >
           <Text type="common" bold>
             {reportedTime.toString()}
@@ -39,6 +40,11 @@ const TimeReportsBadge = ({ estimate, reportedTime }) => {
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );
+}
+
+TimeReportsBadge.propTypes = {
+  estimate: PropTypes.object,
+  reportedTime: PropTypes.object,
 };
 
 export default TimeReportsBadge;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Button from "../Button";
 import StackLayout from "../layouts/StackLayout";
 import { useTheme, createUseStyles } from "react-jss";
@@ -7,13 +8,13 @@ import classNames from "classnames";
 
 const useStyles = createUseStyles(styles);
 
-const Popup = ({
+function Popup({
   className,
   children,
   showSubmitButton,
   submitText,
   closeSelf,
-}) => {
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -25,6 +26,14 @@ const Popup = ({
       ) : null}
     </StackLayout>
   );
+}
+
+Popup.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+  showSubmitButton: PropTypes.bool,
+  submitText: PropTypes.string,
+  closeSelf: PropTypes.func.isRequired,
 };
 
 export default Popup;
