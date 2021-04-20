@@ -6,12 +6,15 @@ import styles from "./ContainerLayout.styles";
 
 const useStyles = createUseStyles(styles);
 
-function ContainerLayout({ children, className }) {
+function ContainerLayout({ children, className, styles }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <div className={classNames(classes.containerLayout, className)}>
+    <div
+      className={classNames(classes.containerLayout, className)}
+      styles={styles}
+    >
       {children}
     </div>
   );

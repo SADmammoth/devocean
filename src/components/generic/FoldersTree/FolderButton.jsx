@@ -1,4 +1,8 @@
 import React from "react";
+
+import useLocale from "../../../helpers/useLocale";
+
+import classNames from "classnames";
 import PropTypes from "prop-types";
 import Interactive from "../Interactive";
 import {
@@ -23,6 +27,8 @@ function FolderButton({
   ...props
 }) {
   const InteractiveButton = Interactive(as);
+
+  const locale = useLocale();
 
   const Icon = type === "folder" ? FaFolder : FaList;
   const OpenActionIcon =

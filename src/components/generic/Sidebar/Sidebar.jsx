@@ -1,4 +1,5 @@
 import React from "react";
+import NestedContainerLayout from "../layouts/NestedContainerLayout";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import StackLayout from "../layouts/StackLayout";
@@ -16,9 +17,11 @@ function Sidebar({ children, className, style, title }) {
   if (!title) {
     return (
       <aside className={classNames(classes.sidebar, className)} style={style}>
-        <StackLayout orientation="vertical" alignX="center">
-          {children}
-        </StackLayout>
+        <NestedContainerLayout margin="30px">
+          <StackLayout orientation="vertical" alignX="center">
+            {children}
+          </StackLayout>
+        </NestedContainerLayout>
       </aside>
     );
   } else {
@@ -32,13 +35,15 @@ function Sidebar({ children, className, style, title }) {
         <Text type="big" className={classes.title}>
           {title}
         </Text>
-        <StackLayout
-          className={classNames(classes.sidebar)}
-          orientation="vertical"
-          alignX="center"
-        >
-          {children}
-        </StackLayout>
+        <NestedContainerLayout margin="30px">
+          <StackLayout
+            className={classNames(classes.sidebar)}
+            orientation="vertical"
+            alignX="center"
+          >
+            {children}
+          </StackLayout>
+        </NestedContainerLayout>
       </StretchLastLayout>
     );
   }
