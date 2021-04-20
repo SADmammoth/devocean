@@ -16,13 +16,16 @@ function Sidebar({ children, className, style, title }) {
 
   if (!title) {
     return (
-      <aside className={classNames(classes.sidebar, className)} style={style}>
-        <NestedContainerLayout margin="30px">
-          <StackLayout orientation="vertical" alignX="center">
-            {children}
-          </StackLayout>
-        </NestedContainerLayout>
-      </aside>
+      <NestedContainerLayout
+        as="aside"
+        className={classNames(classes.sidebar, className)}
+        style={style}
+        margin="30px"
+      >
+        <StackLayout orientation="vertical" alignX="center">
+          {children}
+        </StackLayout>
+      </NestedContainerLayout>
     );
   } else {
     return (
@@ -35,12 +38,12 @@ function Sidebar({ children, className, style, title }) {
         <Text type="big" className={classes.title}>
           {title}
         </Text>
-        <NestedContainerLayout margin="30px">
-          <StackLayout
-            className={classNames(classes.sidebar)}
-            orientation="vertical"
-            alignX="center"
-          >
+        <NestedContainerLayout
+          as="aside"
+          className={classNames(classes.sidebar)}
+          margin="30px"
+        >
+          <StackLayout orientation="vertical" alignX="center">
             {children}
           </StackLayout>
         </NestedContainerLayout>

@@ -10,8 +10,12 @@ export function taskConverter({ body }) {
   }));
 }
 
-export function fullTaskConverter({ body }) {
-  const { estimate, reportedTime, assignee, ...other } = body;
+export function fullTaskConverter({
+  estimate,
+  reportedTime,
+  assignee,
+  ...other
+}) {
   return {
     estimate: estimate ? new Duration(estimate) : null,
     reportedTime: reportedTime ? new Duration(reportedTime) : null,

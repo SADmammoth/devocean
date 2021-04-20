@@ -1,4 +1,7 @@
 import request from "superagent";
+
+import filterFalsy from "./filterFalsy";
+
 import prefix from "superagent-prefix";
 import Duration from "./Duration";
 import {
@@ -77,7 +80,10 @@ const Client = {
       return request.get("/tasks").use(apiPath).then(taskConverter);
     },
     getById: (id) => {
-      return request.get(`/tasks/${id}`).use(apiPath).then(fullTaskConverter);
+      return request
+        .get(`/tasks/${id}`)
+        .use(apiPath)
+        .then(({ body }) => body);
     },
     post: (task) => {
       const body = {
@@ -89,6 +95,21 @@ const Client = {
 
       return request
         .post("/tasks")
+        .use(apiPath)
+        .send(body)
+        .then(({ body }) => body);
+    },
+
+    patch: (id, task) => {
+      const body = filterFalsy({
+        // estimate: task.estimate.getTime(),
+        // reportedTime: task.reportedTime.getTime(),
+        // timeInStatus: new Duration(new Date(task.timeInStatus)),
+        ...task,
+      });
+
+      return request
+        .patch(`/tasks/${id}`)
         .use(apiPath)
         .send(body)
         .then(({ body }) => body);

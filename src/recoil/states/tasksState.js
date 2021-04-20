@@ -10,13 +10,21 @@ import folderTreeState, { folderTreeState_getById } from "./folderTreeState";
 import { Children } from "react";
 import getTasksOfFolderTree from "../helpers/getTasksOfFolderTree";
 import treeArrayToMap from "../helpers/treeArrayToMap";
+import { fullTaskConverter } from "../../helpers/responseConverters";
+import updateSelector from "../helpers/updateSelector";
 
 const baseKey = "tasksState_";
 
 const postState = (newValue, oldValue) => {
   const diff = _.difference(newValue, oldValue);
-  if (diff.length === 1) {
+  if (diff.length === 1 && newValue.length !== oldValue.length) {
     return Client.tasks.post(diff[0]);
+  }
+
+  if (diff.length === 1 && newValue.length === oldValue.length) {
+    const newItem = diff[0];
+
+    return Client.tasks.patch(newItem.id, newItem);
   }
 };
 
@@ -52,7 +60,8 @@ export const tasksState_getByFolder = selectorFamily({
 
 export const tasksState_requestContent = selectorFamily({
   key: baseKey + "requestContent",
-  get: (taskId) => ({ get }) => Client.tasks.getById(taskId),
+  get: (taskId) => ({ get }) =>
+    Client.tasks.getById(taskId).then(fullTaskConverter),
 });
 
 export const tasksState_arrange = entriesArrangementSelector(
@@ -60,5 +69,7 @@ export const tasksState_arrange = entriesArrangementSelector(
   tasksStateAtom,
   Client.tasks.arrange
 );
+
+export const tasksState_update = updateSelector(baseKey, tasksStateAtom);
 
 export default tasksState;

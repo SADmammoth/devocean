@@ -6,10 +6,10 @@ import Text from "../../components/generic/Text";
 
 function TaskContent({ classes, title, description }) {
   return (
-    <StackLayout>
+    <>
       <Text type="h1">{title}</Text>
       <MarkdownOutput name="description">{description || ""}</MarkdownOutput>
-    </StackLayout>
+    </>
   );
 }
 
