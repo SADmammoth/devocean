@@ -8,29 +8,27 @@ import StackLayout from "../layouts/StackLayout";
 
 const useStyles = createUseStyles(styles);
 
-function ToolBar({ className, items, style, children }) {
+function ToolBar({ className, items, style, children, precedingChildren }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
     <aside className={classNames(classes.toolbar, className)} style={style}>
-      <NavItems
-        as={({ children: navItems }) => (
-          <StackLayout
-            className={classes.list}
-            as="ul"
-            orientation="vertical"
-            alignX="center"
-            gap="1rem"
-          >
-            {navItems}
-            {children}
-          </StackLayout>
-        )}
-        items={items || []}
-        itemClass={classes.item}
-        itemContainerClass={classes.itemContainer}
-      />
+      <StackLayout
+        className={classes.list}
+        as="ul"
+        orientation="vertical"
+        alignX="center"
+        gap="1rem"
+      >
+        {precedingChildren}
+        <NavItems
+          items={items || []}
+          itemClass={classes.item}
+          itemContainerClass={classes.itemContainer}
+        />
+        {children}
+      </StackLayout>
     </aside>
   );
 }
@@ -40,6 +38,7 @@ ToolBar.propTypes = {
   items: PropTypes.array.isRequired,
   style: PropTypes.object,
   children: PropTypes.node,
+  precedingChildren: PropTypes.node,
 };
 
 export default ToolBar;

@@ -19,6 +19,7 @@ const StackLayout = ({
   style,
   scroll,
   as,
+  nowrap,
   ...other
 }) => {
   const theme = useTheme();
@@ -38,7 +39,7 @@ const StackLayout = ({
         classes[orientationClass],
         classes[alignYClass],
         classes[alignXClass],
-        { [classes.scroll]: scroll }
+        { [classes.scroll]: scroll, [classes.nowrap]: nowrap }
       )}
       style={{ ...style, "--gap": gap }}
       {...other}
@@ -64,6 +65,7 @@ StackLayout.propTypes = {
     PropTypes.element,
     PropTypes.node,
   ]),
+  nowrap: PropTypes.bool,
 };
 
 StackLayout.defaultProps = {
@@ -72,6 +74,7 @@ StackLayout.defaultProps = {
   alignX: "stretch",
   scroll: false,
   as: "div",
+  nowrap: false,
 };
 
 export default StackLayout;

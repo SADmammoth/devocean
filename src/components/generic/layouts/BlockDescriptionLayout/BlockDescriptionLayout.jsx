@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme, createUseStyles } from "react-jss";
+import classNames from "classnames";
 import StackLayout from "../StackLayout";
 import styles from "./BlockDescriptionLayout.styles";
 
@@ -22,14 +23,21 @@ const BlockDescriptionLayout = ({ children }) => {
   );
 };
 
-const Block = ({ children }) => {
+const Block = ({ className, children }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  return <div className={classes.block}>{children}</div>;
+  return (
+    <StackLayout
+      className={classNames(className, classes.block)}
+      alignY="center"
+    >
+      {children}
+    </StackLayout>
+  );
 };
 
-const Description = ({ children }) => {
+const Description = ({ className, children }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -38,7 +46,7 @@ const Description = ({ children }) => {
       orientation="vertical"
       alignY="center"
       alignX="start"
-      className={classes.description}
+      className={classNames(className, classes.description)}
       gap="0"
     >
       {children}

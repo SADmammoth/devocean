@@ -6,6 +6,9 @@ const styles = {
     flexWrap: "wrap",
     gap: "var(--gap, 0)",
   },
+  nowrap: {
+    flexWrap: "nowrap",
+  },
   horizontal: {
     "&$scroll": {
       overflowX: "auto",

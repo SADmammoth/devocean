@@ -10,7 +10,7 @@ import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationsPageContent.styles";
 import NotificationsList from "../../components/specific/NotificationsList";
 import StretchLayout from "../../components/generic/layouts/StretchLayout";
-import ToolBar from "../../components/generic/ToolBar";
+import ExpandableToolBar from "../../components/generic/ExpandableToolBar";
 
 const useStyles = createUseStyles(styles);
 
@@ -34,12 +34,13 @@ const NotificationsPageContent = () => {
             <NotificationsList />
           </StretchLayout>
         </StackLayout>
-        <ToolBar
+        <ExpandableToolBar
           name={"Notifications toolbar"}
           className={classes.marginTop}
           items={[
             {
-              title: "New notification",
+              id: "new",
+              title: locale("New notification"),
               label: <FaPlusCircle className={classes.icon} />,
               link: "/notifications/new",
             },

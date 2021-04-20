@@ -2,7 +2,15 @@ import React, { useMemo } from "react";
 import PropTypes from "prop-types";
 import Interactive from "../Interactive";
 
+import { useTheme, createUseStyles } from "react-jss";
+import styles from "./NavItems.styles";
+
+const useStyles = createUseStyles(styles);
+
 function NavItems({ as, items, itemClass, itemContainerClass }) {
+  const theme = useTheme();
+  const classes = useStyles(theme);
+
   const InteractiveButton = Interactive("button");
   const renderItems = useMemo(
     () =>
@@ -29,9 +37,9 @@ function NavItems({ as, items, itemClass, itemContainerClass }) {
     [items]
   );
 
-  const As = as;
+  const As = as || "ul";
 
-  return <As>{renderItems}</As>;
+  return <As className={classes.navItems}>{renderItems}</As>;
 }
 
 NavItems.propTypes = {
