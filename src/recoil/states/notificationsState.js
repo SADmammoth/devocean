@@ -1,10 +1,9 @@
 import { atom, selector, selectorFamily } from "recoil";
-
+import Subscriber from "../../helpers/Subscriber";
+import serverRealtimeStateSync from "../helpers/serverRealtimeStateSync";
 import RelativeDate from "../../helpers/RelativeDate";
-
 import _ from "lodash";
 import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
 import mergeSelector from "../helpers/mergeSelector";
 import updateSelector from "../helpers/updateSelector";
 
@@ -31,11 +30,12 @@ const postState = (newValue, oldValue) => {
 };
 
 const getState = () => Client.notifications.get();
+const subscriber = Subscriber.notifications;
 
 const notificationsStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [serverRealtimeStateSync(subscriber, getState, postState)],
 });
 
 const notificationsState_getToDisplay = selector({

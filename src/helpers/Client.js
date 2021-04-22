@@ -1,14 +1,7 @@
 import request from "superagent";
-
 import filterFalsy from "./filterFalsy";
-
 import prefix from "superagent-prefix";
-import Duration from "./Duration";
-import {
-  fullTaskConverter,
-  notificationConverter,
-  taskConverter,
-} from "./responseConverters";
+import { taskConverter } from "./responseConverters";
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 

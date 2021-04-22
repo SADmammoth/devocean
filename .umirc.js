@@ -17,5 +17,6 @@ export default {
   outputPath: "./build",
   define: {
     API_PATH: "http://localhost:1337",
+    SUBSCRIPTION_SERVER: "http://localhost:1338",
   },
 };
