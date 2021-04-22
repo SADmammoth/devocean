@@ -1,5 +1,7 @@
 import React from "react";
 
+import HiddenLink from "../HiddenLink";
+
 import useLocale from "../../../helpers/useLocale";
 
 import classNames from "classnames";
@@ -11,6 +13,7 @@ import {
   FaArrowRight,
   FaArrowDown,
   FaArrowUp,
+  FaEdit,
 } from "react-icons/fa";
 import Text from "../Text";
 import StackLayout from "../layouts/StackLayout";
@@ -24,6 +27,7 @@ function FolderButton({
   name,
   id,
   onClick,
+  isConstant,
   ...props
 }) {
   const InteractiveButton = Interactive(as);
@@ -54,6 +58,12 @@ function FolderButton({
         <Text type="common" ellipsis>
           {name}
         </Text>
+        {isConstant || (
+          <HiddenLink to={`/collections/${id}/edit`}>
+            <FaEdit />
+          </HiddenLink>
+        )}
+
         <OpenActionIcon />
       </StackLayout>
     </InteractiveButton>

@@ -16,6 +16,8 @@ function Folder({
   childrenIds,
   requestFolderProps,
   selectedParent,
+
+  isConstant,
 }) {
   const locale = useLocale();
 
@@ -46,6 +48,7 @@ function Folder({
         name={name}
         id={id}
         onClick={onClick}
+        isConstant={isConstant}
       />
       <div aria-label={locale("Subfolders", { name })}>
         {renderSubFolders()}

@@ -13,8 +13,6 @@ export default function EditTask({
     tasksState_update(id)
   );
 
-  console.log(initialValues.state);
-
   return (
     <>
       <StateMonade state={initialValues.state}>
@@ -23,6 +21,7 @@ export default function EditTask({
           onSubmit={async (data) => {
             return await editTask(data);
           }}
+          edit
         />
       </StateMonade>
     </>

@@ -21,6 +21,7 @@ import StackLayout from "../../../components/generic/layouts/StackLayout";
 import Text from "../../../components/generic/Text";
 import useLocale from "../../../helpers/useLocale";
 import FilterTool from "../../../components/specific/FilterTool";
+import { FaFolderPlus } from "react-icons/fa";
 
 const useStyles = createUseStyles(styles);
 
@@ -69,7 +70,15 @@ const ListViewContent = () => {
             <ListViewTasks folderId={currentFolderId} />
           </StateMonade>
         </StackLayout>
-        <ToolBar>
+        <ToolBar
+          items={[
+            {
+              label: <FaFolderPlus />,
+              title: "Add task collection",
+              link: "/collections/new",
+            },
+          ]}
+        >
           <FilterTool
             filters={listView.filters}
             applyFilter={(...data) => console.log(data)}

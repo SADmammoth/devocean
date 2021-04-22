@@ -133,6 +133,20 @@ const Client = {
         .use(apiPath)
         .then(({ body }) => body);
     },
+    post: (folder) => {
+      return request
+        .post("/folders")
+        .use(apiPath)
+        .send(folder)
+        .then(({ body }) => body);
+    },
+    patch: (id, folder) => {
+      return request
+        .patch(`/folders/${id}`)
+        .use(apiPath)
+        .send(folder)
+        .then(({ body }) => body);
+    },
   },
   statuses: {
     get: () => {

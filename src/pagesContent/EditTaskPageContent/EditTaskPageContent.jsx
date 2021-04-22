@@ -15,13 +15,15 @@ import tasksState from "../../recoil/states/tasksState";
 
 const useStyles = createUseStyles(styles);
 
-function EditTaskPageContent({ initialValues, onSubmit }) {
+function EditTaskPageContent({ edit, initialValues, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
   const inputsProps = useLocalizedForm(getCreateTaskForm(initialValues));
 
   const [inputs, setInputs] = useState({});
+
+  const title = edit ? locale("Edit task") : locale("Create task");
 
   return (
     <GridLayout className={classes.content}>
@@ -35,7 +37,7 @@ function EditTaskPageContent({ initialValues, onSubmit }) {
         className={classes.marginTop}
         orientation="vertical"
       >
-        <Text type="h1">{locale("Create task")}</Text>
+        <Text type="h1">{title}</Text>
         <Form
           inputs={inputsProps}
           onSubmit={onSubmit}
