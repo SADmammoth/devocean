@@ -5,6 +5,8 @@ export default function ({
   assignee,
   list,
   estimate,
+  assigneeValueOptions,
+  listValueOptions,
 }) {
   return [
     {
@@ -61,17 +63,17 @@ export default function ({
     {
       id: "assignee",
       name: "teammate",
-      type: "select",
+      type: "search",
       label: "Assignee",
-      valueOptions: [],
+      valueOptions: assigneeValueOptions,
       value: assignee,
     },
     {
       id: "list",
       name: "list",
-      type: "select",
+      type: "search",
       label: "List",
-      valueOptions: [],
+      valueOptions: listValueOptions,
       value: list,
     },
   ];

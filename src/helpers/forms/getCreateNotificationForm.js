@@ -1,4 +1,4 @@
-export default ({ title, fullText, time, author }) => [
+export default ({ title, fullText, time, author, authorValueOptions }) => [
   {
     id: "title",
     type: "text",
@@ -32,9 +32,10 @@ export default ({ title, fullText, time, author }) => [
   },
   {
     id: "author",
-    type: "text",
+    type: "search",
     name: "author",
     label: "Author",
     value: author,
+    valueOptions: authorValueOptions,
   },
 ];

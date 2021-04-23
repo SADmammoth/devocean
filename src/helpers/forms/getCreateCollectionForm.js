@@ -1,4 +1,4 @@
-export default ({ type, name, parent, color }) => {
+export default ({ type, name, parent, color, parentValueOptions }) => {
   return [
     {
       id: "name",
@@ -28,10 +28,11 @@ export default ({ type, name, parent, color }) => {
     },
     {
       id: "parent",
-      type: "text",
+      type: "search",
       name: "parent",
       label: "Parent collection",
       value: parent,
+      valueOptions: parentValueOptions,
     },
     (type && type === "folder") || {
       id: "color",

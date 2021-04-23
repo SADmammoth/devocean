@@ -1,8 +1,11 @@
 import React from "react";
 import StateMonade from "../../../helpers/StateMonade";
-import { useRecoilStateLoadable } from "recoil";
+import { useRecoilStateLoadable, useRecoilValueLoadable } from "recoil";
 import EditCollectionPageContent from "../../../pagesContent/EditCollectionPageContent";
-import { folderTreeState_update } from "../../../recoil/states/folderTreeState";
+import folderTreeState, {
+  folderTreeState_update,
+} from "../../../recoil/states/folderTreeState";
+import { useRecoilValue } from "recoil";
 
 export default function EditCollection({
   match: {
@@ -13,14 +16,29 @@ export default function EditCollection({
     folderTreeState_update(id)
   );
 
+  const parents = useRecoilValueLoadable(folderTreeState);
+
   return (
     <StateMonade state={collection.state}>
       <EditCollectionPageContent
         initialValues={{
           ...collection.contents,
           color: collection.contents?.tag?.color,
+          parentValueOptions: async () => {
+            const valueOptions = await parents.toPromise();
+            console.log(parents);
+            return valueOptions
+              .filter(
+                ({ type, id: candidateId }) =>
+                  type === "folder" && candidateId !== id
+              )
+              .map(({ name, id }) => {
+                return { label: name, value: id };
+              });
+          },
         }}
         onSubmit={async (data) => {
+          console.log(data);
           await editCollection(data);
         }}
       />
