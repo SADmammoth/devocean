@@ -10,20 +10,24 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-function Text({
-  type,
-  as,
-  children,
-  className,
-  bold,
-  italic,
-  alignment,
-  ellipsis,
-  lines,
-  hyphenated,
+function Text(
+  {
+    type,
+    as,
+    children,
+    className,
+    bold,
+    italic,
+    alignment,
+    ellipsis,
+    lines,
+    hyphenated,
 
-  ...props
-}) {
+    ...props
+  },
+
+  ref
+) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -40,6 +44,7 @@ function Text({
 
   return (
     <TextTag
+      ref={ref}
       className={classNames(
         classes.text,
         classes[type],
@@ -73,4 +78,4 @@ Text.propTypes = {
   hyphenated: PropTypes.bool,
 };
 
-export default Text;
+export default React.forwardRef(Text);

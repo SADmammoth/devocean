@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormLabel from "./FormLabel";
+import FormLabel from "../FormLabel";
 import ReactForm from "@sadmammoth/react-form";
 import Input from "../Input";
 import Button from "../Button";

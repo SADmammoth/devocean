@@ -20,13 +20,11 @@ function Input({ type, ...props }) {
   const as = type === "textarea" ? "textarea" : "input";
 
   return (
-    <div className={classes.inputContainer}>
-      <ReakitInput
-        {...props}
-        className={classNames(classes[as], props.className)}
-        as={as}
-      />
-    </div>
+    <ReakitInput
+      {...props}
+      className={classNames(classes.formControl, classes[as], props.className)}
+      as={as}
+    />
   );
 }
 

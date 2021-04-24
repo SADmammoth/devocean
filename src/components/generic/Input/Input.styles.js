@@ -21,10 +21,14 @@ const styles = {
     height: "18vh",
   },
 
-  inputContainer: {
-    border: "2px solid black",
-    padding: "10px",
-    borderRadius: "3px",
+  formControl: {
+    zIndex: "2",
+    padding: "5px 10px",
+  },
+
+  "@global .form-group": {
+    position: "relative",
+    marginBottom: "25px",
   },
 };
 
