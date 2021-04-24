@@ -27,6 +27,7 @@ export default function EditCollection({
           parentValueOptions: async () => {
             const valueOptions = await parents.toPromise();
             console.log(parents);
+            //FIXME Rid of loadable
             return valueOptions
               .filter(
                 ({ type, id: candidateId }) =>

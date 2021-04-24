@@ -24,14 +24,10 @@ export default function EditNotification({ match: { params } }) {
         <EditNotificationPageContent
           initialValues={{
             ...notification.contents,
-            time: Validator.fromDateToMask(
-              new Date(notification.contents?.time),
-              "dd-MM-yyyy hh:mm"
-            ),
-            author: notification.contents?.id,
+            author: notification.contents?.author?.id,
             authorValueOptions: async () => {
               const valueOptions = await teammates.toPromise();
-
+              //FIXME Rid of loadable
               console.log(teammates);
 
               return valueOptions.map(({ name, lastName, id }) => {

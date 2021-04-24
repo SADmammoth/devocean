@@ -28,7 +28,8 @@ export default ({ title, fullText, time, author, authorValueOptions }) => [
     label: "Date and time",
     placeholder: "dd-MM-yyyy hh:mm",
     validator: "dateTimeByCharWithInvisibleMask",
-    value: time,
+    converters: "dateTime",
+    value: new Date(time),
   },
   {
     id: "author",
