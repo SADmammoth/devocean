@@ -5,7 +5,7 @@ export default function useFolderProps(
   classes,
   selectedIndex,
   selectedParents,
-  onClickFolder,
+  selectFolder,
   FolderBase
 ) {
   const createFolderProps = useCallback(
@@ -29,7 +29,7 @@ export default function useFolderProps(
         as: FolderBase,
         type: !!tasks ? "list" : "folder",
         name,
-        onClick: onClickFolder,
+        selectFolder,
         childrenIds: children,
         selectedParent: selectedParents.includes(index),
         selected: selectedIndex === index,

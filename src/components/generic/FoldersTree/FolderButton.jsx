@@ -17,6 +17,7 @@ import {
 } from "react-icons/fa";
 import Text from "../Text";
 import StackLayout from "../layouts/StackLayout";
+import FolderDropArea from "./FolderDropArea";
 
 function FolderButton({
   as,
@@ -26,7 +27,7 @@ function FolderButton({
   selectedParent,
   name,
   id,
-  onClick,
+  selectFolder,
   isConstant,
   ...props
 }) {
@@ -42,6 +43,22 @@ function FolderButton({
         : FaArrowDown
       : FaArrowRight;
 
+  const ButtonContent = (
+    <StackLayout alignX="start" alignY="center" gap="5px">
+      <Icon />
+      <Text type="common" ellipsis>
+        {name}
+      </Text>
+      {isConstant || (
+        <HiddenLink to={`/collections/${id}/edit`}>
+          <FaEdit />
+        </HiddenLink>
+      )}
+
+      <OpenActionIcon />
+    </StackLayout>
+  );
+
   return (
     <InteractiveButton
       {...props}
@@ -50,22 +67,16 @@ function FolderButton({
         [classes.selected]: selected,
         [classes.selectedParent]: selectedParent,
       })}
-      onClick={() => onClick(id)}
+      onClick={() => selectFolder(id)}
       label={locale(type, { name })}
     >
-      <StackLayout alignX="start" alignY="center" gap="5px">
-        <Icon />
-        <Text type="common" ellipsis>
-          {name}
-        </Text>
-        {isConstant || (
-          <HiddenLink to={`/collections/${id}/edit`}>
-            <FaEdit />
-          </HiddenLink>
-        )}
-
-        <OpenActionIcon />
-      </StackLayout>
+      {type === "list" && !selected && !selectedParent ? (
+        <FolderDropArea id={id} selectFolder={selectFolder}>
+          {ButtonContent}
+        </FolderDropArea>
+      ) : (
+        ButtonContent
+      )}
     </InteractiveButton>
   );
 }

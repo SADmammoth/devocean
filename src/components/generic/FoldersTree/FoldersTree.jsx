@@ -16,7 +16,7 @@ function FoldersTree({ className, folders, onSelectedChange }) {
 
   const FolderBase = (props) => <Button size="wide" {...props} />;
 
-  const [selectedIndex, selectedParents, onClickFolder] = useSelectedFolder(
+  const [selectedIndex, selectedParents, selectFolder] = useSelectedFolder(
     folders
   );
 
@@ -29,7 +29,7 @@ function FoldersTree({ className, folders, onSelectedChange }) {
     classes,
     selectedIndex,
     selectedParents,
-    onClickFolder,
+    selectFolder,
     FolderBase
   );
 

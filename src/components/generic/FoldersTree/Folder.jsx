@@ -11,7 +11,7 @@ function Folder({
   classes,
   name,
   type,
-  onClick,
+  selectFolder,
   selected,
   childrenIds,
   requestFolderProps,
@@ -47,7 +47,7 @@ function Folder({
         selectedParent={selectedParent}
         name={name}
         id={id}
-        onClick={onClick}
+        selectFolder={selectFolder}
         isConstant={isConstant}
       />
       <div aria-label={locale("Subfolders", { name })}>

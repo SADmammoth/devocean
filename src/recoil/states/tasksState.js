@@ -1,4 +1,4 @@
-import { atom, selectorFamily, waitForAll } from "recoil";
+import { atom, selector, selectorFamily, waitForAll } from "recoil";
 
 import entriesArrangementSelector from "../helpers/entriesArrangementSelector";
 
@@ -23,6 +23,18 @@ const postState = (newValue, oldValue) => {
 
   if (diff.length === 1 && newValue.length === oldValue.length) {
     const newItem = diff[0];
+    const oldItem = _.difference(oldValue, newValue)[0];
+    const diffItem = _.differenceWith(
+      Object.entries(newItem),
+      Object.entries(oldItem),
+      ([key1, val1], [key2, val2]) => {
+        return key1 === key2 && val1 === val2;
+      }
+    );
+
+    if (diffItem.length === 1 && diffItem[0][0] === "list") {
+      return Client.tasks.addToList(newItem.id, diffItem[0][1].id);
+    }
 
     return Client.tasks.patch(newItem.id, newItem);
   }

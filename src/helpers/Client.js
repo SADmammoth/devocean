@@ -125,6 +125,16 @@ const Client = {
         })
         .then(({ body }) => body);
     },
+
+    addToList: (id, listId) => {
+      return request
+        .patch(`/tasks/${id}/list`)
+        .use(apiPath)
+        .send({
+          list: listId,
+        })
+        .then(({ body }) => body);
+    },
   },
   folders: {
     get: () => {

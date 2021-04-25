@@ -9,7 +9,6 @@ export default function useSelectedFolder(folders) {
     (folderId) => {
       const index = folders.findIndex(({ id }) => id === folderId);
       setSelectedIndex(index);
-
       const parents = getParentsOfFolderTree(
         folderId,
         treeArrayToMap(folders)
