@@ -135,6 +135,16 @@ const Client = {
         })
         .then(({ body }) => body);
     },
+
+    changeStatus: (id, status) => {
+      return request
+        .patch(`/tasks/${id}/status`)
+        .use(apiPath)
+        .send({
+          status,
+        })
+        .then(({ body }) => body);
+    },
   },
   folders: {
     get: () => {

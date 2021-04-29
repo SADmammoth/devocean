@@ -6,13 +6,21 @@ import useLocale from "../../../helpers/useLocale";
 import { useTheme } from "react-jss";
 import Text from "../../../components/generic/Text";
 import DraggableTask from "../../../components/specific/DraggableTask";
+import { useSetRecoilState } from "recoil";
+import {
+  statusesState_addTask,
+  statusesState_removeTask,
+} from "../../../recoil/states/statusesState";
 
-function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
+function KanbanStatusList({ classes, tasks, status, showTitle }) {
   const locale = useLocale();
   const theme = useTheme();
   const [draggableAreaSize, setDraggableAreaSize] = useState(
     theme.draggableAreaDefaultSize
   );
+
+  const changeStatus = useSetRecoilState(statusesState_addTask(status));
+  const removeTask = useSetRecoilState(statusesState_removeTask);
 
   const getList = useCallback(() => {
     return tasks
@@ -36,7 +44,7 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
 
   return (
     <StackLayout orientation="vertical" alignY="start">
-      {statusTitle && <Text type="big">{statusTitle}</Text>}
+      {!showTitle || <Text type="big">{locale(status)}</Text>}
       <StackLayout
         className={classes.list}
         orientation="vertical"
@@ -49,6 +57,10 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
+          onNewItem={({ id: taskId, status }) => {
+            removeTask({ taskId, statusName: status });
+            changeStatus(taskId);
+          }}
         />
       </StackLayout>
     </StackLayout>
@@ -58,8 +70,12 @@ function KanbanStatusList({ classes, tasks, statusTitle, statusKey }) {
 KanbanStatusList.propTypes = {
   classes: PropTypes.object.isRequired,
   tasks: PropTypes.array.isRequired,
-  statusTitle: PropTypes.string.isRequired,
-  statusKey: PropTypes.string,
+  status: PropTypes.string.isRequired,
+  showTitle: PropTypes.bool,
+};
+
+KanbanStatusList.defaultProps = {
+  showTitle: true,
 };
 
 export default KanbanStatusList;

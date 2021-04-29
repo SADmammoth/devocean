@@ -82,7 +82,7 @@ export const folderTreeState_removeTask = selector({
 
     const tasks = [...list.tasks];
     tasks.splice(taskIndex, 1);
-    console.log(tasks);
+    console.log("sfwer", tasks);
 
     set(folderTreeState_update(listId), { tasks });
   },

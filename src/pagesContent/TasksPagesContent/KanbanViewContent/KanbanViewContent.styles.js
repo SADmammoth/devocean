@@ -5,6 +5,9 @@ const styles = {
   paddingTop: {
     paddingTop: (theme) => theme.spaces.small,
   },
+  list: {
+    width: "258px",
+  },
 };
 
 export default styles;

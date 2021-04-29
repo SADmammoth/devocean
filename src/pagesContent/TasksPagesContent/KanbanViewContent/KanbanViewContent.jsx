@@ -31,8 +31,7 @@ const KanbanViewContent = () => {
         <KanbanStatusList
           key={name}
           classes={classes}
-          statusTitle={locale(name)}
-          statusKey={name}
+          status={name}
           tasks={tasks}
         />
       );
@@ -47,8 +46,9 @@ const KanbanViewContent = () => {
         <StateMonade state={statuses.state}>
           <KanbanStatusList
             classes={classes}
-            statusKey={"backlog"}
+            status="backlog"
             tasks={backlog || []}
+            showTitle={false}
           ></KanbanStatusList>
         </StateMonade>
       </Sidebar>

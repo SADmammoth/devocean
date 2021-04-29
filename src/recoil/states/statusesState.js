@@ -2,7 +2,9 @@ import { atom, selector, selectorFamily, waitForAll } from "recoil";
 import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
-import { tasksState_getById } from "./tasksState";
+import { tasksState_getById, tasksState_update } from "./tasksState";
+import updateSelector from "../helpers/updateSelector";
+import mergeSelector from "../helpers/mergeSelector";
 
 const baseKey = "statusesState_";
 
@@ -14,10 +16,7 @@ const statusesStateAtom = atom({
   effects_UNSTABLE: [serverStateSync(getState)],
 });
 
-const statusesState = selector({
-  key: baseKey + "get",
-  get: ({ get }) => get(statusesStateAtom),
-});
+const statusesState = mergeSelector(baseKey, statusesStateAtom);
 
 export const statusesState_getWithTasks = selector({
   key: baseKey + "tasks",
@@ -32,6 +31,44 @@ export const statusesState_getWithTasks = selector({
     });
 
     return statusesTasks;
+  },
+});
+
+export const statusesState_update = updateSelector(
+  baseKey,
+  statusesStateAtom,
+  "name"
+);
+
+export const statusesState_removeTask = selector({
+  key: baseKey + "removeTask",
+  set: ({ get, set }, { statusName, taskId }) => {
+    const statuses = get(statusesStateAtom);
+    const status = statuses.find(({ name }) => name === statusName);
+
+    let tasks = [...status.tasks];
+    const ind = tasks.findIndex(({ id }) => id === taskId);
+    tasks.splice(ind, 1);
+
+    console.log("sewer", tasks);
+
+    console.log(statusName, taskId);
+
+    set(statusesState_update(statusName), { tasks: [] });
+  },
+});
+
+export const statusesState_addTask = selectorFamily({
+  key: baseKey + "addTask",
+  set: (statusName) => ({ get, set }, taskId) => {
+    const statuses = get(statusesStateAtom);
+    const status = statuses.find(({ name }) => name === statusName);
+
+    console.log(status, statusName, statuses);
+
+    set(statusesState_update(statusName), { tasks: [...status.tasks, taskId] });
+
+    set(tasksState_update(taskId), { status: statusName });
   },
 });
 

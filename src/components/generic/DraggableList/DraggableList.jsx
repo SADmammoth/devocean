@@ -12,6 +12,7 @@ function DraggableList({
   id,
   list,
   onOrderChange,
+  onNewItem,
   draggableType,
   draggableAreaSize,
 }) {
@@ -28,6 +29,7 @@ function DraggableList({
       // accept={{ "data-type": draggableType, userId }}
       dropAreaSize={draggableAreaSize}
       gap="10px"
+      onNewItem={onNewItem}
     />
   );
 }
