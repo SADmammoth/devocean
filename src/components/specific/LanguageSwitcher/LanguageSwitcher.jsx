@@ -17,13 +17,15 @@ function LanguageSwitcher({ className }) {
     () =>
       validLocales.map((validLocale) => ({
         action: () => setLocale(validLocale),
-        label: validLocale,
+        label: "Switch to " + validLocale,
       })),
     [validLocales]
   );
 
   const current = useMemo(
-    () => validLocales.findIndex((candidate) => candidate === locale),
+    () =>
+      (validLocales.findIndex((candidate) => candidate === locale) + 1) %
+      validLocales.length,
     [locale, validLocales]
   );
 

@@ -1,11 +1,10 @@
 import React from "react";
 import StateMonade from "../../../helpers/StateMonade";
-import { useRecoilStateLoadable, useRecoilValueLoadable } from "recoil";
+import { useRecoilStateLoadable, useRecoilValue } from "recoil";
 import EditCollectionPageContent from "../../../pagesContent/EditCollectionPageContent";
 import folderTreeState, {
   folderTreeState_update,
 } from "../../../recoil/states/folderTreeState";
-import { useRecoilValue } from "recoil";
 
 export default function EditCollection({
   match: {
@@ -16,7 +15,7 @@ export default function EditCollection({
     folderTreeState_update(id)
   );
 
-  const parents = useRecoilValueLoadable(folderTreeState);
+  const parents = useRecoilValue(folderTreeState);
 
   return (
     <StateMonade state={collection.state}>
@@ -24,19 +23,14 @@ export default function EditCollection({
         initialValues={{
           ...collection.contents,
           color: collection.contents?.tag?.color,
-          parentValueOptions: async () => {
-            const valueOptions = await parents.toPromise();
-            console.log(parents);
-            //FIXME Rid of loadable
-            return valueOptions
-              .filter(
-                ({ type, id: candidateId }) =>
-                  type === "folder" && candidateId !== id
-              )
-              .map(({ name, id }) => {
-                return { label: name, value: id };
-              });
-          },
+          parentValueOptions: parents
+            .filter(
+              ({ type, id: candidateId }) =>
+                type === "folder" && candidateId !== id
+            )
+            .map(({ name, id }) => {
+              return { label: name, value: id };
+            }),
         }}
         onSubmit={async (data) => {
           console.log(data);

@@ -40,11 +40,13 @@ function NotificationsList({ items, showCount }) {
   const InteractiveButton = Interactive(Button);
 
   return (
-    <StackLayout orientation="vertical" gap="10px">
+    <StackLayout
+      aria-label={locale("Notifications")}
+      orientation="vertical"
+      gap="10px"
+    >
       <StateMonade state={notificationsLoadable.state}>
-        <div aria-label={locale("Notifications")}>
-          {notificationsToShow.map(renderNotification)}
-        </div>
+        {notificationsToShow.map(renderNotification)}
         {!(showCount && notShownCount > 0) || (
           <InteractiveButton link="/notifications">{`${notShownCount} more`}</InteractiveButton>
         )}

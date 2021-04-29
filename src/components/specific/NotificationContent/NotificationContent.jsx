@@ -1,4 +1,8 @@
 import React from "react";
+
+import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
+
+import Text from "../../generic/Text";
 import PropTypes from "prop-types";
 import InteractiveCard from "../../generic/InteractiveCard";
 import { useTheme, createUseStyles } from "react-jss";
@@ -11,11 +15,24 @@ function NotificationContent({ title, time, author }) {
   const classes = useStyles(theme);
 
   return (
-    <>
-      <time dateTime={time.value.toString()}>{time.toString()}</time>
-      <p>{title}</p>
-      <p>by {author}</p>
-    </>
+    <BlockDescriptionLayout>
+      <BlockDescriptionLayout.Block alignY="start">
+        <Text
+          className={classes.time}
+          type="hint"
+          as="time"
+          dateTime={time.value.toString()}
+        >
+          {time.toString()}
+        </Text>
+      </BlockDescriptionLayout.Block>
+      <BlockDescriptionLayout.Description>
+        <Text type="small">[{author}]:</Text>
+        <Text type="common" bold>
+          {title}
+        </Text>
+      </BlockDescriptionLayout.Description>
+    </BlockDescriptionLayout>
   );
 }
 

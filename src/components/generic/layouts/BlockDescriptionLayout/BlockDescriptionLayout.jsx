@@ -23,7 +23,7 @@ const BlockDescriptionLayout = ({ children }) => {
   );
 };
 
-const Block = ({ className, children }) => {
+const Block = ({ className, children, ...props }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -31,13 +31,14 @@ const Block = ({ className, children }) => {
     <StackLayout
       className={classNames(className, classes.block)}
       alignY="center"
+      {...props}
     >
       {children}
     </StackLayout>
   );
 };
 
-const Description = ({ className, children }) => {
+const Description = ({ className, children, ...props }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -48,6 +49,7 @@ const Description = ({ className, children }) => {
       alignX="start"
       className={classNames(className, classes.description)}
       gap="0"
+      {...props}
     >
       {children}
     </StackLayout>

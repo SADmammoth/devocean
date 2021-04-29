@@ -2,7 +2,7 @@ const styles = {
   main: {
     top: (theme) => theme.headerHeight,
     position: "absolute",
-    width: "100vw",
+    width: "98vw",
     height: (theme) => `calc(100vh - ${theme.headerHeight})`,
   },
   content: {
