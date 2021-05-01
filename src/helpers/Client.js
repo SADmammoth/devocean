@@ -191,6 +191,21 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+
+  templates: {
+    get: () => {
+      return request
+        .get("/templates")
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+    getById: (id) => {
+      return request
+        .get(`/templates/${id}`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;

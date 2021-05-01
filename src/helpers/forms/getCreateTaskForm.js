@@ -9,7 +9,12 @@ export default function ({
   listValueOptions,
   status,
   statusValueOptions,
+  template,
+  templateValueOptions,
+  templateOnChange,
+  customFields,
 }) {
+  console.log(customFields);
   return [
     {
       id: "title",
@@ -21,17 +26,6 @@ export default function ({
       maxSymbols: 50,
       required: true,
       value: title,
-    },
-    {
-      id: "description",
-      type: "textarea",
-      name: "description",
-      label: "Description",
-      placeholder: "Description",
-      minSymbols: 5,
-      maxSymbols: 1000,
-      required: true,
-      value: description,
     },
     {
       id: "priority",
@@ -88,5 +82,17 @@ export default function ({
           value: status,
         }
       : {},
+    {
+      id: "template",
+      name: "template",
+      type: "select",
+      label: "Template",
+      valueOptions: templateValueOptions,
+      onChange: templateOnChange,
+      value: template,
+    },
+    ...customFields.map((field) => {
+      return { ...field, group: { id: "customFields", title: "CustomFields" } };
+    }),
   ];
 }

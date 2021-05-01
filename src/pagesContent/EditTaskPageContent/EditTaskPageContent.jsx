@@ -10,8 +10,10 @@ import GridLayout from "../../components/generic/layouts/GridLayout";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./EditTaskPageContent.styles";
 import getCreateTaskForm from "../../helpers/forms/getCreateTaskForm";
-import { useSetRecoilState } from "recoil";
+import { useRecoilStateLoadable, useSetRecoilState } from "recoil";
 import tasksState from "../../recoil/states/tasksState";
+import templatesState from "../../recoil/states/templatesState";
+import useTemplate from "./useTemplate";
 
 const useStyles = createUseStyles(styles);
 
@@ -19,7 +21,11 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
-  const inputsProps = useLocalizedForm(getCreateTaskForm(initialValues));
+
+  const templateProps = useTemplate();
+  const inputsProps = useLocalizedForm(
+    getCreateTaskForm({ ...templateProps, ...initialValues })
+  );
 
   const [inputs, setInputs] = useState({});
 
@@ -32,6 +38,7 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
         {inputs.teammate}
         {inputs.list}
         {inputs.status}
+        {inputs.template}
       </Sidebar>
       <StackLayout
         column={5}
@@ -47,7 +54,7 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
           }}
         >
           {inputs.title}
-          {inputs.description}
+          {inputs.customFields ? Object.values(inputs.customFields) : null}
         </Form>
       </StackLayout>
     </GridLayout>
