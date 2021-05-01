@@ -50,10 +50,6 @@ export const statusesState_removeTask = selector({
     const ind = tasks.findIndex(({ id }) => id === taskId);
     tasks.splice(ind, 1);
 
-    console.log("sewer", tasks);
-
-    console.log(statusName, taskId);
-
     set(statusesState_update(statusName), { tasks: [] });
   },
 });
@@ -63,8 +59,6 @@ export const statusesState_addTask = selectorFamily({
   set: (statusName) => ({ get, set }, taskId) => {
     const statuses = get(statusesStateAtom);
     const status = statuses.find(({ name }) => name === statusName);
-
-    console.log(status, statusName, statuses);
 
     set(statusesState_update(statusName), { tasks: [...status.tasks, taskId] });
 

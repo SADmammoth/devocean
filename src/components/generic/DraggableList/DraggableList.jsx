@@ -26,7 +26,7 @@ function DraggableList({
       list={list}
       onOrderChange={onOrderChange}
       indexKey="id"
-      // accept={{ "data-type": draggableType, userId }}
+      accept={{ "data-type": draggableType, userId }}
       dropAreaSize={draggableAreaSize}
       gap="10px"
       onNewItem={onNewItem}

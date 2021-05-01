@@ -13,7 +13,7 @@ export default function updateSelector(baseKey, atom, idKey = "id") {
         ({ [idKey]: candidateId }) => candidateId === id
       );
       const valueToChange = currentValue[index];
-      console.log({ ...valueToChange, ...updateValue });
+
       set(atom, [
         ...currentValue.slice(0, index),
         { ...valueToChange, ...updateValue },

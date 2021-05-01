@@ -14,16 +14,17 @@ function FolderDropArea({ id, selectFolder, children }) {
 
   return (
     <DropArea
-      accept={{ draggableType: draggableTypes.task }}
-      onHovered={(data, index, accepted, mergeStyles) => {
+      onHovered={(dragging, index, accepted, mergeStyles) => {
         if (accepted) {
+          dragging.style.visibility = "hidden";
           mergeStyles({
             border: "2px solid red",
           });
         }
       }}
-      onUnhovered={(data, index, accepted, mergeStyles) => {
+      onUnhovered={(dragging, index, accepted, mergeStyles) => {
         if (accepted) {
+          dragging.style.visibility = "visible";
           mergeStyles({
             border: "none",
           });
@@ -33,6 +34,16 @@ function FolderDropArea({ id, selectFolder, children }) {
         removeTask({ taskId, listId: list.id });
         addTaskToList(taskId);
         selectFolder(id);
+      }}
+      onAcceptedDragStart={(data, index, accepted, mergeStyles) => {
+        mergeStyles({
+          border: "2px solid green",
+        });
+      }}
+      onAcceptedDragEnd={(data, index, accepted, mergeStyles) => {
+        mergeStyles({
+          border: "none",
+        });
       }}
     >
       {children}

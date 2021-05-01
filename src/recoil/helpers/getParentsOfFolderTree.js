@@ -10,7 +10,7 @@ export default function getParentsOfFolderTree(folderId, treeMap) {
 
     return folder;
   };
-  console.log(folderId, treeMap);
+
   getParent(folder);
 
   return folders;

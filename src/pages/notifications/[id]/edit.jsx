@@ -21,7 +21,6 @@ export default function EditNotification({ match: { params } }) {
             ...notification.contents,
             author: notification.contents?.author?.id,
             authorValueOptions: teammates.map(({ name, lastName, id }) => {
-              console.log(teammates);
               return { label: `${name} ${lastName[0]}.`, value: id };
             }),
           }}

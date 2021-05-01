@@ -33,7 +33,6 @@ export default function EditCollection({
             }),
         }}
         onSubmit={async (data) => {
-          console.log(data);
           await editCollection(data);
         }}
       />

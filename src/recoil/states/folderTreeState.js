@@ -74,7 +74,6 @@ export const folderTreeState_update = updateSelector(
 export const folderTreeState_removeTask = selector({
   key: baseKey + "removeTask",
   set: ({ get, set }, { taskId, listId }) => {
-    console.log(taskId, listId);
     const list = get(folderTreeState_getById(listId));
     const taskIndex = list.tasks.findIndex((id) => {
       return taskId === id;
@@ -82,7 +81,6 @@ export const folderTreeState_removeTask = selector({
 
     const tasks = [...list.tasks];
     tasks.splice(taskIndex, 1);
-    console.log("sfwer", tasks);
 
     set(folderTreeState_update(listId), { tasks });
   },
@@ -94,8 +92,6 @@ export const folderTreeState_addTask = selectorFamily({
     const task = get(tasksState_getById(taskId));
     const oldListId = task.list.id;
     const list = get(folderTreeState_getById(listId));
-
-    console.log(oldListId, listId);
 
     set(tasksState_update(taskId), { list });
 

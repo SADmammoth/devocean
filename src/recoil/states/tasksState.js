@@ -32,8 +32,6 @@ const postState = (newValue, oldValue) => {
       }
     );
 
-    console.log(diffItem);
-
     if (diffItem.length === 1 && diffItem[0][0] === "list") {
       return Client.tasks.addToList(newItem.id, diffItem[0][1].id);
     }

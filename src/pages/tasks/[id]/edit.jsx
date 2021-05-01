@@ -18,8 +18,6 @@ export default function EditTask({
   const teammates = useRecoilValue(teammatesState);
   const lists = useRecoilValue(folderTreeState);
 
-  console.log(initialValues.contents);
-
   return (
     <>
       <StateMonade state={initialValues.state}>
