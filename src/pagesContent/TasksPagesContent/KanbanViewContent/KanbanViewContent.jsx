@@ -14,6 +14,7 @@ import { statusesState_getWithTasks } from "../../../recoil/states/statusesState
 import KanbanStatusList from "./KanbanStatusList";
 import styles from "./KanbanViewContent.styles";
 import { kanbanView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
+import TaskViewSwitch from "../TaskViewSwitch/TaskViewSwitch";
 
 const useStyles = createUseStyles(styles);
 
@@ -72,6 +73,7 @@ const KanbanViewContent = () => {
           sorts={kanbanView.sorts}
           applySorts={(...data) => console.log(data)}
         />
+        <TaskViewSwitch currentView="kanban" />
       </ToolBar>
     </GridLayout>
   );

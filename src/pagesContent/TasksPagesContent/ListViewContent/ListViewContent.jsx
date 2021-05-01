@@ -22,6 +22,7 @@ import Text from "../../../components/generic/Text";
 import useLocale from "../../../helpers/useLocale";
 import FilterTool from "../../../components/specific/FilterTool";
 import { FaFolderPlus } from "react-icons/fa";
+import TaskViewSwitch from "../TaskViewSwitch/TaskViewSwitch";
 
 const useStyles = createUseStyles(styles);
 
@@ -87,6 +88,7 @@ const ListViewContent = () => {
             sorts={listView.sorts}
             applySorts={(...data) => console.log(data)}
           />
+          <TaskViewSwitch currentView="list" />
         </ToolBar>
       </GridLayout>
     </>

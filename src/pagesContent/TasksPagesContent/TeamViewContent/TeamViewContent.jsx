@@ -13,6 +13,7 @@ import useLocale from "../../../helpers/useLocale";
 import { teammatesState_getWithTasks } from "../../../recoil/states/teammatesState";
 import TeammateTasksList from "./TeammateTasksList";
 import styles from "./TeamViewContent.styles";
+import TaskViewSwitch from "../TaskViewSwitch/TaskViewSwitch";
 
 const useStyles = createUseStyles(styles);
 
@@ -73,6 +74,7 @@ const TeamViewContent = () => {
           sorts={teamView.sorts}
           applySorts={(...data) => console.log(data)}
         />
+        <TaskViewSwitch currentView="team" />
       </ToolBar>
     </GridLayout>
   );

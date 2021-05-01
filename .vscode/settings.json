@@ -6,10 +6,10 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/.umi": true,
-    "**/node_modules": false,
+    "**/node_modules": true,
     "**/build": true,
     "**/yarn.lock": true,
-    ".vscode": false
+    ".vscode": true
   },
   "explorerExclude.backup": null,
   "workbench.colorCustomizations": {
