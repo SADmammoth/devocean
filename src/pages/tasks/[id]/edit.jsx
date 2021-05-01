@@ -1,10 +1,15 @@
 import React, { useCallback, useEffect } from "react";
 import teammatesState from "../../../recoil/states/teammatesState";
 import StateMonade from "../../../helpers/StateMonade";
-import { useRecoilStateLoadable, useRecoilValue } from "recoil";
+import {
+  useRecoilStateLoadable,
+  useRecoilValue,
+  useRecoilValueLoadable,
+} from "recoil";
 import EditTaskPageContent from "../../../pagesContent/EditTaskPageContent";
 import { tasksState_update } from "../../../recoil/states/tasksState";
 import folderTreeState from "../../../recoil/states/folderTreeState";
+import statusesState from "../../../recoil/states/statusesState";
 
 export default function EditTask({
   match: {
@@ -14,6 +19,8 @@ export default function EditTask({
   const [initialValues, editTask] = useRecoilStateLoadable(
     tasksState_update(id)
   );
+
+  const statuses = useRecoilValueLoadable(statusesState);
 
   const teammates = useRecoilValue(teammatesState);
   const lists = useRecoilValue(folderTreeState);
@@ -34,6 +41,10 @@ export default function EditTask({
               .map(({ name, id }) => {
                 return { label: name, value: id };
               }),
+            status: initialValues.contents?.status,
+            statusValueOptions: statuses.contents?.map(({ name }) => {
+              return { label: name, value: name };
+            }),
           }}
           onSubmit={async (data) => {
             return await editTask(data);

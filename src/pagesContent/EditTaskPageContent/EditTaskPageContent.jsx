@@ -31,6 +31,7 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
         {inputs.priority}
         {inputs.teammate}
         {inputs.list}
+        {inputs.status}
       </Sidebar>
       <StackLayout
         column={5}

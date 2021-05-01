@@ -7,6 +7,8 @@ export default function ({
   estimate,
   assigneeValueOptions,
   listValueOptions,
+  status,
+  statusValueOptions,
 }) {
   return [
     {
@@ -76,5 +78,15 @@ export default function ({
       valueOptions: listValueOptions,
       value: list,
     },
+    status
+      ? {
+          id: "status",
+          name: "status",
+          type: "select",
+          label: "Status",
+          valueOptions: statusValueOptions,
+          value: status,
+        }
+      : {},
   ];
 }
