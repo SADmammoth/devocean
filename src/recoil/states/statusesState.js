@@ -10,10 +10,19 @@ const baseKey = "statusesState_";
 
 const getState = () => Client.statuses.get();
 
+const postState = (newValue, oldValue) => {
+  const diff = _.difference(newValue, oldValue);
+  if (diff.length === 1 && newValue.length !== oldValue.length) {
+    return Client.statuses.post(diff[0].name);
+  }
+
+  return new Promise(() => {});
+};
+
 const statusesStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState)],
+  effects_UNSTABLE: [serverStateSync(getState, postState)],
 });
 
 const statusesState = mergeSelector(baseKey, statusesStateAtom);
@@ -25,6 +34,10 @@ export const statusesState_getWithTasks = selector({
     const statusesTasks = {};
 
     statuses.forEach(({ name, tasks }) => {
+      if (!tasks) {
+        statusesTasks[name] = [];
+        return;
+      }
       statusesTasks[name] = tasks.map((taskId) => {
         return get(tasksState_getById(taskId));
       });

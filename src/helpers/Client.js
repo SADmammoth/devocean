@@ -175,6 +175,13 @@ const Client = {
         .use(apiPath)
         .then(({ body }) => body);
     },
+    post: (name) => {
+      return request
+        .post("/statuses")
+        .use(apiPath)
+        .send({ name })
+        .then(({ body }) => body);
+    },
   },
   teammates: {
     get: () => {

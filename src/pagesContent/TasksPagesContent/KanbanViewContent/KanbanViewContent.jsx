@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import SortTool from "../../../components/specific/SortTool";
 import FilterTool from "../../../components/specific/FilterTool";
 import ToolBar from "../../../components/generic/ToolBar";
@@ -15,6 +15,8 @@ import KanbanStatusList from "./KanbanStatusList";
 import styles from "./KanbanViewContent.styles";
 import { kanbanView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
 import TaskViewSwitch from "../TaskViewSwitch/TaskViewSwitch";
+import Button from "../../../components/generic/Button";
+import AddStatusForm from "./AddStatusForm";
 
 const useStyles = createUseStyles(styles);
 
@@ -41,6 +43,9 @@ const KanbanViewContent = () => {
 
   const { backlog } = statuses.contents;
 
+  const [showAddStatus, setShowAddStatus] = useState(false);
+  console.log(statuses.state);
+
   return (
     <GridLayout className={classNames(classes.grid, classes.paddingTop)}>
       <Sidebar column={3} title={locale("backlog")}>
@@ -62,6 +67,14 @@ const KanbanViewContent = () => {
       >
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
+          <Button onClick={() => setShowAddStatus((state) => !state)}>
+            Add status
+          </Button>
+          {showAddStatus ? (
+            <AddStatusForm
+              onSubmit={() => setShowAddStatus(false)}
+            ></AddStatusForm>
+          ) : null}
         </StateMonade>
       </StackLayout>
       <ToolBar>
