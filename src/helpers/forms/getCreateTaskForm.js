@@ -1,6 +1,5 @@
 export default function ({
   title,
-  description,
   priority,
   assignee,
   list,

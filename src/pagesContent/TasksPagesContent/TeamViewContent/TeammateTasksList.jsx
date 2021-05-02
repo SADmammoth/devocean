@@ -7,10 +7,15 @@ import { useTheme, createUseStyles } from "react-jss";
 import styles from "./TeamViewContent.styles";
 import useLocale from "../../../helpers/useLocale";
 import TeammateTitle from "../../../components/specific/TeammateTitle";
+import { useSetRecoilState } from "recoil";
+import {
+  teammatesState_addTask,
+  teammatesState_removeTask,
+} from "../../../recoil/states/teammatesState";
 
 const useStyles = createUseStyles(styles);
 
-function TeammateTasksList({ displayName, avatar, tasks }) {
+function TeammateTasksList({ id, displayName, avatar, tasks }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -18,6 +23,9 @@ function TeammateTasksList({ displayName, avatar, tasks }) {
   const [draggableAreaSize, setDraggableAreaSize] = useState(
     theme.draggableAreaDefaultSize
   );
+
+  const removeTask = useSetRecoilState(teammatesState_removeTask);
+  const addTask = useSetRecoilState(teammatesState_addTask(id));
 
   const getList = useCallback(() => {
     return tasks
@@ -54,6 +62,10 @@ function TeammateTasksList({ displayName, avatar, tasks }) {
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
+          onNewItem={({ id: taskId, assignee }) => {
+            if (assignee) removeTask({ taskId, teammateId: assignee });
+            addTask(taskId);
+          }}
         />
       </StackLayout>
     </StackLayout>

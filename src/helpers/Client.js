@@ -147,6 +147,16 @@ const Client = {
         })
         .then(({ body }) => body);
     },
+
+    assign: (id, assignee) => {
+      return request
+        .patch(`/tasks/${id}/assignee`)
+        .use(apiPath)
+        .send({
+          teammateId: assignee.id,
+        })
+        .then(({ body }) => body);
+    },
   },
   folders: {
     get: () => {

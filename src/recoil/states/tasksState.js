@@ -21,10 +21,13 @@ const patchOne = (item) => Client.tasks.patch(item.id, item);
 const getState = () => Client.tasks.get();
 const postState = getPostState(postOne, patchOne, {
   list: (list, item) => {
-    Client.tasks.addToList(item.id, list.id);
+    return Client.tasks.addToList(item.id, list.id);
   },
   status: (status, item) => {
-    Client.tasks.changeStatus(item.id, status);
+    return Client.tasks.changeStatus(item.id, status);
+  },
+  assignee: (assignee, item) => {
+    return Client.tasks.assign(item.id, assignee);
   },
 });
 

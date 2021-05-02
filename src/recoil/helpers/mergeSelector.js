@@ -13,7 +13,7 @@ export default function mergeSelector(baseKey, atom, idKey = "id") {
         updateValue.forEach((value) => {
           if (!value[idKey]) value[idKey] = "temp_" + generateId();
         });
-        set([...currentValue, ...updateValue]);
+        set(atom, [...currentValue, ...updateValue]);
       } else {
         if (!updateValue[idKey]) updateValue[idKey] = "temp_" + generateId();
         set(atom, [...currentValue, updateValue]);

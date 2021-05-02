@@ -18,13 +18,16 @@ const getPostState = (postOne, patchOne, patchFieldsMap) => (
       Object.entries(newItem),
       Object.entries(oldItem),
       ([key1, val1], [key2, val2]) => {
-        return key1 === key2 && val1 === val2;
+        return key1 === key2 && _.isEqual(val1, val2);
       }
     );
+
+    console.log(diffItem);
 
     if (patchFieldsMap && diffItem.length === 1) {
       const [key, value] = diffItem[0];
       const func = patchFieldsMap[key];
+      console.log(patchFieldsMap);
       if (func) {
         return func(value, newItem);
       }
