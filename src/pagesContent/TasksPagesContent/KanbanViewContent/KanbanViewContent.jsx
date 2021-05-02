@@ -44,7 +44,6 @@ const KanbanViewContent = () => {
   const { backlog } = statuses.contents;
 
   const [showAddStatus, setShowAddStatus] = useState(false);
-  console.log(statuses.state);
 
   return (
     <GridLayout className={classNames(classes.grid, classes.paddingTop)}>

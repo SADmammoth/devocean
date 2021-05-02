@@ -4,6 +4,7 @@ import { useRecoilStateLoadable, useRecoilValue } from "recoil";
 import EditNotificationPageContent from "../../../pagesContent/EditNotificationPageContent";
 import { notificationsState_update } from "../../../recoil/states/notificationsState";
 import teammatesState from "../../../recoil/states/teammatesState";
+import formatName from "../../../helpers/formatName";
 
 export default function EditNotification({ match: { params } }) {
   const { id } = params;
@@ -21,7 +22,7 @@ export default function EditNotification({ match: { params } }) {
             ...notification.contents,
             author: notification.contents?.author?.id,
             authorValueOptions: teammates.map(({ name, lastName, id }) => {
-              return { label: `${name} ${lastName[0]}.`, value: id };
+              return { label: formatName({ name, lastName }), value: id };
             }),
           }}
           onSubmit={async (data) => {

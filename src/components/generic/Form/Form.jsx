@@ -23,7 +23,7 @@ function Form({ submitText, children, ...props }) {
     <ReactForm
       render={{ Input, Label: FormLabel }}
       submitButton={SubmitButton}
-      notify={(data) => console.log(data)}
+      notify={(...data) => console.log(...data)}
       {...props}
     >
       {children}

@@ -17,9 +17,13 @@ export default function serverStateSync(get, post, abortGet, abortPost) {
 
     if (post) {
       onSet(async (newValue, oldValue) => {
-        return await post(newValue, oldValue).catch(() => {
+        const postResult = await post(newValue, oldValue).catch(() => {
           setSelf(oldValue);
         });
+
+        if (postResult && postResult.id && newValue.id !== postResult.id) {
+          setSelf({ id: postResult.id, ...newValue });
+        }
       });
     }
 

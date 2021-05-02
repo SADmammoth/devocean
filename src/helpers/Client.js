@@ -1,5 +1,7 @@
 import request from "superagent";
 
+import RelativeDate from "./RelativeDate";
+
 import filterFalsy from "./filterFalsy";
 
 import prefix from "superagent-prefix";
@@ -35,11 +37,11 @@ const Client = {
         .then(({ body }) => body);
     },
 
-    post: (notification) => {
+    post: ({ id, ...notification }) => {
       return request
         .post("/notifications")
         .use(apiPath)
-        .send(notification)
+        .send({ ...notification, author: notification.author.id })
         .then(({ body }) => body);
     },
 
@@ -47,7 +49,7 @@ const Client = {
       return request
         .patch(`/notifications/${id}`)
         .use(apiPath)
-        .send(notification)
+        .send({ ...notification, author: notification.author?.id })
         .then(({ body }) => body);
     },
 
@@ -85,7 +87,7 @@ const Client = {
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: (task) => {
+    post: ({ id, ...task }) => {
       const body = {
         // estimate: task.estimate.getTime(),
         // reportedTime: task.reportedTime.getTime(),
@@ -153,7 +155,7 @@ const Client = {
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: (folder) => {
+    post: ({ id, ...folder }) => {
       return request
         .post("/folders")
         .use(apiPath)

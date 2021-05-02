@@ -22,7 +22,7 @@ export default function useTemplate() {
     template: currentTemplate,
     templateValueOptions: async () => {
       const options = await templates[0].toPromise();
-      console.log(options);
+
       return options.map(({ id, name }) => {
         return {
           label: name,

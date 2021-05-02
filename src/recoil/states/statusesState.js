@@ -5,19 +5,15 @@ import serverStateSync from "../helpers/serverStateSync";
 import { tasksState_getById, tasksState_update } from "./tasksState";
 import updateSelector from "../helpers/updateSelector";
 import mergeSelector from "../helpers/mergeSelector";
+import noRequest from "../helpers/noRequest";
+import getPostState from "../helpers/getPostState";
 
 const baseKey = "statusesState_";
 
 const getState = () => Client.statuses.get();
+const postOne = (item) => Client.folders.post(item.name);
 
-const postState = (newValue, oldValue) => {
-  const diff = _.difference(newValue, oldValue);
-  if (diff.length === 1 && newValue.length !== oldValue.length) {
-    return Client.statuses.post(diff[0].name);
-  }
-
-  return new Promise(() => {});
-};
+const postState = getPostState(postOne);
 
 const statusesStateAtom = atom({
   key: baseKey,

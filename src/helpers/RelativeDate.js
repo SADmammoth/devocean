@@ -1,7 +1,14 @@
 import { getLocale } from "umi";
 
-function RelativeDate(string) {
-  this.value = new Date(string);
+import _ from "lodash";
+
+function RelativeDate(input) {
+  if (input instanceof RelativeDate) {
+    this.value = input.value;
+    return;
+  }
+
+  this.value = new Date(input);
 }
 
 RelativeDate.prototype.toString = function () {
@@ -68,5 +75,8 @@ function getDiffs(date, now) {
 function onlyZeros(object) {
   return Object.values(object).every((value) => value === 0);
 }
+
+window.RelativeDate = RelativeDate;
+window._ = _;
 
 export default RelativeDate;

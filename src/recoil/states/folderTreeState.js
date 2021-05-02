@@ -6,29 +6,18 @@ import getParentsOfFolderTree from "../helpers/getParentsOfFolderTree";
 import updateSelector from "../helpers/updateSelector";
 import mergeSelector from "../helpers/mergeSelector";
 import { tasksState_getById, tasksState_update } from "./tasksState";
+import getPostState from "../helpers/getPostState";
+import noRequest from "../helpers/noRequest";
 
 const baseKey = "folderTreeState_";
 
 const getState = () => Client.folders.get();
+const postOne = (item) => Client.folders.post(item);
+const patchOne = (item) => Client.folders.patch(item.id, item);
 
-const postState = (newValue, oldValue) => {
-  const diff = _.difference(newValue, oldValue);
-  if (diff.length === 1 && newValue.length !== oldValue.length) {
-    return Client.folders.post(diff[0]);
-  }
-
-  if (diff.length === 1 && newValue.length === oldValue.length) {
-    const newItem = diff[0];
-    const oldItem = _.difference(oldValue, newValue)[0];
-
-    if (newItem.tasks.length !== oldItem.tasks.length) {
-      return new Promise(() => {});
-    }
-
-    return Client.folders.patch(newItem.id, newItem);
-  }
-  return new Promise(() => {});
-};
+const postState = getPostState(postOne, patchOne, {
+  tasks: noRequest,
+});
 
 const folderTreeStateAtom = atom({
   key: baseKey,

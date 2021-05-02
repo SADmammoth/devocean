@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import formatName from "../../helpers/formatName";
 import EditTaskPageContent from "../../pagesContent/EditTaskPageContent";
 import folderTreeState from "../../recoil/states/folderTreeState";
 import tasksState from "../../recoil/states/tasksState";
@@ -16,7 +17,7 @@ export default function NewTask() {
       <EditTaskPageContent
         initialValues={{
           assigneeValueOptions: teammates.map(({ name, lastName, id }) => {
-            return { label: `${name} ${lastName[0]}.`, value: id };
+            return { label: formatName({ name, lastName }), value: id };
           }),
           listValueOptions: lists
             .filter(({ type }) => type === "list")
@@ -25,7 +26,6 @@ export default function NewTask() {
             }),
         }}
         onSubmit={async (data) => {
-          console.log(data);
           return await addTask(data);
         }}
       />

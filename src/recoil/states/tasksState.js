@@ -12,39 +12,21 @@ import getTasksOfFolderTree from "../helpers/getTasksOfFolderTree";
 import treeArrayToMap from "../helpers/treeArrayToMap";
 import { fullTaskConverter } from "../../helpers/responseConverters";
 import updateSelector from "../helpers/updateSelector";
+import getPostState from "../helpers/getPostState";
 
 const baseKey = "tasksState_";
-
-const postState = (newValue, oldValue) => {
-  const diff = _.difference(newValue, oldValue);
-  if (diff.length === 1 && newValue.length !== oldValue.length) {
-    return Client.tasks.post(diff[0]);
-  }
-
-  if (diff.length === 1 && newValue.length === oldValue.length) {
-    const newItem = diff[0];
-    const oldItem = _.difference(oldValue, newValue)[0];
-    const diffItem = _.differenceWith(
-      Object.entries(newItem),
-      Object.entries(oldItem),
-      ([key1, val1], [key2, val2]) => {
-        return key1 === key2 && val1 === val2;
-      }
-    );
-
-    if (diffItem.length === 1 && diffItem[0][0] === "list") {
-      return Client.tasks.addToList(newItem.id, diffItem[0][1].id);
-    }
-
-    if (diffItem.length === 1 && diffItem[0][0] === "status") {
-      return Client.tasks.changeStatus(newItem.id, diffItem[0][1]);
-    }
-
-    return Client.tasks.patch(newItem.id, newItem);
-  }
-};
+const postOne = (item) => Client.tasks.post(item);
+const patchOne = (item) => Client.tasks.patch(item.id, item);
 
 const getState = () => Client.tasks.get();
+const postState = getPostState(postOne, patchOne, {
+  list: (list, item) => {
+    Client.tasks.addToList(item.id, list.id);
+  },
+  status: (status, item) => {
+    Client.tasks.changeStatus(item.id, status);
+  },
+});
 
 const tasksStateAtom = atom({
   key: baseKey,

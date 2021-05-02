@@ -3,6 +3,7 @@ import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
 import tasksState, { tasksState_getById } from "./tasksState";
+import formatName from "../../helpers/formatName";
 
 const baseKey = "teammatesState_";
 
@@ -27,7 +28,7 @@ export const teammatesState_getWithTasks = selector({
 
     teammates.forEach(({ id, name, lastName, assignedTasks }) => {
       teammatesTasks[id] = {
-        displayName: `${name} ${lastName[0]}.`,
+        displayName: formatName({ name, lastName }),
         assignedTasks: assignedTasks.map(({ task }) => {
           return get(tasksState_getById(task));
         }),

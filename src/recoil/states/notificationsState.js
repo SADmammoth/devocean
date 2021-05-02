@@ -1,36 +1,29 @@
 import { atom, selector, selectorFamily } from "recoil";
-
 import RelativeDate from "../../helpers/RelativeDate";
-
 import _ from "lodash";
 import Client from "../../helpers/Client";
 import serverStateSync from "../helpers/serverStateSync";
 import mergeSelector from "../helpers/mergeSelector";
 import updateSelector from "../helpers/updateSelector";
+import getPostState from "../helpers/getPostState";
+import noRequest from "../helpers/noRequest";
+import formatName from "../../helpers/formatName";
 
 const baseKey = "notificationsState_";
 
-const postState = (newValue, oldValue) => {
-  const diff = _.difference(newValue, oldValue);
-  if (diff.length === 1 && newValue.length !== oldValue.length) {
-    return Client.notifications.post(diff[0]);
-  }
+const getState = () => Client.notifications.get();
+const postOne = (item) => Client.notifications.post(item);
+const patchOne = (item) => Client.notifications.patch(item.id, item);
 
-  if (diff.length === 1 && newValue.length === oldValue.length) {
-    const newItem = diff[0];
-    const oldItem = _.difference(oldValue, newValue)[0];
-
-    if (newItem.status === "cancelled" && oldItem.status !== "cancelled") {
-      return Client.notifications.cancel(newItem.id);
+const postState = getPostState(postOne, patchOne, {
+  status: (status, item) => {
+    if (status === "cancelled") {
+      return Client.notifications.cancel(item.id);
     }
 
-    return Client.notifications.patch(newItem.id, newItem);
-  }
-
-  return new Promise(() => {});
-};
-
-const getState = () => Client.notifications.get();
+    return noRequest();
+  },
+});
 
 const notificationsStateAtom = atom({
   key: baseKey,
@@ -45,18 +38,15 @@ const notificationsState_getToDisplay = selector({
     return notifications.map(({ time, author, ...rest }) => ({
       ...rest,
       time: new RelativeDate(time),
-      author: author ? `${author.name} ${author.lastName[0]}` : "undefined",
+      author: formatName({ name: author.name, lastName: author.lastName }),
     }));
   },
   set: async ({ set }, value) => {
-    return set(notificationStateAtom, value);
+    return set(notificationsStateAtom, value);
   },
 });
 
-const notificationsState = mergeSelector(
-  baseKey,
-  notificationsState_getToDisplay
-);
+const notificationsState = mergeSelector(baseKey, notificationsStateAtom);
 
 export const notificationsState_count = selector({
   key: baseKey + "count",

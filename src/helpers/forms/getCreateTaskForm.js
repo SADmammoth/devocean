@@ -14,7 +14,6 @@ export default function ({
   templateOnChange,
   customFields,
 }) {
-  console.log(customFields);
   return [
     {
       id: "title",

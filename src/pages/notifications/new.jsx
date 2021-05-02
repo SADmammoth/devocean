@@ -1,5 +1,6 @@
 import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import formatName from "../../helpers/formatName";
 import EditNotificationPageContent from "../../pagesContent/EditNotificationPageContent";
 import notificationsState from "../../recoil/states/notificationsState";
 import teammatesState from "../../recoil/states/teammatesState";
@@ -15,11 +16,15 @@ export default function NewNotification() {
         initialValues={{
           time: new Date(),
           authorValueOptions: teammates.map(({ name, lastName, id }) => {
-            return { label: `${name} ${lastName[0]}.`, value: id };
+            return {
+              label: formatName({ name, lastName }),
+              value: { id, name, lastName },
+            };
           }),
         }}
         isCreatingNew={true}
         onSubmit={async (data) => {
+          console.log(data);
           await addNotification(data);
         }}
       />

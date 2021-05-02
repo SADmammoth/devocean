@@ -10,6 +10,7 @@ import EditTaskPageContent from "../../../pagesContent/EditTaskPageContent";
 import { tasksState_update } from "../../../recoil/states/tasksState";
 import folderTreeState from "../../../recoil/states/folderTreeState";
 import statusesState from "../../../recoil/states/statusesState";
+import formatName from "../../../helpers/formatName";
 
 export default function EditTask({
   match: {
@@ -34,7 +35,7 @@ export default function EditTask({
             list: initialValues.contents?.list?.id,
             parent: initialValues.contents?.parent?.id,
             assigneeValueOptions: teammates.map(({ name, lastName, id }) => {
-              return { label: `${name} ${lastName[0]}.`, value: id };
+              return { label: formatName({ name, lastName }), value: id };
             }),
             listValueOptions: lists
               .filter(({ type }) => type === "list")

@@ -1,4 +1,5 @@
 import Duration from "./Duration";
+import formatName from "./formatName";
 
 import RelativeDate from "./RelativeDate";
 
@@ -21,7 +22,10 @@ export function fullTaskConverter({
     reportedTime: reportedTime ? new Duration(reportedTime) : null,
     assignee: assignee
       ? {
-          displayName: `${assignee.name} ${assignee.lastName[0]}.`,
+          displayName: formatName({
+            name: assignee.name,
+            lastName: assignee.lastName,
+          }),
           id: assignee.id,
           assignedDate: new Duration(assignee.assignedDate),
         }
