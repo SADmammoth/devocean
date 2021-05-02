@@ -30,7 +30,7 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
   const [inputs, setInputs] = useState({});
 
   const title = edit ? locale("Edit task") : locale("Create task");
-
+  console.log(inputs.customFields);
   return (
     <GridLayout className={classes.content}>
       <Sidebar column={3} className={classes.sidebar}>
@@ -54,7 +54,9 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
           }}
         >
           {inputs.title}
-          {inputs.customFields ? Object.values(inputs.customFields) : null}
+          {inputs.customFields
+            ? Object.values(_.omit(inputs.customFields, "$title"))
+            : null}
         </Form>
       </StackLayout>
     </GridLayout>

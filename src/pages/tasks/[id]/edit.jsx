@@ -31,7 +31,7 @@ export default function EditTask({
       <StateMonade state={initialValues.state}>
         <EditTaskPageContent
           initialValues={{
-            ...(initialValues.contents || {}),
+            ..._.omit(initialValues.contents || {}, "customFields"),
             list: initialValues.contents?.list?.id,
             parent: initialValues.contents?.parent?.id,
             assigneeValueOptions: teammates.map(({ name, lastName, id }) => {
