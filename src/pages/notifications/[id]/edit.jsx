@@ -20,9 +20,12 @@ export default function EditNotification({ match: { params } }) {
         <EditNotificationPageContent
           initialValues={{
             ...notification.contents,
-            author: notification.contents?.author?.id,
+            author: notification.contents?.author,
             authorValueOptions: teammates.map(({ name, lastName, id }) => {
-              return { label: formatName({ name, lastName }), value: id };
+              return {
+                label: formatName({ name, lastName }),
+                value: { id, name, lastName },
+              };
             }),
           }}
           onSubmit={async (data) => {

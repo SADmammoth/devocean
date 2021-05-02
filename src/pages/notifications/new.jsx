@@ -24,7 +24,6 @@ export default function NewNotification() {
         }}
         isCreatingNew={true}
         onSubmit={async (data) => {
-          console.log(data);
           await addNotification(data);
         }}
       />

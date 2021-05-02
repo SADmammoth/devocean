@@ -7,6 +7,8 @@ import PropTypes from "prop-types";
 import InteractiveCard from "../../generic/InteractiveCard";
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationContent.styles";
+import RelativeDate from "../../../helpers/RelativeDate";
+import formatName from "../../../helpers/formatName";
 
 const useStyles = createUseStyles(styles);
 
@@ -21,13 +23,13 @@ function NotificationContent({ title, time, author }) {
           className={classes.time}
           type="hint"
           as="time"
-          dateTime={time.value.toString()}
+          dateTime={new RelativeDate(time).value.toString()}
         >
-          {time.toString()}
+          {new RelativeDate(time).toString()}
         </Text>
       </BlockDescriptionLayout.Block>
       <BlockDescriptionLayout.Description>
-        <Text type="small">[{author}]:</Text>
+        <Text type="small">[{formatName(author)}]:</Text>
         <Text type="common" bold>
           {title}
         </Text>

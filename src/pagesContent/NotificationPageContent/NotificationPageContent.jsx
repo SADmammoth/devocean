@@ -13,6 +13,8 @@ import { useSetRecoilState } from "recoil";
 import { notificationsState_cancel } from "../../recoil/states/notificationsState";
 import useLocale from "../../helpers/useLocale";
 import Interactive from "../../components/generic/Interactive";
+import RelativeDate from "../../helpers/RelativeDate";
+import formatName from "../../helpers/formatName";
 
 const useStyles = createUseStyles(styles);
 
@@ -56,7 +58,9 @@ function NotificationPageContent({ id, title, time, author, status }) {
           {title}
         </Text>
         <Text type="sub" italic>
-          {`${time} by ${author}`}
+          {`${new RelativeDate(time).toString()} by ${
+            !author || formatName(author)
+          }`}
         </Text>
       </StackLayout>
     </GridLayout>

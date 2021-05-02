@@ -5,7 +5,7 @@ const getPostState = (postOne, patchOne, patchFieldsMap) => (
   oldValue
 ) => {
   const diff = _.differenceWith(newValue, oldValue, _.isEqual);
-  console.log(diff, newValue, oldValue);
+
   if (diff.length === 1 && newValue.length > oldValue.length) {
     return postOne(diff[0]);
   }
@@ -30,7 +30,7 @@ const getPostState = (postOne, patchOne, patchFieldsMap) => (
       }
     }
 
-    return patchOne(newItem.id, newItem);
+    return patchOne(newItem);
   }
   return noRequest();
 };
