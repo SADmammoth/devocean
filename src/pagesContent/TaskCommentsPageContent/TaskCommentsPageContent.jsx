@@ -1,5 +1,7 @@
 import React from "react";
 
+import StretchLayout from "../../components/generic/layouts/StretchLayout";
+
 import NavItems from "../../components/generic/NavItems";
 
 import PropTypes from "prop-types";
@@ -21,7 +23,7 @@ function TaskCommentsPageContent({ id, children }) {
       <Sidebar column={3} className={classes.sidebar}>
         <NavItems items={views} />
       </Sidebar>
-      <StackLayout>{children}</StackLayout>
+      <div column={5}>{children}</div>
     </GridLayout>
   );
 }

@@ -218,6 +218,22 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+
+  discussions: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/discussions`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+    post: (task, discussion) => {
+      return request
+        .post(`/tasks/${task}/discussions`)
+        .use(apiPath)
+        .send(discussion)
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;
