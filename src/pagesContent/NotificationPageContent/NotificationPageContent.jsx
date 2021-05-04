@@ -18,7 +18,14 @@ import formatName from "../../helpers/formatName";
 
 const useStyles = createUseStyles(styles);
 
-function NotificationPageContent({ id, title, time, author, status }) {
+function NotificationPageContent({
+  id,
+  title,
+  time,
+  author,
+  status,
+  fullText,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -62,6 +69,7 @@ function NotificationPageContent({ id, title, time, author, status }) {
             !author || formatName(author)
           }`}
         </Text>
+        <Text type="common">{fullText}</Text>
       </StackLayout>
     </GridLayout>
   );

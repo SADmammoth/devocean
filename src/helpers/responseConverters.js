@@ -5,8 +5,8 @@ import RelativeDate from "./RelativeDate";
 
 export function taskConverter({ body }) {
   return body.map(({ estimate, reportedTime, ...other }) => ({
-    estimate: estimate ? new Duration(estimate) : null,
-    reportedTime: reportedTime ? new Duration(reportedTime) : null,
+    estimate: estimate ? new Duration(estimate + "h") : null,
+    reportedTime: reportedTime ? new Duration(reportedTime + "h") : null,
     ...other,
   }));
 }
@@ -18,8 +18,8 @@ export function fullTaskConverter({
   ...other
 }) {
   return {
-    estimate: estimate ? new Duration(estimate) : null,
-    reportedTime: reportedTime ? new Duration(reportedTime) : null,
+    estimate: estimate ? new Duration(estimate + "h") : null,
+    reportedTime: reportedTime ? new Duration(reportedTime + "h") : null,
     assignee: assignee
       ? {
           displayName: formatName({

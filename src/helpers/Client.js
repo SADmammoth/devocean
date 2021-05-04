@@ -230,7 +230,7 @@ const Client = {
       return request
         .post(`/tasks/${task}/discussions`)
         .use(apiPath)
-        .send(discussion)
+        .send({ ...discussion, time: new Date() })
         .then(({ body }) => body);
     },
   },

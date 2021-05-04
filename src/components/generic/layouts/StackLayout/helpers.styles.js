@@ -50,8 +50,12 @@ export const getAlignsStylesForOrientationForItems = (orientation) => {
   if (orientation === orientations.vertical) {
     return Object.values(aligns).map((value) => {
       return {
-        [orientationPrefix(orientation, value, "YItem")]: justifySelf(value),
-        [orientationPrefix(orientation, value, "XItem")]: alignSelf(value),
+        [orientationPrefix(orientation + "item", value, "YItem")]: justifySelf(
+          value
+        ),
+        [orientationPrefix(orientation + "item", value, "XItem")]: alignSelf(
+          value
+        ),
       };
     });
   }
@@ -60,8 +64,14 @@ export const getAlignsStylesForOrientationForItems = (orientation) => {
     return Object.values(
       Object.values(aligns).map((value) => {
         return {
-          [orientationPrefix(orientation, value, "XItem")]: justifySelf(value),
-          [orientationPrefix(orientation, value, "YItem")]: alignSelf(value),
+          [orientationPrefix(
+            orientation + "item",
+            value,
+            "XItem"
+          )]: justifySelf(value),
+          [orientationPrefix(orientation + "item", value, "YItem")]: alignSelf(
+            value
+          ),
         };
       })
     );

@@ -22,9 +22,7 @@ function Sidebar({ children, className, style, title }) {
         style={style}
         margin="30px"
       >
-        <StackLayout orientation="vertical" alignX="center">
-          {children}
-        </StackLayout>
+        {children}
       </NestedContainerLayout>
     );
   } else {
@@ -43,9 +41,7 @@ function Sidebar({ children, className, style, title }) {
           className={classNames(classes.sidebar)}
           margin="30px"
         >
-          <StackLayout orientation="vertical" alignX="center">
-            {children}
-          </StackLayout>
+          {children}
         </NestedContainerLayout>
       </StretchLastLayout>
     );

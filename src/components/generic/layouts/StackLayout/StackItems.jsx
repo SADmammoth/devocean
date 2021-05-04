@@ -8,7 +8,7 @@ function StackItems({ classes, children, orientation }) {
   if (!children) {
     return null;
   }
-  const orientationClass = orientations[orientation];
+  const orientationClass = orientations[orientation] + "item";
   return React.Children.map(children, (child) => {
     if (!child) return child;
 

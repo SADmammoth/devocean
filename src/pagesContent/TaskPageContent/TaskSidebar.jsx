@@ -6,8 +6,11 @@ import AssigneeBadge from "../../components/specific/AssigneeBadge";
 import PanelCard from "../../components/generic/PanelCard";
 import StackLayout from "../../components/generic/layouts/StackLayout";
 import PriorityBadge from "../../components/specific/PriorityBadge";
+import Button from "../../components/generic/Button";
+import Interactive from "../../components/generic/Interactive";
 
 function TaskSidebar({
+  id,
   classes,
   priority,
   assignee,
@@ -15,6 +18,7 @@ function TaskSidebar({
   estimate,
   reportedTime,
 }) {
+  const ButtonLink = Interactive(Button);
   return (
     <StackLayout
       className={classes.sidebarContent}
@@ -43,6 +47,8 @@ function TaskSidebar({
           ) : null}
         </PanelCard>
       ) : null}
+      <ButtonLink link={`${id}/edit`}>Edit</ButtonLink>
+      <ButtonLink link={`${id}/comments`}>Comments</ButtonLink>
     </StackLayout>
   );
 }

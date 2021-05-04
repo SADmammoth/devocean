@@ -5,6 +5,7 @@ import Avatar from "../../generic/Avatar";
 import { useTheme, createUseStyles } from "react-jss";
 import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
 import styles from "./AssigneeBadge.styles";
+import RelativeDate from "../../../helpers/RelativeDate";
 
 const useStyles = createUseStyles(styles);
 
@@ -21,7 +22,7 @@ function AssigneeBadge({ displayName, assignedDate }) {
         <Text type="common" bold ellipsis>
           {displayName}
         </Text>
-        <Text type="small">{assignedDate.toString()}</Text>
+        <Text type="small">{new RelativeDate(assignedDate).toString()}</Text>
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );

@@ -4,10 +4,11 @@ import Interactive from "../Interactive";
 
 import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NavItems.styles";
+import classNames from "classnames";
 
 const useStyles = createUseStyles(styles);
 
-function NavItems({ as, items, itemClass, itemContainerClass }) {
+function NavItems({ as, items, className, itemClass, itemContainerClass }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -39,7 +40,9 @@ function NavItems({ as, items, itemClass, itemContainerClass }) {
 
   const As = as || "ul";
 
-  return <As className={classes.navItems}>{renderItems}</As>;
+  return (
+    <As className={classNames(className, classes.navItems)}>{renderItems}</As>
+  );
 }
 
 NavItems.propTypes = {

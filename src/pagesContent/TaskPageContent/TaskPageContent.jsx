@@ -33,6 +33,7 @@ function TaskPageContent({ id }) {
       <Sidebar className={classes.paddingTop} column={3}>
         <StateMonade state={fullTask.state}>
           <TaskSidebar
+            id={id}
             classes={classes}
             priority={priority}
             assignee={assignee}

@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect } from "react";
-import teammatesState from "../../../recoil/states/teammatesState";
+import teammatesState, {
+  teammatesState_Raw,
+} from "../../../recoil/states/teammatesState";
 import StateMonade from "../../../helpers/StateMonade";
 import {
   useRecoilStateLoadable,
@@ -23,8 +25,10 @@ export default function EditTask({
 
   const statuses = useRecoilValueLoadable(statusesState);
 
-  const teammates = useRecoilValue(teammatesState);
+  const teammates = useRecoilValue(teammatesState_Raw);
   const lists = useRecoilValue(folderTreeState);
+
+  console.log(teammates);
 
   return (
     <>
