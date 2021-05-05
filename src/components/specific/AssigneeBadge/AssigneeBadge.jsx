@@ -1,4 +1,7 @@
 import React from "react";
+
+import LiveRelativeDate from "../../generic/LiveRelativeDate";
+
 import PropTypes from "prop-types";
 import Text from "../../generic/Text";
 import Avatar from "../../generic/Avatar";
@@ -22,7 +25,7 @@ function AssigneeBadge({ displayName, assignedDate }) {
         <Text type="common" bold ellipsis>
           {displayName}
         </Text>
-        <Text type="small">{new RelativeDate(assignedDate).toString()}</Text>
+        <LiveRelativeDate type="small" date={assignedDate} />
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );

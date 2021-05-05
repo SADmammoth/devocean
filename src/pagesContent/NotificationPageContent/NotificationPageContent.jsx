@@ -1,4 +1,7 @@
 import React from "react";
+
+import LiveRelativeDate from "../../components/generic/LiveRelativeDate";
+
 import PropTypes from "prop-types";
 import Text from "../../components/generic/Text";
 import StackLayout from "../../components/generic/layouts/StackLayout";
@@ -64,11 +67,10 @@ function NotificationPageContent({
         <Text type="h1" alignment="left">
           {title}
         </Text>
-        <Text type="sub" italic>
-          {`${new RelativeDate(time).toString()} by ${
-            !author || formatName(author)
-          }`}
-        </Text>
+        <StackLayout gap="5px">
+          {!time || <LiveRelativeDate type="sub" italic date={time} />}
+          <Text type="sub" italic>{`by ${!author || formatName(author)}`}</Text>
+        </StackLayout>
         <Text type="common">{fullText}</Text>
       </StackLayout>
     </GridLayout>

@@ -4,10 +4,12 @@ import { useRecoilSnapshot, RecoilRoot } from "recoil";
 const DebugObserver = () => {
   const snapshot = useRecoilSnapshot();
   useEffect(() => {
-    console.log("The following atoms were modified:");
-    for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
-      console.log(node.key, snapshot.getLoadable(node));
-    }
+    [...snapshot.getNodes_UNSTABLE({ isModified: true })].map((node) => {
+      console.groupCollapsed(node.key + " RECOIL DEV");
+      console.log(snapshot.getLoadable(node).state);
+      console.log(snapshot.getLoadable(node).contents);
+      console.groupEnd();
+    });
   }, [snapshot]);
 
   return null;

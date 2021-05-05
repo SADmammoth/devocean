@@ -1,5 +1,7 @@
 import React from "react";
 
+import LiveRelativeDate from "../../generic/LiveRelativeDate";
+
 import Avatar from "../../generic/Avatar";
 
 import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
@@ -25,13 +27,7 @@ function CommentAuthorBadge({ image, author, time }) {
         <Text type="small" bold>
           {formatName(author || {})}
         </Text>
-        <Text
-          type="small"
-          as="time"
-          dateTime={new RelativeDate(time).value.toString()}
-        >
-          {new RelativeDate(time).toString()}
-        </Text>
+        <LiveRelativeDate type="small" date={time} />
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );

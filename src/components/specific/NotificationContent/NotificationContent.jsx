@@ -9,6 +9,7 @@ import { useTheme, createUseStyles } from "react-jss";
 import styles from "./NotificationContent.styles";
 import RelativeDate from "../../../helpers/RelativeDate";
 import formatName from "../../../helpers/formatName";
+import LiveRelativeDate from "../../generic/LiveRelativeDate";
 
 const useStyles = createUseStyles(styles);
 
@@ -19,14 +20,7 @@ function NotificationContent({ title, time, author }) {
   return (
     <BlockDescriptionLayout>
       <BlockDescriptionLayout.Block alignY="start">
-        <Text
-          className={classes.time}
-          type="hint"
-          as="time"
-          dateTime={new RelativeDate(time).value.toString()}
-        >
-          {new RelativeDate(time).toString()}
-        </Text>
+        <LiveRelativeDate className={classes.time} type="hint" date={time} />
       </BlockDescriptionLayout.Block>
       <BlockDescriptionLayout.Description>
         <Text type="small">[{formatName(author)}]:</Text>
