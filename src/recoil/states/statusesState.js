@@ -65,13 +65,15 @@ export const statusesState_removeTask = selector({
 
 export const statusesState_addTask = selectorFamily({
   key: baseKey + "addTask",
-  set: (statusName) => ({ get, set }, taskId) => {
+  set: (statusName) => ({ get, set }, { taskId, text }) => {
     const statuses = get(statusesStateAtom);
     const status = statuses.find(({ name }) => name === statusName);
 
     set(statusesState_update(statusName), { tasks: [...status.tasks, taskId] });
 
-    set(tasksState_update(taskId), { status: statusName });
+    set(tasksState_update(taskId), {
+      status: { name: statusName, text },
+    });
   },
 });
 

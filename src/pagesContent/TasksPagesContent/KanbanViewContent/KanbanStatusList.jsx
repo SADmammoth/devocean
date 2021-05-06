@@ -59,15 +59,22 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
           onNewItem={async ({ id: taskId, status: oldStatus }) => {
-            await showPopup({
+            const { text } = await showPopup({
               children: `Changing status to ${locale(status)}`,
               closeButtonContent: "Confirm",
+              inputs: [
+                {
+                  type: "textarea",
+                  name: "text",
+                  label: "Status change comment",
+                },
+              ],
             });
             removeTask({
               taskId,
-              statusName: oldStatus,
+              statusName: oldStatus?.name,
             });
-            changeStatus(taskId);
+            changeStatus({ taskId, text });
           }}
         />
       </StackLayout>

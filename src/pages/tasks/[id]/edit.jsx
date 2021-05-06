@@ -46,7 +46,7 @@ export default function EditTask({
               .map(({ name, id }) => {
                 return { label: name, value: id };
               }),
-            status: initialValues.contents?.status,
+            status: initialValues.contents?.status?.name,
             statusValueOptions: statuses.contents?.map(({ name }) => {
               return { label: name, value: name };
             }),

@@ -142,9 +142,7 @@ const Client = {
       return request
         .patch(`/tasks/${id}/status`)
         .use(apiPath)
-        .send({
-          status,
-        })
+        .send(status)
         .then(({ body }) => body);
     },
 
@@ -231,6 +229,14 @@ const Client = {
         .post(`/tasks/${task}/discussions`)
         .use(apiPath)
         .send({ ...discussion, time: new Date() })
+        .then(({ body }) => body);
+    },
+  },
+  statusChanges: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/statusChanges`)
+        .use(apiPath)
         .then(({ body }) => body);
     },
   },

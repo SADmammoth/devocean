@@ -25,7 +25,10 @@ const postState = getPostState(postOne, patchOne, {
     return Client.tasks.addToList(item.id, list.id);
   },
   status: async (status, item) => {
-    return Client.tasks.changeStatus(item.id, status);
+    return Client.tasks.changeStatus(item.id, {
+      status: status.name,
+      text: status.text,
+    });
   },
   assignee: (assignee, item) => {
     return Client.tasks.assign(item.id, assignee);
