@@ -13,6 +13,7 @@ import treeArrayToMap from "../helpers/treeArrayToMap";
 import { fullTaskConverter } from "../../helpers/responseConverters";
 import updateSelector from "../helpers/updateSelector";
 import getPostState from "../helpers/getPostState";
+import showPopup from "../../helpers/showPopup";
 
 const baseKey = "tasksState_";
 const postOne = (item) => Client.tasks.post(item);
@@ -23,7 +24,7 @@ const postState = getPostState(postOne, patchOne, {
   list: (list, item) => {
     return Client.tasks.addToList(item.id, list.id);
   },
-  status: (status, item) => {
+  status: async (status, item) => {
     return Client.tasks.changeStatus(item.id, status);
   },
   assignee: (assignee, item) => {

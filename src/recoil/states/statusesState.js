@@ -11,7 +11,7 @@ import getPostState from "../helpers/getPostState";
 const baseKey = "statusesState_";
 
 const getState = () => Client.statuses.get();
-const postOne = (item) => Client.folders.post(item.name);
+const postOne = (item) => Client.statuses.post(item.name);
 
 const postState = getPostState(postOne);
 

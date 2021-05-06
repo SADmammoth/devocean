@@ -11,6 +11,11 @@ function _layout({ children }) {
   );
 }
 
-_layout.wrappers = ["@/wrappers/recoil", "@/wrappers/jss", "@/wrappers/login"];
+_layout.wrappers = [
+  "@/wrappers/recoil",
+  "@/wrappers/jss",
+  "@/wrappers/login",
+  "@/wrappers/popups",
+];
 
 export default _layout;
