@@ -8,6 +8,7 @@ import StackLayout from "../../components/generic/layouts/StackLayout";
 import PriorityBadge from "../../components/specific/PriorityBadge";
 import Button from "../../components/generic/Button";
 import Interactive from "../../components/generic/Interactive";
+import ReportPopup from "../../components/specific/ReportPopup/ReportPopup";
 
 function TaskSidebar({
   id,
@@ -49,6 +50,7 @@ function TaskSidebar({
       ) : null}
       <ButtonLink link={`${id}/edit`}>Edit</ButtonLink>
       <ButtonLink link={`${id}/comments`}>Comments</ButtonLink>
+      <ReportPopup id={id} />
     </StackLayout>
   );
 }
