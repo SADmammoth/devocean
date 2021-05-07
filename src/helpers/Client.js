@@ -248,6 +248,21 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+  reports: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/reports`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+    post: (task, report) => {
+      return request
+        .post(`/tasks/${task}/reports`)
+        .use(apiPath)
+        .send({ ...report, time: new Date() })
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;
