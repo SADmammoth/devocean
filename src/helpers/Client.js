@@ -155,6 +155,13 @@ const Client = {
         })
         .then(({ body }) => body);
     },
+
+    delete: (id) => {
+      return request
+        .delete(`/tasks/${id}`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
   },
   folders: {
     get: () => {

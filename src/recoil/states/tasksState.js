@@ -1,5 +1,7 @@
 import { atom, selector, selectorFamily, waitForAll } from "recoil";
 
+import deleteSelector from "../helpers/deleteSelector";
+
 import entriesArrangementSelector from "../helpers/entriesArrangementSelector";
 
 import _ from "lodash";
@@ -18,22 +20,28 @@ import showPopup from "../../helpers/showPopup";
 const baseKey = "tasksState_";
 const postOne = (item) => Client.tasks.post(item);
 const patchOne = (item) => Client.tasks.patch(item.id, item);
+const deleteOne = (item) => Client.tasks.delete(item.id);
 
 const getState = () => Client.tasks.get();
-const postState = getPostState(postOne, patchOne, {
-  list: (list, item) => {
-    return Client.tasks.addToList(item.id, list.id);
+const postState = getPostState(
+  postOne,
+  patchOne,
+  {
+    list: (list, item) => {
+      return Client.tasks.addToList(item.id, list.id);
+    },
+    status: async (status, item) => {
+      return Client.tasks.changeStatus(item.id, {
+        status: status.name,
+        text: status.text,
+      });
+    },
+    assignee: (assignee, item) => {
+      return Client.tasks.assign(item.id, assignee);
+    },
   },
-  status: async (status, item) => {
-    return Client.tasks.changeStatus(item.id, {
-      status: status.name,
-      text: status.text,
-    });
-  },
-  assignee: (assignee, item) => {
-    return Client.tasks.assign(item.id, assignee);
-  },
-});
+  deleteOne
+);
 
 const tasksStateAtom = atom({
   key: baseKey,
@@ -76,5 +84,6 @@ export const tasksState_arrange = entriesArrangementSelector(
 );
 
 export const tasksState_update = updateSelector(baseKey, tasksStateAtom);
+export const tasksState_delete = deleteSelector(baseKey, tasksStateAtom);
 
 export default tasksState;

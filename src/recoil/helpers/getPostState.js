@@ -1,12 +1,17 @@
 import noRequest from "./noRequest";
 
-const getPostState = (postOne, patchOne, patchFieldsMap) => (
+const getPostState = (postOne, patchOne, patchFieldsMap, deleteOne) => (
   newValue,
   oldValue
 ) => {
+  if (deleteOne && oldValue.length - newValue.length === 1) {
+    const reverseDiff = _.differenceWith(oldValue, newValue, _.isEqual);
+    return deleteOne(reverseDiff[0]);
+  }
+
   const diff = _.differenceWith(newValue, oldValue, _.isEqual);
 
-  if (diff.length === 1 && newValue.length > oldValue.length) {
+  if (postOne && diff.length === 1 && newValue.length > oldValue.length) {
     return postOne(diff[0]);
   }
 

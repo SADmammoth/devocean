@@ -22,8 +22,6 @@ function TimeReportsBadge({
   const locale = useLocale();
   const progress = useProgress(reportedTime, estimate);
 
-  console.log(reportedTime);
-
   return (
     <BlockDescriptionLayout>
       <BlockDescriptionLayout.Block>
