@@ -16,6 +16,7 @@ function ReportCard({
   estimate,
   totalReportedTime,
   reportedTime,
+  activity,
 }) {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -28,6 +29,7 @@ function ReportCard({
           estimate={estimate}
           reportedTime={totalReportedTime}
           text={estimate.toString()}
+          activity={activity}
           estimateUpdate
         />
       ) : (
@@ -35,6 +37,7 @@ function ReportCard({
           estimate={estimate}
           reportedTime={totalReportedTime}
           text={`+${reportedTime.toString()}`}
+          activity={activity}
         />
       )}
     </PanelCard>

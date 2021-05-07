@@ -29,14 +29,18 @@ Duration.prototype.valueOf = function () {
 };
 
 Duration.prototype.getHours = function () {
-  return this.value / 360000;
+  return truncate(this.value, 100) / 360000;
 };
 Duration.prototype.getTime = function () {
   return this.valueOf();
 };
 
 Duration.prototype.toString = function () {
-  return this.getHours().toString() + "h";
+  return truncate(this.getHours().toString(), 100) + "h";
 };
+
+function truncate(value, precision) {
+  return parseInt(value * precision) / precision;
+}
 
 export default Duration;

@@ -10,7 +10,13 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-function TimeReportsBadge({ estimate, reportedTime, text, estimateUpdate }) {
+function TimeReportsBadge({
+  estimate,
+  reportedTime,
+  text,
+  estimateUpdate,
+  activity,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -40,10 +46,11 @@ function TimeReportsBadge({ estimate, reportedTime, text, estimateUpdate }) {
         ) : (
           <Text type="common" bold>
             {locale("Reported")}
+            {!activity || ` – ${activity}`}
           </Text>
         )}
 
-        {_.isNaN(estimate.toString()) ? (
+        {!_.isNaN(estimate.value) && estimate.value ? (
           <Text type="small">
             {locale("from estimate", { estimate: estimate.toString() })}
           </Text>
