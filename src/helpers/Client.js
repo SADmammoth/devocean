@@ -240,6 +240,14 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+  history: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/history`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;

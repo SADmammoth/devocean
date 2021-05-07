@@ -38,7 +38,7 @@ function DiscussionsPageContent({ id }) {
     <StackLayout orientation="vertical" className={classes.discussions} nowrap>
       <Text className={classes.title} type="h1">
         {locale("Comments for task")}
-        <Text type="big" lines={1}>
+        <Text type="big" lines={1} title={task.contents?.title}>
           {task.contents?.title}
         </Text>
       </Text>
