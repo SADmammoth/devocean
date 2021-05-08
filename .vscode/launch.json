@@ -12,7 +12,10 @@
       "webRoot": "${workspaceFolder}/src",
       "sourceMapPathOverrides": {
         "webpack:///./src/*": "${webRoot}/*"
-      }
+      },
+      "preLaunchTask": "npm: start",
+      "console": "integratedTerminal",
+      "sourceMaps": true
     }
   ]
 }

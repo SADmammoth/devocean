@@ -142,9 +142,7 @@ const Client = {
       return request
         .patch(`/tasks/${id}/status`)
         .use(apiPath)
-        .send({
-          status,
-        })
+        .send(status)
         .then(({ body }) => body);
     },
 
@@ -155,6 +153,13 @@ const Client = {
         .send({
           teammateId: assignee.id,
         })
+        .then(({ body }) => body);
+    },
+
+    delete: (id) => {
+      return request
+        .delete(`/tasks/${id}`)
+        .use(apiPath)
         .then(({ body }) => body);
     },
   },
@@ -215,6 +220,53 @@ const Client = {
       return request
         .get(`/templates/${id}`)
         .use(apiPath)
+        .then(({ body }) => body);
+    },
+  },
+
+  discussions: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/discussions`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+    post: (task, discussion) => {
+      return request
+        .post(`/tasks/${task}/discussions`)
+        .use(apiPath)
+        .send({ ...discussion, time: new Date() })
+        .then(({ body }) => body);
+    },
+  },
+  statusChanges: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/statusChanges`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+  },
+  history: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/history`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+  },
+  reports: {
+    get: (task) => {
+      return request
+        .get(`/tasks/${task}/reports`)
+        .use(apiPath)
+        .then(({ body }) => body);
+    },
+    post: (task, report) => {
+      return request
+        .post(`/tasks/${task}/reports`)
+        .use(apiPath)
+        .send({ ...report, time: new Date() })
         .then(({ body }) => body);
     },
   },

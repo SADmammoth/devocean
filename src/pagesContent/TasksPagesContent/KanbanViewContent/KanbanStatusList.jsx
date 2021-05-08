@@ -11,6 +11,7 @@ import {
   statusesState_addTask,
   statusesState_removeTask,
 } from "../../../recoil/states/statusesState";
+import showPopup from "../../../helpers/showPopup";
 
 function KanbanStatusList({ classes, tasks, status, showTitle }) {
   const locale = useLocale();
@@ -57,9 +58,23 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
-          onNewItem={({ id: taskId, status }) => {
-            removeTask({ taskId, statusName: status });
-            changeStatus(taskId);
+          onNewItem={async ({ id: taskId, status: oldStatus }) => {
+            const { text } = await showPopup({
+              children: `Changing status to ${locale(status)}`,
+              closeButtonContent: "Confirm",
+              inputs: [
+                {
+                  type: "textarea",
+                  name: "text",
+                  label: "Status change comment",
+                },
+              ],
+            });
+            removeTask({
+              taskId,
+              statusName: oldStatus?.name,
+            });
+            changeStatus({ taskId, text });
           }}
         />
       </StackLayout>

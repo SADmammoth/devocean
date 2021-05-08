@@ -18,7 +18,7 @@ function Input({ type, ...props }) {
   }
 
   const as = type === "textarea" ? "textarea" : "input";
-
+  console.log(props);
   return (
     <ReakitInput
       {...props}

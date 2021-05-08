@@ -10,7 +10,13 @@ import useLocale from "../../../helpers/useLocale";
 
 const useStyles = createUseStyles(styles);
 
-function TimeReportsBadge({ estimate, reportedTime }) {
+function TimeReportsBadge({
+  estimate,
+  reportedTime,
+  text,
+  estimateUpdate,
+  activity,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const locale = useLocale();
@@ -26,17 +32,27 @@ function TimeReportsBadge({ estimate, reportedTime }) {
           backgroundColor={theme.background.dark}
         >
           <Text type="common" bold>
-            {reportedTime.toString()}
+            {text || reportedTime.toString()}
           </Text>
         </CircleProgressBar>
       </BlockDescriptionLayout.Block>
       <BlockDescriptionLayout.Description>
-        <Text type="common" bold>
-          {locale("Reported")}
-        </Text>
-        <Text type="small">
-          {locale("from estimate", { estimate: estimate.toString() })}
-        </Text>
+        {estimateUpdate ? (
+          <Text type="common" bold>
+            {locale("Estimate set")}
+          </Text>
+        ) : (
+          <Text type="common" bold>
+            {locale("Reported")}
+            {!activity || ` – ${activity}`}
+          </Text>
+        )}
+
+        {!_.isNaN(estimate.value) && estimate.value ? (
+          <Text type="small">
+            {locale("from estimate", { estimate: estimate.toString() })}
+          </Text>
+        ) : null}
       </BlockDescriptionLayout.Description>
     </BlockDescriptionLayout>
   );

@@ -55,4 +55,5 @@ export default {
   "Reported time": "Затраченное время",
 
   Description: "Описание",
+  "Comments for task": "Комментарии к задаче",
 };

@@ -55,4 +55,6 @@ export default {
   "Reported time": "Reported time",
 
   Description: "Description",
+
+  "Comments for task": "Comments for task",
 };

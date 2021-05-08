@@ -1,3 +1,5 @@
+import Duration from "../Duration";
+
 export default function ({
   title,
   priority,
@@ -62,6 +64,16 @@ export default function ({
       label: "Assignee",
       valueOptions: assigneeValueOptions,
       value: assignee,
+    },
+    {
+      id: "estimate",
+      name: "estimate",
+      type: "text",
+      label: "Estimated time",
+      validator: (value) => {
+        return !_.isNaN(new Duration(value).value);
+      },
+      value: new Duration(new String(estimate)).toString(),
     },
     {
       id: "list",

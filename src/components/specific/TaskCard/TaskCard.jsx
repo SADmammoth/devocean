@@ -29,9 +29,9 @@ const TaskCard = ({
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  let statusText = locale(status);
+  let statusText = locale(status?.name);
   if (!statusText) {
-    statusText = _.capitalize(status);
+    statusText = _.capitalize(status?.name);
   }
 
   const label =

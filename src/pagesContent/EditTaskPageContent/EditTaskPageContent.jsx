@@ -35,6 +35,7 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
     <GridLayout className={classes.content}>
       <Sidebar column={3} className={classes.sidebar}>
         {inputs.priority}
+        {inputs.estimate}
         {inputs.teammate}
         {inputs.list}
         {inputs.status}

@@ -7,7 +7,7 @@ export default function updateSelector(baseKey, atom, idKey = "id") {
       const items = get(atom);
       return items.find(({ [idKey]: candidateId }) => candidateId === id);
     },
-    set: (id) => ({ get, set }, updateValue) => {
+    set: (id) => async ({ get, set }, updateValue) => {
       const currentValue = get(atom);
       const index = currentValue.findIndex(
         ({ [idKey]: candidateId }) => candidateId === id

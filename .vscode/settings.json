@@ -7,9 +7,9 @@
     "**/.DS_Store": true,
     "**/.umi": true,
     "**/node_modules": true,
-    "**/build": true,
+    "**/build": false,
     "**/yarn.lock": true,
-    ".vscode": true
+    ".vscode": false
   },
   "explorerExclude.backup": null,
   "workbench.colorCustomizations": {

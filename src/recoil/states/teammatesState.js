@@ -55,6 +55,8 @@ export const teammatesState_getWithTasks = selector({
   set: ({ set }, value) => set(teammatesStateAtom),
 });
 
+export const teammatesState_Raw = teammatesStateAtom;
+
 const teammatesState = mergeSelector(baseKey, teammatesState_getWithTasks);
 
 export const teammatesState_getById = selectorFamily({

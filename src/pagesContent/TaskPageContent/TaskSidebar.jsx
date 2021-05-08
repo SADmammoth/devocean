@@ -6,8 +6,17 @@ import AssigneeBadge from "../../components/specific/AssigneeBadge";
 import PanelCard from "../../components/generic/PanelCard";
 import StackLayout from "../../components/generic/layouts/StackLayout";
 import PriorityBadge from "../../components/specific/PriorityBadge";
+import Button from "../../components/generic/Button";
+import Interactive from "../../components/generic/Interactive";
+import ReportPopup from "../../components/specific/ReportPopup/ReportPopup";
+import { useSetRecoilState } from "recoil";
+import { tasksState_delete } from "../../recoil/states/tasksState";
+import showPopup from "../../helpers/showPopup";
+import { history } from "umi";
 
 function TaskSidebar({
+  id,
+  title,
   classes,
   priority,
   assignee,
@@ -15,6 +24,16 @@ function TaskSidebar({
   estimate,
   reportedTime,
 }) {
+  const ButtonLink = Interactive(Button);
+
+  const deleteTask = useSetRecoilState(tasksState_delete(id));
+
+  const popup = () =>
+    showPopup({
+      children: `Delete task "${title}"?`,
+      closeButtonContent: "Yes",
+    });
+
   return (
     <StackLayout
       className={classes.sidebarContent}
@@ -43,6 +62,19 @@ function TaskSidebar({
           ) : null}
         </PanelCard>
       ) : null}
+      <ButtonLink link={`${id}/edit`}>Edit</ButtonLink>
+      <ButtonLink link={`${id}/comments`}>Comments</ButtonLink>
+      <ReportPopup id={id} />
+      <ButtonLink
+        onClick={() => {
+          popup().then(() => {
+            history.push("/tasks");
+            deleteTask();
+          });
+        }}
+      >
+        Delete
+      </ButtonLink>
     </StackLayout>
   );
 }

@@ -6,9 +6,9 @@ import TaskProgress from "./TaskProgress";
 
 function TaskInfo({ classes, status, reportedTime, estimate }) {
   const locale = useLocale();
-  let statusText = locale(status);
+  let statusText = locale(status?.name);
   if (!statusText) {
-    statusText = _.capitalize(status);
+    statusText = _.capitalize(status?.name);
   }
 
   return (
