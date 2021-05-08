@@ -4,12 +4,12 @@ import formatName from "../../helpers/formatName";
 import EditTaskPageContent from "../../pagesContent/EditTaskPageContent";
 import folderTreeState from "../../recoil/states/folderTreeState";
 import tasksState from "../../recoil/states/tasksState";
-import teammatesState from "../../recoil/states/teammatesState";
+import { teammatesState_Raw } from "../../recoil/states/teammatesState";
 
 export default function NewTask() {
   const addTask = useSetRecoilState(tasksState);
 
-  const teammates = useRecoilValue(teammatesState);
+  const teammates = useRecoilValue(teammatesState_Raw);
   const lists = useRecoilValue(folderTreeState);
 
   return (
@@ -25,8 +25,11 @@ export default function NewTask() {
               return { label: name, value: id };
             }),
         }}
-        onSubmit={async (data) => {
-          return await addTask(data);
+        onSubmit={async ({ customFields: { $title, ...fields }, ...data }) => {
+          return await addTask({
+            ...data,
+            customFields: fields,
+          });
         }}
       />
     </>

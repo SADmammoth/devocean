@@ -20,7 +20,7 @@ function TaskPageContent({ id }) {
 
   const {
     title,
-    description,
+    customFields,
     priority,
     assignee,
     status,
@@ -54,7 +54,7 @@ function TaskPageContent({ id }) {
           <TaskContent
             classes={classes}
             title={title}
-            description={description}
+            customFields={customFields}
           />
         </StateMonade>
       </StackLayout>

@@ -70,10 +70,13 @@ export default function ({
       name: "estimate",
       type: "text",
       label: "Estimated time",
+      placeholder: "Type estimate",
       validator: (value) => {
         return !_.isNaN(new Duration(value).value);
       },
-      value: new Duration(new String(estimate)).toString(),
+      value: estimate
+        ? new Duration(new String(estimate)).toString()
+        : estimate,
     },
     {
       id: "list",
