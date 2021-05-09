@@ -1,16 +1,9 @@
-import request from "superagent";
+import request from 'superagent';
+import prefix from 'superagent-prefix';
 
-import RelativeDate from "./RelativeDate";
-
-import filterFalsy from "./filterFalsy";
-
-import prefix from "superagent-prefix";
-import Duration from "./Duration";
-import {
-  fullTaskConverter,
-  notificationConverter,
-  taskConverter,
-} from "./responseConverters";
+import RelativeDate from './RelativeDate';
+import filterFalsy from './filterFalsy';
+import { taskConverter } from './responseConverters';
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 
@@ -25,21 +18,21 @@ const Client = {
 
     get: () => {
       return request
-        .get("/notifications")
+        .get('/notifications')
         .use(apiPath)
         .then(({ body }) => body);
     },
 
     receive: () => {
       return request
-        .get("/notifications/receive")
+        .get('/notifications/receive')
         .use(apiPath)
         .then(({ body }) => body);
     },
 
     post: ({ id, ...notification }) => {
       return request
-        .post("/notifications")
+        .post('/notifications')
         .use(apiPath)
         .send({ ...notification, author: notification.author.id })
         .then(({ body }) => body);
@@ -63,14 +56,14 @@ const Client = {
   user: {
     login: (login, password) => {
       return request
-        .post("/login")
+        .post('/login')
         .use(apiPath)
         .send({ login, password })
         .then(({ body }) => body);
     },
     register: (login, password) => {
       return request
-        .post("/register")
+        .post('/register')
         .use(apiPath)
         .send({ login, password })
         .then(({ body }) => body);
@@ -79,7 +72,7 @@ const Client = {
 
   tasks: {
     get: () => {
-      return request.get("/tasks").use(apiPath).then(taskConverter);
+      return request.get('/tasks').use(apiPath).then(taskConverter);
     },
     getById: (id) => {
       return request
@@ -96,7 +89,7 @@ const Client = {
       };
 
       return request
-        .post("/tasks")
+        .post('/tasks')
         .use(apiPath)
         .send(body)
         .then(({ body }) => body);
@@ -119,7 +112,7 @@ const Client = {
 
     arrange: (sort, filters) => {
       return request
-        .get("/tasks/arrange")
+        .get('/tasks/arrange')
         .use(apiPath)
         .send({
           sort,
@@ -166,13 +159,13 @@ const Client = {
   folders: {
     get: () => {
       return request
-        .get("/folders")
+        .get('/folders')
         .use(apiPath)
         .then(({ body }) => body);
     },
     post: ({ id, ...folder }) => {
       return request
-        .post("/folders")
+        .post('/folders')
         .use(apiPath)
         .send(folder)
         .then(({ body }) => body);
@@ -188,13 +181,13 @@ const Client = {
   statuses: {
     get: () => {
       return request
-        .get("/statuses")
+        .get('/statuses')
         .use(apiPath)
         .then(({ body }) => body);
     },
     post: (name) => {
       return request
-        .post("/statuses")
+        .post('/statuses')
         .use(apiPath)
         .send({ name })
         .then(({ body }) => body);
@@ -203,7 +196,7 @@ const Client = {
   teammates: {
     get: () => {
       return request
-        .get("/teammates")
+        .get('/teammates')
         .use(apiPath)
         .then(({ body }) => body);
     },
@@ -212,7 +205,7 @@ const Client = {
   templates: {
     get: () => {
       return request
-        .get("/templates")
+        .get('/templates')
         .use(apiPath)
         .then(({ body }) => body);
     },

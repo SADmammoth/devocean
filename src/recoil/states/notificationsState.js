@@ -1,15 +1,17 @@
-import { atom, selector, selectorFamily } from "recoil";
-import RelativeDate from "../../helpers/RelativeDate";
-import _ from "lodash";
-import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
-import mergeSelector from "../helpers/mergeSelector";
-import updateSelector from "../helpers/updateSelector";
-import getPostState from "../helpers/getPostState";
-import noRequest from "../helpers/noRequest";
-import formatName from "../../helpers/formatName";
+import _ from 'lodash';
+import { atom, selector, selectorFamily } from 'recoil';
 
-const baseKey = "notificationsState_";
+import Client from '../../helpers/Client';
+import RelativeDate from '../../helpers/RelativeDate';
+import Subscriber from '../../helpers/Subscriber';
+import formatName from '../../helpers/formatName';
+import getPostState from '../helpers/getPostState';
+import mergeSelector from '../helpers/mergeSelector';
+import noRequest from '../helpers/noRequest';
+import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
+import updateSelector from '../helpers/updateSelector';
+
+const baseKey = 'notificationsState_';
 
 const getState = () => Client.notifications.get();
 const postOne = (item) => Client.notifications.post(item);
@@ -17,22 +19,23 @@ const patchOne = (item) => Client.notifications.patch(item.id, item);
 
 const postState = getPostState(postOne, patchOne, {
   status: (status, item) => {
-    if (status === "cancelled") {
+    if (status === 'cancelled') {
       return Client.notifications.cancel(item.id);
     }
-
     return noRequest();
   },
 });
 
+const subscriber = Subscriber.notifications;
+
 const notificationsStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [serverRealtimeStateSync(subscriber, getState, postState)],
 });
 
 const notificationsState_getToDisplay = selector({
-  key: baseKey + "display",
+  key: baseKey + 'display',
   get: async ({ get }) => {
     const notifications = get(notificationsStateAtom);
     return notifications.map(({ time, author, ...rest }) => ({
@@ -49,7 +52,7 @@ const notificationsState_getToDisplay = selector({
 const notificationsState = mergeSelector(baseKey, notificationsStateAtom);
 
 export const notificationsState_count = selector({
-  key: baseKey + "count",
+  key: baseKey + 'count',
   get: ({ get }) => {
     const notifications = get(notificationsState);
     return notifications.length;
@@ -57,7 +60,7 @@ export const notificationsState_count = selector({
 });
 
 export const notificationsState_getById = selectorFamily({
-  key: baseKey + "getById",
+  key: baseKey + 'getById',
   get: (targetId) => ({ get }) => {
     const notifications = get(notificationsState);
     return (
@@ -68,13 +71,13 @@ export const notificationsState_getById = selectorFamily({
 
 export const notificationsState_update = updateSelector(
   baseKey,
-  notificationsStateAtom
+  notificationsStateAtom,
 );
 
 export const notificationsState_cancel = selectorFamily({
-  key: baseKey + "cancel",
+  key: baseKey + 'cancel',
   set: (id) => ({ set }) => {
-    set(notificationsState_update(id), { status: "cancelled" });
+    set(notificationsState_update(id), { status: 'cancelled' });
   },
 });
 
