@@ -1,23 +1,19 @@
-import { atom, selector, selectorFamily, waitForAll } from "recoil";
+import _ from 'lodash';
+import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
-import deleteSelector from "../helpers/deleteSelector";
+import Client from '../../helpers/Client';
+import { fullTaskConverter } from '../../helpers/responseConverters';
+import deleteSelector from '../helpers/deleteSelector';
+import entriesArrangementSelector from '../helpers/entriesArrangementSelector';
+import getPostState from '../helpers/getPostState';
+import getTasksOfFolderTree from '../helpers/getTasksOfFolderTree';
+import mergeSelector from '../helpers/mergeSelector';
+import serverStateSync from '../helpers/serverStateSync';
+import treeArrayToMap from '../helpers/treeArrayToMap';
+import updateSelector from '../helpers/updateSelector';
+import folderTreeState from './folderTreeState';
 
-import entriesArrangementSelector from "../helpers/entriesArrangementSelector";
-
-import _ from "lodash";
-import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
-import mergeSelector from "../helpers/mergeSelector";
-import folderTreeState, { folderTreeState_getById } from "./folderTreeState";
-import { Children } from "react";
-import getTasksOfFolderTree from "../helpers/getTasksOfFolderTree";
-import treeArrayToMap from "../helpers/treeArrayToMap";
-import { fullTaskConverter } from "../../helpers/responseConverters";
-import updateSelector from "../helpers/updateSelector";
-import getPostState from "../helpers/getPostState";
-import showPopup from "../../helpers/showPopup";
-
-const baseKey = "tasksState_";
+const baseKey = 'tasksState_';
 const postOne = (item) => Client.tasks.post(item);
 const patchOne = (item) => Client.tasks.patch(item.id, item);
 const deleteOne = (item) => Client.tasks.delete(item.id);
@@ -40,7 +36,7 @@ const postState = getPostState(
       return Client.tasks.assign(item.id, assignee);
     },
   },
-  deleteOne
+  deleteOne,
 );
 
 const tasksStateAtom = atom({
@@ -52,7 +48,7 @@ const tasksStateAtom = atom({
 const tasksState = mergeSelector(baseKey, tasksStateAtom);
 
 export const tasksState_getById = selectorFamily({
-  key: baseKey + "getById",
+  key: baseKey + 'getById',
   get: (targetId) => ({ get }) => {
     const tasks = get(tasksState);
     return tasks.find(({ id }) => id === targetId) || tasks[targetId];
@@ -60,7 +56,7 @@ export const tasksState_getById = selectorFamily({
 });
 
 export const tasksState_getByFolder = selectorFamily({
-  key: baseKey + "getByFolder",
+  key: baseKey + 'getByFolder',
   get: (folderId) => ({ get }) => {
     const folders = get(folderTreeState);
 
@@ -72,7 +68,7 @@ export const tasksState_getByFolder = selectorFamily({
 });
 
 export const tasksState_requestContent = selectorFamily({
-  key: baseKey + "requestContent",
+  key: baseKey + 'requestContent',
   get: (taskId) => ({ get }) =>
     Client.tasks.getById(taskId).then(fullTaskConverter),
 });
@@ -80,10 +76,21 @@ export const tasksState_requestContent = selectorFamily({
 export const tasksState_arrange = entriesArrangementSelector(
   baseKey,
   tasksStateAtom,
-  Client.tasks.arrange
+  Client.tasks.arrange,
 );
 
 export const tasksState_update = updateSelector(baseKey, tasksStateAtom);
 export const tasksState_delete = deleteSelector(baseKey, tasksStateAtom);
+
+export const tasksState_getEvents = selector({
+  key: baseKey + 'events',
+  get: ({ get }) => {
+    const tasks = get(tasksState);
+
+    return tasks.filter(({ template }) => {
+      return template.name === 'Event';
+    });
+  },
+});
 
 export default tasksState;

@@ -1,16 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import PriorityBadge from "../PriorityBadge";
-import styles from "./TaskCard.styles";
-import sizes from "./sizes";
-import TaskInfo from "./TaskInfo";
-import useLocale from "../../../helpers/useLocale";
-import priorities from "../PriorityBadge/priorities";
-import TaskHeader from "./TaskHeader";
-import TaskTag from "./TaskTag";
-import InteractiveCard from "../../generic/InteractiveCard";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useLocale from '../../../helpers/useLocale';
+import InteractiveCard from '../../generic/InteractiveCard';
+import Text from '../../generic/Text';
+import PriorityBadge from '../PriorityBadge';
+import priorities from '../PriorityBadge/priorities';
+import TaskHeader from './TaskHeader';
+import TaskInfo from './TaskInfo';
+import TaskTag from './TaskTag';
+import sizes from './sizes';
+
+import styles from './TaskCard.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -24,6 +28,8 @@ const TaskCard = ({
   status,
   tag,
   size,
+
+  isEvent,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -36,7 +42,7 @@ const TaskCard = ({
 
   const label =
     estimate && reportedTime
-      ? locale("Task estimated", {
+      ? locale('Task estimated', {
           title,
           priority: priorities[priority],
           status: statusText,
@@ -44,7 +50,7 @@ const TaskCard = ({
           estimate: estimate?.toString(),
           progress: (reportedTime.getHours() / estimate.getHours()) * 100,
         })
-      : locale("Task", {
+      : locale('Task', {
           title,
           priority: priorities[priority],
           status: statusText,
@@ -54,8 +60,7 @@ const TaskCard = ({
     <InteractiveCard
       className={classNames(classes.task, className, classes[sizes[size]])}
       aria-label={label}
-      link={`/tasks/${id}`}
-    >
+      link={`/tasks/${id}`}>
       {tag ? (
         <TaskTag color={tag.color} name={tag.name} classes={classes} />
       ) : null}
@@ -87,7 +92,7 @@ TaskCard.propTypes = {
 };
 
 TaskCard.defaultProps = {
-  size: "default",
+  size: 'default',
 };
 
 export default TaskCard;
