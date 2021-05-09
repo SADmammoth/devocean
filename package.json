@@ -34,8 +34,8 @@
     "umi": "^3.3.7"
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^2.0.2",
     "lint-staged": "^10.0.7",
-    "prettier": "^2.2.0",
     "react": "17.x",
     "react-dom": "17.x",
     "yorkie": "^2.0.0"
