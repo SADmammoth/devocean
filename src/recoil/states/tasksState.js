@@ -2,13 +2,14 @@ import _ from 'lodash';
 import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
 import Client from '../../helpers/Client';
+import Subscriber from '../../helpers/Subscriber';
 import { fullTaskConverter } from '../../helpers/responseConverters';
 import deleteSelector from '../helpers/deleteSelector';
 import entriesArrangementSelector from '../helpers/entriesArrangementSelector';
 import getPostState from '../helpers/getPostState';
 import getTasksOfFolderTree from '../helpers/getTasksOfFolderTree';
 import mergeSelector from '../helpers/mergeSelector';
-import serverStateSync from '../helpers/serverStateSync';
+import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 import treeArrayToMap from '../helpers/treeArrayToMap';
 import updateSelector from '../helpers/updateSelector';
 import folderTreeState from './folderTreeState';
@@ -42,7 +43,9 @@ const postState = getPostState(
 const tasksStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [
+    serverRealtimeStateSync(Subscriber.tasks, getState, postState),
+  ],
 });
 
 const tasksState = mergeSelector(baseKey, tasksStateAtom);

@@ -1,6 +1,7 @@
 import request from 'superagent';
 import prefix from 'superagent-prefix';
 
+import Duration from './Duration';
 import RelativeDate from './RelativeDate';
 import filterFalsy from './filterFalsy';
 import { taskConverter } from './responseConverters';
@@ -97,10 +98,10 @@ const Client = {
 
     patch: (id, task) => {
       const body = filterFalsy({
-        // estimate: task.estimate.getTime(),
+        ...task,
+        estimate: new Duration(task.estimate).getHours(),
         // reportedTime: task.reportedTime.getTime(),
         // timeInStatus: new Duration(new Date(task.timeInStatus)),
-        ...task,
       });
 
       return request

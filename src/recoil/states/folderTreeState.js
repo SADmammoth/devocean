@@ -1,15 +1,18 @@
-import { atom, selector, selectorFamily } from "recoil";
-import _ from "lodash";
-import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
-import getParentsOfFolderTree from "../helpers/getParentsOfFolderTree";
-import updateSelector from "../helpers/updateSelector";
-import mergeSelector from "../helpers/mergeSelector";
-import { tasksState_getById, tasksState_update } from "./tasksState";
-import getPostState from "../helpers/getPostState";
-import noRequest from "../helpers/noRequest";
+import _ from 'lodash';
+import { atom, selector, selectorFamily } from 'recoil';
 
-const baseKey = "folderTreeState_";
+import Client from '../../helpers/Client';
+import Subscriber from '../../helpers/Subscriber';
+import getParentsOfFolderTree from '../helpers/getParentsOfFolderTree';
+import getPostState from '../helpers/getPostState';
+import mergeSelector from '../helpers/mergeSelector';
+import noRequest from '../helpers/noRequest';
+import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
+import serverStateSync from '../helpers/serverStateSync';
+import updateSelector from '../helpers/updateSelector';
+import { tasksState_getById, tasksState_update } from './tasksState';
+
+const baseKey = 'folderTreeState_';
 
 const getState = () => Client.folders.get();
 const postOne = (item) => Client.folders.post(item);
@@ -19,10 +22,12 @@ const postState = getPostState(postOne, patchOne, {
   tasks: noRequest,
 });
 
+const subscriber = Subscriber.taskcollections;
+
 const folderTreeStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [serverRealtimeStateSync(subscriber, getState, postState)],
 });
 
 // const folderTreeState = selector({
@@ -36,7 +41,7 @@ const folderTreeStateAtom = atom({
 const folderTreeState = mergeSelector(baseKey, folderTreeStateAtom);
 
 export const folderTreeState_getById = selectorFamily({
-  key: baseKey + "getById",
+  key: baseKey + 'getById',
   get: (folderId) => ({ get }) => {
     const folders = get(folderTreeStateAtom);
 
@@ -57,11 +62,11 @@ export const folderTreeState_getById = selectorFamily({
 
 export const folderTreeState_update = updateSelector(
   baseKey,
-  folderTreeStateAtom
+  folderTreeStateAtom,
 );
 
 export const folderTreeState_removeTask = selector({
-  key: baseKey + "removeTask",
+  key: baseKey + 'removeTask',
   set: ({ get, set }, { taskId, listId }) => {
     const list = get(folderTreeState_getById(listId));
     const taskIndex = list.tasks.findIndex((id) => {
@@ -76,7 +81,7 @@ export const folderTreeState_removeTask = selector({
 });
 
 export const folderTreeState_addTask = selectorFamily({
-  key: baseKey + "addTask",
+  key: baseKey + 'addTask',
   set: (listId) => async ({ get, set }, taskId) => {
     const task = get(tasksState_getById(taskId));
     const oldListId = task.list.id;

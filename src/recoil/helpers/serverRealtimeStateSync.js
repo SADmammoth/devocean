@@ -14,6 +14,7 @@ export default function serverStateSync(
 
       const getData = async () => {
         setSelf(await initialize());
+
         subscriber(async () => {
           setSelf(await initialize());
         });

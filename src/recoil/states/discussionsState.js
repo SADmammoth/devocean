@@ -1,20 +1,31 @@
-import { atom, selectorFamily } from "recoil";
-import _ from "lodash";
-import Client from "../../helpers/Client";
+import _ from 'lodash';
+import { atom, atomFamily, selectorFamily } from 'recoil';
 
-const baseKey = "discussionsState_";
+import Client from '../../helpers/Client';
+import Subscriber from '../../helpers/Subscriber';
+import getPostState from '../helpers/getPostState';
+import mergeSelectorFamily from '../helpers/mergeSelectorFamily';
+import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 
-const getState = (task) => Client.discussions.get(task);
-const postState = (taskId, item) => Client.discussions.post(taskId, item);
+const baseKey = 'discussionsState_';
 
-const discussionsState = selectorFamily({
-  key: baseKey + "getByTask",
-  get: (taskId) => ({}) => {
-    return getState(taskId);
-  },
-  set: (taskId) => ({}, value) => {
-    return postState(taskId, value);
-  },
+const getState = (task) => () => Client.discussions.get(task);
+const postState = (taskId) => (item) => Client.discussions.post(taskId, item);
+
+const subscriber = Subscriber.discussions;
+
+const discussionsStateAtom = atomFamily({
+  key: baseKey,
+  default: [],
+  effects_UNSTABLE: (taskId) => [
+    serverRealtimeStateSync(
+      subscriber,
+      getState(taskId),
+      getPostState(postState(taskId)),
+    ),
+  ],
 });
+
+const discussionsState = mergeSelectorFamily(baseKey, discussionsStateAtom);
 
 export default discussionsState;

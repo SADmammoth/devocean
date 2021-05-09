@@ -1,18 +1,21 @@
-import { atom, selector, selectorFamily, waitForAll } from "recoil";
-import _ from "lodash";
-import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
+import _ from 'lodash';
+import { atom, selector, selectorFamily, waitForAll } from 'recoil';
+
+import Client from '../../helpers/Client';
+import Subscriber from '../../helpers/Subscriber';
+import formatName from '../../helpers/formatName';
+import getPostState from '../helpers/getPostState';
+import mergeSelector from '../helpers/mergeSelector';
+import noRequest from '../helpers/noRequest';
+import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
+import serverStateSync from '../helpers/serverStateSync';
+import updateSelector from '../helpers/updateSelector';
 import tasksState, {
   tasksState_getById,
   tasksState_update,
-} from "./tasksState";
-import formatName from "../../helpers/formatName";
-import noRequest from "../helpers/noRequest";
-import getPostState from "../helpers/getPostState";
-import updateSelector from "../helpers/updateSelector";
-import mergeSelector from "../helpers/mergeSelector";
+} from './tasksState';
 
-const baseKey = "teammatesState_";
+const baseKey = 'teammatesState_';
 
 const getState = () => Client.teammates.get();
 const postOne = noRequest;
@@ -26,11 +29,13 @@ const postState = getPostState(postOne, patchOne, patchMap);
 const teammatesStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [
+    serverRealtimeStateSync(Subscriber.teammates, getState, postState),
+  ],
 });
 
 export const teammatesState_getWithTasks = selector({
-  key: baseKey + "tasks",
+  key: baseKey + 'tasks',
   get: ({ get }) => {
     const teammates = get(teammatesStateAtom);
     const teammatesTasks = {};
@@ -60,7 +65,7 @@ export const teammatesState_Raw = teammatesStateAtom;
 const teammatesState = mergeSelector(baseKey, teammatesState_getWithTasks);
 
 export const teammatesState_getById = selectorFamily({
-  key: baseKey + "getById",
+  key: baseKey + 'getById',
   get: (teammateId) => ({ get }) => {
     const teammates = get(teammatesStateAtom);
     console.log(teammates);
@@ -70,11 +75,11 @@ export const teammatesState_getById = selectorFamily({
 
 export const teammatesState_update = updateSelector(
   baseKey,
-  teammatesStateAtom
+  teammatesStateAtom,
 );
 
 export const teammatesState_removeTask = selector({
-  key: baseKey + "removeTask",
+  key: baseKey + 'removeTask',
   set: ({ get, set }, { taskId, teammateId }) => {
     const teammate = get(teammatesState_getById(teammateId));
     const taskIndex = teammate.assignedTasks.findIndex((id) => {
@@ -89,7 +94,7 @@ export const teammatesState_removeTask = selector({
 });
 
 export const teammatesState_addTask = selectorFamily({
-  key: baseKey + "addTask",
+  key: baseKey + 'addTask',
   set: (teammateId) => async ({ get, set }, taskId) => {
     const task = get(tasksState_getById(taskId));
     const assignee = get(teammatesState_getById(teammateId));
