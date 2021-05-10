@@ -7,6 +7,7 @@ import filterFalsy from './filterFalsy';
 import { taskConverter } from './responseConverters';
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
+const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
 
 const Client = {
   notifications: {
@@ -54,18 +55,19 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+
   user: {
     login: (login, password) => {
       return request
         .post('/login')
-        .use(apiPath)
+        .use(authPath)
         .send({ login, password })
         .then(({ body }) => body);
     },
     register: (login, password) => {
       return request
         .post('/register')
-        .use(apiPath)
+        .use(authPath)
         .send({ login, password })
         .then(({ body }) => body);
     },
@@ -157,6 +159,7 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+
   folders: {
     get: () => {
       return request
@@ -194,6 +197,7 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+
   teammates: {
     get: () => {
       return request
@@ -261,6 +265,16 @@ const Client = {
         .post(`/tasks/${task}/reports`)
         .use(apiPath)
         .send({ ...report, time: new Date() })
+        .then(({ body }) => body);
+    },
+  },
+
+  features: {
+    get: (userId, feature) => {
+      return request
+        .get(`/access/feature`)
+        .use(authPath)
+        .query({ feature })
         .then(({ body }) => body);
     },
   },

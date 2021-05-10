@@ -1,10 +1,15 @@
-import React from "react";
-import TeamViewContent from "../../pagesContent/TasksPagesContent/TeamViewContent";
+import React from 'react';
 
-export default function Team() {
+import TeamViewContent from '../../pagesContent/TasksPagesContent/TeamViewContent';
+
+function Team() {
   return (
     <>
       <TeamViewContent />
     </>
   );
 }
+
+Team.wrappers = ['@/wrappers/features/viewTasks'];
+
+export default Team;

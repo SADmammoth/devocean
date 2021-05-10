@@ -1,17 +1,20 @@
-import React from "react";
-import ContainerLayout from "../layouts/ContainerLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Header.styles";
-import NotificationsBadge from "../../specific/NotificationsBadge";
-import LanguageSwitcher from "../../specific/LanguageSwitcher";
-import StackLayout from "../layouts/StackLayout";
-import AppLogo from "../../specific/AppLogo";
-import AppName from "../../specific/AppName";
-import StretchLastLayout from "../layouts/StretchLastLayout";
+import React from 'react';
+
+import { useTheme, createUseStyles } from 'react-jss';
+
+import AppLogo from '../../specific/AppLogo';
+import AppName from '../../specific/AppName';
+import LanguageSwitcher from '../../specific/LanguageSwitcher';
+import NotificationsBadge from '../../specific/NotificationsBadge';
+import ContainerLayout from '../layouts/ContainerLayout';
+import StackLayout from '../layouts/StackLayout';
+import StretchLastLayout from '../layouts/StretchLastLayout';
+
+import styles from './Header.styles';
 
 const useStyles = createUseStyles(styles);
 
-const Header = () => {
+const Header = ({ hideNotificationBadge }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -22,13 +25,12 @@ const Header = () => {
           gap="10px"
           className={classes.stack}
           reverse
-          alignY="center"
-        >
+          alignY="center">
           <StackLayout className={classes.branding} alignY="center">
             <AppLogo />
             <AppName />
           </StackLayout>
-          <NotificationsBadge />
+          {hideNotificationBadge || <NotificationsBadge />}
           <LanguageSwitcher />
         </StretchLastLayout>
       </ContainerLayout>

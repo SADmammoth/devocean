@@ -1,18 +1,20 @@
-import React from "react";
-import StateMonade from "../../../helpers/StateMonade";
-import { useRecoilStateLoadable, useRecoilValue } from "recoil";
-import EditCollectionPageContent from "../../../pagesContent/EditCollectionPageContent";
+import React from 'react';
+
+import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
+
+import StateMonade from '../../../helpers/StateMonade';
+import EditCollectionPageContent from '../../../pagesContent/EditCollectionPageContent';
 import folderTreeState, {
   folderTreeState_update,
-} from "../../../recoil/states/folderTreeState";
+} from '../../../recoil/states/folderTreeState';
 
-export default function EditCollection({
+function EditCollection({
   match: {
     params: { id },
   },
 }) {
   const [collection, editCollection] = useRecoilStateLoadable(
-    folderTreeState_update(id)
+    folderTreeState_update(id),
   );
 
   const parents = useRecoilValue(folderTreeState);
@@ -26,7 +28,7 @@ export default function EditCollection({
           parentValueOptions: parents
             .filter(
               ({ type, id: candidateId }) =>
-                type === "folder" && candidateId !== id
+                type === 'folder' && candidateId !== id,
             )
             .map(({ name, id }) => {
               return { label: name, value: id };
@@ -39,3 +41,7 @@ export default function EditCollection({
     </StateMonade>
   );
 }
+
+EditCollection.wrappers = ['@/wrappers/features/manageCollections'];
+
+export default EditCollection;

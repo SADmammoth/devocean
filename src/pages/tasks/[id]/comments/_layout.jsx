@@ -1,6 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import TaskCommentsPageContent from "../../../../pagesContent/TaskCommentsPageContent";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import TaskCommentsPageContent from '../../../../pagesContent/TaskCommentsPageContent';
 
 function TaskCommentsPage({
   match: {
@@ -10,11 +12,13 @@ function TaskCommentsPage({
 }) {
   return (
     <>
-      <TaskCommentsPageContent id={id}>{children}</TaskCommentsPageContent>{" "}
+      <TaskCommentsPageContent id={id}>{children}</TaskCommentsPageContent>{' '}
     </>
   );
 }
 
 TaskCommentsPage.propTypes = {};
+
+TaskCommentsPage.wrappers = ['@/wrappers/features/viewTasks'];
 
 export default TaskCommentsPage;

@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import KanbanViewContent from "../../pagesContent/TasksPagesContent/KanbanViewContent";
-import lastTaskViewState from "../../recoil/states/lastTaskViewState";
+import React, { useEffect } from 'react';
 
-export default function Kanban() {
+import { useSetRecoilState } from 'recoil';
+
+import KanbanViewContent from '../../pagesContent/TasksPagesContent/KanbanViewContent';
+import lastTaskViewState from '../../recoil/states/lastTaskViewState';
+
+function Kanban() {
   const setLastView = useSetRecoilState(lastTaskViewState);
-  setLastView("kanban");
+  setLastView('kanban');
   useEffect(() => {
-    setLastView("kanban");
+    setLastView('kanban');
   }, []);
 
   return (
@@ -16,3 +18,7 @@ export default function Kanban() {
     </>
   );
 }
+
+Kanban.wrappers = ['@/wrappers/features/viewTasks'];
+
+export default Kanban;

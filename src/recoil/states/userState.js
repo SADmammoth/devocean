@@ -1,35 +1,29 @@
-import { atom, selector } from "recoil";
-import Client from "../../helpers/Client";
+import { atom, selector } from 'recoil';
 
-const baseKey = "userState_";
+import Client from '../../helpers/Client';
 
-const userStateAtom = atom({
-  key: baseKey,
-  default: null,
-});
+const baseKey = 'userState_';
 
 const userState = selector({
-  key: baseKey + "set",
-  get: ({ get }) => get(userStateAtom),
-  set: ({ set }, { id, login }) => {
-    set(userStateAtom, { id, login });
-  },
+  key: baseKey + 'set',
+  get: () => JSON.parse(localStorage.getItem('user')),
+  set: (user) => localStorage.setItem('user', JSON.stringify(user)),
 });
 
 export const userState_login = selector({
-  key: baseKey + "login",
+  key: baseKey + 'login',
   set: ({ set }, { login, password }) =>
     Client.user
       .login(login, password)
       .then(({ id: userId }) => {
-        set(userStateAtom, { userId, login });
+        set(userState, { userId, login });
         return userId;
       })
       .catch((res) => null),
 });
 
 export const userState_register = selector({
-  key: baseKey + "register",
+  key: baseKey + 'register',
   set: ({}, { login, password }) =>
     Client.user
       .register(login, password)

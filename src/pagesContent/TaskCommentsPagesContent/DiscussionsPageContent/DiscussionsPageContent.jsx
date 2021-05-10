@@ -1,17 +1,21 @@
-import React, { useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./DiscussionsPageContent.styles";
-import StackLayout from "../../../components/generic/layouts/StackLayout";
-import CreateCommentForm from "./CreateCommentForm";
-import { useRecoilValue, useRecoilValueLoadable } from "recoil";
-import discussionsState from "../../../recoil/states/discussionsState";
-import StateMonade from "../../../helpers/StateMonade";
-import DiscussionCard from "../../../components/specific/DiscussionCard/DiscussionCard";
-import { tasksState_getById } from "../../../recoil/states/tasksState";
-import useLocale from "../../../helpers/useLocale";
-import Text from "../../../components/generic/Text";
-import PopupButton from "../../../components/generic/PopupButton";
+import React, { useCallback, useEffect } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
+
+import PopupButton from '../../../components/generic/PopupButton';
+import Text from '../../../components/generic/Text';
+import StackLayout from '../../../components/generic/layouts/StackLayout';
+import DiscussionCard from '../../../components/specific/DiscussionCard/DiscussionCard';
+import FeatureMonade from '../../../helpers/FeatureMonade';
+import StateMonade from '../../../helpers/StateMonade';
+import useLocale from '../../../helpers/useLocale';
+import discussionsState from '../../../recoil/states/discussionsState';
+import { tasksState_getById } from '../../../recoil/states/tasksState';
+import CreateCommentForm from './CreateCommentForm';
+
+import styles from './DiscussionsPageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -26,7 +30,7 @@ function DiscussionsPageContent({ id }) {
   }, [discussions.state]);
 
   const renderDiscussions = useCallback(() => {
-    if (discussions.state === "hasValue")
+    if (discussions.state === 'hasValue')
       return discussions.contents.map((discussion) => {
         return <DiscussionCard {...discussion} />;
       });
@@ -37,7 +41,7 @@ function DiscussionsPageContent({ id }) {
   return (
     <StackLayout orientation="vertical" className={classes.discussions} nowrap>
       <Text className={classes.title} type="h1">
-        {locale("Comments for task")}
+        {locale('Comments for task')}
         <Text type="big" lines={1} title={task.contents?.title}>
           {task.contents?.title}
         </Text>
@@ -46,13 +50,14 @@ function DiscussionsPageContent({ id }) {
         orientation="vertical"
         className={classes.messageBoard}
         gap="15px"
-        scroll
-      >
+        scroll>
         <StateMonade state={discussions.state}>
           {renderDiscussions()}
         </StateMonade>
       </StackLayout>
-      <CreateCommentForm alignY="end" classes={classes} id={id} />
+      <FeatureMonade feature="workWithTasks">
+        <CreateCommentForm alignY="end" classes={classes} id={id} />
+      </FeatureMonade>
     </StackLayout>
   );
 }

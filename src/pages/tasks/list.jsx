@@ -1,12 +1,14 @@
-import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
-import ListViewContent from "../../pagesContent/TasksPagesContent/ListViewContent";
-import lastTaskViewState from "../../recoil/states/lastTaskViewState";
+import React, { useEffect } from 'react';
 
-export default function List() {
+import { useSetRecoilState } from 'recoil';
+
+import ListViewContent from '../../pagesContent/TasksPagesContent/ListViewContent';
+import lastTaskViewState from '../../recoil/states/lastTaskViewState';
+
+function List() {
   const setLastView = useSetRecoilState(lastTaskViewState);
   useEffect(() => {
-    setLastView("list");
+    setLastView('list');
   }, []);
 
   return (
@@ -15,3 +17,7 @@ export default function List() {
     </>
   );
 }
+
+List.wrappers = ['@/wrappers/features/viewTasks'];
+
+export default List;

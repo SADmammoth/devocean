@@ -1,18 +1,22 @@
-import React from "react";
-import StateMonade from "../../../helpers/StateMonade";
-import { useRecoilStateLoadable, useRecoilValue } from "recoil";
-import EditNotificationPageContent from "../../../pagesContent/EditNotificationPageContent";
-import { notificationsState_update } from "../../../recoil/states/notificationsState";
-import teammatesState from "../../../recoil/states/teammatesState";
-import formatName from "../../../helpers/formatName";
+import React from 'react';
 
-export default function EditNotification({ match: { params } }) {
+import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
+
+import StateMonade from '../../../helpers/StateMonade';
+import formatName from '../../../helpers/formatName';
+import EditNotificationPageContent from '../../../pagesContent/EditNotificationPageContent';
+import { notificationsState_update } from '../../../recoil/states/notificationsState';
+import teammatesState, {
+  teammatesState_Raw,
+} from '../../../recoil/states/teammatesState';
+
+function EditNotification({ match: { params } }) {
   const { id } = params;
   const [notification, updateNotification] = useRecoilStateLoadable(
-    notificationsState_update(id)
+    notificationsState_update(id),
   );
 
-  const teammates = useRecoilValue(teammatesState);
+  const teammates = useRecoilValue(teammatesState_Raw);
 
   return (
     <>
@@ -36,3 +40,7 @@ export default function EditNotification({ match: { params } }) {
     </>
   );
 }
+
+EditNotification.wrappers = ['@/wrappers/features/manageNotifications'];
+
+export default EditNotification;

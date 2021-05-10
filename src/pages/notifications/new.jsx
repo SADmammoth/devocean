@@ -1,14 +1,18 @@
-import React from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
-import formatName from "../../helpers/formatName";
-import EditNotificationPageContent from "../../pagesContent/EditNotificationPageContent";
-import notificationsState from "../../recoil/states/notificationsState";
-import teammatesState from "../../recoil/states/teammatesState";
+import React from 'react';
 
-export default function NewNotification() {
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+
+import formatName from '../../helpers/formatName';
+import EditNotificationPageContent from '../../pagesContent/EditNotificationPageContent';
+import notificationsState from '../../recoil/states/notificationsState';
+import teammatesState, {
+  teammatesState_Raw,
+} from '../../recoil/states/teammatesState';
+
+function NewNotification() {
   const addNotification = useSetRecoilState(notificationsState);
 
-  const teammates = useRecoilValue(teammatesState);
+  const teammates = useRecoilValue(teammatesState_Raw);
 
   return (
     <>
@@ -30,3 +34,7 @@ export default function NewNotification() {
     </>
   );
 }
+
+NewNotification.wrappers = ['@/wrappers/features/manageNotifications'];
+
+export default NewNotification;

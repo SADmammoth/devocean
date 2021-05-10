@@ -1,18 +1,20 @@
-import React, { useCallback, useEffect } from "react";
-import teammatesState, {
-  teammatesState_Raw,
-} from "../../../recoil/states/teammatesState";
-import StateMonade from "../../../helpers/StateMonade";
+import React, { useCallback, useEffect } from 'react';
+
 import {
   useRecoilStateLoadable,
   useRecoilValue,
   useRecoilValueLoadable,
-} from "recoil";
-import EditTaskPageContent from "../../../pagesContent/EditTaskPageContent";
-import { tasksState_update } from "../../../recoil/states/tasksState";
-import folderTreeState from "../../../recoil/states/folderTreeState";
-import statusesState from "../../../recoil/states/statusesState";
-import formatName from "../../../helpers/formatName";
+} from 'recoil';
+
+import StateMonade from '../../../helpers/StateMonade';
+import formatName from '../../../helpers/formatName';
+import EditTaskPageContent from '../../../pagesContent/EditTaskPageContent';
+import folderTreeState from '../../../recoil/states/folderTreeState';
+import statusesState from '../../../recoil/states/statusesState';
+import { tasksState_update } from '../../../recoil/states/tasksState';
+import teammatesState, {
+  teammatesState_Raw,
+} from '../../../recoil/states/teammatesState';
 
 export default function EditTask({
   match: {
@@ -20,7 +22,7 @@ export default function EditTask({
   },
 }) {
   const [initialValues, editTask] = useRecoilStateLoadable(
-    tasksState_update(id)
+    tasksState_update(id),
   );
 
   const statuses = useRecoilValueLoadable(statusesState);
@@ -35,14 +37,14 @@ export default function EditTask({
       <StateMonade state={initialValues.state}>
         <EditTaskPageContent
           initialValues={{
-            ..._.omit(initialValues.contents || {}, "customFields"),
+            ..._.omit(initialValues.contents || {}, 'customFields'),
             list: initialValues.contents?.list?.id,
             parent: initialValues.contents?.parent?.id,
             assigneeValueOptions: teammates.map(({ name, lastName, id }) => {
               return { label: formatName({ name, lastName }), value: id };
             }),
             listValueOptions: lists
-              .filter(({ type }) => type === "list")
+              .filter(({ type }) => type === 'list')
               .map(({ name, id }) => {
                 return { label: name, value: id };
               }),
@@ -60,3 +62,5 @@ export default function EditTask({
     </>
   );
 }
+
+EditTask.wrappers = ['@/wrappers/features/manageTasks'];

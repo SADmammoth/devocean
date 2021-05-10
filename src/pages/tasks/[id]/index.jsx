@@ -1,5 +1,6 @@
-import React from "react";
-import TaskPageContent from "../../../pagesContent/TaskPageContent";
+import React from 'react';
+
+import TaskPageContent from '../../../pagesContent/TaskPageContent';
 
 function TaskPage({
   match: {
@@ -14,5 +15,7 @@ function TaskPage({
 }
 
 TaskPage.propTypes = {};
+
+TaskPage.wrappers = ['@/wrappers/features/viewTasks'];
 
 export default TaskPage;

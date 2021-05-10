@@ -1,21 +1,22 @@
-import React, { Suspense } from "react";
-import Header from "../components/generic/Header";
-import ContentElement from "../components/generic/ContentElement";
+import React, { Suspense } from 'react';
 
-function _layout({ children }) {
+import ContentElement from '../components/generic/ContentElement';
+import Header from '../components/generic/Header';
+
+function _layout({ children, match: { path } }) {
   return (
     <>
-      <Header />
+      <Header hideNotificationBadge={!path.startsWith('auth')} />
       <ContentElement>{children}</ContentElement>
     </>
   );
 }
 
 _layout.wrappers = [
-  "@/wrappers/recoil",
-  "@/wrappers/jss",
-  "@/wrappers/login",
-  "@/wrappers/popups",
+  '@/wrappers/recoil',
+  '@/wrappers/jss',
+  '@/wrappers/login',
+  '@/wrappers/popups',
 ];
 
 export default _layout;

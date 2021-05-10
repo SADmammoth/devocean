@@ -1,9 +1,11 @@
-import React from "react";
-import { useSetRecoilState } from "recoil";
-import EditCollectionPageContent from "../../pagesContent/EditCollectionPageContent";
-import folderTreeState from "../../recoil/states/folderTreeState";
+import React from 'react';
 
-export default function NewCollection() {
+import { useSetRecoilState } from 'recoil';
+
+import EditCollectionPageContent from '../../pagesContent/EditCollectionPageContent';
+import folderTreeState from '../../recoil/states/folderTreeState';
+
+function NewCollection() {
   const addCollection = useSetRecoilState(folderTreeState);
 
   return (
@@ -16,3 +18,7 @@ export default function NewCollection() {
     </>
   );
 }
+
+NewCollection.wrappers = ['@/wrappers/features/manageCollections'];
+
+export default NewCollection;

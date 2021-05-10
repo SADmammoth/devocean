@@ -18,5 +18,6 @@ export default {
   define: {
     API_PATH: 'http://localhost:1337',
     SUBSCRIPTION_SERVER: 'http://localhost:1338',
+    AUTH_PATH: 'http://localhost:1339',
   },
 };
