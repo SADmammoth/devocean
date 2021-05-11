@@ -25,9 +25,6 @@ function DiscussionsPageContent({ id }) {
   const locale = useLocale();
 
   const discussions = useRecoilValueLoadable(discussionsState(id));
-  useEffect(() => {
-    console.log(discussions);
-  }, [discussions.state]);
 
   const renderDiscussions = useCallback(() => {
     if (discussions.state === 'hasValue')

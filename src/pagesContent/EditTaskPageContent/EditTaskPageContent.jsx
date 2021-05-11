@@ -1,19 +1,22 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import Text from "../../components/generic/Text";
-import Sidebar from "../../components/generic/Sidebar";
-import useLocale from "../../helpers/useLocale";
-import Form from "../../components/generic/Form";
-import useLocalizedForm from "../../helpers/forms/useLocalizedForm";
-import StackLayout from "../../components/generic/layouts/StackLayout";
-import GridLayout from "../../components/generic/layouts/GridLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./EditTaskPageContent.styles";
-import getCreateTaskForm from "../../helpers/forms/getCreateTaskForm";
-import { useRecoilStateLoadable, useSetRecoilState } from "recoil";
-import tasksState from "../../recoil/states/tasksState";
-import templatesState from "../../recoil/states/templatesState";
-import useTemplate from "./useTemplate";
+import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilStateLoadable, useSetRecoilState } from 'recoil';
+
+import Form from '../../components/generic/Form';
+import Sidebar from '../../components/generic/Sidebar';
+import Text from '../../components/generic/Text';
+import GridLayout from '../../components/generic/layouts/GridLayout';
+import StackLayout from '../../components/generic/layouts/StackLayout';
+import getCreateTaskForm from '../../helpers/forms/getCreateTaskForm';
+import useLocalizedForm from '../../helpers/forms/useLocalizedForm';
+import useLocale from '../../helpers/useLocale';
+import tasksState from '../../recoil/states/tasksState';
+import templatesState from '../../recoil/states/templatesState';
+import useTemplate from './useTemplate';
+
+import styles from './EditTaskPageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -24,13 +27,13 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
 
   const templateProps = useTemplate();
   const inputsProps = useLocalizedForm(
-    getCreateTaskForm({ ...templateProps, ...initialValues })
+    getCreateTaskForm({ ...templateProps, ...initialValues }),
   );
 
   const [inputs, setInputs] = useState({});
 
-  const title = edit ? locale("Edit task") : locale("Create task");
-  console.log(inputs.customFields);
+  const title = edit ? locale('Edit task') : locale('Create task');
+
   return (
     <GridLayout className={classes.content}>
       <Sidebar column={3} className={classes.sidebar}>
@@ -44,19 +47,17 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
       <StackLayout
         column={5}
         className={classes.marginTop}
-        orientation="vertical"
-      >
+        orientation="vertical">
         <Text type="h1">{title}</Text>
         <Form
           inputs={inputsProps}
           onSubmit={onSubmit}
           onInputsUpdate={(inputs) => {
             setInputs(inputs);
-          }}
-        >
+          }}>
           {inputs.title}
           {inputs.customFields
-            ? Object.values(_.omit(inputs.customFields, "$title"))
+            ? Object.values(_.omit(inputs.customFields, '$title'))
             : null}
         </Form>
       </StackLayout>

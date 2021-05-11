@@ -1,22 +1,20 @@
-import React from "react";
+import React from 'react';
 
-import { IntlProvider } from "umi";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles, ThemeProvider } from 'react-jss';
+import { IntlProvider } from 'umi';
 
-import themeGlobal from "../../../theme";
+import themeGlobal from '../../../theme';
+import Button from '../Button';
+import PanelCard from '../PanelCard';
+import PopupForm from './PopupForm';
 
-import PanelCard from "../PanelCard";
-
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles, ThemeProvider } from "react-jss";
-import styles from "./PopupWindow.styles";
-import Button from "../Button";
-import PopupForm from "./PopupForm";
+import styles from './PopupWindow.styles';
 
 const useStyles = createUseStyles(styles);
 
 function PopupWindow({ inputs, onClose, closeButtonContent, children }) {
   const theme = useTheme();
-  console.log(theme);
   const classes = useStyles(theme);
 
   if (inputs) {

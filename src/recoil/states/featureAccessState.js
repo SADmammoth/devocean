@@ -12,9 +12,27 @@ const featureAccessState = selectorFamily({
   key: baseKey,
   get: (feature) => async ({ get }) => {
     const userId = get(userState);
-    console.log(userId);
+
     if (!userId) return false;
     return (await getState(userId, feature))?.hasAccess;
+  },
+});
+
+const getState_array = (userId, features) =>
+  Client.features.getArray(userId, features);
+
+export const featureAccessState_array = selectorFamily({
+  key: baseKey + 'array',
+  get: (features) => async ({ get }) => {
+    const userId = get(userState);
+
+    if (!userId) return false;
+
+    if (features.length === 1) {
+      return { [features[0]]: await getState(userId, features) };
+    }
+
+    return await getState_array(userId, features);
   },
 });
 

@@ -1,14 +1,17 @@
-import React, { useCallback, useState } from "react";
-import PropTypes from "prop-types";
-import { useRecoilValueLoadable } from "recoil";
-import { tasksState_getByFolder } from "../../../recoil/states/tasksState";
-import DraggableList from "../../../components/generic/DraggableList";
-import DraggableTask from "../../../components/specific/DraggableTask";
-import StackLayout from "../../../components/generic/layouts/StackLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ListViewContent.styles";
-import useLocale from "../../../helpers/useLocale";
-import StateMonade from "../../../helpers/StateMonade";
+import React, { useCallback, useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValueLoadable } from 'recoil';
+
+import DraggableList from '../../../components/generic/DraggableList';
+import StackLayout from '../../../components/generic/layouts/StackLayout';
+import DraggableTask from '../../../components/specific/DraggableTask';
+import StateMonade from '../../../helpers/StateMonade';
+import useLocale from '../../../helpers/useLocale';
+import { tasksState_getByFolder } from '../../../recoil/states/tasksState';
+
+import styles from './ListViewContent.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -20,12 +23,12 @@ function ListViewTasks({ folderId, style }) {
   const tasks = useRecoilValueLoadable(tasksState_getByFolder(folderId));
 
   const [draggableAreaSize, setDraggableAreaSize] = useState(
-    theme.draggableAreaDefaultSize
+    theme.draggableAreaDefaultSize,
   );
 
   const getList = useCallback(() => {
     return (
-      tasks.state === "hasValue" &&
+      tasks.state === 'hasValue' &&
       tasks.contents
         .map((task) => {
           if (task)
@@ -53,9 +56,7 @@ function ListViewTasks({ folderId, style }) {
         orientation="horizontal"
         alignX="start"
         gap="10px"
-        aria-label={locale("TaskList")}
-        scroll
-      >
+        aria-label={locale('TaskList')}>
         <DraggableList
           id="list"
           list={getList()}

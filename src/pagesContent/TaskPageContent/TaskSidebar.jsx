@@ -1,18 +1,21 @@
-import React from "react";
-import PropTypes from "prop-types";
-import StatusBadge from "../../components/specific/StatusBadge";
-import TimeReportsBadge from "../../components/specific/TimeReportsBadge";
-import AssigneeBadge from "../../components/specific/AssigneeBadge";
-import PanelCard from "../../components/generic/PanelCard";
-import StackLayout from "../../components/generic/layouts/StackLayout";
-import PriorityBadge from "../../components/specific/PriorityBadge";
-import Button from "../../components/generic/Button";
-import Interactive from "../../components/generic/Interactive";
-import ReportPopup from "../../components/specific/ReportPopup/ReportPopup";
-import { useSetRecoilState } from "recoil";
-import { tasksState_delete } from "../../recoil/states/tasksState";
-import showPopup from "../../helpers/showPopup";
-import { history } from "umi";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useSetRecoilState } from 'recoil';
+import { history } from 'umi';
+
+import Button from '../../components/generic/Button';
+import Interactive from '../../components/generic/Interactive';
+import PanelCard from '../../components/generic/PanelCard';
+import StackLayout from '../../components/generic/layouts/StackLayout';
+import AssigneeBadge from '../../components/specific/AssigneeBadge';
+import PriorityBadge from '../../components/specific/PriorityBadge';
+import ReportPopup from '../../components/specific/ReportPopup/ReportPopup';
+import StatusBadge from '../../components/specific/StatusBadge';
+import TimeReportsBadge from '../../components/specific/TimeReportsBadge';
+import FeatureMonade from '../../helpers/FeatureMonade';
+import showPopup from '../../helpers/showPopup';
+import { tasksState_delete } from '../../recoil/states/tasksState';
 
 function TaskSidebar({
   id,
@@ -31,15 +34,14 @@ function TaskSidebar({
   const popup = () =>
     showPopup({
       children: `Delete task "${title}"?`,
-      closeButtonContent: "Yes",
+      closeButtonContent: 'Yes',
     });
 
   return (
     <StackLayout
       className={classes.sidebarContent}
       orientation="vertical"
-      gap="10px"
-    >
+      gap="10px">
       <PanelCard>
         <PriorityBadge priority={priority} />
       </PanelCard>
@@ -62,19 +64,24 @@ function TaskSidebar({
           ) : null}
         </PanelCard>
       ) : null}
-      <ButtonLink link={`${id}/edit`}>Edit</ButtonLink>
+      <FeatureMonade feature="manageTasks">
+        <ButtonLink link={`${id}/edit`}>Edit</ButtonLink>
+      </FeatureMonade>
       <ButtonLink link={`${id}/comments`}>Comments</ButtonLink>
-      <ReportPopup id={id} />
-      <ButtonLink
-        onClick={() => {
-          popup().then(() => {
-            history.push("/tasks");
-            deleteTask();
-          });
-        }}
-      >
-        Delete
-      </ButtonLink>
+      <FeatureMonade feature="workWithTasks">
+        <ReportPopup id={id} />
+      </FeatureMonade>
+      <FeatureMonade feature="manageTasks">
+        <ButtonLink
+          onClick={() => {
+            popup().then(() => {
+              history.push('/tasks');
+              deleteTask();
+            });
+          }}>
+          Delete
+        </ButtonLink>
+      </FeatureMonade>
     </StackLayout>
   );
 }

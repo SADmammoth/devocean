@@ -277,6 +277,13 @@ const Client = {
         .query({ feature })
         .then(({ body }) => body);
     },
+    getArray: (userId, features) => {
+      return request
+        .get(`/access/features`)
+        .use(authPath)
+        .query({ features })
+        .then(({ body }) => body);
+    },
   },
 };
 

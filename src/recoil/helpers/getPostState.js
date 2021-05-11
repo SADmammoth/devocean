@@ -1,8 +1,8 @@
-import noRequest from "./noRequest";
+import noRequest from './noRequest';
 
 const getPostState = (postOne, patchOne, patchFieldsMap, deleteOne) => (
   newValue,
-  oldValue
+  oldValue,
 ) => {
   if (deleteOne && oldValue.length - newValue.length === 1) {
     const reverseDiff = _.differenceWith(oldValue, newValue, _.isEqual);
@@ -24,15 +24,13 @@ const getPostState = (postOne, patchOne, patchFieldsMap, deleteOne) => (
       Object.entries(oldItem),
       ([key1, val1], [key2, val2]) => {
         return key1 === key2 && _.isEqual(val1, val2);
-      }
+      },
     );
-
-    console.log(diffItem);
 
     if (patchFieldsMap && diffItem.length === 1) {
       const [key, value] = diffItem[0];
       const func = patchFieldsMap[key];
-      console.log(patchFieldsMap);
+
       if (func) {
         return func(value, newItem);
       }

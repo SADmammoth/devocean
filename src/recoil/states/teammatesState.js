@@ -68,7 +68,6 @@ export const teammatesState_getById = selectorFamily({
   key: baseKey + 'getById',
   get: (teammateId) => ({ get }) => {
     const teammates = get(teammatesStateAtom);
-    console.log(teammates);
     return teammates.find(({ id }) => id === teammateId);
   },
 });
@@ -98,9 +97,9 @@ export const teammatesState_addTask = selectorFamily({
   set: (teammateId) => async ({ get, set }, taskId) => {
     const task = get(tasksState_getById(taskId));
     const assignee = get(teammatesState_getById(teammateId));
-    console.log(assignee);
+
     set(tasksState_update(taskId), { assignee });
-    console.log(task);
+
     set(teammatesState_update(teammateId), {
       assignedTasks: [...assignee.assignedTasks, { task: task.id }],
     });

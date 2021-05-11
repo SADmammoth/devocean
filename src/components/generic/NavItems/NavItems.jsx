@@ -1,10 +1,13 @@
-import React, { useMemo } from "react";
-import PropTypes from "prop-types";
-import Interactive from "../Interactive";
+import React, { useMemo } from 'react';
 
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./NavItems.styles";
-import classNames from "classnames";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import Interactive from '../Interactive';
+
+import styles from './NavItems.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -12,33 +15,31 @@ function NavItems({ as, items, className, itemClass, itemContainerClass }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const InteractiveButton = Interactive("button");
+  const InteractiveButton = Interactive(Button);
   const renderItems = useMemo(
     () =>
-      items.map(({ id, title, label, link, onClick }) => {
+      items.map((item) => {
+        const { id, title, label, link, onClick } = item;
         return (
           <li
             key={id}
             title={title}
             aria-label={title}
-            className={itemContainerClass}
-          >
-            {
-              <InteractiveButton
-                onClick={onClick}
-                link={link}
-                className={itemClass}
-              >
-                {label}
-              </InteractiveButton>
-            }
+            className={itemContainerClass}>
+            <InteractiveButton
+              size="wide"
+              onClick={onClick}
+              link={link}
+              className={itemClass}>
+              {label}
+            </InteractiveButton>
           </li>
         );
       }),
-    [items]
+    [items],
   );
 
-  const As = as || "ul";
+  const As = as || 'ul';
 
   return (
     <As className={classNames(className, classes.navItems)}>{renderItems}</As>
@@ -52,7 +53,7 @@ NavItems.propTypes = {
       label: PropTypes.string.isRequired,
       link: PropTypes.string,
       onClick: PropTypes.func,
-    })
+    }),
   ).isRequired,
   itemClass: PropTypes.string,
   itemContainerClass: PropTypes.string,

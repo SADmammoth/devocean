@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Input as ReakitInput } from "reakit";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Input.styles";
-import customTypes from "./customTypes";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { Input as ReakitInput } from 'reakit';
+
+import customTypes from './customTypes';
+
+import styles from './Input.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -17,8 +20,8 @@ function Input({ type, ...props }) {
     return <CustomInput type={type} {...props} />;
   }
 
-  const as = type === "textarea" ? "textarea" : "input";
-  console.log(props);
+  const as = type === 'textarea' ? 'textarea' : 'input';
+
   return (
     <ReakitInput
       {...props}

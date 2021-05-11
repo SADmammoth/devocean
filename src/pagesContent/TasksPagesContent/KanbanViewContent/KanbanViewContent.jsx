@@ -1,22 +1,24 @@
-import React, { useCallback, useState } from "react";
-import SortTool from "../../../components/specific/SortTool";
-import FilterTool from "../../../components/specific/FilterTool";
-import ToolBar from "../../../components/generic/ToolBar";
-import { useTheme, createUseStyles } from "react-jss";
-import { useRecoilValueLoadable } from "recoil";
-import classNames from "classnames";
-import GridLayout from "../../../components/generic/layouts/GridLayout";
-import StackLayout from "../../../components/generic/layouts/StackLayout";
-import Sidebar from "../../../components/generic/Sidebar";
-import StateMonade from "../../../helpers/StateMonade";
-import useLocale from "../../../helpers/useLocale";
-import { statusesState_getWithTasks } from "../../../recoil/states/statusesState";
-import KanbanStatusList from "./KanbanStatusList";
-import styles from "./KanbanViewContent.styles";
-import { kanbanView } from "../../../helpers/arrangeConfigs/tasksArrangeConfig";
-import TaskViewSwitch from "../TaskViewSwitch/TaskViewSwitch";
-import Button from "../../../components/generic/Button";
-import AddStatusForm from "./AddStatusForm";
+import React, { useCallback, useState } from 'react';
+
+import classNames from 'classnames';
+import { FaPlusCircle } from 'react-icons/fa';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValueLoadable } from 'recoil';
+
+import Button from '../../../components/generic/Button';
+import ExpandableToolBar from '../../../components/generic/ExpandableToolBar';
+import Sidebar from '../../../components/generic/Sidebar';
+import GridLayout from '../../../components/generic/layouts/GridLayout';
+import StackLayout from '../../../components/generic/layouts/StackLayout';
+import FeatureDependentToolbar from '../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
+import StateMonade from '../../../helpers/StateMonade';
+import useLocale from '../../../helpers/useLocale';
+import { statusesState_getWithTasks } from '../../../recoil/states/statusesState';
+import TaskViewSwitch from '../TaskViewSwitch/TaskViewSwitch';
+import AddStatusForm from './AddStatusForm';
+import KanbanStatusList from './KanbanStatusList';
+
+import styles from './KanbanViewContent.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -47,14 +49,13 @@ const KanbanViewContent = () => {
 
   return (
     <GridLayout className={classNames(classes.grid, classes.paddingTop)}>
-      <Sidebar column={3} title={locale("backlog")}>
+      <Sidebar column={3} title={locale('backlog')}>
         <StateMonade state={statuses.state}>
           <KanbanStatusList
             classes={classes}
             status="backlog"
             tasks={backlog || []}
-            showTitle={false}
-          ></KanbanStatusList>
+            showTitle={false}></KanbanStatusList>
         </StateMonade>
       </Sidebar>
       <StackLayout
@@ -62,8 +63,7 @@ const KanbanViewContent = () => {
         column={7}
         orientation="horizontal"
         gap="20px"
-        scroll
-      >
+        scroll>
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
           <Button onClick={() => setShowAddStatus((state) => !state)}>
@@ -71,22 +71,29 @@ const KanbanViewContent = () => {
           </Button>
           {showAddStatus ? (
             <AddStatusForm
-              onSubmit={() => setShowAddStatus(false)}
-            ></AddStatusForm>
+              onSubmit={() => setShowAddStatus(false)}></AddStatusForm>
           ) : null}
         </StateMonade>
       </StackLayout>
-      <ToolBar>
-        <FilterTool
-          filters={kanbanView.filters}
-          applyFilter={(...data) => console.log(data)}
-        />
-        <SortTool
-          sorts={kanbanView.sorts}
-          applySorts={(...data) => console.log(data)}
-        />
-        <TaskViewSwitch currentView="kanban" />
-      </ToolBar>
+      <FeatureDependentToolbar
+        items={{
+          manageTasks: [
+            {
+              label: <FaPlusCircle />,
+              title: 'Add new task',
+              link: '/tasks/new',
+              id: 'new-task',
+            },
+          ],
+          all: [
+            {
+              label: <TaskViewSwitch currentView="kanban" />,
+              title: 'Switch view',
+              id: 'switch-view',
+            },
+          ],
+        }}
+      />
     </GridLayout>
   );
 };
