@@ -13,6 +13,7 @@ function _layout({ children, match: { path } }) {
 }
 
 _layout.wrappers = [
+  '@/wrappers/errorBoundary',
   '@/wrappers/recoil',
   '@/wrappers/jss',
   '@/wrappers/login',
