@@ -327,12 +327,12 @@ const Client = {
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
-    post: (content, userToken) => {
+    post: (doc, userToken) => {
       return request
         .post('/docs')
         .use(apiPath)
         .auth(userToken, { type: 'bearer' })
-        .send({ title: 'Untitled', content })
+        .send(doc)
         .then(({ body }) => body);
     },
   },
