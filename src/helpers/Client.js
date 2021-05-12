@@ -320,6 +320,13 @@ const Client = {
     },
   },
   docs: {
+    get: (userToken) => {
+      return request
+        .get('/docs')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
     getById: (id, userToken) => {
       return request
         .get(`/docs/${id}`)

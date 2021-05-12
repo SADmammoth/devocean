@@ -11,6 +11,7 @@ import userState from './userState';
 
 const baseKey = 'docsState_';
 
+const getState = (userToken) => Client.docs.get(userToken);
 const getStateById = (userToken, id) => Client.docs.getById(id, userToken);
 const postOne = (userToken, item) => Client.docs.post(item, userToken);
 // const patchOne = (userToken, item) =>
@@ -25,7 +26,7 @@ const postOne = (userToken, item) => Client.docs.post(item, userToken);
 const docsStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(noRequest, getPostState(postOne))],
+  effects_UNSTABLE: [serverStateSync(getState, getPostState(postOne))],
 });
 
 const docsState = mergeSelector(baseKey, docsStateAtom);

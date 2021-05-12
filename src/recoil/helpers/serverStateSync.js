@@ -3,13 +3,10 @@ export default function serverStateSync(get, post, abortGet, abortPost) {
     const userToken = localStorage.getItem('user');
 
     if (get && trigger === 'get') {
-      const initialize = async (value) =>
-        JSON.stringify(value) === JSON.stringify(node.default)
-          ? await get()
-          : value;
+      const initialize = async (...args) => await get(...args);
 
       const getData = async () => {
-        setSelf(await initialize());
+        setSelf(await initialize(userToken));
       };
 
       getData();
