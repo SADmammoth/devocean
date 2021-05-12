@@ -2,7 +2,7 @@ import { useRecoilValue } from 'recoil';
 
 import userState from '../states/userState';
 
-export default function serverStateSync(
+export default function serverRealtimeStateSync(
   subscriber,
   get,
   post,

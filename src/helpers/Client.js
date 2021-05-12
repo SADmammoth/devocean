@@ -319,6 +319,23 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+  docs: {
+    getById: (id, userToken) => {
+      return request
+        .get(`/docs/${id}`)
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+    post: (content, userToken) => {
+      return request
+        .post('/docs')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .send({ title: 'Untitled', content })
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;
