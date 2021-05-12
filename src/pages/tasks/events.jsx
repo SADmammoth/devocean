@@ -10,6 +10,9 @@ function Events() {
   );
 }
 
-Events.wrappers = ['@/wrappers/features/viewTasks'];
+Events.wrappers = [
+  '@/wrappers/features/hiddenPage',
+  '@/wrappers/features/viewTasks',
+];
 
 export default Events;
