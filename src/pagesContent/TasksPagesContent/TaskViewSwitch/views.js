@@ -6,9 +6,9 @@ export default [
     title: 'Team',
     link: 'team',
   },
-  {
-    id: 'events',
-    title: 'Events',
-    link: 'events',
-  },
+  // {
+  //   id: 'events',
+  //   title: 'Events',
+  //   link: 'events',
+  // },
 ];
