@@ -11,30 +11,34 @@ const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
 
 const Client = {
   notifications: {
-    getForTeammate: (id) => {
+    getForTeammate: (id, userToken) => {
       return request
         .get(`/notifications/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
 
-    get: () => {
+    get: (userToken) => {
       return request
         .get('/notifications')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
 
-    receive: () => {
+    receive: (userToken) => {
       return request
         .get('/notifications/receive')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
 
-    post: ({ id, ...notification }) => {
+    post: ({ id, ...notification }, userToken) => {
       return request
         .post('/notifications')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({ ...notification, author: notification.author.id })
         .then(({ body }) => body);
@@ -48,9 +52,10 @@ const Client = {
         .then(({ body }) => body);
     },
 
-    cancel: (id) => {
+    cancel: (id, userToken) => {
       return request
         .patch(`/notifications/${id}/cancel`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
@@ -64,9 +69,10 @@ const Client = {
         .send({ login, password })
         .then(({ body }) => body);
     },
-    register: (login, password) => {
+    register: (login, password, userToken) => {
       return request
         .post('/register')
+        .auth(userToken, { type: 'bearer' })
         .use(authPath)
         .send({ login, password })
         .then(({ body }) => body);
@@ -74,16 +80,21 @@ const Client = {
   },
 
   tasks: {
-    get: () => {
-      return request.get('/tasks').use(apiPath).then(taskConverter);
+    get: (userToken) => {
+      return request
+        .get('/tasks')
+        .auth(userToken, { type: 'bearer' })
+        .use(apiPath)
+        .then(taskConverter);
     },
-    getById: (id) => {
+    getById: (id, userToken) => {
       return request
         .get(`/tasks/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: ({ id, ...task }) => {
+    post: ({ id, ...task }, userToken) => {
       const body = {
         ...task,
         estimate: new Duration(task.estimate).getHours(),
@@ -93,12 +104,13 @@ const Client = {
 
       return request
         .post('/tasks')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send(body)
         .then(({ body }) => body);
     },
 
-    patch: (id, task) => {
+    patch: (id, task, userToken) => {
       const body = filterFalsy({
         ...task,
         estimate: new Duration(task.estimate).getHours(),
@@ -108,14 +120,16 @@ const Client = {
 
       return request
         .patch(`/tasks/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send(body)
         .then(({ body }) => body);
     },
 
-    arrange: (sort, filters) => {
+    arrange: (sort, filters, userToken) => {
       return request
         .get('/tasks/arrange')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({
           sort,
@@ -124,9 +138,10 @@ const Client = {
         .then(({ body }) => body);
     },
 
-    addToList: (id, listId) => {
+    addToList: (id, listId, userToken) => {
       return request
         .patch(`/tasks/${id}/list`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({
           list: listId,
@@ -134,17 +149,19 @@ const Client = {
         .then(({ body }) => body);
     },
 
-    changeStatus: (id, status) => {
+    changeStatus: (id, status, userToken) => {
       return request
         .patch(`/tasks/${id}/status`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send(status)
         .then(({ body }) => body);
     },
 
-    assign: (id, assignee) => {
+    assign: (id, assignee, userToken) => {
       return request
         .patch(`/tasks/${id}/assignee`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({
           teammateId: assignee.id,
@@ -152,46 +169,52 @@ const Client = {
         .then(({ body }) => body);
     },
 
-    delete: (id) => {
+    delete: (id, userToken) => {
       return request
         .delete(`/tasks/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
   },
 
   folders: {
-    get: () => {
+    get: (userToken) => {
       return request
         .get('/folders')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: ({ id, ...folder }) => {
+    post: ({ id, ...folder }, userToken) => {
       return request
         .post('/folders')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send(folder)
         .then(({ body }) => body);
     },
-    patch: (id, folder) => {
+    patch: (id, folder, userToken) => {
       return request
         .patch(`/folders/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send(folder)
         .then(({ body }) => body);
     },
   },
   statuses: {
-    get: () => {
+    get: (userToken) => {
       return request
         .get('/statuses')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: (name) => {
+    post: (name, userToken) => {
       return request
         .post('/statuses')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({ name })
         .then(({ body }) => body);
@@ -199,70 +222,79 @@ const Client = {
   },
 
   teammates: {
-    get: () => {
+    get: (userToken) => {
       return request
         .get('/teammates')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
   },
 
   templates: {
-    get: () => {
+    get: (userToken) => {
       return request
         .get('/templates')
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    getById: (id) => {
+    getById: (id, userToken) => {
       return request
         .get(`/templates/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
   },
 
   discussions: {
-    get: (task) => {
+    get: (task, userToken) => {
       return request
         .get(`/tasks/${task}/discussions`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: (task, discussion) => {
+    post: (task, discussion, userToken) => {
       return request
         .post(`/tasks/${task}/discussions`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({ ...discussion, time: new Date() })
         .then(({ body }) => body);
     },
   },
   statusChanges: {
-    get: (task) => {
+    get: (task, userToken) => {
       return request
         .get(`/tasks/${task}/statusChanges`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
   },
   history: {
-    get: (task) => {
+    get: (task, userToken) => {
       return request
         .get(`/tasks/${task}/history`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
   },
   reports: {
-    get: (task) => {
+    get: (task, userToken) => {
       return request
         .get(`/tasks/${task}/reports`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .then(({ body }) => body);
     },
-    post: (task, report) => {
+    post: (task, report, userToken) => {
       return request
         .post(`/tasks/${task}/reports`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
         .send({ ...report, time: new Date() })
         .then(({ body }) => body);
@@ -270,16 +302,18 @@ const Client = {
   },
 
   features: {
-    get: (userId, feature) => {
+    get: (feature, userToken) => {
       return request
         .get(`/access/feature`)
         .use(authPath)
         .query({ feature })
+        .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
-    getArray: (userId, features) => {
+    getArray: (features, userToken) => {
       return request
         .get(`/access/features`)
+        .auth(userToken, { type: 'bearer' })
         .use(authPath)
         .query({ features })
         .then(({ body }) => body);

@@ -13,28 +13,30 @@ import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 import treeArrayToMap from '../helpers/treeArrayToMap';
 import updateSelector from '../helpers/updateSelector';
 import folderTreeState from './folderTreeState';
+import userState from './userState';
 
 const baseKey = 'tasksState_';
-const postOne = (item) => Client.tasks.post(item);
-const patchOne = (item) => Client.tasks.patch(item.id, item);
-const deleteOne = (item) => Client.tasks.delete(item.id);
+const postOne = (userToken, item) => Client.tasks.post(userToken, item);
+const patchOne = (userToken, item) =>
+  Client.tasks.patch(userToken, item.id, item);
+const deleteOne = (userToken, item) => Client.tasks.delete(userToken, item.id);
 
-const getState = () => Client.tasks.get();
+const getState = (userToken) => Client.tasks.get(userToken);
 const postState = getPostState(
   postOne,
   patchOne,
   {
-    list: (list, item) => {
-      return Client.tasks.addToList(item.id, list.id);
+    list: (userToken, list, item) => {
+      return Client.tasks.addToList(userToken, item.id, list.id);
     },
-    status: async (status, item) => {
-      return Client.tasks.changeStatus(item.id, {
+    status: async (userToken, status, item) => {
+      return Client.tasks.changeStatus(userToken, item.id, {
         status: status.name,
         text: status.text,
       });
     },
-    assignee: (assignee, item) => {
-      return Client.tasks.assign(item.id, assignee);
+    assignee: (userToken, assignee, item) => {
+      return Client.tasks.assign(userToken, item.id, assignee);
     },
   },
   deleteOne,
@@ -72,8 +74,10 @@ export const tasksState_getByFolder = selectorFamily({
 
 export const tasksState_requestContent = selectorFamily({
   key: baseKey + 'requestContent',
-  get: (taskId) => ({ get }) =>
-    Client.tasks.getById(taskId).then(fullTaskConverter),
+  get: (taskId) => ({ get }) => {
+    const userToken = get(userState);
+    return Client.tasks.getById(taskId, userToken).then(fullTaskConverter);
+  },
 });
 
 export const tasksState_arrange = entriesArrangementSelector(

@@ -9,8 +9,9 @@ import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 
 const baseKey = 'reportsState_';
 
-const getState = (task) => () => Client.reports.get(task);
-const postState = (taskId) => (item) => Client.reports.post(taskId, item);
+const getState = (task) => (userToken) => Client.reports.get(task, userToken);
+const postState = (taskId) => (userToken, item) =>
+  Client.reports.post(taskId, item, userToken);
 
 const subscriber = Subscriber.reports;
 

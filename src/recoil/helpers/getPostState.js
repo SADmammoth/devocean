@@ -1,18 +1,19 @@
 import noRequest from './noRequest';
 
 const getPostState = (postOne, patchOne, patchFieldsMap, deleteOne) => (
+  userToken,
   newValue,
   oldValue,
 ) => {
   if (deleteOne && oldValue.length - newValue.length === 1) {
     const reverseDiff = _.differenceWith(oldValue, newValue, _.isEqual);
-    return deleteOne(reverseDiff[0]);
+    return deleteOne(userToken, reverseDiff[0]);
   }
 
   const diff = _.differenceWith(newValue, oldValue, _.isEqual);
 
   if (postOne && diff.length === 1 && newValue.length > oldValue.length) {
-    return postOne(diff[0]);
+    return postOne(userToken, diff[0]);
   }
 
   if (patchOne && diff.length === 1 && newValue.length === oldValue.length) {
@@ -32,11 +33,11 @@ const getPostState = (postOne, patchOne, patchFieldsMap, deleteOne) => (
       const func = patchFieldsMap[key];
 
       if (func) {
-        return func(value, newItem);
+        return func(userToken, value, newItem);
       }
     }
 
-    return patchOne(newItem);
+    return patchOne(userToken, newItem);
   }
   return noRequest();
 };

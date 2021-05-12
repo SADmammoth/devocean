@@ -1,17 +1,18 @@
-import { atom, selector, selectorFamily, waitForAll } from "recoil";
-import _ from "lodash";
-import Client from "../../helpers/Client";
-import serverStateSync from "../helpers/serverStateSync";
-import { tasksState_getById, tasksState_update } from "./tasksState";
-import updateSelector from "../helpers/updateSelector";
-import mergeSelector from "../helpers/mergeSelector";
-import noRequest from "../helpers/noRequest";
-import getPostState from "../helpers/getPostState";
+import _ from 'lodash';
+import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
-const baseKey = "statusesState_";
+import Client from '../../helpers/Client';
+import getPostState from '../helpers/getPostState';
+import mergeSelector from '../helpers/mergeSelector';
+import noRequest from '../helpers/noRequest';
+import serverStateSync from '../helpers/serverStateSync';
+import updateSelector from '../helpers/updateSelector';
+import { tasksState_getById, tasksState_update } from './tasksState';
 
-const getState = () => Client.statuses.get();
-const postOne = (item) => Client.statuses.post(item.name);
+const baseKey = 'statusesState_';
+
+const getState = (userToken) => Client.statuses.get(userToken);
+const postOne = (userToken, item) => Client.statuses.post(item.name, userToken);
 
 const postState = getPostState(postOne);
 
@@ -24,7 +25,7 @@ const statusesStateAtom = atom({
 const statusesState = mergeSelector(baseKey, statusesStateAtom);
 
 export const statusesState_getWithTasks = selector({
-  key: baseKey + "tasks",
+  key: baseKey + 'tasks',
   get: ({ get }) => {
     const statuses = get(statusesStateAtom);
     const statusesTasks = {};
@@ -46,11 +47,11 @@ export const statusesState_getWithTasks = selector({
 export const statusesState_update = updateSelector(
   baseKey,
   statusesStateAtom,
-  "name"
+  'name',
 );
 
 export const statusesState_removeTask = selector({
-  key: baseKey + "removeTask",
+  key: baseKey + 'removeTask',
   set: ({ get, set }, { statusName, taskId }) => {
     const statuses = get(statusesStateAtom);
     const status = statuses.find(({ name }) => name === statusName);
@@ -64,7 +65,7 @@ export const statusesState_removeTask = selector({
 });
 
 export const statusesState_addTask = selectorFamily({
-  key: baseKey + "addTask",
+  key: baseKey + 'addTask',
   set: (statusName) => ({ get, set }, { taskId, text }) => {
     const statuses = get(statusesStateAtom);
     const status = statuses.find(({ name }) => name === statusName);

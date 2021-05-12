@@ -1,23 +1,27 @@
-import { atom, selector, selectorFamily } from "recoil";
-import _ from "lodash";
-import Client from "../../helpers/Client";
+import _ from 'lodash';
+import { atom, selector, selectorFamily } from 'recoil';
 
-const baseKey = "templatesState_";
+import Client from '../../helpers/Client';
+import userState from './userState';
 
-const getState = () => Client.templates.get();
-const getStateById = (id) => Client.templates.getById(id);
+const baseKey = 'templatesState_';
+
+const getState = (userToken) => Client.templates.get(userToken);
+const getStateById = (userToken, id) => Client.templates.getById(id, userToken);
 
 const templatesState = selector({
   key: baseKey,
   get: async () => {
-    return await getState();
+    const userToken = get(userState);
+    return await getState(userToken);
   },
 });
 
 export const templatesState_getById = selectorFamily({
   key: baseKey,
   get: (id) => async () => {
-    return await getStateById(id);
+    const userToken = get(userState);
+    return await getStateById(userToken, id);
   },
 });
 

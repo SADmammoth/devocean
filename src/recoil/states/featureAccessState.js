@@ -6,15 +6,16 @@ import userState from './userState';
 
 const baseKey = 'featureAccessState_';
 
-const getState = (userId, feature) => Client.features.get(userId, feature);
+const getState = (feature, userToken) =>
+  Client.features.get(feature, userToken);
 
 const featureAccessState = selectorFamily({
   key: baseKey,
   get: (feature) => async ({ get }) => {
-    const userId = get(userState);
+    const userToken = get(userState);
 
-    if (!userId) return false;
-    return (await getState(userId, feature))?.hasAccess;
+    if (!userToken) return false;
+    return (await getState(feature, userToken))?.hasAccess;
   },
 });
 
@@ -24,15 +25,15 @@ const getState_array = (userId, features) =>
 export const featureAccessState_array = selectorFamily({
   key: baseKey + 'array',
   get: (features) => async ({ get }) => {
-    const userId = get(userState);
+    const userToken = get(userState);
 
-    if (!userId) return false;
+    if (!userToken) return false;
 
     if (features.length === 1) {
-      return { [features[0]]: await getState(userId, features) };
+      return { [features[0]]: await getState(features, userToken) };
     }
 
-    return await getState_array(userId, features);
+    return await getState_array(features, userToken);
   },
 });
 

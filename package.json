@@ -31,7 +31,7 @@
     "recoil": "^0.1.2",
     "sails.io.js-dist": "^1.2.1",
     "socket.io-client": "^2.0.3",
-    "superagent": "^6.1.0",
+    "superagent": "^5.3.1",
     "superagent-prefix": "^0.0.2",
     "umi": "^3.3.7"
   },

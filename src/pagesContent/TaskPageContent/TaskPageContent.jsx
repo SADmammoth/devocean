@@ -1,15 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Sidebar from "../../components/generic/Sidebar";
-import StackLayout from "../../components/generic/layouts/StackLayout";
-import GridLayout from "../../components/generic/layouts/GridLayout";
-import StateMonade from "../../helpers/StateMonade";
-import { useRecoilValueLoadable } from "recoil";
-import { tasksState_requestContent } from "../../recoil/states/tasksState";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./TaskPageContent.styles";
-import TaskSidebar from "./TaskSidebar";
-import TaskContent from "./TaskContent";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValueLoadable } from 'recoil';
+
+import Sidebar from '../../components/generic/Sidebar';
+import GridLayout from '../../components/generic/layouts/GridLayout';
+import StackLayout from '../../components/generic/layouts/StackLayout';
+import StateMonade from '../../helpers/StateMonade';
+import { tasksState_requestContent } from '../../recoil/states/tasksState';
+import TaskContent from './TaskContent';
+import TaskSidebar from './TaskSidebar';
+
+import styles from './TaskPageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -31,7 +34,7 @@ function TaskPageContent({ id }) {
   return (
     <GridLayout className={classes.content}>
       <Sidebar className={classes.paddingTop} column={3}>
-        <StateMonade state={fullTask.state}>
+        <StateMonade state={fullTask.state} onError={() => fullTask.contents}>
           <TaskSidebar
             id={id}
             title={title}
@@ -48,9 +51,8 @@ function TaskPageContent({ id }) {
         className={classes.paddingTop}
         column={5}
         orientation="vertical"
-        alignY="start"
-      >
-        <StateMonade state={fullTask.state}>
+        alignY="start">
+        <StateMonade state={fullTask.state} onError={() => fullTask.contents}>
           <TaskContent
             classes={classes}
             title={title}

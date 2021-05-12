@@ -7,7 +7,7 @@ import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 
 const baseKey = 'historyState_';
 
-const getState = (task) => () => Client.history.get(task);
+const getState = (task) => (userToken) => Client.history.get(task, userToken);
 
 const subscriber = Subscriber.history;
 

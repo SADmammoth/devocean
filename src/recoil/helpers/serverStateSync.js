@@ -1,5 +1,7 @@
 export default function serverStateSync(get, post, abortGet, abortPost) {
   return ({ node, onSet, trigger, setSelf }) => {
+    const userToken = localStorage.getItem('user');
+
     if (get && trigger === 'get') {
       const initialize = async (value) =>
         JSON.stringify(value) === JSON.stringify(node.default)
@@ -15,8 +17,7 @@ export default function serverStateSync(get, post, abortGet, abortPost) {
 
     if (post) {
       onSet(async (newValue, oldValue) => {
-        return await post(newValue, oldValue).catch((err) => {
-          console.error(err);
+        return await post(userToken, newValue, oldValue).catch((err) => {
           setSelf(oldValue);
         });
       });

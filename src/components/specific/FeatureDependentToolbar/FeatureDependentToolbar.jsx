@@ -37,7 +37,7 @@ function FeatureDependentToolbar({ expandable, items, props }) {
   }, [features, items]);
 
   return (
-    <StateMonade state={features.state}>
+    <StateMonade state={features.state} onError={() => features.contents}>
       {expandable ? (
         <ExpandableToolBar items={renderItems()} {...props} />
       ) : (

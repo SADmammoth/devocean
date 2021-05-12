@@ -13,9 +13,10 @@ import updateSelector from '../helpers/updateSelector';
 
 const baseKey = 'notificationsState_';
 
-const getState = () => Client.notifications.get();
-const postOne = (item) => Client.notifications.post(item);
-const patchOne = (item) => Client.notifications.patch(item.id, item);
+const getState = (userToken) => Client.notifications.get(userToken);
+const postOne = (userToken, item) => Client.notifications.post(item, userToken);
+const patchOne = (userToken, item) =>
+  Client.notifications.patch(item.id, item, userToken);
 
 const postState = getPostState(postOne, patchOne, {
   status: (status, item) => {

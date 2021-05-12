@@ -1,14 +1,16 @@
-import React, { useMemo } from "react";
-import PropTypes from "prop-types";
-import useLocale from "../../../helpers/useLocale";
-import Button from "../../generic/Button";
-import { useRecoilValueLoadable } from "recoil";
-import notificationsState from "../../../recoil/states/notificationsState";
-import InteractiveCard from "../../generic/InteractiveCard";
-import StackLayout from "../../generic/layouts/StackLayout";
-import NotificationContent from "../NotificationContent";
-import Interactive from "../../generic/Interactive";
-import StateMonade from "../../../helpers/StateMonade";
+import React, { useMemo } from 'react';
+
+import PropTypes from 'prop-types';
+import { useRecoilValueLoadable } from 'recoil';
+
+import StateMonade from '../../../helpers/StateMonade';
+import useLocale from '../../../helpers/useLocale';
+import notificationsState from '../../../recoil/states/notificationsState';
+import Button from '../../generic/Button';
+import Interactive from '../../generic/Interactive';
+import InteractiveCard from '../../generic/InteractiveCard';
+import StackLayout from '../../generic/layouts/StackLayout';
+import NotificationContent from '../NotificationContent';
 
 function NotificationsList({ items, showCount }) {
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
@@ -23,7 +25,7 @@ function NotificationsList({ items, showCount }) {
   };
 
   const notificationsToShow = useMemo(() => {
-    if (notificationsLoadable.state === "hasValue") {
+    if (notificationsLoadable.state === 'hasValue') {
       if (showCount) {
         return notificationsLoadable.contents.slice(0, showCount);
       }
@@ -32,19 +34,20 @@ function NotificationsList({ items, showCount }) {
     return [];
   }, [notificationsLoadable]);
 
+  console.log(notificationsLoadable, notificationsToShow);
+
   const notShownCount = useMemo(
     () => notificationsLoadable.contents.length - notificationsToShow.length,
-    [notificationsLoadable, notificationsToShow]
+    [notificationsLoadable, notificationsToShow],
   );
 
   const InteractiveButton = Interactive(Button);
 
   return (
     <StackLayout
-      aria-label={locale("Notifications")}
+      aria-label={locale('Notifications')}
       orientation="vertical"
-      gap="10px"
-    >
+      gap="10px">
       <StateMonade state={notificationsLoadable.state}>
         {notificationsToShow.map(renderNotification)}
         {!(showCount && notShownCount > 0) || (

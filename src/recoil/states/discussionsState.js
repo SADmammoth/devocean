@@ -9,8 +9,10 @@ import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 
 const baseKey = 'discussionsState_';
 
-const getState = (task) => () => Client.discussions.get(task);
-const postState = (taskId) => (item) => Client.discussions.post(taskId, item);
+const getState = (task) => (userToken) =>
+  Client.discussions.get(task, userToken);
+const postState = (taskId) => (userToken, item) =>
+  Client.discussions.post(taskId, item, userToken);
 
 const subscriber = Subscriber.discussions;
 

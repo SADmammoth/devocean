@@ -6,8 +6,8 @@ const baseKey = 'userState_';
 
 const userState = selector({
   key: baseKey + 'set',
-  get: () => JSON.parse(localStorage.getItem('user')),
-  set: (user) => localStorage.setItem('user', JSON.stringify(user)),
+  get: () => localStorage.getItem('user'),
+  set: (user) => localStorage.setItem('user', user),
 });
 
 export const userState_login = selector({

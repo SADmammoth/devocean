@@ -17,7 +17,7 @@ import tasksState, {
 
 const baseKey = 'teammatesState_';
 
-const getState = () => Client.teammates.get();
+const getState = (userToken) => Client.teammates.get(userToken);
 const postOne = noRequest;
 const patchOne = noRequest;
 const patchMap = {

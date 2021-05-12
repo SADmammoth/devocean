@@ -7,9 +7,10 @@ import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
 
 const baseKey = 'statusChangesState_';
 
-const getState = (task) => () => Client.statusChanges.get(task);
+const getState = (task) => (userToken) =>
+  Client.statusChanges.get(task, userToken);
 
-const subscriber = Subscriber.statusChanges;
+const subscriber = Subscriber.statuses;
 
 const statusChangesState = atomFamily({
   key: baseKey,
