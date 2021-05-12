@@ -4,7 +4,7 @@ import prefix from 'superagent-prefix';
 import Duration from './Duration';
 import RelativeDate from './RelativeDate';
 import filterFalsy from './filterFalsy';
-import { taskConverter } from './responseConverters';
+import { navItemsConverter, taskConverter } from './responseConverters';
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
@@ -341,6 +341,15 @@ const Client = {
         .auth(userToken, { type: 'bearer' })
         .send(doc)
         .then(({ body }) => body);
+    },
+  },
+  navitems: {
+    get: (userToken) => {
+      return request
+        .get('/navItems')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(navItemsConverter);
     },
   },
 };

@@ -1,38 +1,16 @@
-import { selector } from "recoil";
-import Client from "../../helpers/Client";
+import { atom, selector } from 'recoil';
 
-const baseKey = "navitemsState_";
+import Client from '../../helpers/Client';
+import serverStateSync from '../helpers/serverStateSync';
 
-const navitemsState = selector({
+const baseKey = 'navitemsState_';
+
+const getState = (userToken) => Client.navitems.get(userToken);
+
+const navitemsState = atom({
   key: baseKey,
-  get: () => [
-    {
-      id: "agenda",
-      title: "Agenda",
-      label: "Agenda",
-    },
-    {
-      id: "manageteam",
-      title: "Manage team",
-      label: "Manage team",
-    },
-    {
-      id: "managetasks",
-      title: "Manage tasks",
-      label: "Manage tasks",
-      link: "/tasks",
-    },
-    {
-      id: "reviewstatistics",
-      title: "Review statistics",
-      label: "Review statistics",
-    },
-    {
-      id: "showallprojects",
-      title: "Show all projects",
-      label: "Show all projects",
-    },
-  ],
+  default: [],
+  effects_UNSTABLE: [serverStateSync(getState)],
 });
 
 export default navitemsState;

@@ -1,12 +1,11 @@
-import Duration from "./Duration";
-import formatName from "./formatName";
-
-import RelativeDate from "./RelativeDate";
+import Duration from './Duration';
+import RelativeDate from './RelativeDate';
+import formatName from './formatName';
 
 export function taskConverter({ body }) {
   return body.map(({ estimate, reportedTime, ...other }) => ({
-    estimate: estimate ? new Duration(estimate + "h") : null,
-    reportedTime: reportedTime ? new Duration(reportedTime + "h") : null,
+    estimate: estimate ? new Duration(estimate + 'h') : null,
+    reportedTime: reportedTime ? new Duration(reportedTime + 'h') : null,
     ...other,
   }));
 }
@@ -18,8 +17,8 @@ export function fullTaskConverter({
   ...other
 }) {
   return {
-    estimate: estimate ? new Duration(estimate + "h") : null,
-    reportedTime: reportedTime ? new Duration(reportedTime + "h") : null,
+    estimate: estimate ? new Duration(estimate + 'h') : null,
+    reportedTime: reportedTime ? new Duration(reportedTime + 'h') : null,
     assignee: assignee
       ? {
           displayName: formatName({
@@ -32,4 +31,12 @@ export function fullTaskConverter({
       : null,
     ...other,
   };
+}
+
+export function navItemsConverter({ body }) {
+  return body
+    .filter(({ onlyShort }) => !onlyShort)
+    .map(({ label, link }) => {
+      return { label, title: label, link };
+    });
 }
