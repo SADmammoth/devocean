@@ -360,6 +360,15 @@ const Client = {
         .then(navItemsConverter);
     },
   },
+  teammateProfiles: {
+    get: (userToken) => {
+      return request
+        .get('/teammates/profiles')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;
