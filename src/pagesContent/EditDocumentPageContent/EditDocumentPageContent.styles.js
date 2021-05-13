@@ -21,6 +21,9 @@ const styles = {
     paddingTop: '10px',
     '& .cdx-block': {
       fontSize: (theme) => theme.fontSizes.default,
+      border: (theme) => `.5px solid ${theme.background.button}`,
+      padding: '5px',
+      margin: '5px',
     },
     '& .cdx-block:focus': {
       padding: '5px 10px',

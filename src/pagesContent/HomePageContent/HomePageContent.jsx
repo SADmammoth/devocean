@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useTheme, createUseStyles } from 'react-jss';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import Marked from '../../components/generic/Marked';
 import NavList from '../../components/generic/NavList';
@@ -14,6 +14,7 @@ import AppName from '../../components/specific/AppName';
 import ClockSidebar from '../../components/specific/ClockSidebar';
 import NotificationsList from '../../components/specific/NotificationsList';
 import FeatureMonade from '../../helpers/FeatureMonade';
+import StateMonade from '../../helpers/StateMonade';
 import useLocale from '../../helpers/useLocale';
 import navitemsState from '../../recoil/states/navitemsState';
 
@@ -26,7 +27,7 @@ const HomePageContent = () => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const navitems = useRecoilValue(navitemsState);
+  const navitems = useRecoilValueLoadable(navitemsState);
 
   return (
     <>
@@ -45,7 +46,9 @@ const HomePageContent = () => {
           <Text type="sub" italic>
             {locale('Welcome back subtitle')}
           </Text>
-          <NavList items={navitems} />
+          <StateMonade state={navitems.state}>
+            <NavList items={navitems.contents} />
+          </StateMonade>
         </StackLayout>
         <StackLayout
           orientation="vertical"

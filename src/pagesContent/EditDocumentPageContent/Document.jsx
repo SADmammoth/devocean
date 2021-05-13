@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 
 import EditorJs from '@stfy/react-editor.js';
 import DragDrop from 'editorjs-drag-drop';
@@ -13,11 +13,18 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
   const editor = useRef({});
   const [title, setTitle] = useState(defaultTitle);
 
+  useEffect(() => {
+    setTitle(defaultTitle);
+  }, [defaultTitle]);
+
   const save = useCallback(async () => {
     if (!_.isEmpty(editor.current)) {
-      onSubmit({ title, content: await editor.current.editor.save() });
+      onSubmit({
+        title,
+        content: _.omit(await editor.current.editor.save(), ['time']),
+      });
     }
-  }, [title]);
+  }, [title, onSubmit]);
 
   return (
     <div className={classes.docForm}>

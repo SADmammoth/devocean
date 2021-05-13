@@ -342,6 +342,14 @@ const Client = {
         .send(doc)
         .then(({ body }) => body);
     },
+    patch: (id, doc, userToken) => {
+      return request
+        .patch(`/docs/${id}`)
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .send(doc)
+        .then(({ body }) => body);
+    },
   },
   navitems: {
     get: (userToken) => {

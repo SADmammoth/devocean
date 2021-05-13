@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
@@ -19,6 +19,17 @@ function EditDocumentPageContent({ initialValues, onSubmit }) {
   const classes = useStyles(theme);
 
   const [abstract, setAbstract] = useState(initialValues?.abstract);
+
+  useEffect(() => {
+    if (initialValues) setAbstract(initialValues.abstract);
+  }, [initialValues?.abstract]);
+
+  const onSubmitHandler = useCallback(
+    (data) => {
+      onSubmit({ abstract, ...data });
+    },
+    [abstract],
+  );
 
   return (
     <GridLayout className={classes.content}>
@@ -47,8 +58,9 @@ function EditDocumentPageContent({ initialValues, onSubmit }) {
         orientation="vertical">
         <Document
           classes={classes}
-          data={initialValues}
-          onSubmit={(data) => onSubmit({ abstract, ...data })}
+          title={initialValues?.title}
+          content={initialValues?.content}
+          onSubmit={onSubmitHandler}
         />
       </StackLayout>
     </GridLayout>
