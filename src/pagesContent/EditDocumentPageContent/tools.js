@@ -12,9 +12,10 @@ import Paragraph from '@editorjs/paragraph';
 import Quote from '@editorjs/quote';
 import Raw from '@editorjs/raw';
 import SimpleImage from '@editorjs/simple-image';
-import Table from '@editorjs/table';
 import Warning from '@editorjs/warning';
 import { ItalicInlineTool, UnderlineInlineTool } from 'editorjs-inline-tool';
+
+import Table from './Table';
 
 export default {
   italic: ItalicInlineTool,

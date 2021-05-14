@@ -31,7 +31,20 @@ function DocumentContentPage({ initialValues }) {
         className={classes.paddingTop}>
         <Text type="h1">{initialValues.title}</Text>
         <div className={classes.blocks}>
-          <Blocks data={initialValues.content || { blocks: [] }} />
+          <Blocks
+            data={initialValues.content || { blocks: [] }}
+            renderers={{
+              simpleImage: ({ data, className = '' }) => {
+                console.log(data);
+                return (
+                  <picture>
+                    <img src={data.url} alt={data.caption} />
+                    <caption>{data.caption}</caption>
+                  </picture>
+                );
+              },
+            }}
+          />
         </div>
       </StackLayout>
     </GridLayout>
