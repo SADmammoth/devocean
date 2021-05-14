@@ -9,7 +9,8 @@
     "**/node_modules": true,
     "**/build": false,
     "**/yarn.lock": true,
-    ".vscode": false
+    ".vscode": false,
+    "**/yarn-error.log": true
   },
   "explorerExclude.backup": null,
   "workbench.colorCustomizations": {

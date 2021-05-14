@@ -11,6 +11,7 @@ import Text from '../../../../components/generic/Text';
 import GridLayout from '../../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
+import TaskFolderButton from '../../../../components/specific/TaskFolderButton';
 import StateMonade from '../../../../helpers/components/StateMonade';
 import useLocale from '../../../../helpers/hooks/useLocale';
 import folderTreeState from '../../../../recoil/states/folderTreeState';
@@ -53,6 +54,7 @@ const ListViewContent = () => {
               onSelectedChange={(index) => {
                 setCurrentFolder(index);
               }}
+              FolderBase={TaskFolderButton}
             />
           </StateMonade>
         </Sidebar>

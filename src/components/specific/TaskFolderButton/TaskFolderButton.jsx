@@ -12,14 +12,14 @@ import {
 } from 'react-icons/fa';
 
 import useLocale from '../../../helpers/hooks/useLocale';
-import HiddenLink from '../HiddenLink';
-import Interactive from '../Interactive';
-import Text from '../Text';
-import StackLayout from '../layouts/StackLayout';
+import Button from '../../generic/Button';
+import HiddenLink from '../../generic/HiddenLink';
+import Interactive from '../../generic/Interactive';
+import Text from '../../generic/Text';
+import StackLayout from '../../generic/layouts/StackLayout';
 import FolderDropArea from './FolderDropArea';
 
-function FolderButton({
-  as,
+function TaskFolderButton({
   classes,
   type,
   selected,
@@ -30,7 +30,7 @@ function FolderButton({
   isConstant,
   ...props
 }) {
-  const InteractiveButton = Interactive(as);
+  const InteractiveButton = Interactive(Button);
 
   const locale = useLocale();
 
@@ -79,7 +79,7 @@ function FolderButton({
   );
 }
 
-FolderButton.propTypes = {
+TaskFolderButton.propTypes = {
   id: PropTypes.string.isRequired,
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   classes: PropTypes.object.isRequired,
@@ -90,4 +90,4 @@ FolderButton.propTypes = {
   onClick: PropTypes.func,
 };
 
-export default FolderButton;
+export default TaskFolderButton;

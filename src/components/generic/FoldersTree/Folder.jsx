@@ -5,11 +5,9 @@ import PropTypes from 'prop-types';
 import { Button as ReakitButton } from 'reakit';
 
 import useLocale from '../../../helpers/hooks/useLocale';
-import FolderButton from './FolderButton';
 
 function Folder({
   id,
-  as,
   classes,
   name,
   type,
@@ -18,6 +16,7 @@ function Folder({
   childrenIds,
   requestFolderProps,
   selectedParent,
+  FolderBase,
 
   isConstant,
 }) {
@@ -40,8 +39,7 @@ function Folder({
       className={classNames(classes.folderTree, {
         [classes.selectedTree]: selected,
       })}>
-      <FolderButton
-        as={as}
+      <FolderBase
         classes={classes}
         type={type}
         selected={selected}

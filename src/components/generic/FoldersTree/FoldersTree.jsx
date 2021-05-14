@@ -13,12 +13,9 @@ import styles from './FoldersTree.styles';
 
 const useStyles = createUseStyles(styles);
 
-function FoldersTree({ className, folders, onSelectedChange }) {
+function FoldersTree({ className, folders, onSelectedChange, FolderBase }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-
-  const FolderBase = (props) => <Button size="wide" {...props} />;
-
   const [selectedIndex, selectedParents, selectFolder] = useSelectedFolder(
     folders,
   );
