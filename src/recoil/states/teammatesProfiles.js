@@ -4,6 +4,7 @@ import { atom, selectorFamily } from 'recoil';
 import Client from '../../helpers/Client';
 import serverStateSync from '../helpers/serverStateSync';
 import updateSelector from '../helpers/updateSelector';
+import userState from './userState';
 
 const baseKey = 'teammateProfilesState_';
 
@@ -17,9 +18,10 @@ const teammateProfilesState = atom({
 
 export const teammateProfilesState_getById = selectorFamily({
   key: baseKey + 'getById',
-  get: (teammateProfileId) => ({ get }) => {
+  get: (teammateProfileId) => async ({ get }) => {
+    const userToken = get(userState);
     const teammateProfiles = get(teammateProfilesState);
-    return teammateProfiles.find(({ id }) => id === teammateProfileId);
+    return await Client.teammateProfiles.getById(teammateProfileId, userToken);
   },
 });
 

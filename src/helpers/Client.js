@@ -368,6 +368,13 @@ const Client = {
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
+    getById: (id, userToken) => {
+      return request
+        .get(`/teammates/profiles/${id}`)
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
   },
 };
 
