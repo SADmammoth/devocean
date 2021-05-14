@@ -13,9 +13,9 @@ import StretchLayout from '../../components/generic/layouts/StretchLayout';
 import AppName from '../../components/specific/AppName';
 import ClockSidebar from '../../components/specific/ClockSidebar';
 import NotificationsList from '../../components/specific/NotificationsList';
-import FeatureMonade from '../../helpers/FeatureMonade';
-import StateMonade from '../../helpers/StateMonade';
-import useLocale from '../../helpers/useLocale';
+import FeatureMonade from '../../helpers/components/FeatureMonade';
+import StateMonade from '../../helpers/components/StateMonade';
+import useLocale from '../../helpers/hooks/useLocale';
 import navitemsState from '../../recoil/states/navitemsState';
 
 import styles from './HomePageContent.styles';

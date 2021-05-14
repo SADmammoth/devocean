@@ -1,15 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
 
-import Text from "../../generic/Text";
-import PropTypes from "prop-types";
-import InteractiveCard from "../../generic/InteractiveCard";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./NotificationContent.styles";
-import RelativeDate from "../../../helpers/RelativeDate";
-import formatName from "../../../helpers/formatName";
-import LiveRelativeDate from "../../generic/LiveRelativeDate";
+import formatName from '../../../helpers/functions/formatName';
+import RelativeDate from '../../../helpers/types/RelativeDate';
+import InteractiveCard from '../../generic/InteractiveCard';
+import LiveRelativeDate from '../../generic/LiveRelativeDate';
+import Text from '../../generic/Text';
+import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
+
+import styles from './NotificationContent.styles';
 
 const useStyles = createUseStyles(styles);
 

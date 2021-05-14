@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { Redirect } from 'umi';
 
-import StateMonade from '../../helpers/StateMonade';
+import StateMonade from '../../helpers/components/StateMonade';
 import featureAccessState from '../../recoil/states/featureAccessState';
 
 function FeatureAccess({ children, feature }) {

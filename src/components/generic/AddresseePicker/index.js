@@ -1,3 +1,3 @@
-import AddresseePicker from "./AddresseePicker";
+import AddresseePicker from './AddresseePicker';
 
 export default AddresseePicker;

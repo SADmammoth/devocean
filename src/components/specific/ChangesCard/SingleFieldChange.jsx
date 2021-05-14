@@ -1,10 +1,12 @@
-import React from "react";
-import PanelCard from "../../generic/PanelCard";
-import PropTypes from "prop-types";
-import CommentAuthorBadge from "../CommentAuthorBadge/CommentAuthorBadge";
-import StackLayout from "../../generic/layouts/StackLayout";
-import Text from "../../generic/Text";
-import FieldChange from "./FieldChange";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import PanelCard from '../../generic/PanelCard';
+import Text from '../../generic/Text';
+import StackLayout from '../../generic/layouts/StackLayout';
+import CommentAuthorBadge from '../CommentAuthorBadge/CommentAuthorBadge';
+import FieldChange from './FieldChange';
 
 function SingleFieldChange({ text, from, to, author, time }) {
   return (

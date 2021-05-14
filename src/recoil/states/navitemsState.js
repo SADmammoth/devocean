@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
 
-import Client from '../../helpers/Client';
-import serverStateSync from '../helpers/serverStateSync';
+import Client from '../../helpers/services/Client';
+import serverStateSync from '../helpers/effects/serverStateSync';
 
 const baseKey = 'navitemsState_';
 

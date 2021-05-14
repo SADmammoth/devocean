@@ -1,3 +1,3 @@
-import ClockSidebar from "./ClockSidebar";
+import ClockSidebar from './ClockSidebar';
 
 export default ClockSidebar;

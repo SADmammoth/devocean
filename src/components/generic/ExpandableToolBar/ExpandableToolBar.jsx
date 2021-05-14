@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import IconTextButton from "../IconTextButton";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
 
-import StackLayout from "../layouts/StackLayout";
-import Text from "../Text";
-import ToolBar from "../ToolBar";
-import OpenCloseButton from "./OpenCloseButton";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ExpandableToolBar.styles";
-import classNames from "classnames";
+import IconTextButton from '../IconTextButton';
+import Text from '../Text';
+import ToolBar from '../ToolBar';
+import StackLayout from '../layouts/StackLayout';
+import OpenCloseButton from './OpenCloseButton';
+
+import styles from './ExpandableToolBar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -36,8 +37,7 @@ function ExpandableToolBar({ className, items, style, children }) {
       style={style}
       precedingChildren={
         <OpenCloseButton classes={classes} setState={setExpanded} />
-      }
-    >
+      }>
       {children}
     </ToolBar>
   );

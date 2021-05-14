@@ -1,8 +1,10 @@
-import React from "react";
-import { Input as ReakitInput } from "reakit";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./AddresseePicker.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import { useTheme, createUseStyles } from 'react-jss';
+import { Input as ReakitInput } from 'reakit';
+
+import styles from './AddresseePicker.styles';
 
 const useStyles = createUseStyles(styles);
 

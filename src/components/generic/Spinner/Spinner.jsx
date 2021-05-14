@@ -1,7 +1,9 @@
-import React from "react";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Spinner.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './Spinner.styles';
 
 const useStyles = createUseStyles(styles);
 

@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./DiscussionCard.styles";
-import PanelCard from "../../generic/PanelCard";
-import CommentAuthorBadge from "../CommentAuthorBadge/CommentAuthorBadge";
-import Text from "../../generic/Text";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import PanelCard from '../../generic/PanelCard';
+import Text from '../../generic/Text';
+import CommentAuthorBadge from '../CommentAuthorBadge/CommentAuthorBadge';
+
+import styles from './DiscussionCard.styles';
 
 const useStyles = createUseStyles(styles);
 

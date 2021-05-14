@@ -1,6 +1,6 @@
 import React from 'react';
 
-import EventsViewContent from '../../pagesContent/TasksPagesContent/EventsViewContent';
+import EventsViewContent from '../../pagesContent/tasks/TasksPagesContent/EventsViewContent';
 
 function Events() {
   return (

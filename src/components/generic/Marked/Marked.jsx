@@ -1,6 +1,8 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Marked.styles";
+import React from 'react';
+
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './Marked.styles';
 
 const useStyles = createUseStyles(styles);
 

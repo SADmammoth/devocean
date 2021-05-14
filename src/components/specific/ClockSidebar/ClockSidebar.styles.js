@@ -1,9 +1,9 @@
 const styles = {
   content: {
-    paddingTop: "15vh",
+    paddingTop: '15vh',
   },
   secondaryClocks: {
-    width: "80%",
+    width: '80%',
   },
 };
 

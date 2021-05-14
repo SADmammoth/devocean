@@ -1,3 +1,3 @@
-import ReportPopup from "./ReportPopup";
+import ReportPopup from './ReportPopup';
 
 export default ReportPopup;

@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import DateTime from "../DateTime";
-import styles from "./Clock.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import DateTime from '../DateTime';
+
+import styles from './Clock.styles';
 
 const useStyles = createUseStyles(styles);
 

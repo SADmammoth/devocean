@@ -1,8 +1,10 @@
-import React from "react";
-import NotificationPageContent from "../../../pagesContent/NotificationPageContent";
-import { useRecoilValueLoadable } from "recoil";
-import { notificationsState_getById } from "../../../recoil/states/notificationsState";
-import StateMonade from "../../../helpers/StateMonade";
+import React from 'react';
+
+import { useRecoilValueLoadable } from 'recoil';
+
+import StateMonade from '../../../helpers/components/StateMonade';
+import NotificationPageContent from '../../../pagesContent/notifications/NotificationPageContent';
+import { notificationsState_getById } from '../../../recoil/states/notificationsState';
 
 export default function Notification({ match: { params } }) {
   const { id } = params;

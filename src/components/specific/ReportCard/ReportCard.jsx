@@ -1,12 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import TimeReportsBadge from "../TimeReportsBadge";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
 
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ReportCard.styles";
-import PanelCard from "../../generic/PanelCard";
-import CommentAuthorBadge from "../CommentAuthorBadge/CommentAuthorBadge";
+import PanelCard from '../../generic/PanelCard';
+import CommentAuthorBadge from '../CommentAuthorBadge/CommentAuthorBadge';
+import TimeReportsBadge from '../TimeReportsBadge';
+
+import styles from './ReportCard.styles';
 
 const useStyles = createUseStyles(styles);
 

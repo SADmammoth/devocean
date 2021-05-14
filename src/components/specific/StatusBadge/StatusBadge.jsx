@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
-import Duration from '../../../helpers/Duration';
-import useLocale from '../../../helpers/useLocale';
+import useLocale from '../../../helpers/hooks/useLocale';
+import Duration from '../../../helpers/types/Duration';
 import Text from '../../generic/Text';
 import StackLayout from '../../generic/layouts/StackLayout';
 

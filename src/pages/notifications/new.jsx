@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import formatName from '../../helpers/formatName';
-import EditNotificationPageContent from '../../pagesContent/EditNotificationPageContent';
+import formatName from '../../helpers/functions/formatName';
+import EditNotificationPageContent from '../../pagesContent/notifications/EditNotificationPageContent';
 import notificationsState from '../../recoil/states/notificationsState';
 import teammatesState, {
   teammatesState_Raw,

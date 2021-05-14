@@ -1,3 +1,3 @@
-import TeammateTitle from "./TeammateTitle";
+import TeammateTitle from './TeammateTitle';
 
 export default TeammateTitle;

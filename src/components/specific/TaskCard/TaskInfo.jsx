@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Text from "../../generic/Text";
-import useLocale from "../../../helpers/useLocale";
-import TaskProgress from "./TaskProgress";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import Text from '../../generic/Text';
+import TaskProgress from './TaskProgress';
 
 function TaskInfo({ classes, status, reportedTime, estimate }) {
   const locale = useLocale();
@@ -16,8 +18,7 @@ function TaskInfo({ classes, status, reportedTime, estimate }) {
       <Text
         type="hint"
         className={classes.status}
-        aria-label={locale("statusLabel", { status })}
-      >
+        aria-label={locale('statusLabel', { status })}>
         {statusText}
       </Text>
       {estimate && reportedTime ? (

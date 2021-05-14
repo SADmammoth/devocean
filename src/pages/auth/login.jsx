@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoginContent from '../../pagesContent/LoginContent';
+import LoginContent from '../../pagesContent/auth/LoginContent';
 
 export default function login() {
   return (

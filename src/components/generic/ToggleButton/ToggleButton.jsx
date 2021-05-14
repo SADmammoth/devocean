@@ -1,9 +1,12 @@
-import React, { useState, useCallback, useEffect } from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ToggleButton.styles";
-import Button from "../Button";
-import sizes from "../Button/sizes";
+import React, { useState, useCallback, useEffect } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import sizes from '../Button/sizes';
+
+import styles from './ToggleButton.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -42,7 +45,7 @@ ToggleButton.propTypes = {
     PropTypes.shape({
       label: PropTypes.node.isRequired,
       action: PropTypes.func.isRequired,
-    })
+    }),
   ).isRequired,
   current: PropTypes.number,
   size: PropTypes.oneOf(Object.keys(sizes)),

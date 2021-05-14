@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import Avatar from "../../generic/Avatar";
-import StackLayout from "../../generic/layouts/StackLayout";
-import Text from "../../generic/Text";
-import styles from "./TeammateTitle.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Avatar from '../../generic/Avatar';
+import Text from '../../generic/Text';
+import StackLayout from '../../generic/layouts/StackLayout';
+
+import styles from './TeammateTitle.styles';
 
 const useStyles = createUseStyles(styles);
 

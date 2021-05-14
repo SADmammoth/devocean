@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useEffect } from 'react';
 
-import HistoryPageContent from "../../../../pagesContent/TaskCommentsPagesContent/HistoryPageContent";
-import lastTaskCommentsViewState from "../../../../recoil/states/lastTaskCommentsViewState";
+import { useSetRecoilState } from 'recoil';
+
+import HistoryPageContent from '../../../../pagesContent/tasks/TaskCommentsPagesContent/HistoryPageContent';
+import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
 export default function HistoryPage({
   match: {
@@ -11,7 +12,7 @@ export default function HistoryPage({
 }) {
   const setLastView = useSetRecoilState(lastTaskCommentsViewState);
   useEffect(() => {
-    setLastView("history");
+    setLastView('history');
   }, []);
 
   return (

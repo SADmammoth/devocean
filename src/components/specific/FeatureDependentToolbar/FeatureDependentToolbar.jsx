@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
+import StateMonade from '../../../helpers/components/StateMonade';
 import { featureAccessState_array } from '../../../recoil/states/featureAccessState';
 import ExpandableToolBar from '../../generic/ExpandableToolBar';
 import ToolBar from '../../generic/ToolBar';

@@ -1,9 +1,13 @@
-import React from "react";
-import { SortForm } from "@sadmammoth/react-list";
-import { FaSort } from "react-icons/fa";
-import PopupButton from "../../generic/PopupButton";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./SortTool.styles";
+import React from 'react';
+
+import { FaSort } from 'react-icons/fa';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import { SortForm } from '@sadmammoth/react-list';
+
+import PopupButton from '../../generic/PopupButton';
+
+import styles from './SortTool.styles';
 
 const useStyles = createUseStyles(styles);
 

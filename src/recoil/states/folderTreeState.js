@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import { atom, selector, selectorFamily } from 'recoil';
 
-import Client from '../../helpers/Client';
-import Subscriber from '../../helpers/Subscriber';
+import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
+import serverStateSync from '../helpers/effects/serverStateSync';
 import getParentsOfFolderTree from '../helpers/getParentsOfFolderTree';
 import getPostState from '../helpers/getPostState';
-import mergeSelector from '../helpers/mergeSelector';
 import noRequest from '../helpers/noRequest';
-import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
-import serverStateSync from '../helpers/serverStateSync';
-import updateSelector from '../helpers/updateSelector';
+import mergeSelector from '../helpers/selectors/mergeSelector';
+import updateSelector from '../helpers/selectors/updateSelector';
 import { tasksState_getById, tasksState_update } from './tasksState';
 
 const baseKey = 'folderTreeState_';

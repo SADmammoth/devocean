@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./StretchLastLayout.styles";
-import StackLayout from "../StackLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackLayout from '../StackLayout';
+
+import styles from './StretchLastLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -18,9 +21,9 @@ function StretchLastLayout({
   const classes = useStyles(theme);
 
   const alignment =
-    orientation === "vertical"
-      ? { alignY: reverse ? "end" : "start" }
-      : { alignX: reverse ? "end" : "start" };
+    orientation === 'vertical'
+      ? { alignY: reverse ? 'end' : 'start' }
+      : { alignX: reverse ? 'end' : 'start' };
 
   return (
     <StackLayout
@@ -31,12 +34,11 @@ function StretchLastLayout({
         {
           [classes.reversed]: !!reverse,
           [classes.normal]: !reverse,
-        }
+        },
       )}
       orientation={orientation}
       {...props}
-      {...alignment}
-    >
+      {...alignment}>
       {children}
     </StackLayout>
   );
@@ -45,7 +47,7 @@ function StretchLastLayout({
 StretchLastLayout.propTypes = {
   className: PropTypes.string,
   children: PropTypes.node.isRequired,
-  orientation: PropTypes.oneOfType(["vertical", "horizontal"]),
+  orientation: PropTypes.oneOfType(['vertical', 'horizontal']),
   reverse: PropTypes.bool,
 };
 

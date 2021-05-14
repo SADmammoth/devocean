@@ -1,8 +1,11 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import classNames from "classnames";
-import StackLayout from "../StackLayout";
-import styles from "./BlockDescriptionLayout.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackLayout from '../StackLayout';
+
+import styles from './BlockDescriptionLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -16,8 +19,7 @@ const BlockDescriptionLayout = ({ children }) => {
       alignY="stretch"
       alignX="start"
       className={classes.layout}
-      gap="5px"
-    >
+      gap="5px">
       {children}
     </StackLayout>
   );
@@ -31,8 +33,7 @@ const Block = ({ className, children, ...props }) => {
     <StackLayout
       className={classNames(className, classes.block)}
       alignY="center"
-      {...props}
-    >
+      {...props}>
       {children}
     </StackLayout>
   );
@@ -49,8 +50,7 @@ const Description = ({ className, children, ...props }) => {
       alignX="start"
       className={classNames(className, classes.description)}
       gap="0"
-      {...props}
-    >
+      {...props}>
       {children}
     </StackLayout>
   );

@@ -2,9 +2,9 @@ import React from 'react';
 
 import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import formatName from '../../../helpers/formatName';
-import EditNotificationPageContent from '../../../pagesContent/EditNotificationPageContent';
+import StateMonade from '../../../helpers/components/StateMonade';
+import formatName from '../../../helpers/functions/formatName';
+import EditNotificationPageContent from '../../../pagesContent/notifications/EditNotificationPageContent';
 import { notificationsState_update } from '../../../recoil/states/notificationsState';
 import teammatesState, {
   teammatesState_Raw,

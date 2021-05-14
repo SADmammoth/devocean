@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import StackLayout from "../layouts/StackLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./PanelCard.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './PanelCard.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -14,8 +17,7 @@ function PanelCard({ className, children, ...props }) {
   return (
     <StackLayout
       {...props}
-      className={classNames(classes.panelCard, className)}
-    >
+      className={classNames(classes.panelCard, className)}>
       {children}
     </StackLayout>
   );

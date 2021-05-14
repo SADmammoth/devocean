@@ -1,6 +1,5 @@
-import { aligns, orientations } from "./maps";
-
-import orientationPrefix from "./orientationPrefix";
+import { aligns, orientations } from './maps';
+import orientationPrefix from './orientationPrefix';
 
 export const justifyContent = (value) => ({
   justifyContent: value,
@@ -14,8 +13,8 @@ export const getAlignsStylesForOrientation = (orientation) => {
   if (orientation === orientations.vertical) {
     return Object.values(aligns).map((value) => {
       return {
-        [orientationPrefix(orientation, value, "Y")]: justifyContent(value),
-        [orientationPrefix(orientation, value, "X")]: alignItems(value),
+        [orientationPrefix(orientation, value, 'Y')]: justifyContent(value),
+        [orientationPrefix(orientation, value, 'X')]: alignItems(value),
       };
     });
   }
@@ -24,18 +23,18 @@ export const getAlignsStylesForOrientation = (orientation) => {
     return Object.values(
       Object.values(aligns).map((value) => {
         return {
-          [orientationPrefix(orientation, value, "X")]: justifyContent(value),
-          [orientationPrefix(orientation, value, "Y")]: alignItems(value),
+          [orientationPrefix(orientation, value, 'X')]: justifyContent(value),
+          [orientationPrefix(orientation, value, 'Y')]: alignItems(value),
         };
-      })
+      }),
     );
   }
 };
 
 export const alignsStyles = Object.assign(
   ...Object.entries(orientations).map(([key, value]) =>
-    Object.assign(...getAlignsStylesForOrientation(value))
-  )
+    Object.assign(...getAlignsStylesForOrientation(value)),
+  ),
 );
 
 export const justifySelf = (value) => ({
@@ -50,11 +49,11 @@ export const getAlignsStylesForOrientationForItems = (orientation) => {
   if (orientation === orientations.vertical) {
     return Object.values(aligns).map((value) => {
       return {
-        [orientationPrefix(orientation + "item", value, "YItem")]: justifySelf(
-          value
+        [orientationPrefix(orientation + 'item', value, 'YItem')]: justifySelf(
+          value,
         ),
-        [orientationPrefix(orientation + "item", value, "XItem")]: alignSelf(
-          value
+        [orientationPrefix(orientation + 'item', value, 'XItem')]: alignSelf(
+          value,
         ),
       };
     });
@@ -65,21 +64,21 @@ export const getAlignsStylesForOrientationForItems = (orientation) => {
       Object.values(aligns).map((value) => {
         return {
           [orientationPrefix(
-            orientation + "item",
+            orientation + 'item',
             value,
-            "XItem"
+            'XItem',
           )]: justifySelf(value),
-          [orientationPrefix(orientation + "item", value, "YItem")]: alignSelf(
-            value
+          [orientationPrefix(orientation + 'item', value, 'YItem')]: alignSelf(
+            value,
           ),
         };
-      })
+      }),
     );
   }
 };
 
 export const alignsStylesForItems = Object.assign(
   ...Object.entries(orientations).map(([key, value]) =>
-    Object.assign(...getAlignsStylesForOrientationForItems(value))
-  )
+    Object.assign(...getAlignsStylesForOrientationForItems(value)),
+  ),
 );

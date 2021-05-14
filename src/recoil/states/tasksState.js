@@ -1,17 +1,17 @@
 import _ from 'lodash';
 import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
-import Client from '../../helpers/Client';
-import Subscriber from '../../helpers/Subscriber';
 import { fullTaskConverter } from '../../helpers/responseConverters';
-import deleteSelector from '../helpers/deleteSelector';
-import entriesArrangementSelector from '../helpers/entriesArrangementSelector';
+import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 import getPostState from '../helpers/getPostState';
 import getTasksOfFolderTree from '../helpers/getTasksOfFolderTree';
-import mergeSelector from '../helpers/mergeSelector';
-import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
+import deleteSelector from '../helpers/selectors/deleteSelector';
+import entriesArrangementSelector from '../helpers/selectors/entriesArrangementSelector';
+import mergeSelector from '../helpers/selectors/mergeSelector';
+import updateSelector from '../helpers/selectors/updateSelector';
 import treeArrayToMap from '../helpers/treeArrayToMap';
-import updateSelector from '../helpers/updateSelector';
 import folderTreeState from './folderTreeState';
 import userState from './userState';
 

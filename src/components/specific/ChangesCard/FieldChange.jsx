@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { FaChevronRight } from "react-icons/fa";
-import StackLayout from "../../generic/layouts/StackLayout";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { FaChevronRight } from 'react-icons/fa';
+
+import StackLayout from '../../generic/layouts/StackLayout';
 
 function FieldChange({ field, from, to }) {
   return (

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
-import EditCollectionPageContent from '../../pagesContent/EditCollectionPageContent';
+import EditCollectionPageContent from '../../pagesContent/collections/EditCollectionPageContent';
 import folderTreeState from '../../recoil/states/folderTreeState';
 
 function NewCollection() {

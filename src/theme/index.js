@@ -1,49 +1,49 @@
 const theme = {
   text: {
-    common: "#003c58",
-    saturated: "#4a575e",
-    highlighted: "#005c86",
-    button: "#003c58",
+    common: '#003c58',
+    saturated: '#4a575e',
+    highlighted: '#005c86',
+    button: '#003c58',
   },
   background: {
-    shadows: "#c4c4c4",
-    dark: "#EAEAEA",
-    common: "#F9F9F9",
-    light: "#ffffff",
-    button: "#82d1ff",
+    shadows: '#c4c4c4',
+    dark: '#EAEAEA',
+    common: '#F9F9F9',
+    light: '#ffffff',
+    button: '#82d1ff',
 
-    card: "#fdfdfd",
+    card: '#fdfdfd',
   },
-  "@global": {
-    fontFamily: "SF Pro Display",
-    fontSize: "19px",
+  '@global': {
+    fontFamily: 'SF Pro Display',
+    fontSize: '19px',
   },
   noTypeList: {
-    listStyleType: "none",
+    listStyleType: 'none',
   },
-  contentWidth: "1400px",
+  contentWidth: '1400px',
   fontSizes: {
-    biggest: "1.79rem", //34px
-    bigger: "1.47rem", //28px
-    big: "1.36rem", //26px
-    default: "1rem", //19px
-    small: "0.84rem", //16px
-    smaller: "0.74rem", //14px
+    biggest: '1.79rem', //34px
+    bigger: '1.47rem', //28px
+    big: '1.36rem', //26px
+    default: '1rem', //19px
+    small: '0.84rem', //16px
+    smaller: '0.74rem', //14px
 
-    special: "4.37rem", //83px
-    specialSmall: "2.58rem", //49px
+    special: '4.37rem', //83px
+    specialSmall: '2.58rem', //49px
   },
-  headerHeight: "7vh",
+  headerHeight: '7vh',
   spinner: {
-    size: "10px",
-    background: "#ffffff",
-    color: "#005c86",
+    size: '10px',
+    background: '#ffffff',
+    color: '#005c86',
   },
   spaces: {
-    big: "15vh",
-    small: "5vh",
+    big: '15vh',
+    small: '5vh',
   },
-  draggableAreaDefaultSize: "50px",
+  draggableAreaDefaultSize: '50px',
 };
 
 export default theme;

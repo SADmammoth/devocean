@@ -1,23 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { aligns, orientations } from "./maps";
-import orientationPrefix from "./orientationPrefix";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+
+import { aligns, orientations } from './maps';
+import orientationPrefix from './orientationPrefix';
 
 function StackItems({ classes, children, orientation }) {
   if (!children) {
     return null;
   }
-  const orientationClass = orientations[orientation] + "item";
+  const orientationClass = orientations[orientation] + 'item';
   return React.Children.map(children, (child) => {
     if (!child) return child;
 
     const alignYClass = child.props.alignY
-      ? orientationPrefix(orientationClass, aligns[child.props.alignY], "YItem")
-      : "";
+      ? orientationPrefix(orientationClass, aligns[child.props.alignY], 'YItem')
+      : '';
     const alignXClass = child.props.alignY
-      ? orientationPrefix(orientationClass, aligns[child.props.alignX], "XItem")
-      : "";
+      ? orientationPrefix(orientationClass, aligns[child.props.alignX], 'XItem')
+      : '';
 
     return {
       ...child,

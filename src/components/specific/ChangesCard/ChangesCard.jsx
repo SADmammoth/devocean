@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ChangesCard.styles";
-import SingleFieldChange from "./SingleFieldChange";
-import FieldsChanges from "./FieldsChanges";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import FieldsChanges from './FieldsChanges';
+import SingleFieldChange from './SingleFieldChange';
+
+import styles from './ChangesCard.styles';
 
 const useStyles = createUseStyles(styles);
 

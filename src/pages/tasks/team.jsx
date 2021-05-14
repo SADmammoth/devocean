@@ -1,6 +1,6 @@
 import React from 'react';
 
-import TeamViewContent from '../../pagesContent/TasksPagesContent/TeamViewContent';
+import TeamViewContent from '../../pagesContent/tasks/TasksPagesContent/TeamViewContent';
 
 function Team() {
   return (

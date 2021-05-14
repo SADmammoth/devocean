@@ -1,9 +1,9 @@
-import getSectorGradient from "../../../helpers/getSectorGradient";
+import getSectorGradient from '../../../helpers/functions/getSectorGradient';
 
 const styles = {
   progressbar: {
-    position: "relative",
-    borderRadius: "50%",
+    position: 'relative',
+    borderRadius: '50%',
 
     width: (theme) => theme.size,
     height: (theme) => theme.size,
@@ -13,26 +13,26 @@ const styles = {
       getSectorGradient(
         theme.progress,
         theme.progressbarBackground,
-        theme.progressbarForeground
+        theme.progressbarForeground,
       ),
 
-    "&::before": {
+    '&::before': {
       content: '""',
-      position: "absolute",
+      position: 'absolute',
       top: (theme) => theme.width,
       left: (theme) => theme.width,
 
       width: (theme) => `calc(${theme.size} - (${theme.width} * 2))`,
       height: (theme) => `calc(${theme.size} - (${theme.width} * 2))`,
 
-      borderRadius: "50%",
+      borderRadius: '50%',
 
       backgroundColor: (theme) => theme.progressbarBackdrop,
     },
   },
   content: {
-    position: "relative",
-    zIndex: "10",
+    position: 'relative',
+    zIndex: '10',
   },
 };
 

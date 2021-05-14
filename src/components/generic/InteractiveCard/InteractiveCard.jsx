@@ -1,9 +1,12 @@
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./InteractiveCard.styles";
-import useClickOrLink from "../../../helpers/useClickOrLink";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useClickOrLink from '../../../helpers/hooks/useClickOrLink';
+
+import styles from './InteractiveCard.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -17,8 +20,7 @@ const InteractiveCard = ({ className, onClick, link, children }) => {
     <div
       as="article"
       className={classNames(className, classes.card)}
-      onClick={onClickHandler}
-    >
+      onClick={onClickHandler}>
       {children}
     </div>
   );

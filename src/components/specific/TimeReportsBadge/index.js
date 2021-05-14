@@ -1,3 +1,3 @@
-import TimeReportsBadge from "./TimeReportsBadge";
+import TimeReportsBadge from './TimeReportsBadge';
 
 export default TimeReportsBadge;

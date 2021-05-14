@@ -1,3 +1,3 @@
-import ContentElement from "./ContentElement";
+import ContentElement from './ContentElement';
 
 export default ContentElement;

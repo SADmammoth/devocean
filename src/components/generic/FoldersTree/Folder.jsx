@@ -1,9 +1,11 @@
-import React, { useCallback, useEffect, useState } from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import { Button as ReakitButton } from "reakit";
-import useLocale from "../../../helpers/useLocale";
-import FolderButton from "./FolderButton";
+import React, { useCallback, useEffect, useState } from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { Button as ReakitButton } from 'reakit';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import FolderButton from './FolderButton';
 
 function Folder({
   id,
@@ -37,8 +39,7 @@ function Folder({
     <div
       className={classNames(classes.folderTree, {
         [classes.selectedTree]: selected,
-      })}
-    >
+      })}>
       <FolderButton
         as={as}
         classes={classes}
@@ -50,7 +51,7 @@ function Folder({
         selectFolder={selectFolder}
         isConstant={isConstant}
       />
-      <div aria-label={locale("Subfolders", { name })}>
+      <div aria-label={locale('Subfolders', { name })}>
         {renderSubFolders()}
       </div>
     </div>
@@ -62,7 +63,7 @@ Folder.propTypes = {
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   classes: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
-  type: PropTypes.oneOf(["list", "folder"]),
+  type: PropTypes.oneOf(['list', 'folder']),
   onClick: PropTypes.func,
   selected: PropTypes.bool,
   childrenIds: PropTypes.arrayOf(PropTypes.string),
@@ -71,7 +72,7 @@ Folder.propTypes = {
 };
 
 Folder.defaultProps = {
-  type: "folder",
+  type: 'folder',
   as: ReakitButton,
   onClick: () => {},
   selected: false,

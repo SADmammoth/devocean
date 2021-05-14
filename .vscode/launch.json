@@ -16,7 +16,8 @@
       "skipFiles": ["./node_modules"],
       "preLaunchTask": "npm: start",
       "console": "integratedTerminal",
-      "sourceMaps": true
+      "sourceMaps": true,
+      "breakOnLoad": false
     }
   ]
 }

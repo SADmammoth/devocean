@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import classNames from "classnames";
-import styles from "./StretchLayout.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './StretchLayout.styles';
 
 const useStyles = createUseStyles(styles);
 

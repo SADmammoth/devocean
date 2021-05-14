@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./NavList.styles";
-import classNames from "classnames";
-import NavItems from "../NavItems";
-import StackLayout from "../layouts/StackLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import NavItems from '../NavItems';
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './NavList.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -21,8 +24,7 @@ function NavList({ items }) {
             orientation="vertical"
             alignX="start"
             gap="0.7rem"
-            className={classes.list}
-          >
+            className={classes.list}>
             {children}
           </StackLayout>
         )}
@@ -40,7 +42,7 @@ NavList.propTypes = {
       label: PropTypes.string.isRequired,
       link: PropTypes.string,
       onClick: PropTypes.func,
-    })
+    }),
   ).isRequired,
 };
 

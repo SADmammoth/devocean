@@ -1,7 +1,9 @@
-import React from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
-import PropTypes from "prop-types";
-import ToggleButton from "../ToggleButton";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+
+import ToggleButton from '../ToggleButton';
 
 function OpenCloseButton({ classes, setState }) {
   return (

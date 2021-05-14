@@ -1,3 +1,3 @@
-import StretchLastLayout from "./StretchLastLayout";
+import StretchLastLayout from './StretchLastLayout';
 
 export default StretchLastLayout;

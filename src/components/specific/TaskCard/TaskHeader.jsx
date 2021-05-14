@@ -1,6 +1,8 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Text from "../../generic/Text";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import Text from '../../generic/Text';
 
 function TaskHeader({ classes, title }) {
   return (

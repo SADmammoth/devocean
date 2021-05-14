@@ -1,3 +1,3 @@
-import PriorityBadge from "./PriorityBadge";
+import PriorityBadge from './PriorityBadge';
 
 export default PriorityBadge;

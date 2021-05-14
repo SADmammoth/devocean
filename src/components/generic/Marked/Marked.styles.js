@@ -1,17 +1,17 @@
 const styles = {
   adornment: {
-    width: "auto",
-    position: "relative",
+    width: 'auto',
+    position: 'relative',
 
-    "&::after": {
+    '&::after': {
       content: '""',
-      display: "block",
-      position: "absolute",
-      top: "8px",
-      right: "-13px",
-      borderRadius: "50%",
-      height: "8px",
-      width: "8px",
+      display: 'block',
+      position: 'absolute',
+      top: '8px',
+      right: '-13px',
+      borderRadius: '50%',
+      height: '8px',
+      width: '8px',
       background: (theme) => theme.text.highlighted,
     },
   },

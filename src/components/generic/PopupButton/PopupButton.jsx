@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import Popup from "../Popup";
-import { useTheme, createUseStyles } from "react-jss";
-import Button from "../Button";
-import styles from "./PopupButton.styles";
-import positions from "./positions";
+import React, { useEffect, useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import Popup from '../Popup';
+import positions from './positions';
+
+import styles from './PopupButton.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -22,16 +25,16 @@ function PopupButton({
 
   const backdropPress = () => {
     setShow(false);
-    document.removeEventListener("click", backdropPress);
+    document.removeEventListener('click', backdropPress);
   };
 
   useEffect(() => {
     if (backdrop && show) {
-      document.addEventListener("click", backdropPress);
+      document.addEventListener('click', backdropPress);
     }
 
     return () => {
-      document.removeEventListener("click", backdropPress);
+      document.removeEventListener('click', backdropPress);
     };
   }, [show]);
 
@@ -42,8 +45,7 @@ function PopupButton({
         size="fluid"
         onClick={() => {
           setShow((show) => !show);
-        }}
-      >
+        }}>
         {buttonContent}
       </Button>
       {show ? (
@@ -51,8 +53,7 @@ function PopupButton({
           className={classes[`${positions[position]}Popup`]}
           showSubmitButton={showSubmitButton}
           submitText={submitText}
-          closeSelf={() => setShow(false)}
-        >
+          closeSelf={() => setShow(false)}>
           {children}
         </Popup>
       ) : null}

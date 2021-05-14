@@ -1,3 +1,3 @@
-import PanelCard from "./PanelCard";
+import PanelCard from './PanelCard';
 
 export default PanelCard;

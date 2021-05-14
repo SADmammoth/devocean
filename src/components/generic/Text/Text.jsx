@@ -1,12 +1,15 @@
-import React, { useEffect } from "react";
-import PropTypes from "prop-types";
-import alignments from "./alignments";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Text.styles";
-import types from "./types";
-import useHyphenate from "../../../helpers/useHyphenate";
-import useLocale from "../../../helpers/useLocale";
+import React, { useEffect } from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useHyphenate from '../../../helpers/hooks/useHyphenate';
+import useLocale from '../../../helpers/hooks/useLocale';
+import alignments from './alignments';
+import types from './types';
+
+import styles from './Text.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -26,7 +29,7 @@ function Text(
     ...props
   },
 
-  ref
+  ref,
 ) {
   const theme = useTheme();
   const classes = useStyles(theme);
@@ -34,10 +37,10 @@ function Text(
   const TextTag = as || types[type];
 
   const locale = useLocale();
-  const hyphenate = useHyphenate(locale("vowels"), locale("consonants"));
+  const hyphenate = useHyphenate(locale('vowels'), locale('consonants'));
   let text;
   useEffect(() => {
-    if (typeof children === "string" && hyphenated) {
+    if (typeof children === 'string' && hyphenated) {
       text = hyphenate(children);
     }
   }, [hyphenated, children]);
@@ -49,17 +52,16 @@ function Text(
         classes.text,
         classes[type],
         className,
-        classes[alignments[alignment] + "-alignment"],
+        classes[alignments[alignment] + '-alignment'],
         {
           [classes.bold]: bold,
           [classes.italic]: italic,
           [classes.ellipsis]: ellipsis || !!lines,
           [classes.hyphenated]: hyphenated,
-        }
+        },
       )}
-      style={{ "--lines": lines }}
-      {...props}
-    >
+      style={{ '--lines': lines }}
+      {...props}>
       {text || children}
     </TextTag>
   );

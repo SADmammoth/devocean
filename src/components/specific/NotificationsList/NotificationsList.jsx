@@ -3,8 +3,8 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValueLoadable } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import useLocale from '../../../helpers/useLocale';
+import StateMonade from '../../../helpers/components/StateMonade';
+import useLocale from '../../../helpers/hooks/useLocale';
 import notificationsState from '../../../recoil/states/notificationsState';
 import Button from '../../generic/Button';
 import Interactive from '../../generic/Interactive';

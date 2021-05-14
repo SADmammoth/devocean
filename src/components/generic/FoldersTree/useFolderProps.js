@@ -1,4 +1,4 @@
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
 export default function useFolderProps(
   folders,
@@ -6,7 +6,7 @@ export default function useFolderProps(
   selectedIndex,
   selectedParents,
   selectFolder,
-  FolderBase
+  FolderBase,
 ) {
   const createFolderProps = useCallback(
     (folderId, passedIndex) => {
@@ -27,7 +27,7 @@ export default function useFolderProps(
         id,
         classes,
         as: FolderBase,
-        type: !!tasks ? "list" : "folder",
+        type: !!tasks ? 'list' : 'folder',
         name,
         selectFolder,
         childrenIds: children,
@@ -37,7 +37,7 @@ export default function useFolderProps(
         isConstant,
       };
     },
-    [selectedIndex, selectedParents, folders, classes]
+    [selectedIndex, selectedParents, folders, classes],
   );
 
   return createFolderProps;

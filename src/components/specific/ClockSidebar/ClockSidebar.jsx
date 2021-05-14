@@ -1,11 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import Clock from "../../generic/Clock";
-import Sidebar from "../../generic/Sidebar";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ClockSidebar.styles";
-import StackLayout from "../../generic/layouts/StackLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Clock from '../../generic/Clock';
+import Sidebar from '../../generic/Sidebar';
+import StackLayout from '../../generic/layouts/StackLayout';
+
+import styles from './ClockSidebar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -19,8 +22,7 @@ function ClockSidebar({ className, ...props }) {
         className={classes.content}
         orientation="vertical"
         alignX="center"
-        gap="2rem"
-      >
+        gap="2rem">
         <Clock city="Belarus, Minsk" size="big" />
         <StackLayout className={classes.secondaryClocks} alignX="center">
           <Clock city="Country, City" size="small" />

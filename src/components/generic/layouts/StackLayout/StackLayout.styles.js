@@ -1,29 +1,29 @@
-import { alignsStyles, alignsStylesForItems } from "./helpers.styles";
+import { alignsStyles, alignsStylesForItems } from './helpers.styles';
 
 const styles = {
   stack: {
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "var(--gap, 0)",
+    display: 'flex',
+    flexWrap: 'wrap',
+    gap: 'var(--gap, 0)',
   },
   nowrap: {
-    flexWrap: "nowrap",
+    flexWrap: 'nowrap',
   },
   horizontal: {
-    "&$scroll": {
-      overflowX: "auto",
-      overflowY: "hidden",
+    '&$scroll': {
+      overflowX: 'auto',
+      overflowY: 'hidden',
     },
   },
   vertical: {
-    flexDirection: "column",
-    "&$scroll": {
-      overflowY: "auto",
-      overflowX: "hidden",
+    flexDirection: 'column',
+    '&$scroll': {
+      overflowY: 'auto',
+      overflowX: 'hidden',
     },
   },
   scroll: {
-    flexWrap: "nowrap",
+    flexWrap: 'nowrap',
   },
   ...alignsStyles,
   ...alignsStylesForItems,

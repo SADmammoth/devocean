@@ -1,8 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import classNames from "classnames";
-import styles from "./ContainerLayout.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './ContainerLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -13,8 +15,7 @@ function ContainerLayout({ children, className, styles }) {
   return (
     <div
       className={classNames(classes.containerLayout, className)}
-      styles={styles}
-    >
+      styles={styles}>
       {children}
     </div>
   );

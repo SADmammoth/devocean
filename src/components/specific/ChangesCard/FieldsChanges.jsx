@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import FieldChange from "./FieldChange";
-import StackLayout from "../../generic/layouts/StackLayout";
-import CommentAuthorBadge from "../CommentAuthorBadge/CommentAuthorBadge";
-import PanelCard from "../../generic/PanelCard";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import PanelCard from '../../generic/PanelCard';
+import StackLayout from '../../generic/layouts/StackLayout';
+import CommentAuthorBadge from '../CommentAuthorBadge/CommentAuthorBadge';
+import FieldChange from './FieldChange';
 
 function FieldsChanges({ fields, author, time }) {
   return (

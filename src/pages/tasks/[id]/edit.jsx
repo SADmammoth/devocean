@@ -6,9 +6,9 @@ import {
   useRecoilValueLoadable,
 } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import formatName from '../../../helpers/formatName';
-import EditTaskPageContent from '../../../pagesContent/EditTaskPageContent';
+import StateMonade from '../../../helpers/components/StateMonade';
+import formatName from '../../../helpers/functions/formatName';
+import EditTaskPageContent from '../../../pagesContent/tasks/EditTaskPageContent';
 import folderTreeState from '../../../recoil/states/folderTreeState';
 import statusesState from '../../../recoil/states/statusesState';
 import { tasksState_update } from '../../../recoil/states/tasksState';

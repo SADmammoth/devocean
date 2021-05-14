@@ -1,11 +1,14 @@
-import React from "react";
-import orientationPrefix from "./orientationPrefix";
-import { aligns, orientations } from "./maps";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./StackLayout.styles";
-import StackItems from "./StackItems";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackItems from './StackItems';
+import { aligns, orientations } from './maps';
+import orientationPrefix from './orientationPrefix';
+
+import styles from './StackLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -26,8 +29,8 @@ const StackLayout = ({
   const classes = useStyles(theme);
 
   const orientationClass = orientations[orientation];
-  const alignYClass = orientationPrefix(orientationClass, aligns[alignY], "Y");
-  const alignXClass = orientationPrefix(orientationClass, aligns[alignX], "X");
+  const alignYClass = orientationPrefix(orientationClass, aligns[alignY], 'Y');
+  const alignXClass = orientationPrefix(orientationClass, aligns[alignX], 'X');
 
   const RenderTag = as;
 
@@ -39,11 +42,10 @@ const StackLayout = ({
         classes[orientationClass],
         classes[alignYClass],
         classes[alignXClass],
-        { [classes.scroll]: scroll, [classes.nowrap]: nowrap }
+        { [classes.scroll]: scroll, [classes.nowrap]: nowrap },
       )}
-      style={{ ...style, "--gap": gap }}
-      {...other}
-    >
+      style={{ ...style, '--gap': gap }}
+      {...other}>
       <StackItems classes={classes} orientation={orientation}>
         {children}
       </StackItems>
@@ -69,11 +71,11 @@ StackLayout.propTypes = {
 };
 
 StackLayout.defaultProps = {
-  orientation: "horizontal",
-  alignY: "stretch",
-  alignX: "stretch",
+  orientation: 'horizontal',
+  alignY: 'stretch',
+  alignX: 'stretch',
   scroll: false,
-  as: "div",
+  as: 'div',
   nowrap: false,
 };
 

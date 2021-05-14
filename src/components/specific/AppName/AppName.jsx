@@ -1,9 +1,12 @@
-import React from "react";
-import useLocale from "../../../helpers/useLocale";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./AppName.styles";
-import Text from "../../generic/Text";
-import HiddenLink from "../../generic/HiddenLink";
+import React from 'react';
+
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import HiddenLink from '../../generic/HiddenLink';
+import Text from '../../generic/Text';
+
+import styles from './AppName.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -16,7 +19,7 @@ const AppName = () => {
 
   return (
     <Text type="h1" as={Link} bold className={classes.appname}>
-      {locale("appname")}
+      {locale('appname')}
     </Text>
   );
 };

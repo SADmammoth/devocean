@@ -1,12 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import useProgress from "../../../helpers/useProgress";
-import CircleProgressBar from "../../generic/CircleProgressBar";
-import styles from "./TimeReportsBadge.styles";
-import Text from "../../generic/Text";
-import useLocale from "../../../helpers/useLocale";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import useProgress from '../../../helpers/hooks/useProgress';
+import CircleProgressBar from '../../generic/CircleProgressBar';
+import Text from '../../generic/Text';
+import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
+
+import styles from './TimeReportsBadge.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -29,8 +32,7 @@ function TimeReportsBadge({
           progress={progress}
           width="5px"
           backdropColor={theme.background.light}
-          backgroundColor={theme.background.dark}
-        >
+          backgroundColor={theme.background.dark}>
           <Text type="common" bold>
             {text || reportedTime.toString()}
           </Text>
@@ -39,18 +41,18 @@ function TimeReportsBadge({
       <BlockDescriptionLayout.Description>
         {estimateUpdate ? (
           <Text type="common" bold>
-            {locale("Estimate set")}
+            {locale('Estimate set')}
           </Text>
         ) : (
           <Text type="common" bold>
-            {locale("Reported")}
+            {locale('Reported')}
             {!activity || ` – ${activity}`}
           </Text>
         )}
 
         {!_.isNaN(estimate.value) && estimate.value ? (
           <Text type="small">
-            {locale("from estimate", { estimate: estimate.toString() })}
+            {locale('from estimate', { estimate: estimate.toString() })}
           </Text>
         ) : null}
       </BlockDescriptionLayout.Description>

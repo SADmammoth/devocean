@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import EditCollectionPageContent from '../../../pagesContent/EditCollectionPageContent';
+import StateMonade from '../../../helpers/components/StateMonade';
+import EditCollectionPageContent from '../../../pagesContent/collections/EditCollectionPageContent';
 import folderTreeState, {
   folderTreeState_update,
 } from '../../../recoil/states/folderTreeState';

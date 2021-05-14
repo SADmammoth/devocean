@@ -1,8 +1,8 @@
 const styles = {
   link: {
-    outline: "none",
-    color: "inherit",
-    underline: "inherit",
+    outline: 'none',
+    color: 'inherit',
+    underline: 'inherit',
   },
 };
 

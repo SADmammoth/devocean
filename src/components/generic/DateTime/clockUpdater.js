@@ -1,4 +1,4 @@
-import componentUpdater from "../../../helpers/componentUpdater";
+import componentUpdater from '../../../helpers/functions/componentUpdater';
 
 export default function clockUpdater() {
   let updater;

@@ -1,3 +1,3 @@
-import FoldersTree from "./FoldersTree";
+import FoldersTree from './FoldersTree';
 
 export default FoldersTree;

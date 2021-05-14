@@ -1,9 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import DraggableElement from "../../generic/DraggableElement";
-import TaskCard from "../TaskCard";
-import styles from "./DraggableTask.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import DraggableElement from '../../generic/DraggableElement';
+import TaskCard from '../TaskCard';
+
+import styles from './DraggableTask.styles';
 
 const useStyles = createUseStyles(styles);
 

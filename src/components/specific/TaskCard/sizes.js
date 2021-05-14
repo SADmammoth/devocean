@@ -1,4 +1,4 @@
 export default {
-  default: "default",
-  narrow: "narrow",
+  default: 'default',
+  narrow: 'narrow',
 };

@@ -1,4 +1,4 @@
-import Duration from '../Duration';
+import Duration from '../types/Duration';
 
 export default function ({
   title,

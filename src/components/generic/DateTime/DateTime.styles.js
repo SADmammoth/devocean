@@ -1,13 +1,13 @@
 const styles = {
   blinking: {
-    animation: "$blink 2s infinite ease-in-out 1s",
+    animation: '$blink 2s infinite ease-in-out 1s',
   },
 
-  "@keyframes blink": {
+  '@keyframes blink': {
     from: {
       opacity: 0,
     },
-    "50%": {
+    '50%': {
       opacity: 1,
     },
     to: {
@@ -16,9 +16,9 @@ const styles = {
   },
 
   dateTime: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 
   time: {
@@ -27,11 +27,11 @@ const styles = {
   },
 
   divider: {
-    height: "1px",
-    width: "100%",
+    height: '1px',
+    width: '100%',
     margin: 0,
     background: (theme) => theme.text.common,
-    border: "none",
+    border: 'none',
   },
 
   date: {
@@ -40,24 +40,24 @@ const styles = {
   },
 
   big: {
-    "& $time": {
+    '& $time': {
       fontSize: (theme) => theme.fontSizes.special,
     },
-    "& $date": { fontSize: (theme) => theme.fontSizes.bigger },
+    '& $date': { fontSize: (theme) => theme.fontSizes.bigger },
   },
 
   small: {
-    "& $time": {
+    '& $time': {
       fontSize: (theme) => theme.fontSizes.specialSmall,
     },
-    "& $date": { fontSize: (theme) => theme.fontSizes.default },
+    '& $date': { fontSize: (theme) => theme.fontSizes.default },
   },
 
   mini: {
-    "& $time": {
+    '& $time': {
       fontSize: (theme) => theme.fontSizes.bigger,
     },
-    "& $date": { fontSize: (theme) => theme.fontSizes.default },
+    '& $date': { fontSize: (theme) => theme.fontSizes.default },
   },
 };
 

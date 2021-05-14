@@ -1,12 +1,15 @@
-import React from "react";
-import NestedContainerLayout from "../layouts/NestedContainerLayout";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import StackLayout from "../layouts/StackLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Sidebar.styles";
-import Text from "../Text";
-import StretchLastLayout from "../layouts/StretchLastLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Text from '../Text';
+import NestedContainerLayout from '../layouts/NestedContainerLayout';
+import StackLayout from '../layouts/StackLayout';
+import StretchLastLayout from '../layouts/StretchLastLayout';
+
+import styles from './Sidebar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -20,8 +23,7 @@ function Sidebar({ children, className, style, title }) {
         as="aside"
         className={classNames(classes.sidebar, className)}
         style={style}
-        margin="30px"
-      >
+        margin="30px">
         {children}
       </NestedContainerLayout>
     );
@@ -31,16 +33,14 @@ function Sidebar({ children, className, style, title }) {
         orientation="vertical"
         as="aside"
         className={classNames(className, classes.root)}
-        style={style}
-      >
+        style={style}>
         <Text type="big" className={classes.title}>
           {title}
         </Text>
         <NestedContainerLayout
           as="aside"
           className={classNames(classes.sidebar)}
-          margin="30px"
-        >
+          margin="30px">
           {children}
         </NestedContainerLayout>
       </StretchLastLayout>

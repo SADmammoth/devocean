@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useSetRecoilState } from 'recoil';
 
-import KanbanViewContent from '../../pagesContent/TasksPagesContent/KanbanViewContent';
+import KanbanViewContent from '../../pagesContent/tasks/TasksPagesContent/KanbanViewContent';
 import lastTaskViewState from '../../recoil/states/lastTaskViewState';
 
 function Kanban() {

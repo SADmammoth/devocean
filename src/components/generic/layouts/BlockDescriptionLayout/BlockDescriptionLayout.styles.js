@@ -1,6 +1,6 @@
 const styles = {
   layout: {
-    flexWrap: "nowrap",
+    flexWrap: 'nowrap',
   },
   block: {},
   description: {},

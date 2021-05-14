@@ -1,10 +1,13 @@
-import React, { useMemo } from "react";
-import PropTypes from "prop-types";
-import ToggleButton from "../../generic/ToggleButton";
-import { useTheme, createUseStyles } from "react-jss";
-import { useRecoilState } from "recoil";
-import localeState, { validLocales } from "../../../recoil/states/localeState";
-import styles from "./LanguageSwitcher.styles";
+import React, { useMemo } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilState } from 'recoil';
+
+import localeState, { validLocales } from '../../../recoil/states/localeState';
+import ToggleButton from '../../generic/ToggleButton';
+
+import styles from './LanguageSwitcher.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -17,16 +20,16 @@ function LanguageSwitcher({ className }) {
     () =>
       validLocales.map((validLocale) => ({
         action: () => setLocale(validLocale),
-        label: "Switch to " + validLocale,
+        label: 'Switch to ' + validLocale,
       })),
-    [validLocales]
+    [validLocales],
   );
 
   const current = useMemo(
     () =>
       (validLocales.findIndex((candidate) => candidate === locale) + 1) %
       validLocales.length,
-    [locale, validLocales]
+    [locale, validLocales],
   );
 
   return (

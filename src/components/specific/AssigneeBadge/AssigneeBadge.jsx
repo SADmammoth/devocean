@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 
-import LiveRelativeDate from "../../generic/LiveRelativeDate";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
 
-import PropTypes from "prop-types";
-import Text from "../../generic/Text";
-import Avatar from "../../generic/Avatar";
-import { useTheme, createUseStyles } from "react-jss";
-import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
-import styles from "./AssigneeBadge.styles";
-import RelativeDate from "../../../helpers/RelativeDate";
+import Avatar from '../../generic/Avatar';
+import LiveRelativeDate from '../../generic/LiveRelativeDate';
+import Text from '../../generic/Text';
+import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
+
+import styles from './AssigneeBadge.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -19,7 +19,7 @@ function AssigneeBadge({ displayName, assignedDate }) {
   return (
     <BlockDescriptionLayout>
       <BlockDescriptionLayout.Block>
-        <Avatar displayName={displayName} size={"50px"} />
+        <Avatar displayName={displayName} size={'50px'} />
       </BlockDescriptionLayout.Block>
       <BlockDescriptionLayout.Description>
         <Text type="common" bold ellipsis>

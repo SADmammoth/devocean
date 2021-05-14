@@ -1,3 +1,3 @@
-import StretchLayout from "./StretchLayout";
+import StretchLayout from './StretchLayout';
 
 export default StretchLayout;

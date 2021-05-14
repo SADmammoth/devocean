@@ -1,10 +1,13 @@
-import React from "react";
-import Text from "../Text";
-import BlockDescriptionLayout from "../layouts/BlockDescriptionLayout";
-import Button from "../Button";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./IconTextButton.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import Text from '../Text';
+import BlockDescriptionLayout from '../layouts/BlockDescriptionLayout';
+
+import styles from './IconTextButton.styles';
 
 const useStyles = createUseStyles(styles);
 

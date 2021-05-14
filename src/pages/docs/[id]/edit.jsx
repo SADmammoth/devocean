@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValueLoadable, useSetRecoilState } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import EditDocumentPageContent from '../../../pagesContent/EditDocumentPageContent/EditDocumentPageContent';
+import StateMonade from '../../../helpers/components/StateMonade';
+import EditDocumentPageContent from '../../../pagesContent/docs/EditDocumentPageContent/EditDocumentPageContent';
 import {
   docsState_getById,
   docsState_update,

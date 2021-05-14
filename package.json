@@ -4,7 +4,7 @@
     "start": "umi dev",
     "build": "umi build",
     "postinstall": "umi generate tmp",
-    "prettier": "prettier --write '**/*.{js,jsx,md,json}'",
+    "prettier": "prettier --loglevel=error --write ./src",
     "test": "umi-test",
     "test:coverage": "umi-test --coverage"
   },

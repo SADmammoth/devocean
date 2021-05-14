@@ -1,9 +1,9 @@
 import _ from 'lodash';
 import { atom, atomFamily, selectorFamily } from 'recoil';
 
-import Client from '../../helpers/Client';
-import Subscriber from '../../helpers/Subscriber';
-import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
+import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 
 const baseKey = 'statusChangesState_';
 

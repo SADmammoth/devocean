@@ -1,3 +1,3 @@
-import SortTool from "./SortTool";
+import SortTool from './SortTool';
 
 export default SortTool;

@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import NavItems from "../NavItems";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ToolBar.styles";
-import StackLayout from "../layouts/StackLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import NavItems from '../NavItems';
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './ToolBar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -19,8 +22,7 @@ function ToolBar({ className, items, style, children, precedingChildren }) {
         as="ul"
         orientation="vertical"
         alignX="center"
-        gap="1rem"
-      >
+        gap="1rem">
         {precedingChildren}
         <NavItems
           items={items || []}

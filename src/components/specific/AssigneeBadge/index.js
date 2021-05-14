@@ -1,3 +1,3 @@
-import AssigneeBadge from "./AssigneeBadge";
+import AssigneeBadge from './AssigneeBadge';
 
 export default AssigneeBadge;

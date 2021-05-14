@@ -1,6 +1,6 @@
 const styles = {
   badge: {
-    borderRadius: "50%",
+    borderRadius: '50%',
   },
 };
 

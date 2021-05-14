@@ -1,49 +1,49 @@
 const filterTypes = {
   priority: {
-    type: "checkbox",
-    label: "Priority",
+    type: 'checkbox',
+    label: 'Priority',
     valueOptions: [
       {
-        label: "Blocker",
-        value: "5",
+        label: 'Blocker',
+        value: '5',
       },
       {
-        label: "Highest",
-        value: "4",
+        label: 'Highest',
+        value: '4',
       },
       {
-        label: "High",
-        value: "3",
+        label: 'High',
+        value: '3',
       },
       {
-        label: "Medium",
-        value: "2",
+        label: 'Medium',
+        value: '2',
       },
       {
-        label: "Low",
-        value: "1",
+        label: 'Low',
+        value: '1',
       },
     ],
   },
   status: {
-    type: "checkbox",
-    label: "Status",
+    type: 'checkbox',
+    label: 'Status',
     valueOptions: [
       {
-        label: "Open",
-        value: "open",
+        label: 'Open',
+        value: 'open',
       },
       {
-        label: "WIP",
-        value: "wip",
+        label: 'WIP',
+        value: 'wip',
       },
       {
-        label: "Closed",
-        value: "closed",
+        label: 'Closed',
+        value: 'closed',
       },
       {
-        label: "Backlog",
-        value: "backlog",
+        label: 'Backlog',
+        value: 'backlog',
       },
     ],
   },
@@ -69,9 +69,9 @@ const filterTypes = {
 };
 
 const sortTypes = {
-  priority: "Priority",
-  status: "Status",
-  reportedTime: "Reported time",
+  priority: 'Priority',
+  status: 'Status',
+  reportedTime: 'Reported time',
 };
 
 const listView = {

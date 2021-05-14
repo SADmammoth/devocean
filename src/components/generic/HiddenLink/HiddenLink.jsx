@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import { Link } from "umi";
-import styles from "./HiddenLink.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { Link } from 'umi';
+
+import styles from './HiddenLink.styles';
 
 const useStyles = createUseStyles(styles);
 

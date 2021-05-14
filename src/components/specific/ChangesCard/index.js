@@ -1,3 +1,3 @@
-import ChangesCard from "./ChangesCard";
+import ChangesCard from './ChangesCard';
 
 export default ChangesCard;

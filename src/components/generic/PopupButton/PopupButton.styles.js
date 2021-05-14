@@ -1,6 +1,6 @@
 const styles = {
   container: {
-    position: "relative",
+    position: 'relative',
   },
   leftPopup: {
     left: 0,

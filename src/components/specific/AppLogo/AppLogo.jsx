@@ -1,8 +1,11 @@
-import React from "react";
-import logo from "../../../assets/images/logo.png";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./AppLogo.styles";
-import { Link } from "umi";
+import React from 'react';
+
+import { useTheme, createUseStyles } from 'react-jss';
+import { Link } from 'umi';
+
+import logo from '../../../assets/images/logo.png';
+
+import styles from './AppLogo.styles';
 
 const useStyles = createUseStyles(styles);
 

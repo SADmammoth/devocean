@@ -1,6 +1,6 @@
 const styles = {
   navItems: {
-    paddingInlineStart: "0px",
+    paddingInlineStart: '0px',
   },
 };
 

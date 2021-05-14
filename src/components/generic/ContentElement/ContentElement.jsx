@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ContentElement.styles";
-import ContainerLayout from "../layouts/ContainerLayout";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import ContainerLayout from '../layouts/ContainerLayout';
+
+import styles from './ContentElement.styles';
 
 const useStyles = createUseStyles(styles);
 

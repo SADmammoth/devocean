@@ -1,10 +1,13 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import classNames from "classnames";
-import orientations from "./orientations";
-import styles from "./ProgressBar.styles";
-import PropTypes from "prop-types";
-import useLocale from "../../../helpers/useLocale";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import orientations from './orientations';
+
+import styles from './ProgressBar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -18,11 +21,10 @@ function ProgressBar({ className, progress, orientation }) {
       className={classNames(
         className,
         classes.progressbar,
-        classes[orientations[orientation]]
+        classes[orientations[orientation]],
       )}
-      style={{ "--progress": `${progress * 100}%` }}
-      aria-label={locale("progressLabel", { progress: progress * 100 })}
-    >
+      style={{ '--progress': `${progress * 100}%` }}
+      aria-label={locale('progressLabel', { progress: progress * 100 })}>
       <div className={classes.value}>{progress}</div>
     </div>
   );
@@ -35,7 +37,7 @@ ProgressBar.propTypes = {
 };
 
 ProgressBar.defaultProps = {
-  orientation: "vertical",
+  orientation: 'vertical',
 };
 
 export default ProgressBar;

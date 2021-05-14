@@ -1,30 +1,30 @@
 const styles = {
   clock: {
-    display: "flex",
-    flexDirection: "column",
+    display: 'flex',
+    flexDirection: 'column',
 
-    margin: "10px 5px",
+    margin: '10px 5px',
   },
 
   cityText: {
     margin: 0,
-    textAlign: "center",
-    marginBottom: "-10%",
+    textAlign: 'center',
+    marginBottom: '-10%',
   },
 
   big: {
-    "& $cityText": {
+    '& $cityText': {
       fontSize: (theme) => theme.fontSizes.default,
     },
   },
   small: {
-    "& $cityText": {
+    '& $cityText': {
       fontSize: (theme) => theme.fontSizes.smaller,
     },
   },
   mini: {
-    "& $cityText": {
-      display: "none",
+    '& $cityText': {
+      display: 'none',
     },
   },
 };

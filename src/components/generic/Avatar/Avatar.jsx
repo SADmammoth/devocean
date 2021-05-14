@@ -1,7 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Avatar.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './Avatar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -9,7 +11,7 @@ function Avatar({ displayName, image, size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const displayImage = image || require("@/assets/images/avatar.jpg");
+  const displayImage = image || require('@/assets/images/avatar.jpg');
 
   return (
     <img
@@ -29,7 +31,7 @@ Avatar.propTypes = {
 };
 
 Avatar.defaultProps = {
-  size: "30px",
+  size: '30px',
 };
 
 export default Avatar;

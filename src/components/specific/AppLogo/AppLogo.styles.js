@@ -1,7 +1,7 @@
 const styles = {
   appLogo: {
-    width: "45px",
-    height: "45px",
+    width: '45px',
+    height: '45px',
   },
 };
 

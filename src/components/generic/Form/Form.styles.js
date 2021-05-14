@@ -1,6 +1,6 @@
 const styles = {
   submit: {
-    marginTop: "30px",
+    marginTop: '30px',
   },
 };
 

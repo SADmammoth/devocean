@@ -1,6 +1,6 @@
 const styles = {
   grid: {
-    display: "grid",
+    display: 'grid',
   },
 };
 

@@ -1,6 +1,6 @@
-import localStorageSelector from "../helpers/localStorageSelector";
+import localStorageSelector from '../helpers/selectors/localStorageSelector';
 
-const baseKey = "lastTaskViewState_";
+const baseKey = 'lastTaskViewState_';
 
 const lastTaskViewState = localStorageSelector(baseKey);
 

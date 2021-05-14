@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import { DraggableElement as DndDraggableElement } from "@sadmammoth/react-dnd";
-import styles from "./DraggableElement.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import { DraggableElement as DndDraggableElement } from '@sadmammoth/react-dnd';
+
+import styles from './DraggableElement.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -23,13 +26,12 @@ const DraggableElement = ({
     <DndDraggableElement
       id={id}
       key={id}
-      data={{ "data-type": draggableType, id, ...data }}
+      data={{ 'data-type': draggableType, id, ...data }}
       avatar={avatar}
       rootElement={document}
       height={height}
       onDragStart={onDragStart}
-      onDragEnd={onDragEnd}
-    >
+      onDragEnd={onDragEnd}>
       {content}
     </DndDraggableElement>
   );

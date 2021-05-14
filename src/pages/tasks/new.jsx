@@ -2,8 +2,8 @@ import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import formatName from '../../helpers/formatName';
-import EditTaskPageContent from '../../pagesContent/EditTaskPageContent';
+import formatName from '../../helpers/functions/formatName';
+import EditTaskPageContent from '../../pagesContent/tasks/EditTaskPageContent';
 import folderTreeState from '../../recoil/states/folderTreeState';
 import tasksState from '../../recoil/states/tasksState';
 import { teammatesState_Raw } from '../../recoil/states/teammatesState';

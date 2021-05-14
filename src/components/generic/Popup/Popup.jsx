@@ -1,10 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Button from "../Button";
-import StackLayout from "../layouts/StackLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Popup.styles";
-import classNames from "classnames";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './Popup.styles';
 
 const useStyles = createUseStyles(styles);
 

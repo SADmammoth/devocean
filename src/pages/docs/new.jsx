@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useSetRecoilState } from 'recoil';
 
-import EditDocumentPageContent from '../../pagesContent/EditDocumentPageContent/EditDocumentPageContent';
+import EditDocumentPageContent from '../../pagesContent/docs/EditDocumentPageContent';
 import docsState from '../../recoil/states/docsState';
 
 function NewDoc(props) {

@@ -1,8 +1,9 @@
-import React, { useEffect } from "react";
-import { useSetRecoilState } from "recoil";
+import React, { useEffect } from 'react';
 
-import ReportsPageContent from "../../../../pagesContent/TaskCommentsPagesContent/ReportsPageContent";
-import lastTaskCommentsViewState from "../../../../recoil/states/lastTaskCommentsViewState";
+import { useSetRecoilState } from 'recoil';
+
+import ReportsPageContent from '../../../../pagesContent/tasks/TaskCommentsPagesContent/ReportsPageContent';
+import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
 export default function ReportsPage({
   match: {
@@ -11,7 +12,7 @@ export default function ReportsPage({
 }) {
   const setLastView = useSetRecoilState(lastTaskCommentsViewState);
   useEffect(() => {
-    setLastView("reports");
+    setLastView('reports');
   }, []);
 
   return (

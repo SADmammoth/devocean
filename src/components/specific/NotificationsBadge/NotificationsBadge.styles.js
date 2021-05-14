@@ -1,8 +1,8 @@
 const styles = {
   notificationsBadge: {
     background: (theme) => theme.background.dark,
-    width: "30px",
-    height: "30px",
+    width: '30px',
+    height: '30px',
   },
 };
 

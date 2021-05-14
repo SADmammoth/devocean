@@ -1,6 +1,6 @@
 const styles = {
   interactive: {
-    cursor: "pointer",
+    cursor: 'pointer',
   },
 };
 

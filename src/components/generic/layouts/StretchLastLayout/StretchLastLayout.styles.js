@@ -1,12 +1,12 @@
 const styles = {
   normal: {
-    "&>*:last-child": {
+    '&>*:last-child': {
       flexGrow: 1,
     },
   },
 
   reversed: {
-    "&>*:first-child": {
+    '&>*:first-child': {
       flexGrow: 1,
     },
   },

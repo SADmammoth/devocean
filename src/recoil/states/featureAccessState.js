@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { selectorFamily } from 'recoil';
 
-import Client from '../../helpers/Client';
+import Client from '../../helpers/services/Client';
 import userState from './userState';
 
 const baseKey = 'featureAccessState_';

@@ -1,3 +1,3 @@
-import ExpandableToolBar from "./ExpandableToolBar";
+import ExpandableToolBar from './ExpandableToolBar';
 
 export default ExpandableToolBar;

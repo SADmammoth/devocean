@@ -1,9 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import useClickOrLink from "../../../helpers/useClickOrLink";
+import React from 'react';
 
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Interactive.styles";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useClickOrLink from '../../../helpers/hooks/useClickOrLink';
+
+import styles from './Interactive.styles';
 
 const useStyles = createUseStyles(styles);
 

@@ -1,1 +1,1 @@
-export default ["big", "small", "mini"];
+export default ['big', 'small', 'mini'];

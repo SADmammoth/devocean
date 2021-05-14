@@ -1,3 +1,3 @@
-import LiveRelativeDate from "./LiveRelativeDate";
+import LiveRelativeDate from './LiveRelativeDate';
 
 export default LiveRelativeDate;

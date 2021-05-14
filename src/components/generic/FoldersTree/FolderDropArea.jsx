@@ -1,12 +1,15 @@
-import React from "react";
-import draggableTypes from "../../../helpers/draggableTypes";
-import { DropArea } from "@sadmammoth/react-dnd";
-import PropTypes from "prop-types";
-import { useSetRecoilState } from "recoil";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useSetRecoilState } from 'recoil';
+
+import { DropArea } from '@sadmammoth/react-dnd';
+
+import draggableTypes from '../../../helpers/types/draggableTypes';
 import {
   folderTreeState_addTask,
   folderTreeState_removeTask,
-} from "../../../recoil/states/folderTreeState";
+} from '../../../recoil/states/folderTreeState';
 
 function FolderDropArea({ id, selectFolder, children }) {
   const addTaskToList = useSetRecoilState(folderTreeState_addTask(id));
@@ -16,17 +19,17 @@ function FolderDropArea({ id, selectFolder, children }) {
     <DropArea
       onHovered={(dragging, index, accepted, mergeStyles) => {
         if (accepted) {
-          dragging.style.visibility = "hidden";
+          dragging.style.visibility = 'hidden';
           mergeStyles({
-            border: "2px solid red",
+            border: '2px solid red',
           });
         }
       }}
       onUnhovered={(dragging, index, accepted, mergeStyles) => {
         if (accepted) {
-          dragging.style.visibility = "visible";
+          dragging.style.visibility = 'visible';
           mergeStyles({
-            border: "none",
+            border: 'none',
           });
         }
       }}
@@ -37,15 +40,14 @@ function FolderDropArea({ id, selectFolder, children }) {
       }}
       onAcceptedDragStart={(data, index, accepted, mergeStyles) => {
         mergeStyles({
-          border: "2px solid green",
+          border: '2px solid green',
         });
       }}
       onAcceptedDragEnd={(data, index, accepted, mergeStyles) => {
         mergeStyles({
-          border: "none",
+          border: 'none',
         });
-      }}
-    >
+      }}>
       {children}
     </DropArea>
   );

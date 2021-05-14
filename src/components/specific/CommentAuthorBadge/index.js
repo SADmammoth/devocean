@@ -1,3 +1,3 @@
-import CommentAuthorBadge from "./CommentAuthorBadge";
+import CommentAuthorBadge from './CommentAuthorBadge';
 
 export default CommentAuthorBadge;

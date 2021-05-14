@@ -1,3 +1,3 @@
-import PopupWindow from "./PopupWindow";
+import PopupWindow from './PopupWindow';
 
 export default PopupWindow;

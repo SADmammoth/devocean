@@ -1,4 +1,4 @@
 export default {
-  vertical: "vertical",
-  horizontal: "horizontal",
+  vertical: 'vertical',
+  horizontal: 'horizontal',
 };

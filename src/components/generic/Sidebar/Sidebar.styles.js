@@ -3,8 +3,8 @@ const styles = {
     background: (theme) => theme.background.dark,
   },
   root: {
-    position: "relative",
-    overflowX: "hidden",
+    position: 'relative',
+    overflowX: 'hidden',
   },
 };
 

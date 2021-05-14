@@ -1,10 +1,14 @@
-import React from "react";
-import PanelCard from "../../generic/PanelCard";
-import { FilterForm } from "@sadmammoth/react-list";
-import { FaFilter } from "react-icons/fa";
-import PopupButton from "../../generic/PopupButton";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./FilterTool.styles";
+import React from 'react';
+
+import { FaFilter } from 'react-icons/fa';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import { FilterForm } from '@sadmammoth/react-list';
+
+import PanelCard from '../../generic/PanelCard';
+import PopupButton from '../../generic/PopupButton';
+
+import styles from './FilterTool.styles';
 
 const useStyles = createUseStyles(styles);
 

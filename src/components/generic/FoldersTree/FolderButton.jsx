@@ -1,12 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import HiddenLink from "../HiddenLink";
-
-import useLocale from "../../../helpers/useLocale";
-
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import Interactive from "../Interactive";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import {
   FaFolder,
   FaList,
@@ -14,10 +9,14 @@ import {
   FaArrowDown,
   FaArrowUp,
   FaEdit,
-} from "react-icons/fa";
-import Text from "../Text";
-import StackLayout from "../layouts/StackLayout";
-import FolderDropArea from "./FolderDropArea";
+} from 'react-icons/fa';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import HiddenLink from '../HiddenLink';
+import Interactive from '../Interactive';
+import Text from '../Text';
+import StackLayout from '../layouts/StackLayout';
+import FolderDropArea from './FolderDropArea';
 
 function FolderButton({
   as,
@@ -35,9 +34,9 @@ function FolderButton({
 
   const locale = useLocale();
 
-  const Icon = type === "folder" ? FaFolder : FaList;
+  const Icon = type === 'folder' ? FaFolder : FaList;
   const OpenActionIcon =
-    type === "folder"
+    type === 'folder'
       ? selected || selectedParent
         ? FaArrowUp
         : FaArrowDown
@@ -68,9 +67,8 @@ function FolderButton({
         [classes.selectedParent]: selectedParent,
       })}
       onClick={() => selectFolder(id)}
-      label={locale(type, { name })}
-    >
-      {type === "list" && !selected && !selectedParent ? (
+      label={locale(type, { name })}>
+      {type === 'list' && !selected && !selectedParent ? (
         <FolderDropArea id={id} selectFolder={selectFolder}>
           {ButtonContent}
         </FolderDropArea>
@@ -85,7 +83,7 @@ FolderButton.propTypes = {
   id: PropTypes.string.isRequired,
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
   classes: PropTypes.object.isRequired,
-  type: PropTypes.oneOf(["list", "folder"]),
+  type: PropTypes.oneOf(['list', 'folder']),
   selected: PropTypes.bool,
   selectedParent: PropTypes.bool,
   name: PropTypes.string.isRequired,

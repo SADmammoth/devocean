@@ -1,3 +1,3 @@
-import NotificationContent from "./NotificationContent";
+import NotificationContent from './NotificationContent';
 
 export default NotificationContent;

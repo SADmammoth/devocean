@@ -1,3 +1,3 @@
-import FilterTool from "./FilterTool";
+import FilterTool from './FilterTool';
 
 export default FilterTool;

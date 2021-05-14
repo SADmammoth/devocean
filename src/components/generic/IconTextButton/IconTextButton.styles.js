@@ -1,9 +1,9 @@
 const styles = {
   iconTextButton: {
-    textAlign: "left",
+    textAlign: 'left',
   },
   text: {
-    verticalAlign: "middle",
+    verticalAlign: 'middle',
   },
 };
 

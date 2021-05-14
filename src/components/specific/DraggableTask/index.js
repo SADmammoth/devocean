@@ -1,3 +1,3 @@
-import DraggableTask from "./DraggableTask";
+import DraggableTask from './DraggableTask';
 
 export default DraggableTask;

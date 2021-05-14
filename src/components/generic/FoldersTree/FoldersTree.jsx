@@ -1,12 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
-import PropTypes from "prop-types";
-import useLocale from "../../../helpers/useLocale";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./FoldersTree.styles";
-import Folder from "./Folder";
-import Button from "../Button";
-import useFolderProps from "./useFolderProps";
-import useSelectedFolder from "./useSelectedFolder";
+import React, { useCallback, useEffect, useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import Button from '../Button';
+import Folder from './Folder';
+import useFolderProps from './useFolderProps';
+import useSelectedFolder from './useSelectedFolder';
+
+import styles from './FoldersTree.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -17,7 +20,7 @@ function FoldersTree({ className, folders, onSelectedChange }) {
   const FolderBase = (props) => <Button size="wide" {...props} />;
 
   const [selectedIndex, selectedParents, selectFolder] = useSelectedFolder(
-    folders
+    folders,
   );
 
   useEffect(() => {
@@ -30,7 +33,7 @@ function FoldersTree({ className, folders, onSelectedChange }) {
     selectedIndex,
     selectedParents,
     selectFolder,
-    FolderBase
+    FolderBase,
   );
 
   const renderFolders = useCallback(() => {
@@ -46,8 +49,8 @@ function FoldersTree({ className, folders, onSelectedChange }) {
   const locale = useLocale();
 
   return (
-    <div className={className} aria-label={locale("Folders")}>
-      {folders && folders.length ? renderFolders() : "No folders"}
+    <div className={className} aria-label={locale('Folders')}>
+      {folders && folders.length ? renderFolders() : 'No folders'}
     </div>
   );
 }

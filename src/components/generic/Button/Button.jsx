@@ -1,10 +1,13 @@
-import React from "react";
-import sizes from "./sizes";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { Button as ReakitButton } from "reakit";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Button.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { Button as ReakitButton } from 'reakit';
+
+import sizes from './sizes';
+
+import styles from './Button.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -18,8 +21,7 @@ const Button = ({ className, type, onClick, children, size, label, props }) => {
       className={classNames(className, classes.button, classes[sizes[size]])}
       onClick={onClick}
       aria-label={label}
-      {...props}
-    >
+      {...props}>
       {children}
     </ReakitButton>
   );
@@ -34,7 +36,7 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  size: "common",
+  size: 'common',
 };
 
 export default Button;

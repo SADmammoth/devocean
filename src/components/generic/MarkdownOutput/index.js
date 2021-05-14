@@ -1,3 +1,3 @@
-import MarkdownOutput from "./MarkdownOutput";
+import MarkdownOutput from './MarkdownOutput';
 
 export default MarkdownOutput;

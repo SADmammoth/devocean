@@ -1,7 +1,9 @@
-import { useMemo } from "react";
-import { useRecoilValue } from "recoil";
-import localeState from "../../recoil/states/localeState";
-import useLocale from "../useLocale";
+import { useMemo } from 'react';
+
+import { useRecoilValue } from 'recoil';
+
+import localeState from '../../recoil/states/localeState';
+import useLocale from '../hooks/useLocale';
 
 export default function useLocalizedForm(inputs) {
   const locale = useLocale();

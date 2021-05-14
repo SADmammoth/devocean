@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
-import formatName from '../../../helpers/formatName';
+import formatName from '../../../helpers/functions/formatName';
 import Avatar from '../../generic/Avatar';
 import InteractiveCard from '../../generic/InteractiveCard';
 import Text from '../../generic/Text';

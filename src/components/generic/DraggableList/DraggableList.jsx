@@ -1,10 +1,14 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
-import { DraggableList as DndDraggableList } from "@sadmammoth/react-dnd";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./DraggableList.styles";
-import { useRecoilValue } from "recoil";
-import userState from "../../../recoil/states/userState";
+import React, { useState } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValue } from 'recoil';
+
+import { DraggableList as DndDraggableList } from '@sadmammoth/react-dnd';
+
+import userState from '../../../recoil/states/userState';
+
+import styles from './DraggableList.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -26,7 +30,7 @@ function DraggableList({
       list={list}
       onOrderChange={onOrderChange}
       indexKey="id"
-      accept={{ "data-type": draggableType, userId }}
+      accept={{ 'data-type': draggableType, userId }}
       dropAreaSize={draggableAreaSize}
       gap="10px"
       onNewItem={onNewItem}
@@ -43,7 +47,7 @@ DraggableList.propTypes = {
 };
 
 DraggableList.defaultProps = {
-  draggableAreaSize: "50px",
+  draggableAreaSize: '50px',
 };
 
 export default DraggableList;

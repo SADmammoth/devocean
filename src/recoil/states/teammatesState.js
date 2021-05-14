@@ -1,15 +1,14 @@
 import _ from 'lodash';
 import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
-import Client from '../../helpers/Client';
-import Subscriber from '../../helpers/Subscriber';
-import formatName from '../../helpers/formatName';
+import formatName from '../../helpers/functions/formatName';
+import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 import getPostState from '../helpers/getPostState';
-import mergeSelector from '../helpers/mergeSelector';
 import noRequest from '../helpers/noRequest';
-import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
-import serverStateSync from '../helpers/serverStateSync';
-import updateSelector from '../helpers/updateSelector';
+import mergeSelector from '../helpers/selectors/mergeSelector';
+import updateSelector from '../helpers/selectors/updateSelector';
 import tasksState, {
   tasksState_getById,
   tasksState_update,

@@ -1,11 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import FormLabel from "../FormLabel";
-import ReactForm from "@sadmammoth/react-form";
-import Input from "../Input";
-import Button from "../Button";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Form.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import ReactForm from '@sadmammoth/react-form';
+
+import Button from '../Button';
+import FormLabel from '../FormLabel';
+import Input from '../Input';
+
+import styles from './Form.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -24,8 +28,7 @@ function Form({ submitText, children, ...props }) {
       render={{ Input, Label: FormLabel }}
       submitButton={SubmitButton}
       notify={(...data) => console.log(...data)}
-      {...props}
-    >
+      {...props}>
       {children}
     </ReactForm>
   );
@@ -37,7 +40,7 @@ Form.propTypes = {
 };
 
 Form.defaultProps = {
-  submitText: "Submit",
+  submitText: 'Submit',
 };
 
 export default Form;

@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
-import DocumentContentPage from '../../../pagesContent/DocumentContentPage';
+import DocumentContentPage from '../../../pagesContent/docs/DocumentContentPage';
 import { docsState_getById } from '../../../recoil/states/docsState';
 
 function DocPage({

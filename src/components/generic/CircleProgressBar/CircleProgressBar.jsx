@@ -1,8 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import StackLayout from "../layouts/StackLayout";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./CircleProgressBar.styles";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './CircleProgressBar.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -30,8 +33,7 @@ function CircleProgressBar({
     <StackLayout
       className={classes.progressbar}
       alignX="center"
-      alignY="center"
-    >
+      alignY="center">
       <div className={classes.content}>{children}</div>
     </StackLayout>
   );
@@ -48,8 +50,8 @@ CircleProgressBar.propTypes = {
 };
 
 CircleProgressBar.defaultProps = {
-  size: "50px",
-  width: "10px",
+  size: '50px',
+  width: '10px',
 };
 
 export default CircleProgressBar;

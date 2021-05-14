@@ -7,7 +7,7 @@ export default function getTasksOfFolderTree(folderId, treeMap) {
   const getTasks = (items) => {
     newItems = items
       .map((item) => {
-        if (typeof item === "string") {
+        if (typeof item === 'string') {
           noChildrenItemsCount++;
           return item;
         }

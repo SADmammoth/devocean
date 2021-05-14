@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+
+import PropTypes from 'prop-types';
 
 function TaskTag({ classes, color, name }) {
   return (
     <aside
       className={classes.colorTag}
       style={{ background: color }}
-      aria-label={name}
-    >
+      aria-label={name}>
       {name}
     </aside>
   );

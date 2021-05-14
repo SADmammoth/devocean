@@ -1,6 +1,7 @@
-import { Redirect } from "react-router";
-import { useRecoilValue } from "recoil";
-import lastTaskCommentsViewState from "../../../../recoil/states/lastTaskCommentsViewState";
+import { Redirect } from 'react-router';
+import { useRecoilValue } from 'recoil';
+
+import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
 export default function Index({
   match: {

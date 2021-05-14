@@ -1,7 +1,7 @@
 const styles = {
   time: {
-    width: "90px",
-    paddingLeft: "10px",
+    width: '90px',
+    paddingLeft: '10px',
   },
 };
 

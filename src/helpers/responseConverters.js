@@ -1,6 +1,6 @@
-import Duration from './Duration';
-import RelativeDate from './RelativeDate';
-import formatName from './formatName';
+import formatName from './functions/formatName';
+import Duration from './types/Duration';
+import RelativeDate from './types/RelativeDate';
 
 export function taskConverter({ body }) {
   return body.map(({ estimate, reportedTime, ...other }) => ({

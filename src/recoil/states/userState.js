@@ -1,6 +1,6 @@
 import { atom, selector } from 'recoil';
 
-import Client from '../../helpers/Client';
+import Client from '../../helpers/services/Client';
 
 const baseKey = 'userState_';
 

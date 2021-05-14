@@ -3,9 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValueLoadable } from 'recoil';
 
-import StateMonade from '../../../helpers/StateMonade';
-import TeammatePageContent from '../../../pagesContent/TeammatePageContent/TeammatePageContent';
-import { teammateProfilesState_getById } from '../../../recoil/states/teammatesProfiles';
+import StateMonade from '../../../helpers/components/StateMonade';
+import TeammatePageContent from '../../../pagesContent/teammates/TeammatePageContent/TeammatePageContent';
+import { teammateProfilesState_getById } from '../../../recoil/states/teammatesProfilesState';
 
 function TeammatePage({
   match: {

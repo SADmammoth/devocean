@@ -1,15 +1,15 @@
 import _ from 'lodash';
 import { atom, selector, selectorFamily } from 'recoil';
 
-import Client from '../../helpers/Client';
-import RelativeDate from '../../helpers/RelativeDate';
-import Subscriber from '../../helpers/Subscriber';
-import formatName from '../../helpers/formatName';
+import formatName from '../../helpers/functions/formatName';
+import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import RelativeDate from '../../helpers/types/RelativeDate';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 import getPostState from '../helpers/getPostState';
-import mergeSelector from '../helpers/mergeSelector';
 import noRequest from '../helpers/noRequest';
-import serverRealtimeStateSync from '../helpers/serverRealtimeStateSync';
-import updateSelector from '../helpers/updateSelector';
+import mergeSelector from '../helpers/selectors/mergeSelector';
+import updateSelector from '../helpers/selectors/updateSelector';
 
 const baseKey = 'notificationsState_';
 

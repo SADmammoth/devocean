@@ -1,3 +1,3 @@
-import GridLayout from "./GridLayout";
+import GridLayout from './GridLayout';
 
 export default GridLayout;

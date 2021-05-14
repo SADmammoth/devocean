@@ -1,9 +1,9 @@
 const styles = {
   content: {
-    height: "100%",
+    height: '100%',
   },
   appname: {
-    "&>*": { display: "inline" },
+    '&>*': { display: 'inline' },
   },
   topPadding: {
     paddingTop: (theme) => theme.spaces.big,

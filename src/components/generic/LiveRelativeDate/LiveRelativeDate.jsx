@@ -1,17 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 
-import localeState from "../../../recoil/states/localeState";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+import { useRecoilValue } from 'recoil';
 
-import RelativeDate from "../../../helpers/RelativeDate";
+import componentUpdater from '../../../helpers/functions/componentUpdater';
+import RelativeDate from '../../../helpers/types/RelativeDate';
+import localeState from '../../../recoil/states/localeState';
+import Text from '../Text';
 
-import Text from "../Text";
-
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./LiveRelativeDate.styles";
-import componentUpdater from "../../../helpers/componentUpdater";
-import { useState } from "react";
-import { useRecoilValue } from "recoil";
+import styles from './LiveRelativeDate.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -37,15 +36,14 @@ function LiveRelativeDate({ date, ...props }) {
       {...props}
       as="time"
       title={new Date(date).toLocaleString(locale, {
-        weekday: "short",
-        day: "numeric",
-        year: "numeric",
-        month: "long",
-        hour: "2-digit",
-        minute: "2-digit",
+        weekday: 'short',
+        day: 'numeric',
+        year: 'numeric',
+        month: 'long',
+        hour: '2-digit',
+        minute: '2-digit',
       })}
-      dateTime={date.toString()}
-    >
+      dateTime={date.toString()}>
       {relativeDate}
     </Text>
   );

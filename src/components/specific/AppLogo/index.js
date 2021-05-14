@@ -1,3 +1,3 @@
-import AppLogo from "./AppLogo";
+import AppLogo from './AppLogo';
 
 export default AppLogo;

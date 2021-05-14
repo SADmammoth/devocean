@@ -1,16 +1,15 @@
-import React from "react";
+import React from 'react';
 
-import LiveRelativeDate from "../../generic/LiveRelativeDate";
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
 
-import Avatar from "../../generic/Avatar";
+import formatName from '../../../helpers/functions/formatName';
+import Avatar from '../../generic/Avatar';
+import LiveRelativeDate from '../../generic/LiveRelativeDate';
+import Text from '../../generic/Text';
+import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
 
-import BlockDescriptionLayout from "../../generic/layouts/BlockDescriptionLayout";
-
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./CommentAuthorBadge.styles";
-import formatName from "../../../helpers/formatName";
-import Text from "../../generic/Text";
+import styles from './CommentAuthorBadge.styles';
 
 const useStyles = createUseStyles(styles);
 

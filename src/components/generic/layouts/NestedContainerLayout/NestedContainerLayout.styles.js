@@ -1,15 +1,15 @@
 const styles = {
   outerContainer: {
-    display: "flex",
+    display: 'flex',
   },
   spacer: {
-    maxWidth: "var(--margin)",
-    flexShrink: "5",
-    width: "100%",
+    maxWidth: 'var(--margin)',
+    flexShrink: '5',
+    width: '100%',
   },
   nestedContainer: {
-    width: "100%",
-    flexShrink: "1",
+    width: '100%',
+    flexShrink: '1',
   },
 };
 

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
-import useLocale from '../../../helpers/useLocale';
+import useLocale from '../../../helpers/hooks/useLocale';
 import InteractiveCard from '../../generic/InteractiveCard';
 import Text from '../../generic/Text';
 import PriorityBadge from '../PriorityBadge';

@@ -1,3 +1,3 @@
-import HiddenLink from "./HiddenLink";
+import HiddenLink from './HiddenLink';
 
 export default HiddenLink;

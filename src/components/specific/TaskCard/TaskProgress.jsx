@@ -1,10 +1,12 @@
-import React from "react";
-import PropTypes from "prop-types";
-import useLocale from "../../../helpers/useLocale";
-import useProgress from "../../../helpers/useProgress";
-import StackLayout from "../../generic/layouts/StackLayout";
-import ProgressBar from "../../generic/ProgressBar";
-import Text from "../../generic/Text";
+import React from 'react';
+
+import PropTypes from 'prop-types';
+
+import useLocale from '../../../helpers/hooks/useLocale';
+import useProgress from '../../../helpers/hooks/useProgress';
+import ProgressBar from '../../generic/ProgressBar';
+import Text from '../../generic/Text';
+import StackLayout from '../../generic/layouts/StackLayout';
 
 function TaskProgress({ classes, reportedTime, estimate }) {
   const progress = useProgress(reportedTime, estimate);
@@ -14,13 +16,12 @@ function TaskProgress({ classes, reportedTime, estimate }) {
     <>
       <StackLayout
         className={classes.fraction}
-        aria-label={locale("progressFractionLabel", {
+        aria-label={locale('progressFractionLabel', {
           reportedTime: reportedTime.toString(),
           estimate: estimate.toString(),
         })}
         orientation="vertical"
-        gap="0"
-      >
+        gap="0">
         <Text type="hint" className={classes.reported}>
           {reportedTime.toString()}
         </Text>
