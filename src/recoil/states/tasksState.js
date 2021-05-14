@@ -27,16 +27,20 @@ const postState = getPostState(
   patchOne,
   {
     list: (userToken, list, item) => {
-      return Client.tasks.addToList(userToken, item.id, list.id);
+      return Client.tasks.addToList(item.id, list.id, userToken);
     },
     status: async (userToken, status, item) => {
-      return Client.tasks.changeStatus(userToken, item.id, {
-        status: status.name,
-        text: status.text,
-      });
+      return Client.tasks.changeStatus(
+        item.id,
+        {
+          status: status.name,
+          text: status.text,
+        },
+        userToken,
+      );
     },
     assignee: (userToken, assignee, item) => {
-      return Client.tasks.assign(userToken, item.id, assignee);
+      return Client.tasks.assign(item.id, assignee, userToken);
     },
   },
   deleteOne,

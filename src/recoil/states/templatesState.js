@@ -11,7 +11,7 @@ const getStateById = (userToken, id) => Client.templates.getById(id, userToken);
 
 const templatesState = selector({
   key: baseKey,
-  get: async () => {
+  get: async ({ get }) => {
     const userToken = get(userState);
     return await getState(userToken);
   },
@@ -19,7 +19,7 @@ const templatesState = selector({
 
 export const templatesState_getById = selectorFamily({
   key: baseKey,
-  get: (id) => async () => {
+  get: (id) => async ({ get }) => {
     const userToken = get(userState);
     return await getStateById(userToken, id);
   },
