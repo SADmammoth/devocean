@@ -1,4 +1,4 @@
-export default function formatName({ name, lastName }) {
+export default function formatName({ name, shortName, lastName }) {
   if (!lastName) return 'undefined';
-  return `${name} ${lastName[0]}.`;
+  return `${shortName || name} ${lastName[0]}.`;
 }

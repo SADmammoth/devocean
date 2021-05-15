@@ -57,4 +57,13 @@ export default {
   Description: 'Description',
 
   'Comments for task': 'Comments for task',
+
+  heFull: 'he/him',
+  sheFull: 'she/her',
+  theyFull: 'they/them',
+  heForm: 'him',
+  sheForm: 'her',
+  theyForm: 'them',
+
+  shortName: 'or call {referAs} {shortName}',
 };

@@ -56,4 +56,13 @@ export default {
 
   Description: 'Описание',
   'Comments for task': 'Комментарии к задаче',
+
+  heFull: 'он',
+  sheFull: 'она',
+  theyFull: 'они',
+  heForm: 'его',
+  sheForm: 'ее',
+  theyForm: 'их',
+
+  shortName: 'or зовите {referAs} {shortName}',
 };
