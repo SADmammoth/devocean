@@ -5,6 +5,7 @@ import filterFalsy from '../converters/filterFalsy';
 import {
   navItemsConverter,
   taskConverter,
+  fullTaskConverter,
 } from '../converters/responseConverters';
 import Duration from '../types/Duration';
 import RelativeDate from '../types/RelativeDate';
@@ -102,7 +103,7 @@ const Client = {
         .get(`/tasks/${id}`)
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .then(({ body }) => body);
+        .then(fullTaskConverter);
     },
     post: ({ id, ...task }, userToken) => {
       const body = {

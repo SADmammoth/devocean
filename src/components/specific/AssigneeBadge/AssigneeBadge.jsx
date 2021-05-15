@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
+import { Link } from 'umi';
 
 import Avatar from '../../generic/Avatar';
 import LiveRelativeDate from '../../generic/LiveRelativeDate';
@@ -12,22 +13,24 @@ import styles from './AssigneeBadge.styles';
 
 const useStyles = createUseStyles(styles);
 
-function AssigneeBadge({ displayName, assignedDate }) {
+function AssigneeBadge({ id, image, displayName, assignedDate }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <BlockDescriptionLayout>
-      <BlockDescriptionLayout.Block>
-        <Avatar displayName={displayName} size={'50px'} />
-      </BlockDescriptionLayout.Block>
-      <BlockDescriptionLayout.Description>
-        <Text type="common" bold ellipsis>
-          {displayName}
-        </Text>
-        <LiveRelativeDate type="small" date={assignedDate} />
-      </BlockDescriptionLayout.Description>
-    </BlockDescriptionLayout>
+    <Link to={`/teammates/${id}`}>
+      <BlockDescriptionLayout>
+        <BlockDescriptionLayout.Block>
+          <Avatar image={image} displayName={displayName} size={'50px'} />
+        </BlockDescriptionLayout.Block>
+        <BlockDescriptionLayout.Description>
+          <Text type="common" bold ellipsis>
+            {displayName}
+          </Text>
+          <LiveRelativeDate type="small" date={assignedDate} />
+        </BlockDescriptionLayout.Description>
+      </BlockDescriptionLayout>
+    </Link>
   );
 }
 

@@ -11,10 +11,7 @@ export function taskConverter({ body }) {
 }
 
 export function fullTaskConverter({
-  estimate,
-  reportedTime,
-  assignee,
-  ...other
+  body: { estimate, reportedTime, assignee, ...other },
 }) {
   return {
     estimate: estimate ? new Duration(estimate + 'h') : null,
@@ -24,7 +21,9 @@ export function fullTaskConverter({
           displayName: formatName({
             name: assignee.name,
             lastName: assignee.lastName,
+            shortName: assignee.shortName,
           }),
+          avatar: assignee.avatar,
           id: assignee.id,
           assignedDate: new Duration(assignee.assignedDate),
         }

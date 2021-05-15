@@ -66,4 +66,5 @@ export default {
   theyForm: 'them',
 
   shortName: 'or call {referAs} {shortName}',
+  aka: 'aka {shortName}',
 };

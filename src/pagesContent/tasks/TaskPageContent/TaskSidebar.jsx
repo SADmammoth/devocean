@@ -48,6 +48,8 @@ function TaskSidebar({
       {assignee ? (
         <PanelCard>
           <AssigneeBadge
+            id={assignee.id}
+            image={assignee.avatar}
             displayName={assignee.displayName}
             assignedDate={assignee.assignedDate}
           />

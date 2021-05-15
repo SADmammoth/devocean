@@ -80,7 +80,7 @@ export const tasksState_requestContent = selectorFamily({
   key: baseKey + 'requestContent',
   get: (taskId) => ({ get }) => {
     const userToken = get(userState);
-    return Client.tasks.getById(taskId, userToken).then(fullTaskConverter);
+    return Client.tasks.getById(taskId, userToken);
   },
 });
 

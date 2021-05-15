@@ -46,6 +46,7 @@ const Header = ({ hideNotificationBadge }) => {
           <StateMonade state={userData.state}>
             {userData.contents ? (
               <TeammateTitle
+                id={userData.contents.id}
                 image={userData.contents.avatar}
                 displayName={formatName(userData.contents)}
               />

@@ -52,7 +52,7 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
   return (
     <StackLayout orientation="vertical" alignY="start" scroll>
       {displayName && (
-        <TeammateTitle displayName={displayName} image={avatar} />
+        <TeammateTitle id={id} displayName={displayName} image={avatar} />
       )}
       <StackLayout
         className={classes.list}

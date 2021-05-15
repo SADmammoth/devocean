@@ -2,6 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
+import { Link } from 'umi';
 
 import Avatar from '../../generic/Avatar';
 import Text from '../../generic/Text';
@@ -11,22 +12,24 @@ import styles from './TeammateTitle.styles';
 
 const useStyles = createUseStyles(styles);
 
-function TeammateTitle({ image, displayName }) {
+function TeammateTitle({ id, image, displayName }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <StackLayout orientation="horizontal" alignY="center" gap="10px">
-      <Avatar
-        size="30px"
-        displayName={displayName}
-        image={image}
-        labelledby={displayName}
-      />
-      <Text id={displayName} type="big" ellipsis>
-        {displayName}
-      </Text>
-    </StackLayout>
+    <Link to={`/teammates/${id}`}>
+      <StackLayout orientation="horizontal" alignY="center" gap="10px">
+        <Avatar
+          size="30px"
+          displayName={displayName}
+          image={image}
+          labelledby={displayName}
+        />
+        <Text id={displayName} type="big" ellipsis>
+          {displayName}
+        </Text>
+      </StackLayout>
+    </Link>
   );
 }
 

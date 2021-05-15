@@ -39,14 +39,17 @@ export const teammatesState_getWithTasks = selector({
     const teammates = get(teammatesStateAtom);
     const teammatesTasks = {};
 
-    teammates.forEach(({ id, name, shortName, lastName, assignedTasks }) => {
-      teammatesTasks[id] = {
-        displayName: formatName({ name, shortName, lastName }),
-        assignedTasks: assignedTasks.map(({ task }) => {
-          return get(tasksState_getById(task));
-        }),
-      };
-    });
+    teammates.forEach(
+      ({ id, name, shortName, avatar, lastName, assignedTasks }) => {
+        teammatesTasks[id] = {
+          displayName: formatName({ name, shortName, lastName }),
+          avatar,
+          assignedTasks: assignedTasks.map(({ task }) => {
+            return get(tasksState_getById(task));
+          }),
+        };
+      },
+    );
 
     const tasks = get(tasksState);
 

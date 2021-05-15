@@ -65,4 +65,5 @@ export default {
   theyForm: 'их',
 
   shortName: 'or зовите {referAs} {shortName}',
+  aka: '{shortName}',
 };
