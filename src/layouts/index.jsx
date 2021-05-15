@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 
 import ContentElement from '../components/generic/ContentElement';
-import Header from '../components/generic/Header';
+import Header from '../components/specific/Header';
 
 function _layout({ children, match: { path } }) {
   return (

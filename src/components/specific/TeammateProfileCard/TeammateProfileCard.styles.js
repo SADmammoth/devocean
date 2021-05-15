@@ -1,6 +1,9 @@
 const styles = {
   teammateProfileCard: {
-    width: '250px',
+    width: '350px',
+  },
+  description: {
+    width: '200px',
   },
 };
 

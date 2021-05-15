@@ -36,10 +36,10 @@ function TeammateProfileCard({
             <Avatar
               image={avatar}
               displayName={formatName({ name, lastName })}
-              size="40px"
+              size="50px"
             />
           </BlockDescriptionLayout.Block>
-          <BlockDescriptionLayout.Description>
+          <BlockDescriptionLayout.Description className={classes.description}>
             <Text type="common" bold>
               {name} {lastName}
             </Text>

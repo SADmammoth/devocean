@@ -1,6 +1,10 @@
 import { atom, selector } from 'recoil';
 
 import Client from '../../helpers/services/Client';
+import serverStateSync from '../helpers/effects/serverStateSync';
+import teammatesProfilesState from './teammatesProfilesState';
+import { teammateProfilesState_getById } from './teammatesProfilesState';
+import teammatesState, { teammatesState_Raw } from './teammatesState';
 
 const baseKey = 'userState_';
 
@@ -31,6 +35,24 @@ export const userState_register = selector({
         return userId;
       })
       .catch((res) => null),
+});
+
+const getUserData = (userToken) => Client.user.getData(userToken);
+
+const userDataAtom = atom({
+  key: baseKey + 'data',
+  default: {},
+  effects_UNSTABLE: [serverStateSync(getUserData)],
+});
+
+export const userDataState = selector({
+  key: baseKey + 'data_selector',
+  get: ({ get }) => {
+    const { teammateId } = get(userDataAtom);
+    const teammates = get(teammatesState_Raw);
+    console.log({ ...teammates });
+    return teammates.find(({ id }) => id === teammateId);
+  },
 });
 
 export default userState;

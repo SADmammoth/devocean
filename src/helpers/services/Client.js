@@ -80,6 +80,13 @@ const Client = {
         .send({ login, password })
         .then(({ body }) => body);
     },
+    getData: (userToken) => {
+      return request
+        .post('/checkToken')
+        .use(authPath)
+        .send({ token: userToken })
+        .then(({ body }) => body);
+    },
   },
 
   tasks: {
