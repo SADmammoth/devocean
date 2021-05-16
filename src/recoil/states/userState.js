@@ -1,4 +1,4 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, useSetRecoilState } from 'recoil';
 
 import Client from '../../helpers/services/Client';
 import localStorageSync from '../helpers/effects/localStorageSync';
@@ -13,17 +13,10 @@ const userState = atom({
   effects_UNSTABLE: [localStorageSync(baseKey)],
 });
 
-export const userState_login = selector({
-  key: baseKey + 'login',
-  set: async ({ set }, { login, password }) => {
-    await Client.user
-      .login(login, password)
-      .then((token) => {
-        set(userState, token);
-      })
-      .catch((res) => null);
-  },
-});
+export const userState_login = async ({ login, password }) => {
+  const token = await Client.user.login(login, password).catch((res) => null);
+  return { ...(await Client.user.getData(token)), token };
+};
 
 export const userState_register = selector({
   key: baseKey + 'register',
@@ -38,6 +31,8 @@ export const userState_register = selector({
     if (res) {
       set(userState_login, { login, password });
     }
+
+    return res;
   },
 });
 

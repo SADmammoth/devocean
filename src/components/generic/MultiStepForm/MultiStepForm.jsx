@@ -30,14 +30,23 @@ function MultiStepForm({
 
   const stepForm = useCallback(
     async (formData) => {
-      if (step < steps.length - 1) {
-        setStep((currentStep) => currentStep + 1);
-        onSubmitStep(data);
+      let newIndex;
+      let endSteps;
+      const proceed = (newIndex) => {
+        newIndex = nextIndex;
+        endSteps = false;
+      };
+      const end = () => (endSteps = true);
+
+      const nextIndex = await onSubmitStep(step, formData, proceed, end);
+
+      if (!endSteps && step < steps.length - 1) {
+        setStep((currentStep) => newIndex || currentStep + 1);
         return addData(formData);
       }
       return await onSubmit({ ...data, ...formData });
     },
-    [data],
+    [data, steps],
   );
 
   console.log(step);

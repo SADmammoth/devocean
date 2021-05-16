@@ -17,7 +17,7 @@ export default function localStorageSync(baseKey) {
     }
 
     onSet(async (value) => {
-      localStorageSync.setItem(
+      localStorage.setItem(
         baseKey,
         typeof value === 'string' ? value : JSON.stringify(value),
       );
