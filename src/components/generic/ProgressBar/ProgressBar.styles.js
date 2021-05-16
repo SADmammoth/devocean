@@ -17,8 +17,11 @@ const styles = {
     position: 'relative',
     color: 'transparent',
   },
-  progressbar: {
+  normal: {
     background: (theme) => theme.background.dark,
+  },
+  overflowed: {
+    background: '#ff7474',
   },
 };
 

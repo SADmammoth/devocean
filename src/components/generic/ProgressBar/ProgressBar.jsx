@@ -16,12 +16,23 @@ function ProgressBar({ className, progress, orientation }) {
   const classes = useStyles(theme);
   const locale = useLocale();
 
+  let isOverflowed = false;
+
+  if (progress > 1) {
+    isOverflowed = true;
+    progress = 1 / progress;
+  }
+
   return (
     <div
       className={classNames(
         className,
         classes.progressbar,
         classes[orientations[orientation]],
+        {
+          [classes.overflowed]: isOverflowed,
+          [classes.normal]: !isOverflowed,
+        },
       )}
       style={{ '--progress': `${progress * 100}%` }}
       aria-label={locale('progressLabel', { progress: progress * 100 })}>

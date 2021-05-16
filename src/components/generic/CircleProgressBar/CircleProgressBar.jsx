@@ -18,6 +18,11 @@ function CircleProgressBar({
   size,
   width,
 }) {
+  if (progress > 1) {
+    progress = 1 / progress;
+    backgroundColor = '#ff7474';
+  }
+
   const theme = useTheme();
   const classes = useStyles({
     ...theme,
