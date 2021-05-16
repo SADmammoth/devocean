@@ -10,6 +10,6 @@ export default () => [
     name: 'password',
     label: 'Password',
     placeholder: 'Password',
-    validator: 'password',
+    // validator: 'password',
   },
 ];

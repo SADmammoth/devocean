@@ -5,11 +5,7 @@ import { useRecoilValueLoadable } from 'recoil';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import formatName from '../../../helpers/functions/formatName';
-import {
-  userDataState,
-  userState_getData,
-} from '../../../recoil/states/userState';
-import Button from '../../generic/Button';
+import { userDataState } from '../../../recoil/states/userState';
 import ContainerLayout from '../../generic/layouts/ContainerLayout';
 import StackLayout from '../../generic/layouts/StackLayout';
 import StretchLastLayout from '../../generic/layouts/StretchLastLayout';
@@ -50,9 +46,7 @@ const Header = ({ hideNotificationBadge }) => {
                 image={userData.contents.avatar}
                 displayName={formatName(userData.contents)}
               />
-            ) : (
-              <Button link="/auth">Login</Button>
-            )}
+            ) : null}
           </StateMonade>
         </StretchLastLayout>
       </ContainerLayout>

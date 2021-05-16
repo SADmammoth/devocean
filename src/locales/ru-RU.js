@@ -1,7 +1,9 @@
 export default {
   'Welcome back': 'С возвращением в {appname}!',
+  Welcome: 'Добро пожаловать в {appname}!',
   appname: 'DEVocean Manager',
   'Welcome back subtitle': 'Приступаем к работе',
+  'Welcome subtitle': 'С чего мы начнем?',
   Notifications: 'Уведомления',
 
   'New notification': 'Новое уведомление',

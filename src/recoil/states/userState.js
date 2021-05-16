@@ -11,19 +11,20 @@ const baseKey = 'userState_';
 const userState = selector({
   key: baseKey + 'set',
   get: () => localStorage.getItem('user'),
-  set: (user) => localStorage.setItem('user', user),
+  set: ({}, user) => localStorage.setItem('user', user),
 });
 
 export const userState_login = selector({
   key: baseKey + 'login',
-  set: ({ set }, { login, password }) =>
-    Client.user
+  set: async ({ set }, { login, password }) => {
+    await Client.user
       .login(login, password)
-      .then(({ id: userId }) => {
-        set(userState, { userId, login });
-        return userId;
+      .then((token) => {
+        console.log(token);
+        set(userState, token);
       })
-      .catch((res) => null),
+      .catch((res) => null);
+  },
 });
 
 export const userState_register = selector({

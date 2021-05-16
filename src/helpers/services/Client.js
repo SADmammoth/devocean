@@ -71,7 +71,7 @@ const Client = {
         .post('/login')
         .use(authPath)
         .send({ login, password })
-        .then(({ body }) => body);
+        .then(({ text }) => text);
     },
     register: (login, password, userToken) => {
       return request
