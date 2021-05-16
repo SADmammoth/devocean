@@ -30,21 +30,69 @@ function RegisterPageContent(props) {
       <StackLayout column={4} className={classes.form}>
         <MultiStepForm
           steps={[
-            [
-              {
-                type: 'text',
-                label: 'Project title',
-                id: 'title',
-                name: 'title',
-              },
-              {
-                type: 'textarea',
-                label: 'Project description',
-                id: 'description',
-                name: 'description',
-              },
-            ],
-            localizedForm,
+            { $title: 'Your new account', inputs: localizedForm },
+            {
+              $title: 'Your new project',
+              inputs: [
+                {
+                  type: 'text',
+                  label: 'Project title',
+                  id: 'title',
+                  name: 'title',
+                },
+                {
+                  type: 'textarea',
+                  label: 'Project description',
+                  id: 'description',
+                  name: 'description',
+                },
+              ],
+            },
+            {
+              $title: 'Your new profile',
+              inputs: [
+                {
+                  id: 'name',
+                  type: 'text',
+                  id: 'name',
+                  name: 'name',
+                  label: 'Name',
+                },
+                {
+                  id: 'lastName',
+                  type: 'text',
+                  name: 'lastName',
+                  label: 'Last name',
+                },
+                {
+                  id: 'referAs',
+                  type: 'select',
+                  name: 'referAs',
+                  label: 'Refer to me as',
+                  valueOptions: [
+                    {
+                      label: 'He/him',
+                      value: 'he',
+                    },
+                    {
+                      label: 'She/her',
+                      value: 'she',
+                    },
+                    // {
+                    //   label: 'They/them',
+                    //   value: 'they',
+                    // },
+                  ],
+                },
+                {
+                  id: 'email',
+                  type: 'text',
+                  name: 'email',
+                  label: 'Email',
+                  validator: 'email',
+                },
+              ],
+            },
           ]}
           onSubmit={async (data) => {
             await login(data);

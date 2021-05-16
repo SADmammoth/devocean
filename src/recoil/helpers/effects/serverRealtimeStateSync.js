@@ -10,7 +10,7 @@ export default function serverRealtimeStateSync(
   abortPost,
 ) {
   return ({ node, onSet, trigger, setSelf }) => {
-    const userToken = localStorage.getItem('user');
+    const userToken = localStorage.getItem('userState_');
 
     if (get && trigger === 'get') {
       const initialize = async (/*value,*/ ...args) =>

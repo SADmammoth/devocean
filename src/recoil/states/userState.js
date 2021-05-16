@@ -1,17 +1,16 @@
 import { atom, selector } from 'recoil';
 
 import Client from '../../helpers/services/Client';
+import localStorageSync from '../helpers/effects/localStorageSync';
 import serverStateSync from '../helpers/effects/serverStateSync';
-import teammatesProfilesState from './teammatesProfilesState';
-import { teammateProfilesState_getById } from './teammatesProfilesState';
-import teammatesState, { teammatesState_Raw } from './teammatesState';
+import { teammatesState_Raw } from './teammatesState';
 
 const baseKey = 'userState_';
 
-const userState = selector({
-  key: baseKey + 'set',
-  get: () => localStorage.getItem('user'),
-  set: ({}, user) => localStorage.setItem('user', user),
+const userState = atom({
+  key: baseKey,
+  default: null,
+  effects_UNSTABLE: [localStorageSync(baseKey)],
 });
 
 export const userState_login = selector({
@@ -20,7 +19,6 @@ export const userState_login = selector({
     await Client.user
       .login(login, password)
       .then((token) => {
-        console.log(token);
         set(userState, token);
       })
       .catch((res) => null);
@@ -29,13 +27,18 @@ export const userState_login = selector({
 
 export const userState_register = selector({
   key: baseKey + 'register',
-  set: ({}, { login, password }) =>
-    Client.user
+  set: async ({ set }, { login, password }) => {
+    const res = await Client.user
       .register(login, password)
-      .then(({ id: userId }) => {
-        return userId;
+      .then((res) => {
+        return res;
       })
-      .catch((res) => null),
+      .catch((res) => null);
+
+    if (res) {
+      set(userState_login, { login, password });
+    }
+  },
 });
 
 const getUserData = (userToken) => Client.user.getData(userToken);
