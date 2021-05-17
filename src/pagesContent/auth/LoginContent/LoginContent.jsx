@@ -31,11 +31,24 @@ const LoginContent = () => {
 
   const localizedForm = useLocalizedForm([
     { $title: 'tit', inputs: getLoginForm() },
-    { $title: 'tit', inputs: getInitTeammateProfileForm({}) },
+    {
+      $title: 'tit',
+      inputs: getInitTeammateProfileForm({
+        hideLogin: true,
+        hideWorkHours: true,
+        hidePassword: true,
+        hideWorkHoursSelect: true,
+        hideJoinedAt: true,
+        hideEmail: true,
+      }),
+    },
   ]);
 
   const setUserToken = useSetRecoilState(userState);
 
+  const [inputs, setInputs] = useState({});
+
+  console.log(inputs);
   return (
     <GridLayout>
       <Skip column={4} />
@@ -43,21 +56,31 @@ const LoginContent = () => {
         <MultiStepForm
           steps={localizedForm}
           onSubmitStep={async (step, data, proceed, end) => {
-            console.log(data);
             if (step === 0) {
               const loginData = await userState_login(data);
 
               if (!loginData.invited) end();
             }
           }}
-          onSubmit={async () => {
+          onSubmit={async (data) => {
             const loginData = await userState_login(data);
             setUserToken(loginData.token);
             history.push('/');
           }}
+          onInputsUpdate={(inputs) => {
+            setInputs(inputs);
+          }}
           alignX="center"
-          submitText="Log in"
-        />
+          submitText="Log in">
+          {/*Step 0*/}
+          {inputs.login}
+          {inputs.password}
+          {/*Step 1*/}
+          {inputs.name}
+          {inputs.lastName}
+          {inputs.referAs}
+          {inputs.workMode}
+        </MultiStepForm>
       </StackLayout>
     </GridLayout>
   );

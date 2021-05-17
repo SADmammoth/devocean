@@ -5,6 +5,9 @@ export default function getInitTeammateProfileForm({
   setHideWorkHours,
   hideLogin,
   hidePassword,
+  hideJoinedAt,
+  hideWorkHoursSelect,
+  hideEmail,
   joinedAt,
   workMode,
   workHours,
@@ -23,7 +26,7 @@ export default function getInitTeammateProfileForm({
       name: 'login',
       label: 'Login',
     },
-    {
+    hideEmail || {
       id: 'email',
       type: 'text',
       name: 'email',
@@ -52,7 +55,7 @@ export default function getInitTeammateProfileForm({
       ],
       value: workMode,
     },
-    {
+    hideWorkHoursSelect || {
       id: 'workHours',
       type: 'select',
       name: 'workHours',
@@ -70,7 +73,7 @@ export default function getInitTeammateProfileForm({
       onChange: (name, value) => setHideWorkHours(value === 'flexible'),
       value: workHours,
     },
-    {
+    hideJoinedAt || {
       id: 'joinedAt',
       name: 'joinedAt',
       type: 'text',
