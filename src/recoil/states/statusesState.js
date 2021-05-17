@@ -60,17 +60,19 @@ export const statusesState_removeTask = selector({
     const ind = tasks.findIndex(({ id }) => id === taskId);
     tasks.splice(ind, 1);
 
-    set(statusesState_update(statusName), { tasks: [] });
+    set(statusesState_update(statusName), { tasks: tasks });
   },
 });
 
 export const statusesState_addTask = selectorFamily({
   key: baseKey + 'addTask',
-  set: (statusName) => ({ get, set }, { taskId, text }) => {
+  set: (statusName) => ({ get, set }, { taskId, text, index }) => {
     const statuses = get(statusesStateAtom);
     const status = statuses.find(({ name }) => name === statusName);
+    const updatedTasks = [...status.tasks];
+    updatedTasks.splice(index.x, 0, taskId);
 
-    set(statusesState_update(statusName), { tasks: [...status.tasks, taskId] });
+    set(statusesState_update(statusName), { tasks: updatedTasks });
 
     set(tasksState_update(taskId), {
       status: { name: statusName, text },

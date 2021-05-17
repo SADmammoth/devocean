@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
@@ -27,28 +27,30 @@ function ListViewTasks({ folderId, style }) {
     theme.draggableAreaDefaultSize,
   );
 
-  const getList = useCallback(() => {
-    return (
+  const [renderedTasks, setRenderedTasks] = useState([]);
+
+  useEffect(() => {
+    setRenderedTasks(
       tasks.state === 'hasValue' &&
-      tasks.contents
-        .map((task) => {
-          if (task)
-            return (
-              <DraggableTask
-                key={task.id}
-                {...task}
-                onDragStart={({ height }) => {
-                  setDraggableAreaSize(height);
-                }}
-                onDragEnd={() =>
-                  setDraggableAreaSize(theme.draggableAreaDefaultSize)
-                }
-              />
-            );
-        })
-        .filter((item) => !!item)
+        tasks.contents
+          .map((task) => {
+            if (task)
+              return (
+                <DraggableTask
+                  key={task.id}
+                  {...task}
+                  onDragStart={({ height }) => {
+                    setDraggableAreaSize(height);
+                  }}
+                  onDragEnd={() =>
+                    setDraggableAreaSize(theme.draggableAreaDefaultSize)
+                  }
+                />
+              );
+          })
+          .filter((item) => !!item),
     );
-  }, [folderId, tasks]);
+  }, [tasks]);
 
   return (
     <StateMonade state={tasks.state}>
@@ -60,7 +62,7 @@ function ListViewTasks({ folderId, style }) {
         scrollPaddingEnd="0px">
         <DraggableList
           id="list"
-          list={getList()}
+          list={renderedTasks}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
         />

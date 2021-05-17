@@ -59,7 +59,7 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
-          onNewItem={async ({ id: taskId, status: oldStatus }) => {
+          onNewItem={async ({ id: taskId, status: oldStatus, index }) => {
             const { text } = await showPopup({
               children: `Changing status to ${locale(status)}`,
               closeButtonContent: 'Confirm',
@@ -75,7 +75,7 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
               taskId,
               statusName: oldStatus?.name,
             });
-            changeStatus({ taskId, text });
+            changeStatus({ taskId, text, index });
           }}
         />
       </StackLayout>

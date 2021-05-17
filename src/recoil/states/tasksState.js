@@ -9,6 +9,7 @@ import getPostState from '../helpers/getPostState';
 import getTasksOfFolderTree from '../helpers/getTasksOfFolderTree';
 import deleteSelector from '../helpers/selectors/deleteSelector';
 import entriesArrangementSelector from '../helpers/selectors/entriesArrangementSelector';
+import insertSelector from '../helpers/selectors/insertSelector';
 import mergeSelector from '../helpers/selectors/mergeSelector';
 import updateSelector from '../helpers/selectors/updateSelector';
 import treeArrayToMap from '../helpers/treeArrayToMap';
@@ -16,10 +17,10 @@ import folderTreeState from './folderTreeState';
 import userState from './userState';
 
 const baseKey = 'tasksState_';
-const postOne = (userToken, item) => Client.tasks.post(userToken, item);
+const postOne = (userToken, item) => Client.tasks.post(item, userToken);
 const patchOne = (userToken, item) =>
-  Client.tasks.patch(userToken, item.id, item);
-const deleteOne = (userToken, item) => Client.tasks.delete(userToken, item.id);
+  Client.tasks.patch(item.id, item, userToken);
+const deleteOne = (userToken, item) => Client.tasks.delete(item.id, userToken);
 
 const getState = (userToken) => Client.tasks.get(userToken);
 const postState = getPostState(
