@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import PanelCard from '../../generic/PanelCard';
-import CommentAuthorBadge from '../CommentAuthorBadge/CommentAuthorBadge';
+import CommentAuthorBadge from '../CommentAuthorBadge';
 import TimeReportsBadge from '../TimeReportsBadge';
 
 import styles from './ReportCard.styles';

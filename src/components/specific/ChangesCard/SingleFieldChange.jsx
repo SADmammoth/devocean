@@ -10,12 +10,17 @@ import FieldChange from './FieldChange';
 
 function SingleFieldChange({ text, from, to, author, time }) {
   return (
-    <PanelCard orientation="vertical">
+    <PanelCard orientation="vertical" gap="5px">
       <CommentAuthorBadge author={author} time={time} />
       <StackLayout alignY="center">
         <FieldChange from={from} to={to} />
       </StackLayout>
-      <Text type="common">{text}</Text>
+      <StackLayout orientation="vertical" gap="0">
+        <Text type="common" bold>
+          Commented
+        </Text>
+        <Text type="common">{text}</Text>
+      </StackLayout>
     </PanelCard>
   );
 }

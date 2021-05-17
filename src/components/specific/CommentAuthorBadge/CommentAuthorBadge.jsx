@@ -14,15 +14,18 @@ import styles from './CommentAuthorBadge.styles';
 
 const useStyles = createUseStyles(styles);
 
-function CommentAuthorBadge({ id, image, author, time }) {
+function CommentAuthorBadge({ author, time }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <Link to={`/teammates/${id}`}>
+    <Link to={`/teammates/${author.id}`}>
       <BlockDescriptionLayout>
         <BlockDescriptionLayout.Block>
-          <Avatar image={image} displayName={formatName(author || {})} />
+          <Avatar
+            image={author.avatar}
+            displayName={formatName(author || {})}
+          />
         </BlockDescriptionLayout.Block>
         <BlockDescriptionLayout.Description>
           <Text type="small" bold>
