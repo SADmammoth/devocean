@@ -9,10 +9,11 @@ import notificationsState from '../../../recoil/states/notificationsState';
 import Button from '../../generic/Button';
 import Interactive from '../../generic/Interactive';
 import InteractiveCard from '../../generic/InteractiveCard';
+import ScrollLayout from '../../generic/layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../../generic/layouts/StackLayout';
 import NotificationContent from '../NotificationContent';
 
-function NotificationsList({ items, showCount }) {
+function NotificationsList({ className, showCount }) {
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
   const locale = useLocale();
 
@@ -44,17 +45,20 @@ function NotificationsList({ items, showCount }) {
   const InteractiveButton = Interactive(Button);
 
   return (
-    <StackLayout
-      aria-label={locale('Notifications')}
+    <ScrollLayout
+      className={className}
       orientation="vertical"
-      gap="10px">
+      scrollOrientation="vertical"
+      gap="10px"
+      blockSnapType="start"
+      scrollPaddingStart="5px">
       <StateMonade state={notificationsLoadable.state}>
         {notificationsToShow.map(renderNotification)}
         {!(showCount && notShownCount > 0) || (
           <InteractiveButton link="/notifications">{`${notShownCount} more`}</InteractiveButton>
         )}
       </StateMonade>
-    </StackLayout>
+    </ScrollLayout>
   );
 }
 

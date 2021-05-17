@@ -30,9 +30,9 @@ function ScrollLayout({
   return (
     <StackLayout
       className={classNames(
+        className,
         classes.scrollArea,
         classes[scrollOrientation + 'Scroll'],
-        className,
       )}
       orientation={orientation}
       alignY="start"
