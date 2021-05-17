@@ -46,6 +46,7 @@ function DraggableTask({
 
   return (
     <DraggableElement
+      className={classes.draggableTask}
       draggableType="task"
       id={id}
       height={duration}

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
@@ -9,16 +10,29 @@ import styles from './ScrollLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
-function ScrollLayout({ orientation, ...props }) {
+function ScrollLayout({
+  className,
+  orientation = 'horizontal',
+  scrollOrientation = 'vertical',
+  scrollPaddingStart,
+  scrollPaddingEnd,
+  ...props
+}) {
   const theme = useTheme();
-  const classes = useStyles(theme);
+  const classes = useStyles({ scrollPaddingStart, scrollPaddingEnd, ...theme });
 
-  if (orientation === 'vertical')
-    return (
-      <StackLayout orientation="vertical" alignY="start" {...props} scroll />
-    );
-
-  return <StackLayout alignX="start" {...props} scroll />;
+  return (
+    <StackLayout
+      className={classNames(
+        classes.scrollArea,
+        classes[scrollOrientation + 'Scroll'],
+        className,
+      )}
+      orientation={orientation}
+      alignY="start"
+      {...props}
+    />
+  );
 }
 
 ScrollLayout.propTypes = {};

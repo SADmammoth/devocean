@@ -3,6 +3,7 @@ const styles = {
     '&>.list-droparea': {
       marginLeft: 'calc(-1 * var(--gap))',
     },
+    height: '73vh',
   },
   paddingTop: {
     paddingTop: (theme) => theme.spaces.small,

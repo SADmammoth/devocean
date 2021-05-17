@@ -5,6 +5,7 @@ import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
 import DraggableList from '../../../../components/generic/DraggableList';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import DraggableTask from '../../../../components/specific/DraggableTask';
 import StateMonade from '../../../../helpers/components/StateMonade';
@@ -51,19 +52,19 @@ function ListViewTasks({ folderId, style }) {
 
   return (
     <StateMonade state={tasks.state}>
-      <StackLayout
+      <ScrollLayout
         className={classes.list}
         orientation="horizontal"
-        alignX="start"
         gap="10px"
-        aria-label={locale('TaskList')}>
+        aria-label={locale('TaskList')}
+        scrollPaddingEnd="0px">
         <DraggableList
           id="list"
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
         />
-      </StackLayout>
+      </ScrollLayout>
     </StateMonade>
   );
 }

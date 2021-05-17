@@ -10,6 +10,7 @@ import styles from './DraggableElement.styles';
 const useStyles = createUseStyles(styles);
 
 const DraggableElement = ({
+  className,
   id,
   height,
   draggableType,
@@ -24,6 +25,7 @@ const DraggableElement = ({
 
   return (
     <DndDraggableElement
+      className={className}
       id={id}
       key={id}
       data={{ 'data-type': draggableType, id, ...data }}

@@ -9,17 +9,15 @@ export default function serverRealtimeStateSync(
   abortGet,
   abortPost,
 ) {
+  let initialized = false;
   return ({ node, onSet, trigger, setSelf }) => {
     const userToken = localStorage.getItem('userState_');
 
     if (get && trigger === 'get') {
-      const initialize = async (/*value,*/ ...args) =>
-        // JSON.stringify(value) === JSON.stringify(node.default)
-        // ?
-        await get(...args);
-      // : value;
+      const initialize = (...args) => get(...args);
 
       const getData = async () => {
+        initialized = true;
         setSelf(await initialize(userToken));
 
         subscriber(async () => {
@@ -27,7 +25,7 @@ export default function serverRealtimeStateSync(
         });
       };
 
-      getData();
+      if (!initialized) getData();
     }
 
     if (post) {
