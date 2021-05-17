@@ -34,8 +34,6 @@ function CreateCommentForm({ classes, id }) {
         onSubmit={async ({ comment }) => {
           addComment({
             text: comment,
-            author: '6073019146a48838a00f97c9',
-            time: new Date(),
           });
         }}
         submitButton={
