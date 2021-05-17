@@ -68,7 +68,7 @@ function ReportsPageContent({ id }) {
         gap="10px">
         {renderReports()}
       </ScrollLayout>
-      {!task?.reportedTime || (
+      {!task?.reportedTime || !reports.contents.length || (
         <NestedContainerLayout margin="20px">
           <TimeReportsBadge
             estimate={new Duration(new String(task?.estimate))}
