@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
+import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import ChangesCard from '../../../../components/specific/ChangesCard';
 import historyState from '../../../../recoil/states/historyState';
 
@@ -22,16 +24,21 @@ function HistoryPageContent({ id }) {
     if (!before || !after) {
       return;
     }
+
     return Object.fromEntries(
-      Object.entries(before).map(([key, value]) => {
-        return [key, [value, after[key]]];
-      }),
+      Object.entries(after)
+        .filter(
+          ([key, value]) => !(!value && !before[key]) && value !== before[key],
+        )
+        .map(([key, value]) => {
+          return [key, [before[key] || 'none', value]];
+        }),
     );
   };
 
   const renderHistory = useCallback(() => {
     if (history.state === 'hasValue')
-      return history.contents.map((historyItem) => {
+      return history.contents.slice(1).map((historyItem) => {
         const fields = getChanges(historyItem);
         if (_.isEmpty(fields)) return;
         return (
@@ -44,7 +51,17 @@ function HistoryPageContent({ id }) {
       });
   }, [history.contents]);
 
-  return <div>{renderHistory()}</div>;
+  return (
+    <ScrollLayout
+      className={classes.content}
+      orientation="vertical"
+      scrollOrientation="vertical"
+      gap="10px"
+      blockSnapType="start"
+      scrollPaddingStart="5px">
+      {renderHistory()}
+    </ScrollLayout>
+  );
 }
 
 HistoryPageContent.propTypes = {};

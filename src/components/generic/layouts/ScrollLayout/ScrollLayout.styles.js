@@ -1,6 +1,12 @@
 const styles = {
   scrollArea: {
     marginRight: '-8px',
+    flexWrap: 'nowrap',
+
+    '&>*': {
+      scrollSnapAlign: (theme) => theme.blockSnapType,
+    },
+
     scrollPaddingBlockStart: (theme) => theme.scrollPaddingStart,
     scrollPaddingBlockEnd: (theme) => theme.scrollPaddingEnd,
     '&::-webkit-scrollbar-thumb': {

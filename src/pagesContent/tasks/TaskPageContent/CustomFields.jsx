@@ -6,17 +6,19 @@ import PropTypes from 'prop-types';
 import Text from '../../../components/generic/Text';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 
-function CustomFields({ customFields }) {
-  const renderCustomField = ([name, value]) => {
+function CustomFields({ classes, customFields }) {
+  const renderCustomField = ([name, { label, value }]) => {
     return (
-      <StackLayout orientation="vertical">
-        <Text type="h2">{_.upperFirst(_.lowerCase(name))}</Text>
+      <StackLayout orientation="vertical" gap="5px">
+        <Text type="h2" className={classes.clearHeading}>
+          {label}
+        </Text>
         <Text type="common">{value}</Text>
       </StackLayout>
     );
   };
   return (
-    <StackLayout orientation="vertical">
+    <StackLayout orientation="vertical" gap="10px">
       {Object.entries(customFields).map(renderCustomField)}
     </StackLayout>
   );

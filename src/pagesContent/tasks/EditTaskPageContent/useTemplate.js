@@ -6,9 +6,13 @@ import templatesState, {
   templatesState_getById,
 } from '../../../recoil/states/templatesState';
 
-export default function useTemplate() {
+export default function useTemplate(templateInit) {
   const templates = useRecoilStateLoadable(templatesState);
-  const [currentTemplate, setCurrentTemplate] = useState();
+  const [currentTemplate, setCurrentTemplate] = useState(templateInit);
+
+  useEffect(() => {
+    setCurrentTemplate(templateInit);
+  }, [templateInit]);
 
   useEffect(() => {
     if (!currentTemplate && templates[0].state === 'hasValue') {

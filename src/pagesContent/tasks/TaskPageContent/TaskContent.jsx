@@ -11,7 +11,7 @@ function TaskContent({ classes, title, customFields }) {
   return (
     <>
       <Text type="h1">{title}</Text>
-      <CustomFields customFields={customFields} />
+      <CustomFields classes={classes} customFields={customFields} />
     </>
   );
 }

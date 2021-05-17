@@ -15,10 +15,17 @@ function ChangesCard({ fields, singleField, ...props }) {
   const classes = useStyles(theme);
 
   if (singleField) {
-    return <SingleFieldChange from={fields[0]} to={fields[1]} {...props} />;
+    return (
+      <SingleFieldChange
+        className={classes.card}
+        from={fields[0]}
+        to={fields[1]}
+        {...props}
+      />
+    );
   }
 
-  return <FieldsChanges fields={fields} {...props} />;
+  return <FieldsChanges className={classes.card} fields={fields} {...props} />;
 }
 
 ChangesCard.propTypes = {};

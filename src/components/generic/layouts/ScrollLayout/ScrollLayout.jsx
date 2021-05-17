@@ -16,10 +16,16 @@ function ScrollLayout({
   scrollOrientation = 'vertical',
   scrollPaddingStart,
   scrollPaddingEnd,
+  blockSnapType = 'end',
   ...props
 }) {
   const theme = useTheme();
-  const classes = useStyles({ scrollPaddingStart, scrollPaddingEnd, ...theme });
+  const classes = useStyles({
+    scrollPaddingStart,
+    scrollPaddingEnd,
+    blockSnapType,
+    ...theme,
+  });
 
   return (
     <StackLayout

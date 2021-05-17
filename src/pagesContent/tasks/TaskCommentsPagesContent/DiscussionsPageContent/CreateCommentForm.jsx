@@ -43,6 +43,7 @@ function CreateCommentForm({ classes, id }) {
             <FaPaperPlane />
           </Button>
         }
+        resetOnSubmit
       />
     </StackLayout>
   );

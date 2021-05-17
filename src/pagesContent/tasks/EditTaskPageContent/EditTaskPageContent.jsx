@@ -23,9 +23,9 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const templateProps = useTemplate();
+  const templateProps = useTemplate(initialValues.template);
   const inputsProps = useLocalizedForm(
-    getCreateTaskForm({ ...templateProps, ...initialValues }),
+    getCreateTaskForm({ ...initialValues, ...templateProps }),
   );
 
   const [inputs, setInputs] = useState({});

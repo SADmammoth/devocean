@@ -14,6 +14,7 @@ export default function ({
   templateValueOptions,
   templateOnChange,
   customFields,
+  customFieldsValues,
 }) {
   return [
     {
@@ -54,7 +55,7 @@ export default function ({
           value: 'blocker',
         },
       ],
-      value: 'low',
+      value: priority || 'low',
     },
     {
       id: 'assignee',
@@ -105,7 +106,23 @@ export default function ({
       value: template,
     },
     ...customFields.map((field) => {
-      return { ...field, group: { id: 'customFields', title: 'CustomFields' } };
+      return {
+        ...field,
+        value: customFieldsValues?.[field.name],
+        group: {
+          id: 'customFields',
+          title: 'CustomFields',
+        },
+        converters: {
+          in: (value) => value,
+          // (object) => {
+          //   if (!object) return;
+          //   const { label, value } = object;
+          //   return value;
+          // },
+          out: (value) => ({ label: field.label, value }),
+        },
+      };
     }),
   ];
 }

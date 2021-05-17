@@ -26,6 +26,7 @@ function DraggableList({
 
   return (
     <DndDraggableList
+      className={classes.list}
       id={id}
       list={list}
       onOrderChange={onOrderChange}

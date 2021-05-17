@@ -1,3 +1,5 @@
-const styles = {};
+const styles = {
+  card: {},
+};
 
 export default styles;

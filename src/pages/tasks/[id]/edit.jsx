@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect } from 'react';
 
+import _ from 'lodash';
 import {
   useRecoilStateLoadable,
   useRecoilValue,
   useRecoilValueLoadable,
 } from 'recoil';
+import { history } from 'umi';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import formatName from '../../../helpers/functions/formatName';
@@ -50,9 +52,20 @@ export default function EditTask({
             statusValueOptions: statuses.contents?.map(({ name }) => {
               return { label: name, value: name };
             }),
+            template: initialValues.contents?.template.id,
+            customFieldsValues: Object.fromEntries(
+              Object.entries(
+                initialValues.contents?.customFields || {},
+              ).map(([name, { value }]) => [name, value]),
+            ),
           }}
-          onSubmit={async (data) => {
-            return await editTask(data);
+          onSubmit={async ({ customFields, ...data }) => {
+            const res = await editTask({
+              customFields: _.omit(customFields, ['$title']),
+              ...data,
+            });
+            history.push(`/tasks/${id}`);
+            return res;
           }}
           edit
         />

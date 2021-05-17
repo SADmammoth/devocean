@@ -1,7 +1,5 @@
 const styles = {
-  draggableTask: {
-    scrollSnapAlign: 'end',
-  },
+  draggableTask: {},
 };
 
 export default styles;

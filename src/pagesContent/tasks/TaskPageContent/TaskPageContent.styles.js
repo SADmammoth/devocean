@@ -11,6 +11,10 @@ const styles = {
   sidebarContent: {
     width: '100%',
   },
+  clearHeading: {
+    padding: '0',
+    margin: '0',
+  },
 };
 
 export default styles;
