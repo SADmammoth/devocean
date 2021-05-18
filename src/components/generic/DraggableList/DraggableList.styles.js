@@ -1,6 +1,6 @@
 const styles = {
   list: {
-    '.droparea': {
+    '.droparea,.list-droparea': {
       scrollSnapAlign: 'none',
     },
   },

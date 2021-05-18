@@ -6,6 +6,7 @@ import { useSetRecoilState } from 'recoil';
 
 import DraggableList from '../../../../components/generic/DraggableList';
 import Text from '../../../../components/generic/Text';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import DraggableTask from '../../../../components/specific/DraggableTask';
 import showPopup from '../../../../helpers/components/showPopup';
@@ -46,15 +47,16 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
   }, [tasks]);
 
   return (
-    <StackLayout orientation="vertical" alignY="start">
+    <StackLayout orientation="vertical" alignY="start" gap="10px">
       {!showTitle || <Text type="big">{locale(status)}</Text>}
-      <StackLayout
+      <ScrollLayout
         className={classes.list}
         orientation="vertical"
+        scrollOrientation="vertical"
+        blockSnapType="start"
         alignY="start"
-        gap="5px"
-        aria-label={locale('TaskList')}
-        scroll>
+        gap="-10px"
+        aria-label={locale('TaskList')}>
         <DraggableList
           list={getList()}
           draggableType="task"
@@ -63,6 +65,7 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
             const { text } = await showPopup({
               children: `Changing status to ${locale(status)}`,
               closeButtonContent: 'Confirm',
+              cancelText: 'Cancel',
               inputs: [
                 {
                   type: 'textarea',
@@ -78,7 +81,7 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
             changeStatus({ taskId, text, index });
           }}
         />
-      </StackLayout>
+      </ScrollLayout>
     </StackLayout>
   );
 }

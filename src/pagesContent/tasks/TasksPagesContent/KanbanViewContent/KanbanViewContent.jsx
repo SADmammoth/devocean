@@ -9,6 +9,7 @@ import Button from '../../../../components/generic/Button';
 import ExpandableToolBar from '../../../../components/generic/ExpandableToolBar';
 import Sidebar from '../../../../components/generic/Sidebar';
 import GridLayout from '../../../../components/generic/layouts/GridLayout';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import StateMonade from '../../../../helpers/components/StateMonade';
@@ -58,12 +59,13 @@ const KanbanViewContent = () => {
             showTitle={false}></KanbanStatusList>
         </StateMonade>
       </Sidebar>
-      <StackLayout
-        className={classes.paddingTop}
+      <ScrollLayout
+        className={classNames(classes.scrollArea, classes.paddingTop)}
         column={7}
         orientation="horizontal"
-        gap="20px"
-        scroll>
+        scrollOrientation="horizontal"
+        blockSnapType="start"
+        gap="15px">
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
           <Button onClick={() => setShowAddStatus((state) => !state)}>
@@ -74,7 +76,7 @@ const KanbanViewContent = () => {
               onSubmit={() => setShowAddStatus(false)}></AddStatusForm>
           ) : null}
         </StateMonade>
-      </StackLayout>
+      </ScrollLayout>
       <FeatureDependentToolbar
         items={{
           manageTasks: [
