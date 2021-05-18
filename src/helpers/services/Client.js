@@ -44,15 +44,16 @@ const Client = {
         .post('/notifications')
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .send({ ...notification, author: notification.author.id })
+        .send(notification)
         .then(({ body }) => body);
     },
 
-    patch: (id, notification) => {
+    patch: (id, notification, userToken) => {
       return request
         .patch(`/notifications/${id}`)
+        .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .send({ ...notification, author: notification.author?.id })
+        .send(notification)
         .then(({ body }) => body);
     },
 

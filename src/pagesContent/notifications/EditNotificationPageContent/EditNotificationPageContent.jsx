@@ -44,9 +44,10 @@ function EditNotificationPageContent({
   return (
     <>
       <GridLayout className={classes.content}>
-        <Sidebar column={3} className={classes.sidebar}>
+        <Sidebar
+          column={3}
+          className={classNames(classes.sidebar, classes.paddingTop)}>
           {inputs.time}
-          {inputs.author}
         </Sidebar>
         <StackLayout
           column={5}

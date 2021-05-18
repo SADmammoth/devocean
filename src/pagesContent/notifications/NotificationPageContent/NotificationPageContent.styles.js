@@ -2,8 +2,12 @@ const styles = {
   content: {
     height: '100%',
   },
-  topPadding: {
+  paddingTop: {
     paddingTop: (theme) => theme.spaces.small,
+  },
+  cleanHeading: {
+    padding: '0',
+    margin: '0',
   },
 };
 

@@ -12,7 +12,7 @@ function StackItems({ classes, children, orientation }) {
   }
   const orientationClass = orientations[orientation] + 'item';
   return React.Children.map(children, (child) => {
-    if (!child) return child;
+    if (!child || !child.props) return child;
 
     const alignYClass = child.props.alignY
       ? orientationPrefix(orientationClass, aligns[child.props.alignY], 'YItem')

@@ -19,9 +19,9 @@ const patchOne = (userToken, item) =>
   Client.notifications.patch(item.id, item, userToken);
 
 const postState = getPostState(postOne, patchOne, {
-  status: (status, item) => {
+  status: (userToken, status, item) => {
     if (status === 'cancelled') {
-      return Client.notifications.cancel(item.id);
+      return Client.notifications.cancel(item.id, userToken);
     }
     return noRequest();
   },

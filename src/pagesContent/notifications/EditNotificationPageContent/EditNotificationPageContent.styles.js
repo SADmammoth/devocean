@@ -5,6 +5,9 @@ const styles = {
   marginTop: {
     marginTop: (theme) => theme.spaces.small,
   },
+  paddingTop: {
+    paddingTop: (theme) => theme.spaces.small,
+  },
   icon: {
     fontSize: (theme) => theme.fontSizes.bigger,
   },
