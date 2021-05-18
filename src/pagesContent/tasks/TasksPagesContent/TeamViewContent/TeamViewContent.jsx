@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
 
+import classNames from 'classnames';
 import { FaPlusCircle } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
@@ -7,6 +8,7 @@ import { useRecoilValueLoadable } from 'recoil';
 import ExpandableToolBar from '../../../../components/generic/ExpandableToolBar';
 import Sidebar from '../../../../components/generic/Sidebar';
 import GridLayout from '../../../../components/generic/layouts/GridLayout';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import StateMonade from '../../../../helpers/components/StateMonade';
@@ -58,14 +60,15 @@ const TeamViewContent = () => {
           />
         </StateMonade>
       </Sidebar>
-      <StackLayout
+      <ScrollLayout
         column={7}
         orientation="horizontal"
-        gap="30px"
-        className={classes.paddingTop}
-        scroll>
+        scrollOrientation="horizontal"
+        blockSnapType="start"
+        gap="15px"
+        className={classNames(classes.paddingTop, classes.scrollArea)}>
         <StateMonade state={teammatesTasks.state}>{renderLists()}</StateMonade>
-      </StackLayout>
+      </ScrollLayout>
       <FeatureDependentToolbar
         items={{
           manageTasks: [

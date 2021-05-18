@@ -5,6 +5,7 @@ import { useTheme, createUseStyles } from 'react-jss';
 import { useSetRecoilState } from 'recoil';
 
 import DraggableList from '../../../../components/generic/DraggableList';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import DraggableTask from '../../../../components/specific/DraggableTask';
 import TeammateTitle from '../../../../components/specific/TeammateTitle';
@@ -50,13 +51,14 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
   }, [tasks]);
 
   return (
-    <StackLayout orientation="vertical" alignY="start" scroll>
+    <StackLayout orientation="vertical" alignY="start">
       {displayName && (
         <TeammateTitle id={id} displayName={displayName} image={avatar} />
       )}
-      <StackLayout
+      <ScrollLayout
         className={classes.list}
         orientation="vertical"
+        scrollOrientation="vertical"
         alignY="start"
         gap="5px"
         aria-label={locale('TaskList')}>
@@ -64,12 +66,12 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
           list={getList()}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
-          onNewItem={({ id: taskId, assignee }) => {
+          onNewItem={({ id: taskId, assignee, index }) => {
             if (assignee) removeTask({ taskId, teammateId: assignee });
-            addTask(taskId);
+            addTask({ taskId, index });
           }}
         />
-      </StackLayout>
+      </ScrollLayout>
     </StackLayout>
   );
 }

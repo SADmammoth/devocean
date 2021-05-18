@@ -96,14 +96,20 @@ export const teammatesState_removeTask = selector({
 
 export const teammatesState_addTask = selectorFamily({
   key: baseKey + 'addTask',
-  set: (teammateId) => async ({ get, set }, taskId) => {
+  set: (teammateId) => async ({ get, set }, { taskId, index }) => {
     const task = get(tasksState_getById(taskId));
     const assignee = get(teammatesState_getById(teammateId));
 
     set(tasksState_update(taskId), { assignee });
 
+    const assignedTasks = [...assignee.assignedTasks];
+    assignedTasks.splice(index.x, 0, {
+      assignedDate: new Date().toISOString(),
+      task: task.id,
+    });
+
     set(teammatesState_update(teammateId), {
-      assignedTasks: [...assignee.assignedTasks, { task: task.id }],
+      assignedTasks,
     });
   },
 });
