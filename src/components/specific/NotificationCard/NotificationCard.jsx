@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValue } from 'recoil';
@@ -16,24 +17,28 @@ import styles from './NotificationCard.styles';
 
 const useStyles = createUseStyles(styles);
 
-function NotificationCard({ title, time, author }) {
+function NotificationCard({ id, title, status, time, author }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   const currentUser = useRecoilValue(userDataState);
 
   return (
-    <BlockDescriptionLayout>
-      <BlockDescriptionLayout.Block alignY="start">
-        <LiveRelativeDate className={classes.time} type="hint" date={time} />
-      </BlockDescriptionLayout.Block>
-      <BlockDescriptionLayout.Description>
-        <Text type="small">[{formatName(author || currentUser)}]:</Text>
-        <Text type="common" bold>
-          {title}
-        </Text>
-      </BlockDescriptionLayout.Description>
-    </BlockDescriptionLayout>
+    <InteractiveCard
+      link={`/notifications/${id}`}
+      className={classNames(classes.notification, classes[status])}>
+      <BlockDescriptionLayout>
+        <BlockDescriptionLayout.Block alignY="start">
+          <LiveRelativeDate className={classes.time} type="hint" date={time} />
+        </BlockDescriptionLayout.Block>
+        <BlockDescriptionLayout.Description>
+          <Text type="small">[{formatName(author || currentUser)}]:</Text>
+          <Text type="common" bold>
+            {title}
+          </Text>
+        </BlockDescriptionLayout.Description>
+      </BlockDescriptionLayout>
+    </InteractiveCard>
   );
 }
 

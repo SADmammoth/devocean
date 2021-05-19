@@ -34,6 +34,7 @@ function CreateCommentForm({ classes, id }) {
         onSubmit={async ({ comment }) => {
           addComment({
             text: comment,
+            time: new Date(),
           });
         }}
         submitButton={

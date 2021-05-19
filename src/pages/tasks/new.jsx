@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { history } from 'umi';
 
 import formatName from '../../helpers/functions/formatName';
 import EditTaskPageContent from '../../pagesContent/tasks/EditTaskPageContent';
@@ -28,10 +29,12 @@ export default function NewTask() {
             }),
         }}
         onSubmit={async ({ customFields: { $title, ...fields }, ...data }) => {
-          return await addTask({
+          await addTask({
             ...data,
             customFields: fields,
           });
+
+          history.push('/tasks');
         }}
       />
     </>

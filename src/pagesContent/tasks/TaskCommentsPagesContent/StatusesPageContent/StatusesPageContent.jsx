@@ -19,18 +19,22 @@ function StatusesPageContent({ id }) {
   const statusChanges = useRecoilValueLoadable(statusChangesState(id));
 
   const renderStatusChanges = useCallback(() => {
-    if (statusChanges.state === 'hasValue') return;
-    statusChanges.contents.map((statusChange) => {
-      return (
-        <ChangesCard
-          fields={[statusChange.fromStatus?.name, statusChange.toStatus?.name]}
-          time={statusChange.time}
-          author={statusChange.author}
-          text={statusChange.text}
-          singleField
-        />
-      );
-    });
+    if (statusChanges.state === 'hasValue') {
+      return statusChanges.contents.map((statusChange) => {
+        return (
+          <ChangesCard
+            fields={[
+              statusChange.fromStatus?.name,
+              statusChange.toStatus?.name,
+            ]}
+            time={statusChange.time}
+            author={statusChange.author}
+            text={statusChange.text}
+            singleField
+          />
+        );
+      });
+    }
   }, [statusChanges.contents]);
 
   return (

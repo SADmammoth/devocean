@@ -28,6 +28,8 @@ function Form({ submitText, children, ...props }) {
       render={{ Input, Label: FormLabel }}
       submitButton={SubmitButton}
       notify={(...data) => console.log(...data)}
+      validationMaskDateTimeFormat="dd-MM-yyyy HH:mm"
+      validationMaskDateFormat="dd-MM-yyyy"
       {...props}>
       {children}
     </ReactForm>

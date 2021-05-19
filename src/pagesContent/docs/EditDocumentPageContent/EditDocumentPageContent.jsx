@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
+import { history } from 'umi';
 
 import Form from '../../../components/generic/Form';
 import Sidebar from '../../../components/generic/Sidebar';
@@ -27,6 +28,7 @@ function EditDocumentPageContent({ initialValues, onSubmit }) {
   const onSubmitHandler = useCallback(
     (data) => {
       onSubmit({ abstract, ...data });
+      history.push('/docs');
     },
     [abstract],
   );

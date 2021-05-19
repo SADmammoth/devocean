@@ -7,12 +7,12 @@ const styles = {
   },
   list: {
     width: '258px',
-    height: '68vh',
-    paddingRight: '15px',
+    maxHeight: '68vh',
+    paddingRight: '10px',
     boxSizing: 'content-box',
   },
   scrollArea: {
-    height: '84vh',
+    maxHeight: '84vh',
   },
 };
 

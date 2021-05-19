@@ -38,15 +38,17 @@ function ReportPopup({ id }) {
           valueOptions: [
             {
               label: 'Development',
+              value: 'Development',
             },
             {
               label: 'Testing',
+              value: 'Testing',
             },
           ],
         },
       ],
       children: [],
-      closeButtonText: 'Report',
+      closeButtonContent: 'Report',
     });
 
   return (
@@ -56,8 +58,6 @@ function ReportPopup({ id }) {
           addReport({
             reportedTime: new Duration(reportedTime).getHours(),
             activity,
-            author: '6091a1bf01f2dd1db479f717',
-            time: new Date(),
             task: id,
           });
         });

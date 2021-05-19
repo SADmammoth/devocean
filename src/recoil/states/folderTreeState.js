@@ -15,9 +15,9 @@ import { tasksState_getById, tasksState_update } from './tasksState';
 const baseKey = 'folderTreeState_';
 
 const getState = (userToken) => Client.folders.get(userToken);
-const postOne = (userToken, item) => Client.folders.post(userToken, item);
+const postOne = (userToken, item) => Client.folders.post(item, userToken);
 const patchOne = (userToken, item) =>
-  Client.folders.patch(userToken, item.id, item);
+  Client.folders.patch(item.id, item, userToken);
 
 const postState = getPostState(postOne, patchOne, {
   tasks: noRequest,

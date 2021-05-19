@@ -56,7 +56,8 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
         blockSnapType="start"
         alignY="start"
         gap="-10px"
-        aria-label={locale('TaskList')}>
+        aria-label={locale('TaskList')}
+        nowrap>
         <DraggableList
           list={getList()}
           draggableType="task"

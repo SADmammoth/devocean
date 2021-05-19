@@ -58,6 +58,8 @@ function ListViewTasks({ folderId, style }) {
         className={classes.list}
         orientation="horizontal"
         gap="10px"
+        alignY="start"
+        alignX="start"
         aria-label={locale('TaskList')}
         scrollPaddingEnd="0px">
         <DraggableList

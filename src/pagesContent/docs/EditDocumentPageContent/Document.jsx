@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 
 import Button from '../../../components/generic/Button';
 import Form from '../../../components/generic/Form';
+import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
 import tools from './tools';
 
 function Document({ classes, title: defaultTitle, content, onSubmit }) {
@@ -51,20 +52,26 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
           submitButton={<></>}
         />
       </div>
-      <div className={classes.doc}>
+      <ScrollLayout
+        orientation="vertical"
+        scrollOrientation="vertical"
+        className={classes.doc}
+        blockSnapType="none">
         <EditorJs
           ref={editor}
           placeholder={'Type to add new block...'}
           tools={tools}
           data={content}
-          onReady={() => {
+          onReady={(...data) => {
             if (!_.isEmpty(editor.current)) {
               new Undo({ editor: editor.current.editor });
               new DragDrop(editor.current.editor);
             }
+            console.log(editor.current.editor);
+            window.loadtoeditor = editor.current.editor.blocks.renderFromHTML;
           }}
         />
-      </div>
+      </ScrollLayout>
       <Button onClick={save}>Save</Button>
     </div>
   );

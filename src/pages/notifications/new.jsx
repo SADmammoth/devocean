@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { history } from 'umi';
 
 import formatName from '../../helpers/functions/formatName';
 import EditNotificationPageContent from '../../pagesContent/notifications/EditNotificationPageContent';
@@ -29,6 +30,7 @@ function NewNotification() {
         isCreatingNew={true}
         onSubmit={async (data) => {
           await addNotification(data);
+          history.push('/notifications');
         }}
       />
     </>

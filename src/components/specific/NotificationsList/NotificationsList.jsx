@@ -11,17 +11,21 @@ import Interactive from '../../generic/Interactive';
 import InteractiveCard from '../../generic/InteractiveCard';
 import ScrollLayout from '../../generic/layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../../generic/layouts/StackLayout';
-import NotificationContent from '../NotificationContent';
+import NotificationCard from '../NotificationCard';
 
 function NotificationsList({ className, showCount }) {
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
   const locale = useLocale();
 
-  const renderNotification = ({ id, time, title, author }) => {
+  const renderNotification = ({ id, time, status, title, author }) => {
     return (
-      <InteractiveCard key={id} link={`/notifications/${id}`}>
-        <NotificationContent time={time} title={title} author={author} />
-      </InteractiveCard>
+      <NotificationCard
+        id={id}
+        time={time}
+        status={status}
+        title={title}
+        author={author}
+      />
     );
   };
 
@@ -51,7 +55,8 @@ function NotificationsList({ className, showCount }) {
       scrollOrientation="vertical"
       gap="10px"
       blockSnapType="start"
-      scrollPaddingStart="5px">
+      scrollPaddingStart="5px"
+      nowrap>
       <StateMonade state={notificationsLoadable.state}>
         {notificationsToShow.map(renderNotification)}
         {!(showCount && notShownCount > 0) || (

@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 
 import PropTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
@@ -8,6 +9,7 @@ import Sidebar from '../../../components/generic/Sidebar';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import DocumentAbstractCard from '../../../components/specific/DocumentAbstractCard';
+import FeatureDependentToolbar from '../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import StateMonade from '../../../helpers/components/StateMonade';
 import docsState from '../../../recoil/states/docsState';
 
@@ -43,6 +45,21 @@ function DocumentsPageContent(props) {
         column={5}
         orientation="vertical">
         <StateMonade state={docs.state}>{renderDocs()}</StateMonade>
+      </StackLayout>
+      <StackLayout column={1} className={classes.marginTop}>
+        <FeatureDependentToolbar
+          expandable
+          items={{
+            manageTasks: [
+              {
+                label: <FaPlusCircle />,
+                title: 'Add new document',
+                link: '/docs/new',
+                id: 'new-doc',
+              },
+            ],
+          }}
+        />
       </StackLayout>
     </GridLayout>
   );

@@ -9,7 +9,7 @@ import StackLayout from '../layouts/StackLayout';
 function PopupForm({ inputs, onSubmit, submitText, children }) {
   const SubmitButton = (props) => {
     return (
-      <StackLayout gap="5px">
+      <StackLayout gap="5px" alignX="center">
         <Button {...props}>{submitText}</Button>
         {children}
       </StackLayout>

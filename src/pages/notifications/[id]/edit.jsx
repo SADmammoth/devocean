@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
+import { history } from 'umi';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import formatName from '../../../helpers/functions/formatName';
@@ -34,6 +35,7 @@ function EditNotification({ match: { params } }) {
           }}
           onSubmit={async (data) => {
             await updateNotification(data);
+            history.push(`/notifications/${id}`);
           }}
         />
       </StateMonade>

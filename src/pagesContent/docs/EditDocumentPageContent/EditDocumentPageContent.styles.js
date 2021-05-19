@@ -16,6 +16,8 @@ const styles = {
     },
   },
   doc: {
+    height: '60vh',
+    marginBottom: '20px',
     borderTop: (theme) => `2px solid ${theme.background.button}`,
     marginLeft: '10px',
     paddingTop: '10px',

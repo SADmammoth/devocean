@@ -66,7 +66,8 @@ const TeamViewContent = () => {
         scrollOrientation="horizontal"
         blockSnapType="start"
         gap="15px"
-        className={classNames(classes.paddingTop, classes.scrollArea)}>
+        className={classNames(classes.paddingTop, classes.scrollArea)}
+        nowrap>
         <StateMonade state={teammatesTasks.state}>{renderLists()}</StateMonade>
       </ScrollLayout>
       <FeatureDependentToolbar

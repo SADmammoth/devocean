@@ -41,7 +41,7 @@ function PopupWindow({
       );
     } else {
       return (
-        <StackLayout gap="5px">
+        <StackLayout gap="5px" alignX="center">
           <Button onClick={() => onClose(true)}>{closeButtonContent}</Button>,
           {!showCancelButton || (
             <Button onClick={() => onClose(false)}>

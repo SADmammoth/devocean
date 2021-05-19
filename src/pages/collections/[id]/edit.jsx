@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
+import { history } from 'umi';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import EditCollectionPageContent from '../../../pagesContent/collections/EditCollectionPageContent';

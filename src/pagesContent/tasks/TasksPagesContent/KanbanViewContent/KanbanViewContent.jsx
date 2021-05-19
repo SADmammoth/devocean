@@ -65,7 +65,8 @@ const KanbanViewContent = () => {
         orientation="horizontal"
         scrollOrientation="horizontal"
         blockSnapType="start"
-        gap="15px">
+        gap="10px"
+        nowrap>
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
           <Button onClick={() => setShowAddStatus((state) => !state)}>

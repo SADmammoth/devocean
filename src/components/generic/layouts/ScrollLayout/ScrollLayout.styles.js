@@ -1,7 +1,7 @@
 const styles = {
   scrollArea: {
     marginRight: '-8px',
-    flexWrap: 'nowrap',
+    // flexWrap: 'nowrap',
 
     '&>*': {
       scrollSnapAlign: (theme) => theme.blockSnapType,
@@ -10,7 +10,7 @@ const styles = {
     scrollPaddingBlockStart: (theme) => theme.scrollPaddingStart,
     scrollPaddingBlockEnd: (theme) => theme.scrollPaddingEnd,
     '&::-webkit-scrollbar-thumb': {
-      borderRadius: '4px',
+      borderRadius: '3px',
       backgroundColor: (theme) => theme.background.button,
     },
     '&::-webkit-scrollbar-track': {
@@ -21,7 +21,7 @@ const styles = {
     overflowX: 'auto',
     overflowY: 'hidden',
     '&::-webkit-scrollbar': {
-      height: '8px',
+      height: '5px',
     },
     scrollSnapType: 'x mandatory',
   },
@@ -29,7 +29,7 @@ const styles = {
     overflowY: 'auto',
     overflowX: 'hidden',
     '&::-webkit-scrollbar': {
-      width: '8px',
+      width: '5px',
     },
     scrollSnapType: 'y mandatory',
   },

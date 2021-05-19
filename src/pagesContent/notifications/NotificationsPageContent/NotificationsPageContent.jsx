@@ -5,6 +5,7 @@ import { useTheme, createUseStyles } from 'react-jss';
 
 import ExpandableToolBar from '../../../components/generic/ExpandableToolBar';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
+import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import ClockSidebar from '../../../components/specific/ClockSidebar';
 import NotificationsList from '../../../components/specific/NotificationsList';
@@ -22,14 +23,16 @@ const NotificationsPageContent = () => {
   return (
     <GridLayout className={classes.content} stretchLast>
       <ClockSidebar column={3} className={classes.sidebar} />
+      <Skip column={1} />
       <StackLayout
         orientation="vertical"
         className={classes.marginTop}
         alignX="start"
-        column={8}>
+        column={7}>
         <NotificationsList className={classes.notifications} />
       </StackLayout>
       <ExpandableToolBar
+        column={1}
         name={'Notifications toolbar'}
         className={classes.marginTop}
         items={[

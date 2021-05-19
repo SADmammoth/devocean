@@ -12,7 +12,7 @@ function FieldChange({ field, from, to }) {
     <StackLayout orientation="vertical">
       {!field || (
         <Text type="common" bold>
-          {_.capitalize(field)}
+          {_.capitalize(_.startCase(field).toLowerCase())}
         </Text>
       )}
       <StackLayout>

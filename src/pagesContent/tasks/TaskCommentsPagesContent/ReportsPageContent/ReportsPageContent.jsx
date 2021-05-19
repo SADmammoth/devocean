@@ -27,7 +27,7 @@ function ReportsPageContent({ id }) {
   const task = useRecoilValue(tasksState_getById(id));
 
   const renderReports = useCallback(() => {
-    if (reports.state === 'hasValue')
+    if (reports.state === 'hasValue') {
       return reports.contents
         .filter((report, index, array) => {
           if (index > 0) {
@@ -51,6 +51,7 @@ function ReportsPageContent({ id }) {
             />
           );
         });
+    }
   }, [reports.contents]);
 
   return (
