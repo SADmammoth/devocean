@@ -14,4 +14,6 @@ function New() {
 
 New.propTypes = {};
 
+New.wrappers = ['@/wrappers/features/manageTeammates'];
+
 export default New;

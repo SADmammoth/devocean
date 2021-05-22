@@ -14,4 +14,6 @@ function Index() {
 
 Index.propTypes = {};
 
+Index.wrappers = ['@/wrappers/features/viewTeammates'];
+
 export default Index;

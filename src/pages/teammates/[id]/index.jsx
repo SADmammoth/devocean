@@ -23,4 +23,6 @@ function TeammatePage({
 
 TeammatePage.propTypes = {};
 
+TeammatePage.wrappers = ['@/wrappers/features/viewTeammates'];
+
 export default TeammatePage;

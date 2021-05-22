@@ -17,7 +17,8 @@
       "preLaunchTask": "npm: start",
       "console": "integratedTerminal",
       "sourceMaps": true,
-      "breakOnLoad": false
+      "breakOnLoad": false,
+      "outFiles": ["./src"]
     }
   ]
 }
