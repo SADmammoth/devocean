@@ -8,13 +8,13 @@ import {
   useSetRecoilState,
 } from 'recoil';
 
-import StateMonade from '../../../helpers/components/StateMonade';
-import InitTeammateProfilePageContent from '../../../pagesContent/InitTeammateProfilePageContent';
+import StateMonade from '../../helpers/components/StateMonade';
+import InitTeammateProfilePageContent from '../../pagesContent/InitTeammateProfilePageContent';
 import {
   teammateProfilesState_getById,
   teammateProfilesState_update,
-} from '../../../recoil/states/teammatesProfilesState';
-import userState from '../../../recoil/states/userState';
+} from '../../recoil/states/teammatesProfilesState';
+import userState from '../../recoil/states/userState';
 
 function EditProfile({
   match: {
@@ -45,7 +45,7 @@ function EditProfile({
           ...initialValues.contents,
         }}
         onSubmit={async (data) => {
-          await patchTeammate({ ...data });
+          await patchTeammate({ ...data, isOnInvite: true });
           setUserToken(userToken);
         }}
       />

@@ -21,7 +21,8 @@ export default function login({ children }) {
   if (!user && !path.startsWith('/auth') && path !== '/')
     return <Redirect to="/auth/login" />;
 
-  if (userData?.invited && path !== `/teammates/${userData.teammateId}/edit`)
-    return <Redirect to={`/teammates/${userData.teammateId}/edit`} />;
+  if (userData?.invited && path !== `/teammates/init`)
+    return <Redirect to={`/teammates/init`} />;
+
   return children;
 }
