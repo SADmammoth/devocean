@@ -140,10 +140,10 @@ export default function getInitTeammateProfileForm({
           label: 'She/her',
           value: 'she',
         },
-        // {
-        //   label: 'They/them',
-        //   value: 'they',
-        // },
+        {
+          label: 'They/them',
+          value: 'they',
+        },
       ],
     },
     {

@@ -17,6 +17,10 @@ export default function localStorageSync(baseKey) {
     }
 
     onSet(async (value) => {
+      if (value === null) {
+        localStorage.removeItem(baseKey);
+        return;
+      }
       localStorage.setItem(
         baseKey,
         typeof value === 'string' ? value : JSON.stringify(value),

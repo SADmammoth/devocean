@@ -50,7 +50,7 @@ function DocumentsPageContent(props) {
         <FeatureDependentToolbar
           expandable
           items={{
-            manageTasks: [
+            manageDocuments: [
               {
                 label: <FaPlusCircle />,
                 title: 'Add new document',

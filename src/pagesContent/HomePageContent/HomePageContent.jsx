@@ -16,7 +16,9 @@ import NotificationsList from '../../components/specific/NotificationsList';
 import FeatureMonade from '../../helpers/components/FeatureMonade';
 import StateMonade from '../../helpers/components/StateMonade';
 import useLocale from '../../helpers/hooks/useLocale';
-import navitemsState from '../../recoil/states/navitemsState';
+import navitemsState, {
+  navitemsState_get,
+} from '../../recoil/states/navitemsState';
 
 import styles from './HomePageContent.styles';
 
@@ -27,7 +29,7 @@ const HomePageContent = () => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const navitems = useRecoilValueLoadable(navitemsState);
+  const navitems = useRecoilValueLoadable(navitemsState_get);
 
   return (
     <>

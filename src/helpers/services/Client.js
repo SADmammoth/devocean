@@ -74,6 +74,13 @@ const Client = {
         .send({ login, password })
         .then(({ text }) => text);
     },
+    logout: (teammateId) => {
+      return request
+        .patch('/logout')
+        .use(authPath)
+        .send({ teammateId })
+        .then(({ text }) => text);
+    },
     register: (login, password, userToken) => {
       return request
         .post('/register')
@@ -369,7 +376,7 @@ const Client = {
         .get('/navItems')
         .use(apiPath)
         .auth(userToken, { type: 'bearer' })
-        .then(navItemsConverter);
+        .then(({ body }) => body);
     },
   },
   teammateProfiles: {
@@ -384,6 +391,22 @@ const Client = {
       return request
         .get(`/teammates/profiles/${id}`)
         .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+    post: (teammate, userToken) => {
+      return request
+        .post(`/teammates`)
+        .use(apiPath)
+        .send(teammate)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+    patch: (id, teammate, userToken) => {
+      return request
+        .patch(`/teammates/${id}`)
+        .use(apiPath)
+        .send(teammate)
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },

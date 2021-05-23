@@ -11,7 +11,7 @@ function FeatureAccess({ children, feature }) {
   const hasAccess = useRecoilValueLoadable(featureAccessState(feature));
 
   return (
-    <StateMonade state={hasAccess.state}>
+    <StateMonade state={hasAccess.state} onError={() => hasAccess.contents}>
       {hasAccess.contents ? children : <Redirect to="/404" />}
     </StateMonade>
   );

@@ -33,9 +33,7 @@ export function fullTaskConverter({
 }
 
 export function navItemsConverter({ body }) {
-  return body
-    .filter(({ onlyShort }) => !onlyShort)
-    .map(({ label, link }) => {
-      return { label, title: label, link };
-    });
+  return body.map(({ label, link }) => {
+    return { label, title: label, link };
+  });
 }

@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useRecoilValue } from 'recoil';
 import { Redirect } from 'umi';
 
-import userState from '../recoil/states/userState';
+import Client from '../helpers/services/Client';
+import userState, { userDataState } from '../recoil/states/userState';
 
 export default function login({ children }) {
-  const userId = useRecoilValue(userState);
+  const user = useRecoilValue(userState);
+  const currentUserData = useRecoilValue(userDataState);
+  const [userData, setUserData] = useState(null);
 
-  return (
-    <>
-      {children}
-      {/* {userId || <Redirect to="/auth/login" />} */}
-    </>
-  );
+  useEffect(() => {
+    const request = async () => setUserData(await Client.user.getData(user));
+    if (currentUserData?.invited) request();
+  });
+
+  const path = window.location.pathname;
+
+  if (!user && !path.startsWith('/auth') && path !== '/')
+    return <Redirect to="/auth/login" />;
+
+  if (userData?.invited && path !== `/teammates/${userData.teammateId}/edit`)
+    return <Redirect to={`/teammates/${userData.teammateId}/edit`} />;
+  return children;
 }

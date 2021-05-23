@@ -1,12 +1,14 @@
 import React from 'react';
 
 import PropTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
 import Sidebar from '../../../components/generic/Sidebar';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
+import FeatureDependentToolbar from '../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import TeammateProfileCard from '../../../components/specific/TeammateProfileCard/TeammateProfileCard';
 import StateMonade from '../../../helpers/components/StateMonade';
 import teammateProfilesState from '../../../recoil/states/teammatesProfilesState';
@@ -32,6 +34,21 @@ function TeammatesPageContent(props) {
             ))}
           </StateMonade>
         </StackLayout>
+      </StackLayout>
+      <StackLayout column={1} className={classes.marginTop}>
+        <FeatureDependentToolbar
+          expandable
+          items={{
+            manageTeammates: [
+              {
+                label: <FaPlusCircle />,
+                title: 'Add new teammate',
+                link: '/teammates/new',
+                id: 'new-teammate',
+              },
+            ],
+          }}
+        />
       </StackLayout>
     </GridLayout>
   );

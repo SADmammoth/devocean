@@ -29,20 +29,7 @@ const LoginContent = () => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const localizedForm = useLocalizedForm([
-    { $title: 'tit', inputs: getLoginForm() },
-    {
-      $title: 'tit',
-      inputs: getInitTeammateProfileForm({
-        hideLogin: true,
-        hideWorkHours: true,
-        hidePassword: true,
-        hideWorkHoursSelect: true,
-        hideJoinedAt: true,
-        hideEmail: true,
-      }),
-    },
-  ]);
+  const localizedForm = useLocalizedForm(getLoginForm());
 
   const setUserToken = useSetRecoilState(userState);
 
@@ -53,15 +40,8 @@ const LoginContent = () => {
     <GridLayout>
       <Skip column={4} />
       <StackLayout column={4} className={classes.form}>
-        <MultiStepForm
-          steps={localizedForm}
-          onSubmitStep={async (step, data, proceed, end) => {
-            if (step === 0) {
-              const loginData = await userState_login(data);
-
-              if (!loginData.invited) end();
-            }
-          }}
+        <Form
+          inputs={localizedForm}
           onSubmit={async (data) => {
             const loginData = await userState_login(data);
             setUserToken(loginData.token);
@@ -72,15 +52,9 @@ const LoginContent = () => {
           }}
           alignX="center"
           submitText="Log in">
-          {/*Step 0*/}
           {inputs.login}
           {inputs.password}
-          {/*Step 1*/}
-          {inputs.name}
-          {inputs.lastName}
-          {inputs.referAs}
-          {inputs.workMode}
-        </MultiStepForm>
+        </Form>
       </StackLayout>
     </GridLayout>
   );

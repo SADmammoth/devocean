@@ -9,6 +9,12 @@ const styles = {
   branding: {
     height: '7vh',
   },
+  navigation: {
+    listStyleType: 'none',
+  },
+  navButton: {
+    background: 'none',
+  },
 };
 
 export default styles;

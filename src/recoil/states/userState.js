@@ -1,4 +1,4 @@
-import { atom, selector, useSetRecoilState } from 'recoil';
+import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil';
 
 import Client from '../../helpers/services/Client';
 import localStorageSync from '../helpers/effects/localStorageSync';
@@ -16,6 +16,10 @@ const userState = atom({
 export const userState_login = async ({ login, password }) => {
   const token = await Client.user.login(login, password).catch((res) => null);
   return { ...(await Client.user.getData(token)), token };
+};
+
+export const userState_logout = async (teammateId) => {
+  await Client.user.logout(teammateId);
 };
 
 export const userState_register = selector({
@@ -36,7 +40,8 @@ export const userState_register = selector({
   },
 });
 
-const getUserData = (userToken) => Client.user.getData(userToken);
+const getUserData = (userToken) =>
+  userToken ? Client.user.getData(userToken) : userToken;
 
 const userDataAtom = atom({
   key: baseKey + 'data',
@@ -47,10 +52,13 @@ const userDataAtom = atom({
 export const userDataState = selector({
   key: baseKey + 'data_selector',
   get: ({ get }) => {
-    const { teammateId } = get(userDataAtom);
+    const user = get(userDataAtom);
+    console.log(user);
+    if (!user || _.isEmpty(user)) return;
+    const { teammateId, invited } = user;
     const teammates = get(teammatesState_Raw);
-    console.log({ ...teammates });
-    return teammates.find(({ id }) => id === teammateId);
+    const teammate = teammates.find(({ id }) => id === teammateId);
+    if (teammate) return { ...teammate, invited };
   },
 });
 
