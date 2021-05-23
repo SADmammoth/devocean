@@ -411,6 +411,15 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+  subteams: {
+    get: (userToken) => {
+      return request
+        .get('/subteams')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;

@@ -1,18 +1,15 @@
 import _ from 'lodash';
 import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
-import { fullTaskConverter } from '../../helpers/responseConverters';
 import Client from '../../helpers/services/Client';
 import Subscriber from '../../helpers/services/Subscriber';
 import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 import getPostState from '../helpers/getPostState';
-import getTasksOfFolderTree from '../helpers/getTasksOfFolderTree';
 import deleteSelector from '../helpers/selectors/deleteSelector';
 import entriesArrangementSelector from '../helpers/selectors/entriesArrangementSelector';
-import insertSelector from '../helpers/selectors/insertSelector';
 import mergeSelector from '../helpers/selectors/mergeSelector';
+import subtreeSelector from '../helpers/selectors/subtreeSelector';
 import updateSelector from '../helpers/selectors/updateSelector';
-import treeArrayToMap from '../helpers/treeArrayToMap';
 import folderTreeState from './folderTreeState';
 import userState from './userState';
 
@@ -65,17 +62,12 @@ export const tasksState_getById = selectorFamily({
   },
 });
 
-export const tasksState_getByFolder = selectorFamily({
-  key: baseKey + 'getByFolder',
-  get: (folderId) => ({ get }) => {
-    const folders = get(folderTreeState);
-
-    const foldersMap = treeArrayToMap(folders);
-    const taskIds = getTasksOfFolderTree(folderId, foldersMap);
-
-    return taskIds.map((id) => get(tasksState_getById(id)));
-  },
-});
+export const tasksState_getByFolder = subtreeSelector(
+  baseKey,
+  folderTreeState,
+  tasksStateAtom,
+  'tasks',
+);
 
 export const tasksState_requestContent = selectorFamily({
   key: baseKey + 'requestContent',

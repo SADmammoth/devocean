@@ -1,5 +1,5 @@
-export default function getTasksOfFolderTree(folderId, treeMap) {
-  const folder = treeMap[folderId];
+export default function getLeavesOfTree(nodeId, treeMap, leafKey) {
+  const node = treeMap[nodeId];
 
   let noChildrenItemsCount = 0;
   let newItems;
@@ -12,14 +12,19 @@ export default function getTasksOfFolderTree(folderId, treeMap) {
           return item;
         }
 
-        const { children, tasks } = item;
+        console.log(item);
+
+        const { children, [leafKey]: leaves } = item;
 
         if (children) {
-          return children.map((id) => {
-            return treeMap[id];
-          });
-        } else if (tasks) {
-          return tasks;
+          return [
+            ...(leaves || []),
+            ...children.map((id) => {
+              return treeMap[id];
+            }),
+          ];
+        } else if (leaves) {
+          return leaves;
         } else {
           noChildrenItemsCount++;
         }
@@ -34,6 +39,7 @@ export default function getTasksOfFolderTree(folderId, treeMap) {
     }
   };
 
-  if (folder.children) return getTasks([folder]);
-  return folder.tasks;
+  if (!node) return null;
+  if (node.children && node.children.length) return getTasks([node]);
+  return node[leafKey];
 }

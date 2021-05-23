@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import getParentsOfFolderTree from '../../../recoil/helpers/getParentsOfFolderTree';
+import getParentsOfTreeNode from '../../../recoil/helpers/getParentsOfTreeNode';
 import treeArrayToMap from '../../../recoil/helpers/treeArrayToMap';
 
 export default function useSelectedFolder(folders) {
@@ -10,7 +10,7 @@ export default function useSelectedFolder(folders) {
     (folderId) => {
       const index = folders.findIndex(({ id }) => id === folderId);
       setSelectedIndex(index);
-      const parents = getParentsOfFolderTree(
+      const parents = getParentsOfTreeNode(
         folderId,
         treeArrayToMap(folders),
       ).slice(0, -1);

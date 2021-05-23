@@ -5,7 +5,9 @@ import Client from '../../helpers/services/Client';
 import serverStateSync from '../helpers/effects/serverStateSync';
 import getPostState from '../helpers/getPostState';
 import mergeSelector from '../helpers/selectors/mergeSelector';
+import subtreeSelector from '../helpers/selectors/subtreeSelector';
 import updateSelector from '../helpers/selectors/updateSelector';
+import subteamsState from './subteamsState';
 import userState from './userState';
 
 const baseKey = 'teammateProfilesState_';
@@ -38,6 +40,13 @@ export const teammateProfilesState_getById = selectorFamily({
 export const teammateProfilesState_update = updateSelector(
   baseKey,
   teammateProfilesAtom,
+);
+
+export const teammateProfilesState_getBySubteam = subtreeSelector(
+  baseKey,
+  subteamsState,
+  teammateProfilesAtom,
+  'teammates',
 );
 
 export default teammateProfilesState;
