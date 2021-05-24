@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import ReactForm from '@sadmammoth/react-form';
+import '@sadmammoth/react-form/dist/index.css';
 
 import Button from '../Button';
 import FormLabel from '../FormLabel';

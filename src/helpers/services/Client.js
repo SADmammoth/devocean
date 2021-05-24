@@ -420,6 +420,15 @@ const Client = {
         .then(({ body }) => body);
     },
   },
+  tags: {
+    get: (userToken) => {
+      return request
+        .get('/teammates/tags')
+        .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+  },
 };
 
 export default Client;

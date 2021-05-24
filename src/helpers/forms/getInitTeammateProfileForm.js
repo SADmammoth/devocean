@@ -18,26 +18,42 @@ export default function getInitTeammateProfileForm({
   referAs,
   shortName,
   avatar,
+  subteams,
+  tags,
+  subteamsValueOptions,
+  tagsValueOptions,
 }) {
   return [
-    hideLogin || {
-      id: 'login',
-      type: 'text',
-      name: 'login',
-      label: 'Login',
-    },
-    hideEmail || {
-      id: 'email',
-      type: 'text',
-      name: 'email',
-      label: 'Email',
-    },
-    hidePassword || {
-      id: 'temporaryPassword',
-      type: 'password',
-      name: 'temporaryPassword',
-      label: 'Temporary password',
-    },
+    ...(hideLogin
+      ? []
+      : [
+          {
+            id: 'login',
+            type: 'text',
+            name: 'login',
+            label: 'Login',
+          },
+        ]),
+    ...(hideEmail
+      ? []
+      : [
+          {
+            id: 'email',
+            type: 'text',
+            name: 'email',
+            label: 'Email',
+          },
+        ]),
+    ...(hidePassword
+      ? []
+      : [
+          {
+            id: 'temporaryPassword',
+            type: 'password',
+            name: 'temporaryPassword',
+            label: 'Temporary password',
+          },
+        ]),
     {
       id: 'workMode',
       type: 'select',
@@ -55,33 +71,41 @@ export default function getInitTeammateProfileForm({
       ],
       value: workMode,
     },
-    hideWorkHoursSelect || {
-      id: 'workHours',
-      type: 'select',
-      name: 'workHours',
-      label: 'Work hours',
-      valueOptions: [
-        {
-          label: 'Fixed',
-          value: 'fixed',
-        },
-        {
-          label: 'Flexible',
-          value: 'flexible',
-        },
-      ],
-      onChange: (name, value) => setHideWorkHours(value === 'flexible'),
-      value: workHours,
-    },
-    hideJoinedAt || {
-      id: 'joinedAt',
-      name: 'joinedAt',
-      type: 'text',
-      label: 'Joined at',
-      validator: 'dateByCharWithInvisibleMask',
-      converters: 'date',
-      value: joinedAt || new Date(),
-    },
+    ...(hideWorkHoursSelect
+      ? []
+      : [
+          {
+            id: 'workHours',
+            type: 'select',
+            name: 'workHours',
+            label: 'Work hours',
+            valueOptions: [
+              {
+                label: 'Fixed',
+                value: 'fixed',
+              },
+              {
+                label: 'Flexible',
+                value: 'flexible',
+              },
+            ],
+            onChange: (name, value) => setHideWorkHours(value === 'flexible'),
+            value: workHours,
+          },
+        ]),
+    ...(hideJoinedAt
+      ? []
+      : [
+          {
+            id: 'joinedAt',
+            name: 'joinedAt',
+            type: 'text',
+            label: 'Joined at',
+            validator: 'dateByCharWithInvisibleMask',
+            converters: 'date',
+            value: joinedAt || new Date(),
+          },
+        ]),
     ...(hideWorkHours
       ? []
       : [
@@ -156,9 +180,31 @@ export default function getInitTeammateProfileForm({
     {
       id: 'avatar',
       name: 'avatar',
-      type: 'file',
+      type: 'image',
       label: 'Avatar',
       value: avatar,
+      converters: {
+        out: ({ url }) => url,
+        in: (url) => ({
+          url,
+          fileName: '',
+          fileSize: 0,
+        }),
+      },
+    },
+    {
+      id: 'tags',
+      name: 'tags',
+      type: 'select-multiple',
+      value: tags,
+      valueOptions: tagsValueOptions,
+    },
+    {
+      id: 'subteams',
+      name: 'subteams',
+      type: 'select-multiple',
+      value: subteams,
+      valueOptions: subteamsValueOptions,
     },
   ];
 }

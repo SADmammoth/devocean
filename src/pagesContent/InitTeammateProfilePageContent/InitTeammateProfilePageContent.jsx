@@ -35,7 +35,10 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
 
   return (
     <GridLayout className={classes.content}>
-      <Sidebar column={3} className={classes.paddingTop}></Sidebar>
+      <Sidebar column={3} className={classes.paddingTop}>
+        {inputs.subteams}
+        {inputs.tags}
+      </Sidebar>
       <StackLayout column={5} className={classes.marginTop}>
         <Form
           inputs={localizedForm}

@@ -26,7 +26,7 @@ function FormLabel({ className, ...props }) {
   }, [label.current]);
 
   return (
-    <div className={classes.inputContainer}>
+    <div className={classes.inputContainer} style={{ pointerEvents: 'none' }}>
       <Text
         ref={label}
         className={classNames(className, classes.label)}

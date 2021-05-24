@@ -22,6 +22,9 @@ function Input({ type, ...props }) {
 
   const as = type === 'textarea' ? 'textarea' : 'input';
 
+  if (type === 'file' || type === 'image')
+    return <input type={type} {...props} />;
+
   return (
     <ReakitInput
       {...props}
