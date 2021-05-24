@@ -11,13 +11,13 @@ import userState from './userState';
 const baseKey = 'subteamsState_';
 
 const getState = (userToken) => Client.subteams.get(userToken);
-const postState = (userToken, teammate) =>
-  Client.subteams.post(teammate, userToken);
+const postState = (userToken, subteam) =>
+  Client.subteams.post(subteam, userToken);
 
 const subteamsAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState /*, getPostState(postState)*/)],
+  effects_UNSTABLE: [serverStateSync(getState, getPostState(postState))],
 });
 
 const subteamsState = mergeSelector(baseKey, subteamsAtom);

@@ -1,5 +1,6 @@
 export default function serverStateSync(get, post, abortGet, abortPost) {
   let initialized = false;
+  serverStateSync.handSync = {};
   return ({ node, onSet, trigger, setSelf }) => {
     const userToken = localStorage.getItem('userState_');
 
@@ -10,6 +11,8 @@ export default function serverStateSync(get, post, abortGet, abortPost) {
         initialized = true;
         setSelf(await initialize(userToken));
       };
+
+      serverStateSync.handSync[node.key] = getData;
 
       if (!initialized) getData();
     }

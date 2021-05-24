@@ -7,9 +7,11 @@ import {
   useRecoilValueLoadable,
   useSetRecoilState,
 } from 'recoil';
+import { Redirect } from 'umi';
 
 import StateMonade from '../../helpers/components/StateMonade';
 import InitTeammateProfilePageContent from '../../pagesContent/InitTeammateProfilePageContent';
+import serverStateSync from '../../recoil/helpers/effects/serverStateSync';
 import subteamsState from '../../recoil/states/subteamsState';
 import tagsState from '../../recoil/states/tagsState';
 import {
@@ -26,10 +28,10 @@ function InitProfile() {
   const patchTeammate = useSetRecoilState(
     teammateProfilesState_update(userData?.id),
   );
-  const [userToken, setUserToken] = useRecoilState(userState);
 
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
+  if (userData?.invited === false) return <Redirect to="/404" />;
   return (
     <StateMonade
       state={initialValues.state}
@@ -47,23 +49,23 @@ function InitProfile() {
           hideEmail: true,
           ...initialValues.contents,
           tags: initialValues.contents.tags
-            ? initialValues.contents.tags.map(({ id }) => id)
+            ? initialValues.contents.tags.map(({ name }) => name)
             : [],
           subteams: initialValues.contents.subteams
-            ? initialValues.contents.subteams.map(({ id }) => id)
+            ? initialValues.contents.subteams.map(({ name }) => name)
             : [],
           tagsValueOptions: tagsOptions.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
           subteamsValueOptions: subteamsOptions.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
         }}
         onSubmit={async (data) => {
           await patchTeammate({ ...data, isOnInvite: true });
-          setUserToken(userToken);
+          serverStateSync.handSync['userState_data']();
         }}
       />
     </StateMonade>

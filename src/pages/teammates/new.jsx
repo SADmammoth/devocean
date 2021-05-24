@@ -23,11 +23,11 @@ function New() {
           setHideWorkHours,
           tagsValueOptions: tags.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
           subteamsValueOptions: subteams.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
         }}
         onSubmit={(data) =>

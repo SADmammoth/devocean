@@ -55,11 +55,11 @@ function EditProfile({
             : [],
           tagsValueOptions: tagsOptions.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
           subteamsValueOptions: subteamsOptions.map(({ name, id }) => ({
             label: name,
-            value: id,
+            value: name,
           })),
         }}
         onSubmit={async (data) => {

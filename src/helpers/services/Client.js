@@ -419,12 +419,28 @@ const Client = {
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
+    post: ({ id, ...subteam }, userToken) => {
+      return request
+        .post('/subteams')
+        .use(apiPath)
+        .send(subteam)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
   },
   tags: {
     get: (userToken) => {
       return request
         .get('/teammates/tags')
         .use(apiPath)
+        .auth(userToken, { type: 'bearer' })
+        .then(({ body }) => body);
+    },
+    post: ({ id, ...tag }, userToken) => {
+      return request
+        .post('/teammates/tags')
+        .use(apiPath)
+        .send(tag)
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },

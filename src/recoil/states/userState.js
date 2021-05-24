@@ -3,6 +3,7 @@ import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil';
 import Client from '../../helpers/services/Client';
 import localStorageSync from '../helpers/effects/localStorageSync';
 import serverStateSync from '../helpers/effects/serverStateSync';
+import teammateProfilesState from './teammatesProfilesState';
 import { teammatesState_Raw } from './teammatesState';
 
 const baseKey = 'userState_';
@@ -53,10 +54,10 @@ export const userDataState = selector({
   key: baseKey + 'data_selector',
   get: ({ get }) => {
     const user = get(userDataAtom);
-    console.log(user);
+
     if (!user || _.isEmpty(user)) return;
     const { teammateId, invited } = user;
-    const teammates = get(teammatesState_Raw);
+    const teammates = get(teammateProfilesState);
     const teammate = teammates.find(({ id }) => id === teammateId);
     if (teammate) return { ...teammate, invited };
   },

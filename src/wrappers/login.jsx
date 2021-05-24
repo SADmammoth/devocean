@@ -9,20 +9,14 @@ import userState, { userDataState } from '../recoil/states/userState';
 export default function login({ children }) {
   const user = useRecoilValue(userState);
   const currentUserData = useRecoilValue(userDataState);
-  const [userData, setUserData] = useState(null);
-
-  useEffect(() => {
-    const request = async () => setUserData(await Client.user.getData(user));
-    if (currentUserData?.invited) request();
-  });
 
   const path = window.location.pathname;
 
   if (!user && !path.startsWith('/auth') && path !== '/')
     return <Redirect to="/auth/login" />;
 
-  if (userData?.invited && path !== `/teammates/init`)
-    return <Redirect to={`/teammates/init`} />;
+  if (currentUserData?.invited && path !== '/teammates/init')
+    return <Redirect to={'/teammates/init'} />;
 
   return children;
 }

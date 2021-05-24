@@ -22,6 +22,8 @@ export default function getInitTeammateProfileForm({
   tags,
   subteamsValueOptions,
   tagsValueOptions,
+  addTagAction,
+  addSubteamAction,
 }) {
   return [
     ...(hideLogin
@@ -198,6 +200,7 @@ export default function getInitTeammateProfileForm({
       type: 'select-multiple',
       value: tags,
       valueOptions: tagsValueOptions,
+      actionButton: { label: 'Add new', action: addTagAction },
     },
     {
       id: 'subteams',
@@ -205,6 +208,7 @@ export default function getInitTeammateProfileForm({
       type: 'select-multiple',
       value: subteams,
       valueOptions: subteamsValueOptions,
+      actionButton: { label: 'Add new', action: addSubteamAction },
     },
   ];
 }
