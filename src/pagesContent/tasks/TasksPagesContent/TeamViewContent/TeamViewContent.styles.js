@@ -7,12 +7,12 @@ const styles = {
   },
   list: {
     width: '258px',
-    paddingRight: '15px',
     boxSizing: 'content-box',
+    background: (theme) => theme.background.common,
+    padding: '2px',
   },
   placeholderList: {
     padding: '10px',
-    background: (theme) => theme.background.common,
   },
   scrollArea: {
     width: '100%',

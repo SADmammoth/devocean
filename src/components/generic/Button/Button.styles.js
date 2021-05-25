@@ -3,6 +3,7 @@ const styles = {
     background: (theme) => theme.background.button,
     border: 0,
     cursor: 'pointer',
+    borderRadius: '5px',
   },
   wide: {
     width: '100%',

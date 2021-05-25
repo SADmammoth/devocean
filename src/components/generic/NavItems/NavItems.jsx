@@ -20,14 +20,15 @@ function NavItems({ as, items, className, itemClass, itemContainerClass }) {
   const InteractiveButton = Interactive(Button);
   const renderItems = useMemo(
     () =>
-      items.map((item) => {
+      items.map((item, index) => {
         const { id, title, label, link, onClick, menu } = item;
         return (
           <li
             key={id}
             title={title}
             aria-label={title}
-            className={itemContainerClass}>
+            className={itemContainerClass}
+            style={{ '--index': index }}>
             {menu ? (
               <PopupButton
                 className={itemClass}

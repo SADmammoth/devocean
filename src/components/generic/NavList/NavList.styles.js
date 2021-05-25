@@ -1,4 +1,14 @@
 const styles = {
+  '@keyframes appear': {
+    '100%': {
+      opacity: 1,
+      filter: 'brightness(1)',
+    },
+    '0%': {
+      opacity: 0.5,
+      filter: 'brightness(0.9)',
+    },
+  },
   container: {
     paddingTop: '1rem',
   },
@@ -20,6 +30,10 @@ const styles = {
   itemContainer: {
     listStyleType: 'none',
     position: 'relative',
+    opacity: 0,
+
+    animation: '$appear 0.2s ease-in-out forwards',
+    animationDelay: 'calc(var(--index, 0) * 0.2s - 0.1s)',
 
     '&::before': {
       content: '""',

@@ -5,24 +5,26 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import useClickOrLink from '../../../helpers/hooks/useClickOrLink';
+import Card from '../Card';
 
 import styles from './InteractiveCard.styles';
 
 const useStyles = createUseStyles(styles);
 
-const InteractiveCard = ({ className, onClick, link, children }) => {
+const InteractiveCard = ({ className, onClick, link, children, ...props }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   const onClickHandler = useClickOrLink(onClick, link);
 
   return (
-    <div
+    <Card
       as="article"
       className={classNames(className, classes.card)}
-      onClick={onClickHandler}>
+      onClick={onClickHandler}
+      {...props}>
       {children}
-    </div>
+    </Card>
   );
 };
 

@@ -10,9 +10,12 @@ const theme = {
     dark: '#EAEAEA',
     common: '#F9F9F9',
     light: '#ffffff',
-    button: '#82d1ff',
+    button: '#c4c4c4',
 
-    card: '#fdfdfd',
+    card: '#fbfbfb',
+  },
+  shadows: {
+    card: `0 0 4px #e4e4e4`,
   },
   '@global': {
     fontFamily: 'SF Pro Display',

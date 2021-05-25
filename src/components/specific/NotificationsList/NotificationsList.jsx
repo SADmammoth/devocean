@@ -9,6 +9,8 @@ import notificationsState from '../../../recoil/states/notificationsState';
 import Button from '../../generic/Button';
 import Interactive from '../../generic/Interactive';
 import InteractiveCard from '../../generic/InteractiveCard';
+import ItemsList from '../../generic/ItemsList';
+import LoadableItemsList from '../../generic/LoadableItemsList';
 import ScrollLayout from '../../generic/layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../../generic/layouts/StackLayout';
 import NotificationCard from '../NotificationCard';
@@ -29,26 +31,9 @@ function NotificationsList({ className, showCount }) {
     );
   };
 
-  const notificationsToShow = useMemo(() => {
-    if (notificationsLoadable.state === 'hasValue') {
-      if (showCount) {
-        return notificationsLoadable.contents.slice(0, showCount);
-      }
-      return notificationsLoadable.contents;
-    }
-    return [];
-  }, [notificationsLoadable]);
-
-  console.log(notificationsLoadable, notificationsToShow);
-
-  const notShownCount = useMemo(
-    () => notificationsLoadable.contents.length - notificationsToShow.length,
-    [notificationsLoadable, notificationsToShow],
-  );
-
   const InteractiveButton = Interactive(Button);
 
-  return (
+  const ItemsContainer = ({ children }) => (
     <ScrollLayout
       className={className}
       orientation="vertical"
@@ -57,13 +42,23 @@ function NotificationsList({ className, showCount }) {
       blockSnapType="start"
       scrollPaddingStart="5px"
       nowrap>
-      <StateMonade state={notificationsLoadable.state}>
-        {notificationsToShow.map(renderNotification)}
-        {!(showCount && notShownCount > 0) || (
-          <InteractiveButton link="/notifications">{`${notShownCount} more`}</InteractiveButton>
-        )}
-      </StateMonade>
+      {children.slice(0, showCount || -1)}
+      {!(showCount && children.length - showCount > 0) || (
+        <InteractiveButton link="/notifications">{`${
+          children.length - showCount
+        } more`}</InteractiveButton>
+      )}
     </ScrollLayout>
+  );
+
+  return (
+    <LoadableItemsList
+      showCount={showCount}
+      as={ItemsContainer}
+      items={notificationsLoadable}
+      renderItem={renderNotification}
+      emptyMessage={'Currently no notifications received'}
+    />
   );
 }
 

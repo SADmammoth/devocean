@@ -34,14 +34,14 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
   const removeTask = useSetRecoilState(teammatesState_removeTask);
   const addTask = useSetRecoilState(teammatesState_addTask(id));
 
-  const ItemsContainer = ({ children }) => (
+  const ItemsContainer = ({ children, ...props }) => (
     <ScrollLayout
-      className={classes.list}
       orientation="vertical"
       scrollOrientation="vertical"
       alignY="start"
-      gap="5px"
-      aria-label={locale('TaskList')}>
+      gap="0"
+      aria-label={locale('TaskList')}
+      {...props}>
       <DraggableList
         list={children}
         draggableType="task"
@@ -60,9 +60,9 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
         <TeammateTitle id={id} displayName={displayName} image={avatar} />
       )}
       <ItemsList
-        className={classes.list}
-        placeholderClassName={classNames(classes.list, {
-          [classes.placeholderList]: displayName,
+        className={classNames({ [classes.list]: !!displayName })}
+        placeholderClassName={classNames({
+          [classes.placeholderList]: !!displayName,
         })}
         as={ItemsContainer}
         items={tasks}

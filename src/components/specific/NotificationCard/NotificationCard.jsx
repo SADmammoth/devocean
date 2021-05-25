@@ -17,7 +17,7 @@ import styles from './NotificationCard.styles';
 
 const useStyles = createUseStyles(styles);
 
-function NotificationCard({ id, title, status, time, author }) {
+function NotificationCard({ id, title, status, time, author, index }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -25,6 +25,7 @@ function NotificationCard({ id, title, status, time, author }) {
 
   return (
     <InteractiveCard
+      index={index}
       link={`/notifications/${id}`}
       className={classNames(classes.notification, classes[status])}>
       <BlockDescriptionLayout>

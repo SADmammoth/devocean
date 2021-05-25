@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import Text from '../Text';
-import ScrollLayout from '../layouts/ScrollLayout/ScrollLayout';
+import ScrollLayout from '../layouts/ScrollLayout';
 import StackLayout from '../layouts/StackLayout';
 
 import styles from './ItemsList.styles';
@@ -27,7 +27,12 @@ function ItemsList({
 
   const renderItems = useCallback(
     (items) => {
-      return items.map(renderItem);
+      return items
+        .map(renderItem)
+        .filter((item) => !!item)
+        .map((item, index) =>
+          React.cloneElement(item, { ...item.props, index }),
+        );
     },
     [renderItem],
   );

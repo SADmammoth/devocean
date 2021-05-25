@@ -1,20 +1,15 @@
 const styles = {
   default: {
     '--heightUnit': '88px',
-    width: '258px',
+    width: '252px',
     minHeight: 'var(--heightUnit)',
   },
   task: {
-    boxShadow: (theme) =>
-      `2px 2px 4px ${theme.background.common}, 0px 0px 2px ${theme.background.dark}`,
-    padding: '5px 10px',
-    border: (theme) => `1px solid ${theme.background.common}`,
-    borderRadius: '2px',
-    background: (theme) => theme.background.card,
+    padding: '8px 12px',
     position: 'relative',
   },
   title: {
-    width: '85%',
+    width: '80%',
     lineHeight: '1.2',
   },
   status: {

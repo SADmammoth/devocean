@@ -16,6 +16,7 @@ function DraggableTask({
   reportedTime,
   onDragStart,
   onDragEnd,
+  index,
   ...taskProps
 }) {
   const theme = useTheme();
@@ -23,6 +24,7 @@ function DraggableTask({
 
   const content = (
     <TaskCard
+      index={index}
       id={id}
       estimate={estimate}
       reportedTime={reportedTime}
@@ -31,6 +33,7 @@ function DraggableTask({
   );
   const avatar = (
     <TaskCard
+      index={index}
       id={id}
       className={classes.avatar}
       estimate={estimate}

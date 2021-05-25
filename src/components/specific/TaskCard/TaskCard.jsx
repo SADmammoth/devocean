@@ -28,6 +28,7 @@ const TaskCard = ({
   status,
   tag,
   size,
+  index,
 
   isEvent,
 }) => {
@@ -60,7 +61,8 @@ const TaskCard = ({
     <InteractiveCard
       className={classNames(classes.task, className, classes[sizes[size]])}
       aria-label={label}
-      link={`/tasks/${id}`}>
+      link={`/tasks/${id}`}
+      index={index}>
       {tag ? (
         <TaskTag color={tag.color} name={tag.name} classes={classes} />
       ) : null}

@@ -90,7 +90,7 @@ const KanbanViewContent = () => {
         orientation="horizontal"
         scrollOrientation="horizontal"
         blockSnapType="start"
-        gap="10px"
+        gap="15px"
         nowrap>
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}

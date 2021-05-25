@@ -32,8 +32,11 @@ const TeamViewContent = () => {
   const renderLists = useCallback(() => {
     const { unassigned, ...list } = teammatesTasks.contents;
 
-    return Object.entries(list).map(
-      ([id, { displayName, avatar, assignedTasks }]) => {
+    return Object.entries(list)
+      .filter(([, value]) => {
+        return !!value?.assignedTasks?.length;
+      })
+      .map(([id, { displayName, avatar, assignedTasks }]) => {
         return (
           <TeammateTasksList
             id={id}
@@ -42,8 +45,7 @@ const TeamViewContent = () => {
             avatar={avatar}
           />
         );
-      },
-    );
+      });
   }, [teammatesTasks.contents]);
 
   const { unassigned } = teammatesTasks.contents;

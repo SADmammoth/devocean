@@ -49,18 +49,18 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
     changeStatus({ taskId, text, index });
   };
 
-  const ItemsContainer = (children) => (
+  const ItemsContainer = ({ children, ...props }) => (
     <ScrollLayout
-      className={classes.list}
+      className={classNames({ [classes.list]: showTitle })}
       orientation="vertical"
       scrollOrientation="vertical"
       blockSnapType="start"
       alignY="start"
-      gap="-10px"
+      gap="0"
       aria-label={locale('TaskList')}
       nowrap>
       <DraggableList
-        list={children}
+        list={children || []}
         draggableType="task"
         draggableAreaSize={draggableAreaSize}
         onNewItem={onNewItem}

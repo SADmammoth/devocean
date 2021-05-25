@@ -12,7 +12,14 @@ import styles from './LoadableItemsList.styles';
 
 const useStyles = createUseStyles(styles);
 
-function LoadableItemsList({ items, as, renderItem, emptyMessage, ...props }) {
+function LoadableItemsList({
+  items,
+  as,
+  renderItem,
+  emptyMessage,
+  showCount,
+  ...props
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -27,7 +34,10 @@ function LoadableItemsList({ items, as, renderItem, emptyMessage, ...props }) {
           .map((item) => {
             return renderItem(item);
           })
-          .filter((item) => !!item),
+          .filter((item) => !!item)
+          .map((item, index) =>
+            React.cloneElement(item, { ...item.props, index }),
+          ),
     );
   }, [items]);
 
