@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import { FaFolderPlus, FaPlusCircle } from 'react-icons/fa';
+import classNames from 'classnames';
+import { FaFolderPlus, FaPlusCircle, FaTable } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilStateLoadable, useRecoilValueLoadable } from 'recoil';
 
-import ExpandableToolBar from '../../../../components/generic/ExpandableToolBar';
 import FoldersTree from '../../../../components/generic/FoldersTree';
-import Sidebar from '../../../../components/generic/Sidebar';
-import Text from '../../../../components/generic/Text';
-import GridLayout from '../../../../components/generic/layouts/GridLayout';
-import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout/ScrollLayout';
-import StackLayout from '../../../../components/generic/layouts/StackLayout';
-import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import TaskFolderButton from '../../../../components/specific/TaskFolderButton';
 import StateMonade from '../../../../helpers/components/StateMonade';
+import getTaskViewMenu from '../../../../helpers/functions/getTaskViewMenu';
 import useLocale from '../../../../helpers/hooks/useLocale';
+import TitledPage from '../../../../layouts/TitledPage/TitledPage';
 import folderTreeState from '../../../../recoil/states/folderTreeState';
-import TaskViewSwitch from '../TaskViewSwitch/TaskViewSwitch';
 import ListViewTasks from './ListViewTasks';
 import currentFolderState from './localState/currentFolderState';
 
@@ -44,59 +39,55 @@ const ListViewContent = () => {
 
   const locale = useLocale();
 
-  return (
-    <GridLayout className={classes.grid}>
-      <Sidebar column={3} className={classes.paddingTop}>
-        <StateMonade state={folders.state}>
-          <FoldersTree
-            className={classes.folders}
-            folders={folders.contents}
-            onSelectedChange={(index) => {
-              setCurrentFolder(index);
-            }}
-            FolderBase={TaskFolderButton}
-          />
-        </StateMonade>
-      </Sidebar>
-      <StackLayout
-        orientation="vertical"
-        column={7}
-        alignY="start"
-        className={classes.paddingTop}>
-        <Text type="h1">{locale('TaskList')}</Text>
-        <StateMonade state={!!currentFolderId}>
-          <ListViewTasks folderId={currentFolderId} />
-        </StateMonade>
-      </StackLayout>
-      <FeatureDependentToolbar
-        expandable
-        items={{
-          manageTasks: [
-            {
-              label: <FaPlusCircle />,
-              title: 'Add new task',
-              link: '/tasks/new',
-              id: 'new-task',
-            },
-          ],
-          manageCollections: [
-            {
-              label: <FaFolderPlus />,
-              title: 'Add task collection',
-              link: '/collections/new',
-              id: 'add-collection',
-            },
-          ],
-          all: [
-            {
-              label: <TaskViewSwitch currentView="list" />,
-              title: 'Switch view',
-              id: 'switch-view',
-            },
-          ],
+  const sidebar = (
+    <StateMonade state={folders.state}>
+      <FoldersTree
+        className={classes.folders}
+        folders={folders.contents}
+        onSelectedChange={(index) => {
+          setCurrentFolder(index);
         }}
+        FolderBase={TaskFolderButton}
       />
-    </GridLayout>
+    </StateMonade>
+  );
+
+  const toolbar = {
+    manageTasks: [
+      {
+        label: <FaPlusCircle />,
+        title: 'Add new task',
+        link: '/tasks/new',
+        id: 'new-task',
+      },
+    ],
+    manageCollections: [
+      {
+        label: <FaFolderPlus />,
+        title: 'Add task collection',
+        link: '/collections/new',
+        id: 'add-collection',
+      },
+    ],
+    all: [
+      {
+        label: <FaTable />,
+        menu: getTaskViewMenu('list'),
+        title: 'Switch view',
+        id: 'switch-view',
+      },
+    ],
+  };
+
+  return (
+    <TitledPage
+      title={locale('TaskList')}
+      sidebarContent={sidebar}
+      toolbarItems={toolbar}>
+      <StateMonade state={!!currentFolderId}>
+        <ListViewTasks folderId={currentFolderId} />
+      </StateMonade>
+    </TitledPage>
   );
 };
 

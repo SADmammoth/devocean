@@ -21,12 +21,8 @@ function ClockSidebar({ className, ...props }) {
       <StackLayout
         className={classes.content}
         orientation="vertical"
-        alignX="center"
-        gap="2rem">
+        alignX="center">
         <Clock city="Belarus, Minsk" size="big" />
-        <StackLayout className={classes.secondaryClocks} alignX="center">
-          <Clock city="Country, City" size="small" />
-        </StackLayout>
       </StackLayout>
     </Sidebar>
   );

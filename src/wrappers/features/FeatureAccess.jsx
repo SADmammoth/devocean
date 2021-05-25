@@ -12,7 +12,7 @@ function FeatureAccess({ children, feature }) {
 
   return (
     <StateMonade state={hasAccess.state} onError={() => hasAccess.contents}>
-      {hasAccess.contents ? children : <Redirect to="/404" />}
+      {hasAccess.contents ? children : <Redirect to="/error/404" />}
     </StateMonade>
   );
 }

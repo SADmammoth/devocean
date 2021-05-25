@@ -18,10 +18,10 @@ export default function useFolderProps(
       }
 
       if (index < 0) {
-        return null;
+        index = 0;
       }
 
-      const { id, name, children, tasks, isConstant } = folders[index];
+      const { id, name, children, tasks, isConstant, parent } = folders[index];
 
       return {
         id,
@@ -31,10 +31,11 @@ export default function useFolderProps(
         name,
         selectFolder,
         childrenIds: children,
-        selectedParent: selectedParents.includes(index),
+        selectedParent: selectedParents.includes(id),
         selected: selectedIndex === index,
         requestFolderProps: createFolderProps,
         isConstant,
+        parent,
       };
     },
     [selectedIndex, selectedParents, folders, classes],

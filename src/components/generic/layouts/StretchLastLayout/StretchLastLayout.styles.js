@@ -10,6 +10,13 @@ const styles = {
       flexGrow: 1,
     },
   },
+
+  vertical: {
+    height: '100%',
+  },
+  horizontal: {
+    width: '100%',
+  },
 };
 
 export default styles;

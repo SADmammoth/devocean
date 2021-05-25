@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Button as ReakitButton } from 'reakit';
 
 import useLocale from '../../../helpers/hooks/useLocale';
+import StackLayout from '../layouts/StackLayout';
 
 function Folder({
   id,
@@ -35,12 +36,12 @@ function Folder({
   }, [selected, selectedParent, childrenIds, id, requestFolderProps]);
 
   return (
-    <div
+    <StackLayout
+      orientation="vertical"
       className={classNames(classes.folderTree, {
         [classes.selectedTree]: selected,
       })}>
       <FolderBase
-        classes={classes}
         type={type}
         selected={selected}
         selectedParent={selectedParent}
@@ -48,11 +49,12 @@ function Folder({
         id={id}
         selectFolder={selectFolder}
         isConstant={isConstant}
+        parent={requestFolderProps(id).parent}
       />
       <div aria-label={locale('Subfolders', { name })}>
         {renderSubFolders()}
       </div>
-    </div>
+    </StackLayout>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
@@ -12,6 +13,7 @@ import styles from './PopupButton.styles';
 const useStyles = createUseStyles(styles);
 
 function PopupButton({
+  className,
   buttonContent,
   children,
   showSubmitButton,
@@ -41,7 +43,7 @@ function PopupButton({
   return (
     <div className={classes.container}>
       <Button
-        className={classes.button}
+        className={classNames(classes.button, className)}
         size="fluid"
         onClick={() => {
           setShow((show) => !show);

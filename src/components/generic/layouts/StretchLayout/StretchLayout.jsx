@@ -8,12 +8,14 @@ import styles from './StretchLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
-function StretchLayout({ className, children }) {
+function StretchLayout({ className, style, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <div className={classNames(className, classes.container)}>{children}</div>
+    <div className={classNames(className, classes.container)} style={style}>
+      {children}
+    </div>
   );
 }
 

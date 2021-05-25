@@ -21,7 +21,7 @@ function FoldersTree({ className, folders, onSelectedChange, FolderBase }) {
   );
 
   useEffect(() => {
-    onSelectedChange(selectedIndex);
+    if (selectedIndex !== -1) onSelectedChange(selectedIndex);
   }, [selectedIndex]);
 
   const createFolderProps = useFolderProps(

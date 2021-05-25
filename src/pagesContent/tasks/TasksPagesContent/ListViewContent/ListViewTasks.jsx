@@ -5,10 +5,9 @@ import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
 import DraggableList from '../../../../components/generic/DraggableList';
+import LoadableItemsList from '../../../../components/generic/LoadableItemsList';
 import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout/ScrollLayout';
-import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import DraggableTask from '../../../../components/specific/DraggableTask';
-import StateMonade from '../../../../helpers/components/StateMonade';
 import useLocale from '../../../../helpers/hooks/useLocale';
 import { tasksState_getByFolder } from '../../../../recoil/states/tasksState';
 
@@ -27,33 +26,8 @@ function ListViewTasks({ folderId, style }) {
     theme.draggableAreaDefaultSize,
   );
 
-  const [renderedTasks, setRenderedTasks] = useState([]);
-
-  useEffect(() => {
-    setRenderedTasks(
-      tasks.state === 'hasValue' &&
-        tasks.contents
-          .map((task) => {
-            if (task)
-              return (
-                <DraggableTask
-                  key={task.id}
-                  {...task}
-                  onDragStart={({ height }) => {
-                    setDraggableAreaSize(height);
-                  }}
-                  onDragEnd={() =>
-                    setDraggableAreaSize(theme.draggableAreaDefaultSize)
-                  }
-                />
-              );
-          })
-          .filter((item) => !!item),
-    );
-  }, [tasks]);
-
-  return (
-    <StateMonade state={tasks.state}>
+  const ItemsContainer = (children, ...props) => {
+    return (
       <ScrollLayout
         className={classes.list}
         orientation="horizontal"
@@ -64,12 +38,35 @@ function ListViewTasks({ folderId, style }) {
         scrollPaddingEnd="0px">
         <DraggableList
           id="list"
-          list={renderedTasks}
+          list={children}
           draggableType="task"
           draggableAreaSize={draggableAreaSize}
         />
       </ScrollLayout>
-    </StateMonade>
+    );
+  };
+
+  return (
+    <LoadableItemsList
+      as={ItemsContainer}
+      items={tasks}
+      renderItem={(task) => {
+        if (task)
+          return (
+            <DraggableTask
+              key={task.id}
+              {...task}
+              onDragStart={({ height }) => {
+                setDraggableAreaSize(height);
+              }}
+              onDragEnd={() =>
+                setDraggableAreaSize(theme.draggableAreaDefaultSize)
+              }
+            />
+          );
+      }}
+      emptyMessage="Added tasks are showing up here"
+    />
   );
 }
 

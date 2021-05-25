@@ -20,7 +20,7 @@ class ErrorBoundary extends React.Component {
     if (this.state.errorInfo) {
       if (this.state.errorInfo.response?.statusCode === 403) {
         this.setState({ errorInfo: null });
-        return <Redirect to="/403" />;
+        return <Redirect to="/error/403" />;
       }
       return <h1>Something went wrong.</h1>;
     }

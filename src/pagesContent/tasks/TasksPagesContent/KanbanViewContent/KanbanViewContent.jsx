@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 
 import classNames from 'classnames';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTable } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
@@ -13,7 +13,9 @@ import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import StateMonade from '../../../../helpers/components/StateMonade';
+import getTaskViewMenu from '../../../../helpers/functions/getTaskViewMenu';
 import useLocale from '../../../../helpers/hooks/useLocale';
+import TitledPage from '../../../../layouts/TitledPage';
 import { statusesState_getWithTasks } from '../../../../recoil/states/statusesState';
 import TaskViewSwitch from '../TaskViewSwitch/TaskViewSwitch';
 import AddStatusForm from './AddStatusForm';
@@ -48,20 +50,43 @@ const KanbanViewContent = () => {
 
   const [showAddStatus, setShowAddStatus] = useState(false);
 
+  const sidebar = (
+    <StateMonade state={statuses.state}>
+      <KanbanStatusList
+        classes={classes}
+        status="backlog"
+        tasks={backlog || []}
+        showTitle={false}></KanbanStatusList>
+    </StateMonade>
+  );
+
+  const toolbar = {
+    manageTasks: [
+      {
+        label: <FaPlusCircle />,
+        title: 'Add new task',
+        link: '/tasks/new',
+        id: 'new-task',
+      },
+    ],
+    all: [
+      {
+        label: <FaTable />,
+        menu: getTaskViewMenu('kanban'),
+        title: 'Switch view',
+        id: 'switch-view',
+      },
+    ],
+  };
+
   return (
-    <GridLayout className={classNames(classes.grid, classes.paddingTop)}>
-      <Sidebar column={3} title={locale('backlog')}>
-        <StateMonade state={statuses.state}>
-          <KanbanStatusList
-            classes={classes}
-            status="backlog"
-            tasks={backlog || []}
-            showTitle={false}></KanbanStatusList>
-        </StateMonade>
-      </Sidebar>
+    <TitledPage
+      title={'Kanban board'}
+      sidebarTitle={locale('backlog')}
+      sidebarContent={sidebar}
+      toolbarItems={toolbar}>
       <ScrollLayout
-        className={classNames(classes.scrollArea, classes.paddingTop)}
-        column={7}
+        className={classNames(classes.scrollArea)}
         orientation="horizontal"
         scrollOrientation="horizontal"
         blockSnapType="start"
@@ -69,35 +94,16 @@ const KanbanViewContent = () => {
         nowrap>
         <StateMonade state={statuses.state}>
           {renderStatusesLists()}
-          <Button onClick={() => setShowAddStatus((state) => !state)}>
+          {/* <Button onClick={() => setShowAddStatus((state) => !state)}>
             Add status
-          </Button>
-          {showAddStatus ? (
+          </Button> */}
+          {/* {showAddStatus ? (
             <AddStatusForm
               onSubmit={() => setShowAddStatus(false)}></AddStatusForm>
-          ) : null}
+          ) : null} */}
         </StateMonade>
       </ScrollLayout>
-      <FeatureDependentToolbar
-        items={{
-          manageTasks: [
-            {
-              label: <FaPlusCircle />,
-              title: 'Add new task',
-              link: '/tasks/new',
-              id: 'new-task',
-            },
-          ],
-          all: [
-            {
-              label: <TaskViewSwitch currentView="kanban" />,
-              title: 'Switch view',
-              id: 'switch-view',
-            },
-          ],
-        }}
-      />
-    </GridLayout>
+    </TitledPage>
   );
 };
 

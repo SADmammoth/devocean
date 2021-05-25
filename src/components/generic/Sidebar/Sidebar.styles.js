@@ -6,6 +6,10 @@ const styles = {
     position: 'relative',
     overflowX: 'hidden',
   },
+  titledSidebar: {},
+  title: {
+    marginBottom: '10px',
+  },
 };
 
 export default styles;

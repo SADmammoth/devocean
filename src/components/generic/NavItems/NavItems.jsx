@@ -6,6 +6,8 @@ import { useTheme, createUseStyles } from 'react-jss';
 
 import Button from '../Button';
 import Interactive from '../Interactive';
+import PanelCard from '../PanelCard';
+import PopupButton from '../PopupButton';
 
 import styles from './NavItems.styles';
 
@@ -19,20 +21,35 @@ function NavItems({ as, items, className, itemClass, itemContainerClass }) {
   const renderItems = useMemo(
     () =>
       items.map((item) => {
-        const { id, title, label, link, onClick } = item;
+        const { id, title, label, link, onClick, menu } = item;
         return (
           <li
             key={id}
             title={title}
             aria-label={title}
             className={itemContainerClass}>
-            <InteractiveButton
-              size="wide"
-              onClick={onClick}
-              link={link}
-              className={itemClass}>
-              {label}
-            </InteractiveButton>
+            {menu ? (
+              <PopupButton
+                className={itemClass}
+                buttonContent={label}
+                position="right">
+                <PanelCard>
+                  <NavItems
+                    items={menu}
+                    itemContainerClass={classes.menuContainer}
+                    itemClass={classes.menuItem}
+                  />
+                </PanelCard>
+              </PopupButton>
+            ) : (
+              <InteractiveButton
+                size="wide"
+                onClick={onClick}
+                link={link}
+                className={itemClass}>
+                {label}
+              </InteractiveButton>
+            )}
           </li>
         );
       }),

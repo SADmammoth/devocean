@@ -6,12 +6,16 @@ const styles = {
     paddingTop: (theme) => theme.spaces.small,
   },
   list: {
-    height: '68vh',
+    width: '258px',
     paddingRight: '15px',
     boxSizing: 'content-box',
   },
+  placeholderList: {
+    padding: '10px',
+    background: (theme) => theme.background.common,
+  },
   scrollArea: {
-    height: '84vh',
+    width: '100%',
   },
 };
 

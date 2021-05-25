@@ -7,22 +7,17 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import { Validator } from '@sadmammoth/react-form';
 
-import Form from '../../components/generic/Form';
-import Sidebar from '../../components/generic/Sidebar';
-import Text from '../../components/generic/Text';
-import ToggleList from '../../components/generic/ToggleList/ToggleList';
-import GridLayout from '../../components/generic/layouts/GridLayout';
-import StackLayout from '../../components/generic/layouts/StackLayout';
-import showPopup from '../../helpers/components/showPopup';
-import getInitTeammateProfileForm from '../../helpers/forms/getInitTeammateProfileForm';
-import useLocalizedForm from '../../helpers/forms/useLocalizedForm';
-import subteamsState from '../../recoil/states/subteamsState';
-import tagsState from '../../recoil/states/tagsState';
-import teammateProfilesState, {
-  teammateProfilesState_getById,
-  teammateProfilesState_update,
-} from '../../recoil/states/teammatesProfilesState';
-import userState, { userDataState } from '../../recoil/states/userState';
+import Form from '../../../components/generic/Form';
+import Sidebar from '../../../components/generic/Sidebar';
+import Text from '../../../components/generic/Text';
+import ToggleList from '../../../components/generic/ToggleList/ToggleList';
+import GridLayout from '../../../components/generic/layouts/GridLayout';
+import StackLayout from '../../../components/generic/layouts/StackLayout';
+import showPopup from '../../../helpers/components/showPopup';
+import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
+import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import subteamsState from '../../../recoil/states/subteamsState';
+import tagsState from '../../../recoil/states/tagsState';
 
 import styles from './InitTeammateProfilePageContent.styles';
 

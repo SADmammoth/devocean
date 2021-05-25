@@ -13,12 +13,15 @@ const styles = {
   },
   itemContainer: {
     listStyleType: 'none',
+    width: '100%',
   },
   item: {
-    background: 'none',
+    background: 'none !important',
     border: 'none',
     margin: 0,
-    padding: 0,
+    padding: '10px',
+    width: '100%',
+    borderBottom: (theme) => `2px solid ${theme.background.dark}`,
   },
 };
 

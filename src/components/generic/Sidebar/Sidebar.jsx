@@ -32,7 +32,7 @@ function Sidebar({ children, className, style, title }) {
       <StretchLastLayout
         orientation="vertical"
         as="aside"
-        className={classNames(className, classes.root)}
+        className={classNames(className, classes.root, classes.titledSidebar)}
         style={style}>
         <Text type="big" className={classes.title}>
           {title}

@@ -8,13 +8,14 @@ export default function useSelectedFolder(folders) {
   const [selectedParents, setSelectedParents] = useState([]);
   const selectFolder = useCallback(
     (folderId) => {
+      if (folderId === null) {
+        setSelectedIndex(-1);
+        return;
+      }
       const index = folders.findIndex(({ id }) => id === folderId);
       setSelectedIndex(index);
-      const parents = getParentsOfTreeNode(
-        folderId,
-        treeArrayToMap(folders),
-      ).slice(0, -1);
-      setSelectedParents(parents.map((item, index) => index));
+      const parents = getParentsOfTreeNode(folderId, treeArrayToMap(folders));
+      setSelectedParents(parents.map((item, index) => item));
     },
     [folders, selectedIndex],
   );

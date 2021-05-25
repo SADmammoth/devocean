@@ -10,7 +10,7 @@ import {
 import { Redirect } from 'umi';
 
 import StateMonade from '../../helpers/components/StateMonade';
-import InitTeammateProfilePageContent from '../../pagesContent/InitTeammateProfilePageContent';
+import InitTeammateProfilePageContent from '../../pagesContent/teammates/InitTeammateProfilePageContent';
 import serverStateSync from '../../recoil/helpers/effects/serverStateSync';
 import subteamsState from '../../recoil/states/subteamsState';
 import tagsState from '../../recoil/states/tagsState';
@@ -31,7 +31,7 @@ function InitProfile() {
 
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
-  if (userData?.invited === false) return <Redirect to="/404" />;
+  if (userData?.invited === false) return <Redirect to="/error/404" />;
   return (
     <StateMonade
       state={initialValues.state}

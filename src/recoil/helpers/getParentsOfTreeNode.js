@@ -1,10 +1,11 @@
 export default function getParentsOfTreeNode(nodeId, treeMap) {
   const node = treeMap[nodeId];
+  if (!node) return [null];
   const nodes = [];
 
   const getParent = (node) => {
-    nodes.push(node);
     if (node.parent) {
+      nodes.push(node.parent);
       return getParent(treeMap[node.parent]);
     }
 

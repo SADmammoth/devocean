@@ -57,7 +57,7 @@ const HomePageContent = () => {
           alignX="start"
           className={classes.topPadding}>
           <FeatureMonade feature="viewNotifications">
-            {Marked(<Text type="h2">{locale('Notifications')}</Text>)}
+            <Text type="h2">{locale('Notifications')}</Text>
             <NotificationsList showCount={3} />
           </FeatureMonade>
         </StackLayout>

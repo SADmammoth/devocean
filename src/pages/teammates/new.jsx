@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
-import InitTeammateProfilePageContent from '../../pagesContent/InitTeammateProfilePageContent';
+import InitTeammateProfilePageContent from '../../pagesContent/teammates/InitTeammateProfilePageContent';
 import subteamsState from '../../recoil/states/subteamsState';
 import tagsState from '../../recoil/states/tagsState';
 import teammateProfilesState from '../../recoil/states/teammatesProfilesState';

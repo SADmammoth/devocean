@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 
 import classNames from 'classnames';
-import { FaPlusCircle } from 'react-icons/fa';
+import { FaPlusCircle, FaTable } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
@@ -12,7 +12,9 @@ import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
 import StateMonade from '../../../../helpers/components/StateMonade';
+import getTaskViewMenu from '../../../../helpers/functions/getTaskViewMenu';
 import useLocale from '../../../../helpers/hooks/useLocale';
+import TitledPage from '../../../../layouts/TitledPage';
 import teammatesState from '../../../../recoil/states/teammatesState';
 import TaskViewSwitch from '../TaskViewSwitch/TaskViewSwitch';
 import TeammateTasksList from './TeammateTasksList';
@@ -47,49 +49,49 @@ const TeamViewContent = () => {
   const { unassigned } = teammatesTasks.contents;
   const locale = useLocale();
 
+  const sidebar = (
+    <StateMonade state={teammatesTasks.state}>
+      <TeammateTasksList
+        tasks={unassigned?.assignedTasks}
+        avatar={unassigned?.avatar}
+      />
+    </StateMonade>
+  );
+  const toolbar = {
+    manageTasks: [
+      {
+        label: <FaPlusCircle />,
+        title: 'Add new task',
+        link: '/tasks/new',
+        id: 'new-task',
+      },
+    ],
+    all: [
+      {
+        label: <FaTable />,
+        menu: getTaskViewMenu('team'),
+        title: 'Switch view',
+        id: 'switch-view',
+      },
+    ],
+  };
+
   return (
-    <GridLayout className={classes.grid}>
-      <Sidebar
-        column={3}
-        title={locale('Unassigned')}
-        className={classes.paddingTop}>
-        <StateMonade state={teammatesTasks.state}>
-          <TeammateTasksList
-            tasks={unassigned?.assignedTasks}
-            avatar={unassigned?.avatar}
-          />
-        </StateMonade>
-      </Sidebar>
+    <TitledPage
+      title={'Tasks by assignees'}
+      sidebarTitle={locale('Unassigned')}
+      sidebarContent={sidebar}
+      toolbarItems={toolbar}>
       <ScrollLayout
-        column={7}
         orientation="horizontal"
         scrollOrientation="horizontal"
         blockSnapType="start"
         gap="15px"
-        className={classNames(classes.paddingTop, classes.scrollArea)}
+        className={classNames(classes.scrollArea)}
         nowrap>
         <StateMonade state={teammatesTasks.state}>{renderLists()}</StateMonade>
       </ScrollLayout>
-      <FeatureDependentToolbar
-        items={{
-          manageTasks: [
-            {
-              label: <FaPlusCircle />,
-              title: 'Add new task',
-              link: '/tasks/new',
-              id: 'new-task',
-            },
-          ],
-          all: [
-            {
-              label: <TaskViewSwitch currentView="team" />,
-              title: 'Switch view',
-              id: 'switch-view',
-            },
-          ],
-        }}
-      />
-    </GridLayout>
+    </TitledPage>
   );
 };
 

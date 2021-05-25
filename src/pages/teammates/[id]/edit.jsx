@@ -9,7 +9,7 @@ import {
 } from 'recoil';
 
 import StateMonade from '../../../helpers/components/StateMonade';
-import InitTeammateProfilePageContent from '../../../pagesContent/InitTeammateProfilePageContent';
+import InitTeammateProfilePageContent from '../../../pagesContent/teammates/InitTeammateProfilePageContent';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 import {

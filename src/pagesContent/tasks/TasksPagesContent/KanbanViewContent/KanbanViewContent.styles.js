@@ -7,9 +7,12 @@ const styles = {
   },
   list: {
     width: '258px',
-    maxHeight: '68vh',
     paddingRight: '10px',
     boxSizing: 'content-box',
+  },
+  placeholderList: {
+    background: (theme) => theme.background.common,
+    padding: '10px',
   },
   scrollArea: {
     maxHeight: '84vh',

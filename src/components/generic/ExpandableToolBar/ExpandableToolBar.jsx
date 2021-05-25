@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
-import IconTextButton from '../IconTextButton';
 import Text from '../Text';
 import ToolBar from '../ToolBar';
 import StackLayout from '../layouts/StackLayout';
@@ -22,7 +21,12 @@ function ExpandableToolBar({ className, items, style, children }) {
 
   const fullItems = items.map(({ label, title, ...rest }) => {
     return {
-      label: <IconTextButton icon={label} text={title} />,
+      label: (
+        <StackLayout alignX="start" alignY="center" nowrap>
+          {label}
+          <Text type="common">{title}</Text>
+        </StackLayout>
+      ),
       title,
       ...rest,
     };

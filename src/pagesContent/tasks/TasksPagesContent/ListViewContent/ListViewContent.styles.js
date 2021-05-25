@@ -5,12 +5,7 @@ const styles = {
     },
     maxHeight: '73vh',
   },
-  paddingTop: {
-    paddingTop: (theme) => theme.spaces.small,
-  },
-  grid: {
-    height: '100%',
-  },
+
   folders: {
     width: '100%',
     padding: (theme) => `calc(${theme.fontSizes.biggest} * 1.5) 1rem`,

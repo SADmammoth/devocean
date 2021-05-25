@@ -10,6 +10,7 @@ import {
   FaArrowUp,
   FaEdit,
 } from 'react-icons/fa';
+import { useTheme, createUseStyles } from 'react-jss';
 
 import useLocale from '../../../helpers/hooks/useLocale';
 import Button from '../../generic/Button';
@@ -19,8 +20,11 @@ import Text from '../../generic/Text';
 import StackLayout from '../../generic/layouts/StackLayout';
 import FolderDropArea from './FolderDropArea';
 
+import styles from './TaskFolderButton.styles';
+
+const useStyles = createUseStyles(styles);
+
 function TaskFolderButton({
-  classes,
   type,
   selected,
   selectedParent,
@@ -28,8 +32,13 @@ function TaskFolderButton({
   id,
   selectFolder,
   isConstant,
+  toggleSubfolders,
+  parent,
   ...props
 }) {
+  const theme = useTheme();
+  const classes = useStyles(theme);
+
   const InteractiveButton = Interactive(Button);
 
   const locale = useLocale();
@@ -43,18 +52,22 @@ function TaskFolderButton({
       : FaArrowRight;
 
   const ButtonContent = (
-    <StackLayout alignX="start" alignY="center" gap="5px">
-      <Icon />
-      <Text type="common" ellipsis>
-        {name}
-      </Text>
-      {isConstant || (
-        <HiddenLink to={`/collections/${id}/edit`}>
-          <FaEdit />
-        </HiddenLink>
-      )}
+    <StackLayout alignX="spaceBetween" alignY="center" gap="5px">
+      <StackLayout alignY="center">
+        <Icon />
+        <Text type="common" ellipsis>
+          {name}
+        </Text>
+      </StackLayout>
 
-      <OpenActionIcon />
+      <StackLayout alignY="center">
+        {isConstant || (
+          <HiddenLink to={`/collections/${id}/edit`}>
+            <FaEdit />
+          </HiddenLink>
+        )}
+        <OpenActionIcon />
+      </StackLayout>
     </StackLayout>
   );
 
@@ -66,7 +79,7 @@ function TaskFolderButton({
         [classes.selected]: selected,
         [classes.selectedParent]: selectedParent,
       })}
-      onClick={() => selectFolder(id)}
+      onClick={() => selectFolder(selected ? parent : id)}
       label={locale(type, { name })}>
       {type === 'list' && !selected && !selectedParent ? (
         <FolderDropArea id={id} selectFolder={selectFolder}>
