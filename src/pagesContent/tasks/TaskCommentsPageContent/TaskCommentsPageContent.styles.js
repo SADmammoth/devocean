@@ -7,6 +7,7 @@ const styles = {
   },
   board: {
     maxHeight: '100%',
+    marginTop: (theme) => theme.spaces.small,
   },
   commentsSectionsWrapper: {
     height: '100%',
@@ -29,6 +30,9 @@ const styles = {
       border: (theme) => `2px solid ${theme.text.highlighted}`,
     },
     cursor: 'pointer',
+  },
+  activeSection: {
+    border: (theme) => `2px solid ${theme.text.highlighted}`,
   },
 };
 

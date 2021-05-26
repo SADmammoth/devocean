@@ -3,6 +3,7 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
+import optionalArrayProcession from '../../../helpers/functions/optionalArrayProcession';
 import Text from '../Text';
 import ScrollLayout from '../layouts/ScrollLayout';
 import StackLayout from '../layouts/StackLayout';
@@ -18,6 +19,7 @@ function ItemsList({
   as,
   renderItem,
   emptyMessage,
+  processors,
   ...props
 }) {
   const theme = useTheme();
@@ -27,7 +29,7 @@ function ItemsList({
 
   const renderItems = useCallback(
     (items) => {
-      return items
+      return optionalArrayProcession(items, processors)
         .map(renderItem)
         .filter((item) => !!item)
         .map((item, index) =>

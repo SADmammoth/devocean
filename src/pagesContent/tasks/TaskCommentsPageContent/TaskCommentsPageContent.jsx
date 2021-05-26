@@ -30,6 +30,7 @@ function TaskCommentsPageContent({ id, children }) {
             <NavItems
               itemContainerClass={classes.commentsSection}
               itemClass={classes.button}
+              activeItemClass={classes.activeSection}
               items={views}
             />
           </StackLayout>

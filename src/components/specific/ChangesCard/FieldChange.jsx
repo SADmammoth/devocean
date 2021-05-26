@@ -2,12 +2,12 @@ import React from 'react';
 
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { FaChevronRight } from 'react-icons/fa';
+import { FaArrowRight, FaChevronRight } from 'react-icons/fa';
 
 import Text from '../../generic/Text';
 import StackLayout from '../../generic/layouts/StackLayout';
 
-function FieldChange({ field, from, to }) {
+function FieldChange({ classes, field, from, to }) {
   return (
     <StackLayout orientation="vertical">
       {!field || (
@@ -15,14 +15,14 @@ function FieldChange({ field, from, to }) {
           {_.capitalize(_.startCase(field).toLowerCase())}
         </Text>
       )}
-      <StackLayout>
-        <Text type="common" italic>
+      <StackLayout alignY="center" className={classes.change}>
+        <Text className={classes.from} type="common" italic>
           {from}
         </Text>
-        <div>
-          <FaChevronRight />
+        <div className={classes.changeArrow}>
+          <FaArrowRight />
         </div>
-        <Text type="common" italic>
+        <Text className={classes.to} type="common" italic>
           {to}
         </Text>
       </StackLayout>

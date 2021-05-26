@@ -1,10 +1,13 @@
 const styles = {
   content: {
     height: '70.5vh',
-    marginTop: (theme) => theme.spaces.small,
   },
-  reports: {
-    padding: '5px',
+  placeholder: {
+    background: (theme) => theme.background.common,
+    height: '66.25vh',
+  },
+  currentReports: {
+    width: '100%',
   },
 };
 

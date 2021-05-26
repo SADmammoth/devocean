@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect } from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
+import LoadableItemsList from '../../../../components/generic/LoadableItemsList';
 import PopupButton from '../../../../components/generic/PopupButton';
 import Text from '../../../../components/generic/Text';
+import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import DiscussionCard from '../../../../components/specific/DiscussionCard/DiscussionCard';
 import FeatureMonade from '../../../../helpers/components/FeatureMonade';
@@ -25,15 +28,17 @@ function DiscussionsPageContent({ id }) {
   const locale = useLocale();
 
   const discussions = useRecoilValueLoadable(discussionsState(id));
-
-  const renderDiscussions = useCallback(() => {
-    if (discussions.state === 'hasValue')
-      return discussions.contents.map((discussion) => {
-        return <DiscussionCard {...discussion} />;
-      });
-  }, [discussions.contents]);
-
   const task = useRecoilValueLoadable(tasksState_getById(id));
+
+  const ItemsContainer = ({ children, ...props }) => (
+    <ScrollLayout
+      orientation="vertical"
+      scrollOrientation="vertical"
+      nowrap
+      gap="15px">
+      {children}
+    </ScrollLayout>
+  );
 
   return (
     <StackLayout orientation="vertical" className={classes.discussions} nowrap>
@@ -43,15 +48,19 @@ function DiscussionsPageContent({ id }) {
           {task.contents?.title}
         </Text>
       </Text>
-      <StackLayout
-        orientation="vertical"
+      <LoadableItemsList
         className={classes.messageBoard}
-        gap="15px"
-        scroll>
-        <StateMonade state={discussions.state}>
-          {renderDiscussions()}
-        </StateMonade>
-      </StackLayout>
+        placeholderClassName={classNames(
+          classes.messageBoard,
+          classes.placeholder,
+        )}
+        as={ItemsContainer}
+        items={discussions}
+        renderItem={(discussion) => {
+          return <DiscussionCard key={discussion.id} {...discussion} />;
+        }}
+        processors={[{ reverse: [] }]}
+      />
       <FeatureMonade feature="workWithTasks">
         <CreateCommentForm alignY="end" classes={classes} id={id} />
       </FeatureMonade>

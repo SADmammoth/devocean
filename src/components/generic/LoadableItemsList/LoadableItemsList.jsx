@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import StateMonade from '../../../helpers/components/StateMonade';
+import optionalArrayProcession from '../../../helpers/functions/optionalArrayProcession';
 import Text from '../Text';
 import ScrollLayout from '../layouts/ScrollLayout/ScrollLayout';
 import StackLayout from '../layouts/StackLayout';
@@ -18,6 +19,8 @@ function LoadableItemsList({
   renderItem,
   emptyMessage,
   showCount,
+  processors,
+  placeholderClassName,
   ...props
 }) {
   const theme = useTheme();
@@ -28,17 +31,17 @@ function LoadableItemsList({
   const [renderedItems, setRenderedItems] = useState([]);
 
   useEffect(() => {
-    setRenderedItems(
-      items.state === 'hasValue' &&
-        items.contents
+    if (items.state === 'hasValue' && items.contents)
+      setRenderedItems(
+        optionalArrayProcession([...items.contents], processors)
           .map((item) => {
             return renderItem(item);
           })
           .filter((item) => !!item)
           .map((item, index) =>
-            React.cloneElement(item, { ...item.props, index }),
+            React.cloneElement(item, { key: item.id, ...item.props, index }),
           ),
-    );
+      );
   }, [items]);
 
   return (
@@ -46,7 +49,10 @@ function LoadableItemsList({
       {items.contents.length ? (
         <As {...props}>{renderedItems}</As>
       ) : (
-        <StackLayout alignX="center" alignY="center">
+        <StackLayout
+          className={placeholderClassName}
+          alignX="center"
+          alignY="center">
           <Text type="big">{emptyMessage || 'No items here'}</Text>
         </StackLayout>
       )}

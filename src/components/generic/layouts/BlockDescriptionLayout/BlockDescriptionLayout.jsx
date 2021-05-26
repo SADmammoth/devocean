@@ -9,7 +9,7 @@ import styles from './BlockDescriptionLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
-const BlockDescriptionLayout = ({ children }) => {
+const BlockDescriptionLayout = ({ className, children }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -18,7 +18,7 @@ const BlockDescriptionLayout = ({ children }) => {
       orientation="horizontal"
       alignY="stretch"
       alignX="start"
-      className={classes.layout}
+      className={classNames(classes.layout, className)}
       gap="5px">
       {children}
     </StackLayout>

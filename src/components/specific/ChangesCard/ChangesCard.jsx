@@ -1,5 +1,6 @@
 import React from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
@@ -10,14 +11,16 @@ import styles from './ChangesCard.styles';
 
 const useStyles = createUseStyles(styles);
 
-function ChangesCard({ fields, singleField, ...props }) {
+function ChangesCard({ className, index, fields, singleField, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   if (singleField) {
     return (
       <SingleFieldChange
-        className={classes.card}
+        index={index}
+        classes={classes}
+        className={classNames(className, classes.card)}
         from={fields[0]}
         to={fields[1]}
         {...props}
@@ -25,7 +28,15 @@ function ChangesCard({ fields, singleField, ...props }) {
     );
   }
 
-  return <FieldsChanges className={classes.card} fields={fields} {...props} />;
+  return (
+    <FieldsChanges
+      index={index}
+      classes={classes}
+      className={classNames(className, classes.card)}
+      fields={fields}
+      {...props}
+    />
+  );
 }
 
 ChangesCard.propTypes = {};

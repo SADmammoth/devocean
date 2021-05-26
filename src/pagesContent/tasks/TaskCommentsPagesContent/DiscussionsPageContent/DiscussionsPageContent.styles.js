@@ -1,11 +1,11 @@
 const styles = {
-  discussions: {
-    height: '85vh',
-    marginTop: (theme) => theme.spaces.small,
-  },
   messageBoard: {
     flexShrink: 10,
     padding: '5px',
+    height: '55vh',
+  },
+  placeholder: {
+    background: (theme) => theme.background.common,
   },
   title: {
     flexShrink: 0,
@@ -16,17 +16,19 @@ const styles = {
     marginTop: '20px',
   },
   form: {
-    '& .form-group': {
-      paddingRight: '35px',
-      height: '10vh',
+    display: 'flex',
+    alignItems: 'start',
+    padding: '5px',
+    borderRadius: '5px',
+    '& .form-textarea': {
+      height: '8vh',
+      marginRight: '5px',
     },
     position: 'relative',
     width: '100%',
+    border: (theme) => `2px solid ${theme.text.highlighted}`,
   },
   submitButton: {
-    position: 'absolute',
-    top: '10px',
-    right: '5px',
     zIndex: 999,
   },
 };

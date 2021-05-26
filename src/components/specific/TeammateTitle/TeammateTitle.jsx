@@ -5,6 +5,7 @@ import { useTheme, createUseStyles } from 'react-jss';
 import { Link } from 'umi';
 
 import Avatar from '../../generic/Avatar';
+import HiddenLink from '../../generic/HiddenLink';
 import Text from '../../generic/Text';
 import StackLayout from '../../generic/layouts/StackLayout';
 
@@ -17,7 +18,7 @@ function TeammateTitle({ id, image, displayName }) {
   const classes = useStyles(theme);
 
   return (
-    <Link to={`/teammates/${id}`}>
+    <HiddenLink to={`/teammates/${id}`}>
       <StackLayout orientation="horizontal" alignY="center" gap="10px">
         <Avatar
           size="30px"
@@ -29,7 +30,7 @@ function TeammateTitle({ id, image, displayName }) {
           {displayName}
         </Text>
       </StackLayout>
-    </Link>
+    </HiddenLink>
   );
 }
 

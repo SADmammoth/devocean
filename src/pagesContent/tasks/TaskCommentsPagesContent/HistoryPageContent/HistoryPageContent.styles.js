@@ -1,8 +1,13 @@
 const styles = {
   content: {
     height: '80vh',
-    padding: '5px',
-    marginTop: (theme) => theme.spaces.small,
+  },
+  placeholder: {
+    background: (theme) => theme.background.common,
+    height: '80vh',
+  },
+  history: {
+    width: '100%',
   },
 };
 

@@ -6,6 +6,7 @@ import { Link } from 'umi';
 
 import formatName from '../../../helpers/functions/formatName';
 import Avatar from '../../generic/Avatar';
+import HiddenLink from '../../generic/HiddenLink';
 import LiveRelativeDate from '../../generic/LiveRelativeDate';
 import Text from '../../generic/Text';
 import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
@@ -14,27 +15,28 @@ import styles from './CommentAuthorBadge.styles';
 
 const useStyles = createUseStyles(styles);
 
-function CommentAuthorBadge({ author, time }) {
+function CommentAuthorBadge({ className, author, time }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <Link to={`/teammates/${author.id}`}>
-      <BlockDescriptionLayout>
+    <HiddenLink to={`/teammates/${author.id}`}>
+      <BlockDescriptionLayout className={className}>
         <BlockDescriptionLayout.Block>
           <Avatar
             image={author.avatar}
             displayName={formatName(author || {})}
+            size="50px"
           />
         </BlockDescriptionLayout.Block>
         <BlockDescriptionLayout.Description>
-          <Text type="small" bold>
+          <Text type="common" bold>
             {formatName(author || {})}
           </Text>
           <LiveRelativeDate type="small" date={time} />
         </BlockDescriptionLayout.Description>
       </BlockDescriptionLayout>
-    </Link>
+    </HiddenLink>
   );
 }
 

@@ -3,6 +3,7 @@ import React, { useMemo } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
+import { useRouteMatch, useLocation, matchPath } from 'umi';
 
 import Button from '../Button';
 import Interactive from '../Interactive';
@@ -13,9 +14,17 @@ import styles from './NavItems.styles';
 
 const useStyles = createUseStyles(styles);
 
-function NavItems({ as, items, className, itemClass, itemContainerClass }) {
+function NavItems({
+  as,
+  items,
+  className,
+  itemClass,
+  itemContainerClass,
+  activeItemClass,
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const location = useLocation();
 
   const InteractiveButton = Interactive(Button);
   const renderItems = useMemo(
@@ -31,7 +40,9 @@ function NavItems({ as, items, className, itemClass, itemContainerClass }) {
             style={{ '--index': index }}>
             {menu ? (
               <PopupButton
-                className={itemClass}
+                className={classNames(itemClass, {
+                  [activeItemClass]: location.pathname.endsWith(link),
+                })}
                 buttonContent={label}
                 position="right">
                 <PanelCard>
@@ -47,14 +58,16 @@ function NavItems({ as, items, className, itemClass, itemContainerClass }) {
                 size="wide"
                 onClick={onClick}
                 link={link}
-                className={itemClass}>
+                className={classNames(itemClass, {
+                  [activeItemClass]: location.pathname.endsWith(link),
+                })}>
                 {label}
               </InteractiveButton>
             )}
           </li>
         );
       }),
-    [items],
+    [items, location],
   );
 
   const As = as || 'ul';

@@ -25,7 +25,6 @@ function CreateCommentForm({ classes, id }) {
             id: 'comment',
             name: 'comment',
             placeholder: 'Type comment',
-            label: ' ',
             attributes: {
               autoComplete: 'off',
             },
