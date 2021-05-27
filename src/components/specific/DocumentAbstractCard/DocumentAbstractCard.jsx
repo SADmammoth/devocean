@@ -10,19 +10,28 @@ import styles from './DocumentAbstractCard.styles';
 
 const useStyles = createUseStyles(styles);
 
-function DocumentAbstractCard({ id, title, abstract }) {
+function DocumentAbstractCard({ index, id, title, abstract }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
     <InteractiveCard
+      index={index}
       link={`/docs/${id}`}
       className={classes.documentCard}
       orientation="vertical">
       <header>
         <Text type="h2">{title}</Text>
       </header>
-      {abstract ? <Text type="common">{abstract}</Text> : null}
+      {abstract ? (
+        <Text type="common" lines={4}>
+          {abstract}
+        </Text>
+      ) : (
+        <Text type="common" className={classes.placeholder}>
+          Empty document
+        </Text>
+      )}
     </InteractiveCard>
   );
 }

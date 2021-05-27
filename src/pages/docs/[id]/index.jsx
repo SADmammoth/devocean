@@ -21,6 +21,8 @@ function DocPage({
   );
 }
 
+DocPage.wrappers = ['@/wrappers/features/viewDocuments'];
+
 DocPage.propTypes = {};
 
 export default DocPage;

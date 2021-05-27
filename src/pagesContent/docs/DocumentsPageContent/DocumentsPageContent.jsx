@@ -5,12 +5,12 @@ import { FaPlusCircle } from 'react-icons/fa';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilValueLoadable } from 'recoil';
 
-import Sidebar from '../../../components/generic/Sidebar';
-import GridLayout from '../../../components/generic/layouts/GridLayout';
-import StackLayout from '../../../components/generic/layouts/StackLayout';
+import LoadableItemsList from '../../../components/generic/LoadableItemsList';
+import Text from '../../../components/generic/Text';
+import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
+import StretchLastLayout from '../../../components/generic/layouts/StretchLastLayout';
 import DocumentAbstractCard from '../../../components/specific/DocumentAbstractCard';
-import FeatureDependentToolbar from '../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
-import StateMonade from '../../../helpers/components/StateMonade';
+import TitledPage from '../../../layouts/TitledPage';
 import docsState from '../../../recoil/states/docsState';
 
 import styles from './DocumentsPageContent.styles';
@@ -23,45 +23,77 @@ function DocumentsPageContent(props) {
 
   const docs = useRecoilValueLoadable(docsState);
 
-  const renderDocs = useCallback(
-    (count) => {
-      if (docs.state !== 'hasValue') return null;
-      return docs.contents
-        .slice(0, count || docs.contents.length)
-        .map((doc) => {
-          return <DocumentAbstractCard {...doc} />;
-        });
-    },
-    [docs],
+  const renderDoc = (doc) => {
+    let abstract = doc.abstract;
+    if (!abstract) {
+      if (doc.content.blocks && doc.content.blocks.length) {
+        abstract = doc.content.blocks
+          .map(({ data }) => {
+            if (typeof data.text === 'string') {
+              return data.text;
+            }
+            if (typeof data.caption === 'string') {
+              return data.caption;
+            }
+            if (data.items && typeof data.items[0] === 'string') {
+              return ' * ' + data.items.join(' // * ');
+            }
+          })
+          .filter((item) => !!item)
+          .join(' // ')
+          .slice(0, 200);
+      }
+    }
+    return <DocumentAbstractCard {...doc} abstract={abstract} />;
+  };
+
+  const docsInSidebar = 3;
+
+  const sidebar = (
+    <LoadableItemsList
+      items={docs}
+      renderItem={renderDoc}
+      processors={[{ slice: [0, docsInSidebar] }]}
+    />
   );
 
+  const toolbar = {
+    manageDocuments: [
+      {
+        label: <FaPlusCircle />,
+        title: 'Add new document',
+        link: '/docs/new',
+        id: 'new-doc',
+      },
+    ],
+  };
+
+  const ItemsContainer = ({ className, children }) => {
+    return (
+      <ScrollLayout
+        className={className}
+        orientation="horizontal"
+        scrollOrientation="vertical"
+        gap="10px">
+        {children}
+      </ScrollLayout>
+    );
+  };
+
   return (
-    <GridLayout className={classes.content}>
-      <Sidebar className={classes.paddingTop} title="Recent docs" column={3}>
-        <StateMonade state={docs.state}>{renderDocs(3)}</StateMonade>
-      </Sidebar>
-      <StackLayout
-        className={classes.paddingTop}
-        column={5}
-        orientation="vertical">
-        <StateMonade state={docs.state}>{renderDocs()}</StateMonade>
-      </StackLayout>
-      <StackLayout column={1} className={classes.marginTop}>
-        <FeatureDependentToolbar
-          expandable
-          items={{
-            manageDocuments: [
-              {
-                label: <FaPlusCircle />,
-                title: 'Add new document',
-                link: '/docs/new',
-                id: 'new-doc',
-              },
-            ],
-          }}
-        />
-      </StackLayout>
-    </GridLayout>
+    <TitledPage
+      title="Documentation"
+      sidebarTitle={'Recent docs'}
+      sidebarContent={sidebar}
+      toolbarItems={toolbar}>
+      <LoadableItemsList
+        className={classes.docs}
+        placeholderClassName={classes.placeholder}
+        as={ItemsContainer}
+        items={docs}
+        renderItem={renderDoc}
+      />
+    </TitledPage>
   );
 }
 

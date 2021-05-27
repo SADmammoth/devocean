@@ -3,9 +3,7 @@ const styles = {
     background: (theme) => theme.background.common,
     padding: '2px',
   },
-  placeholderList: {
-    padding: '10px',
-  },
+  placeholderList: { color: (theme) => theme.text.saturated, padding: '10px' },
 };
 
 export default styles;

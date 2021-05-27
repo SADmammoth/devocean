@@ -22,4 +22,6 @@ function NewDoc(props) {
 
 NewDoc.propTypes = {};
 
+NewDoc.wrappers = ['@/wrappers/features/manageDocuments'];
+
 export default NewDoc;

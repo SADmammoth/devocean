@@ -6,6 +6,7 @@ const styles = {
   },
   placeholder: {
     background: (theme) => theme.background.common,
+    color: (theme) => theme.text.saturated,
   },
   title: {
     flexShrink: 0,

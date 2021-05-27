@@ -14,4 +14,6 @@ function Index(props) {
 
 Index.propTypes = {};
 
+Index.wrappers = ['@/wrappers/features/viewDocuments'];
+
 export default Index;

@@ -30,6 +30,8 @@ function EditDoc({
   );
 }
 
+EditDoc.wrappers = ['@/wrappers/features/manageDocuments'];
+
 EditDoc.propTypes = {};
 
 export default EditDoc;

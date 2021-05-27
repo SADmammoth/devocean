@@ -1,12 +1,9 @@
 const styles = {
-  content: {
-    height: '100%',
+  docs: {
+    flexGrow: '0 !important',
   },
-  paddingTop: {
-    paddingTop: (theme) => theme.spaces.small,
-  },
-  marginTop: {
-    marginTop: (theme) => theme.spaces.small,
+  placeholder: {
+    color: (theme) => theme.background.saturated,
   },
 };
 

@@ -37,7 +37,11 @@ function ItemsPage({
       <StretchLayout className={classNames(classes.paddingTop)} column={7}>
         {children}
       </StretchLayout>
-      <FeatureDependentToolbar column={1} expandable items={toolbarItems} />
+      {toolbarItems && toolbarItems.length ? (
+        <FeatureDependentToolbar column={1} expandable items={toolbarItems} />
+      ) : (
+        []
+      )}
     </GridLayout>
   );
 }

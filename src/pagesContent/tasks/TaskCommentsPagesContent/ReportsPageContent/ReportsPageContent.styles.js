@@ -4,6 +4,7 @@ const styles = {
   },
   placeholder: {
     background: (theme) => theme.background.common,
+    color: (theme) => theme.text.saturated,
     height: '66.25vh',
   },
   currentReports: {

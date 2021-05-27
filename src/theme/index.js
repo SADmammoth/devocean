@@ -1,7 +1,7 @@
 const theme = {
   text: {
     common: '#003c58',
-    saturated: '#4a575e',
+    saturated: '#7a878e',
     highlighted: '#005c86',
     button: '#003c58',
   },
