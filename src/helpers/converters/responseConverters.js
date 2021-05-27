@@ -37,3 +37,19 @@ export function navItemsConverter({ body }) {
     return { label, title: label, link };
   });
 }
+
+export function foldersConverter({ body }) {
+  return body.map(({ type, ...rest }) => {
+    if (type === 'list') {
+      let color;
+      let folder;
+      ({
+        tag: { color },
+        ...folder
+      } = rest);
+      return { ...folder, type, color };
+    }
+
+    return { ...rest, type };
+  });
+}

@@ -15,7 +15,7 @@ import styles from './Form.styles';
 
 const useStyles = createUseStyles(styles);
 
-function Form({ submitText, children, ...props }) {
+function Form({ submitText, children, noWrapper, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -27,7 +27,7 @@ function Form({ submitText, children, ...props }) {
 
   return (
     <ReactForm
-      render={{ Input, Label: FormLabel, Form: FormView }}
+      render={{ Input, Label: FormLabel, Form: noWrapper ? 'form' : FormView }}
       submitButton={SubmitButton}
       notify={(...data) => console.log(...data)}
       validationMaskDateTimeFormat="dd-MM-yyyy HH:mm"

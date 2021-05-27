@@ -11,6 +11,7 @@ import StackLayout from '../../../components/generic/layouts/StackLayout';
 import getCreateCollectionForm from '../../../helpers/forms/getCreateCollectionForm';
 import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import useLocale from '../../../helpers/hooks/useLocale';
+import FormPage from '../../../layouts/FormPage';
 
 import styles from './EditCollectionPageContent.styles';
 
@@ -21,36 +22,22 @@ function EditCollectionPageContent({ edit, initialValues, onSubmit }) {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const formInputs = useLocalizedForm(getCreateCollectionForm(initialValues));
-
-  const [inputs, setInputs] = useState({});
-
   const title = edit
     ? locale('Edit task collection')
     : locale('New task collection');
 
   return (
-    <GridLayout className={classes.content}>
-      <Sidebar column={3} className={classes.sidebar}>
-        {inputs.parent}
-        {inputs.type?.props.value === 'folder' || inputs.color}
-      </Sidebar>
-      <StackLayout
-        column={5}
-        orientation="vertical"
-        className={classes.marginTop}>
-        <Text type="h1">{title}</Text>
-        <Form
-          inputs={formInputs}
-          onSubmit={onSubmit}
-          onInputsUpdate={(inputs) => {
-            setInputs(inputs);
-          }}>
-          {inputs.name}
-          {inputs.type}
-        </Form>
-      </StackLayout>
-    </GridLayout>
+    <FormPage
+      getInputs={() => getCreateCollectionForm(initialValues)}
+      title={title}
+      inputsAtSidebar={(inputs) =>
+        inputs.type?.props.value === 'list'
+          ? ['parent', 'folder', 'color']
+          : ['parent', 'folder']
+      }
+      inputsAtBody={['name', 'type']}
+      onSubmit={onSubmit}
+    />
   );
 }
 

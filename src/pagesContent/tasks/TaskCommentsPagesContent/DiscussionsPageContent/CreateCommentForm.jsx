@@ -18,6 +18,7 @@ function CreateCommentForm({ classes, id }) {
       orientation="horizontal"
       alignX="start">
       <Form
+        noWrapper
         className={classes.form}
         inputs={[
           {

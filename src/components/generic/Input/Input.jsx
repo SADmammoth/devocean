@@ -27,6 +27,7 @@ function Input({ type, ...props }) {
 
   return (
     <ReakitInput
+      type={type}
       {...props}
       className={classNames(classes.formControl, classes[as], props.className)}
       as={as}

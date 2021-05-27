@@ -16,6 +16,7 @@ import StackLayout from '../../../components/generic/layouts/StackLayout';
 import showPopup from '../../../helpers/components/showPopup';
 import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
 import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import FormPage from '../../../layouts/FormPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 
@@ -27,7 +28,6 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const [inputs, setInputs] = useState({});
   const addTag = useSetRecoilState(tagsState);
   const addSubteam = useSetRecoilState(subteamsState);
 
@@ -73,59 +73,30 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
     return [...value, subteam.name];
   };
 
-  const localizedForm = useLocalizedForm(
-    getInitTeammateProfileForm({
-      ...initialValues,
-      addTagAction,
-      addSubteamAction,
-    }),
-  );
+  const title = edit ? 'Edit profile' : 'Create profile';
 
   return (
-    <GridLayout className={classes.content}>
-      <Sidebar column={3} className={classes.paddingTop}>
-        {inputs.subteams}
-        {inputs.tags}
-      </Sidebar>
-      <StackLayout column={5} className={classes.marginTop}>
-        <Form
-          inputs={localizedForm}
-          onInputsUpdate={(inputs) => {
-            setInputs(inputs);
-          }}
-          onSubmit={async (data) => {
-            await onSubmit(data);
-          }}>
-          {edit ? (
-            inputs.$list?.filter(
-              ({ props: { name } }) => name !== 'subteams' && name !== 'tags',
-            )
-          ) : (
-            <>
-              {inputs.login}
-              {inputs.email}
-              {inputs.temporaryPassword}
-              {inputs.joinedAt}
-              <ToggleList
-                initialState={false}
-                title={{
-                  open:
-                    'This fields will be prefilled for team member on his first login. HIDE',
-                  hidden: 'Fill out additional fields',
-                }}
-                showMarker={false}>
-                {inputs.name}
-                {inputs.lastName}
-                {inputs.workMode}
-                {inputs.workHours}
-                {inputs.workHoursStart}
-                {inputs.workHoursEnd}
-              </ToggleList>
-            </>
-          )}
-        </Form>
-      </StackLayout>
-    </GridLayout>
+    <FormPage
+      title={title}
+      getInputs={() =>
+        getInitTeammateProfileForm({
+          ...initialValues,
+          addTagAction,
+          addSubteamAction,
+        })
+      }
+      onSubmit={onSubmit}
+      inputsAtSidebar={['name', 'lastName', 'subteams', 'tags', 'joinedAt']}
+      inputsAtBody={[
+        'login',
+        'email',
+        'temporaryPassword',
+        'workMode',
+        'workHours',
+        'workHoursStart',
+        'workHoursEnd',
+      ]}
+    />
   );
 }
 

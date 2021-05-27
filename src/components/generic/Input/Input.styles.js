@@ -32,6 +32,11 @@ const styles = {
     marginBottom: '30px',
     width: '100%',
   },
+  '@global .select-header': {
+    border: '0 !important',
+    height: '5vh',
+    padding: '0 !important',
+  },
 };
 
 export default styles;

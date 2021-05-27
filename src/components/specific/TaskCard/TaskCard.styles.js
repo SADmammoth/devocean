@@ -19,7 +19,7 @@ const styles = {
   },
   colorTag: {
     height: '100%',
-    width: '2px',
+    width: '3px',
     position: 'absolute',
     left: 0,
     top: 0,

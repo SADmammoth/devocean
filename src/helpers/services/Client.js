@@ -6,6 +6,7 @@ import {
   navItemsConverter,
   taskConverter,
   fullTaskConverter,
+  foldersConverter,
 } from '../converters/responseConverters';
 import Duration from '../types/Duration';
 import RelativeDate from '../types/RelativeDate';
@@ -203,22 +204,22 @@ const Client = {
         .get('/folders')
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .then(({ body }) => body);
+        .then(foldersConverter);
     },
-    post: ({ id, ...folder }, userToken) => {
+    post: ({ id, name, color, ...folder }, userToken) => {
       return request
         .post('/folders')
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .send(folder)
+        .send({ ...folder, name, tag: { color, name } })
         .then(({ body }) => body);
     },
-    patch: (id, folder, userToken) => {
+    patch: (id, { name, color, ...folder }, userToken) => {
       return request
         .patch(`/folders/${id}`)
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .send(folder)
+        .send({ ...folder, name, tag: { color, name } })
         .then(({ body }) => body);
     },
   },

@@ -4,6 +4,7 @@ const styles = {
       marginLeft: 'calc(-1 * var(--gap))',
     },
     maxHeight: '73vh',
+    padding: '8px',
   },
 
   folders: {

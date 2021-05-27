@@ -41,7 +41,9 @@ function FormPage({
       <Sidebar
         column={3}
         className={classNames(classes.sidebar, classes.paddingTop)}>
-        {inputsAtSidebar.map((key) => inputs[key])}
+        {typeof inputsAtSidebar === 'function'
+          ? inputsAtSidebar(inputs).map((key) => inputs[key])
+          : inputsAtSidebar.map((key) => inputs[key])}
         {sidebarContent}
       </Sidebar>
       <StackLayout
@@ -58,7 +60,9 @@ function FormPage({
             inputs={localizedForm}
             onSubmit={onSubmit}
             onInputsUpdate={onInputsUpdate}>
-            {inputsAtBody.map((key) => inputs[key])}
+            {typeof inputsAtBody === 'function'
+              ? inputsAtBody(inputs).map((key) => inputs[key])
+              : inputsAtBody.map((key) => inputs[key])}
           </Form>
         </ScrollLayout>
       </StackLayout>

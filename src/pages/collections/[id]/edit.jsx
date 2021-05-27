@@ -25,7 +25,7 @@ function EditCollection({
       <EditCollectionPageContent
         initialValues={{
           ...collection.contents,
-          color: collection.contents?.tag?.color,
+          color: collection.contents?.color,
           parentValueOptions: parents
             .filter(
               ({ type, id: candidateId }) =>
