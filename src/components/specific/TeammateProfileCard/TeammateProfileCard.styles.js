@@ -1,12 +1,13 @@
 const styles = {
   teammateProfileCard: {
     width: '360px',
-    border: 'none',
-    boxShadow: (theme) => `0 0 4px ${theme.background.shadows}`,
+    padding: '10px',
+    paddingRight: '20px',
   },
   description: {
     width: '200px',
   },
+  tag: {},
   // tagName: {
   //   top: '22px',
   //   left: '10px',

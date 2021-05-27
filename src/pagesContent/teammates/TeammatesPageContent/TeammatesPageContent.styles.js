@@ -1,7 +1,7 @@
 const styles = {
-  content: { height: '100%' },
-  marginTop: {
-    marginTop: (theme) => theme.spaces.small,
+  items: {
+    flexGrow: '0 !important',
+    paddingTop: '10px',
   },
 };
 

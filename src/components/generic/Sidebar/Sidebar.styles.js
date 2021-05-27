@@ -6,7 +6,9 @@ const styles = {
     position: 'relative',
     overflowX: 'hidden',
   },
-  titledSidebar: {},
+  titledSidebar: {
+    paddingTop: '20px',
+  },
   title: {
     marginBottom: '10px',
   },

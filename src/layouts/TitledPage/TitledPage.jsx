@@ -17,7 +17,10 @@ function TitledPage({ title, children, ...props }) {
 
   return (
     <ItemsPage {...props}>
-      <StretchLastLayout orientation="vertical" className={classes.workArea}>
+      <StretchLastLayout
+        orientation="vertical"
+        className={classes.workArea}
+        nowrap>
         <Text type="h1">{title}</Text>
         {children}
       </StretchLastLayout>

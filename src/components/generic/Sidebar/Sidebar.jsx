@@ -32,14 +32,14 @@ function Sidebar({ children, className, style, title }) {
       <StretchLastLayout
         orientation="vertical"
         as="aside"
-        className={classNames(className, classes.root, classes.titledSidebar)}
+        className={classNames(className, classes.root)}
         style={style}>
         <Text type="big" className={classes.title}>
           {title}
         </Text>
         <NestedContainerLayout
           as="aside"
-          className={classNames(classes.sidebar)}
+          className={classNames(classes.sidebar, classes.titledSidebar)}
           margin="30px">
           {children}
         </NestedContainerLayout>

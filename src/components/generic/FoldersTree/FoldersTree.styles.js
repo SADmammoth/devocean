@@ -1,5 +1,7 @@
 const styles = {
-  folderTree: {},
+  folderTree: {
+    margin: '5px',
+  },
   selectedTree: { marginBottom: '5px' },
 };
 

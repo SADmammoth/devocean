@@ -12,7 +12,21 @@ const styles = {
       borderRadius: '50%',
       height: '8px',
       width: '8px',
+    },
+  },
+  common: {
+    '&::after': {
       background: (theme) => theme.text.highlighted,
+    },
+  },
+  active: {
+    '&::after': {
+      background: 'lightgreen',
+    },
+  },
+  unactive: {
+    '&::after': {
+      background: 'lightgray',
     },
   },
 };

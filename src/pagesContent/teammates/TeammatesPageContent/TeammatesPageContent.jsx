@@ -15,9 +15,11 @@ import Sidebar from '../../../components/generic/Sidebar';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import FeatureDependentToolbar from '../../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
+import SubteamButton from '../../../components/specific/SubteamButton/SubteamButton';
 import TaskFolderButton from '../../../components/specific/TaskFolderButton';
 import TeammateProfileCard from '../../../components/specific/TeammateProfileCard/TeammateProfileCard';
 import StateMonade from '../../../helpers/components/StateMonade';
+import TitledPage from '../../../layouts/TitledPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import { teammateProfilesState_getBySubteam } from '../../../recoil/states/teammatesProfilesState';
 import TeammatesList from './TeammatesList';
@@ -45,40 +47,37 @@ function TeammatesPageContent(props) {
     }
   }, [subteams, currentSubteam]);
 
+  const sidebar = (
+    <FoldersTree
+      folders={subteams.contents}
+      onSelectedChange={(index) => {
+        setCurrentSubteam(index);
+      }}
+      FolderBase={SubteamButton}
+    />
+  );
+
+  const toolbar = {
+    manageTeammates: [
+      {
+        label: <FaPlusCircle />,
+        title: 'Add new teammate',
+        link: '/teammates/new',
+        id: 'new-teammate',
+      },
+    ],
+  };
+
   return (
-    <GridLayout className={classes.content}>
-      <Sidebar column={3} title="Subteams">
-        <FoldersTree
-          folders={subteams.contents}
-          onSelectedChange={(index) => {
-            setCurrentSubteam(index);
-          }}
-          FolderBase={TaskFolderButton}
-        />
-      </Sidebar>
-      <StackLayout column={7} className={classes.marginTop}>
-        <StackLayout gap="10px" alignY="start" alignX="start">
-          <StateMonade state={!!currentSubteamId}>
-            <TeammatesList subteamId={currentSubteamId} />
-          </StateMonade>
-        </StackLayout>
-      </StackLayout>
-      <StackLayout column={1} className={classes.marginTop}>
-        <FeatureDependentToolbar
-          expandable
-          items={{
-            manageTeammates: [
-              {
-                label: <FaPlusCircle />,
-                title: 'Add new teammate',
-                link: '/teammates/new',
-                id: 'new-teammate',
-              },
-            ],
-          }}
-        />
-      </StackLayout>
-    </GridLayout>
+    <TitledPage
+      title={'Our team'}
+      sidebarContent={sidebar}
+      sidebarTitle={'Subteams'}
+      toolbarItems={toolbar}>
+      <StateMonade state={!!currentSubteamId}>
+        <TeammatesList classes={classes} subteamId={currentSubteamId} />
+      </StateMonade>
+    </TitledPage>
   );
 }
 

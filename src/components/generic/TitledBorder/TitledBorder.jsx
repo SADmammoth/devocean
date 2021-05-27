@@ -11,12 +11,14 @@ import styles from './TitledBorder.styles';
 const useStyles = createUseStyles(styles);
 
 function TitledBorder({
+  animated,
   title,
   containerClassName,
   borderClassName,
   labelProps,
   className,
   children,
+  index,
   ...props
 }) {
   const theme = useTheme();
@@ -35,8 +37,14 @@ function TitledBorder({
 
   return (
     <div
-      className={classNames(containerClassName, classes.inputContainer)}
-      style={{ pointerEvents: 'none' }}>
+      className={classNames(
+        classes.inputContainer,
+        {
+          [classes.animated]: animated,
+        },
+        containerClassName,
+      )}
+      style={{ pointerEvents: 'none', '--index': index }}>
       <Text
         ref={label}
         className={classNames(className, classes.label)}
@@ -46,7 +54,11 @@ function TitledBorder({
         {title}
       </Text>
       <div
-        className={classNames(borderClassName, classes.border)}
+        className={classNames(
+          borderClassName,
+          classes.border,
+          classes.inputContainer,
+        )}
         style={{ '--width': width }}>
         {children}
       </div>
