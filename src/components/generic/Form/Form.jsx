@@ -9,6 +9,7 @@ import '@sadmammoth/react-form/dist/index.css';
 import Button from '../Button';
 import FormLabel from '../FormLabel';
 import Input from '../Input';
+import FormView from './FormView';
 
 import styles from './Form.styles';
 
@@ -19,14 +20,14 @@ function Form({ submitText, children, ...props }) {
   const classes = useStyles(theme);
 
   const SubmitButton = (
-    <Button type="submit" className={classes.submit}>
+    <Button type="submit" size="common" className={classes.submit}>
       {submitText}
     </Button>
   );
 
   return (
     <ReactForm
-      render={{ Input, Label: FormLabel }}
+      render={{ Input, Label: FormLabel, Form: FormView }}
       submitButton={SubmitButton}
       notify={(...data) => console.log(...data)}
       validationMaskDateTimeFormat="dd-MM-yyyy HH:mm"

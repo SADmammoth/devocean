@@ -1,7 +1,5 @@
 const styles = {
-  submit: {
-    marginTop: '30px',
-  },
+  submit: {},
 };
 
 export default styles;

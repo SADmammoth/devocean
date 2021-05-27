@@ -68,4 +68,7 @@ export default {
 
   shortName: 'or зовите {referAs} {shortName}',
   aka: '{shortName}',
+
+  delayed: 'Отложено',
+  cancelled: 'Отменено',
 };

@@ -69,4 +69,7 @@ export default {
 
   shortName: 'or call {referAs} {shortName}',
   aka: 'aka {shortName}',
+
+  delayed: 'Delayed',
+  cancelled: 'Cancelled',
 };

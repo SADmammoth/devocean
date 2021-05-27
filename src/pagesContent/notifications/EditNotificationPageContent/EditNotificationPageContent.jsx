@@ -11,8 +11,8 @@ import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import StretchLayout from '../../../components/generic/layouts/StretchLayout';
 import getCreateNotificationForm from '../../../helpers/forms/getCreateNotificationForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import useLocale from '../../../helpers/hooks/useLocale';
+import FormPage from '../../../layouts/FormPage/FormPage';
 
 import styles from './EditNotificationPageContent.styles';
 
@@ -27,46 +27,18 @@ function EditNotificationPageContent({
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const localizedForm = useLocalizedForm(
-    getCreateNotificationForm(initialValues),
-  );
-
-  const [inputs, setInputs] = useState({});
-
-  const onInputsUpdate = (inputs) => {
-    setInputs(inputs);
-  };
-
   const title = isCreatingNew
     ? locale('New notification')
     : locale('Edit notification');
 
   return (
-    <>
-      <GridLayout className={classes.content}>
-        <Sidebar
-          column={3}
-          className={classNames(classes.sidebar, classes.paddingTop)}>
-          {inputs.time}
-        </Sidebar>
-        <StackLayout
-          column={5}
-          className={classes.marginTop}
-          orientation="vertical"
-          alignY="start">
-          <Text type="h1">{title}</Text>
-          <StretchLayout>
-            <Form
-              inputs={localizedForm}
-              onSubmit={onSubmit}
-              onInputsUpdate={onInputsUpdate}>
-              {inputs.title}
-              {inputs.fullText}
-            </Form>
-          </StretchLayout>
-        </StackLayout>
-      </GridLayout>
-    </>
+    <FormPage
+      title={title}
+      getInputs={() => getCreateNotificationForm(initialValues)}
+      inputsAtSidebar={['time']}
+      inputsAtBody={['title', 'fullText']}
+      onSubmit={onSubmit}
+    />
   );
 }
 

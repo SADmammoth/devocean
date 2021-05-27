@@ -50,11 +50,7 @@ function NotificationPageContent({
         <StackLayout orientation="vertical" gap="10px">
           {status ? (
             <PanelCard>
-              <Text type="common">
-                {locale('Status', {
-                  status: <Text type="common">{locale(status)}</Text>,
-                })}
-              </Text>
+              <Text type="common">{locale(status)}</Text>
             </PanelCard>
           ) : null}
           <FeatureMonade feature={'manageNotifications'}>

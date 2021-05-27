@@ -44,7 +44,7 @@ function TitledBorder({
         },
         containerClassName,
       )}
-      style={{ pointerEvents: 'none', '--index': index }}>
+      style={{ '--index': index }}>
       <Text
         ref={label}
         className={classNames(className, classes.label)}

@@ -17,7 +17,7 @@ const styles = {
     width: '100%',
     borderRadius: '3px',
 
-    border: (theme) => `2px solid ${theme.text.highlighted}`,
+    border: (theme) => `2px solid ${theme.background.border}`,
     mask:
       'linear-gradient(90deg, rgba(0,0,0,1) 5px, rgba(0,0,0,0) 5px, rgba(0,0,0,0) var(--width), rgba(0,0,0,1) var(--width)),' +
       'linear-gradient(180deg, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 5px, rgba(0,0,0,1) 5px, rgba(0,0,0,1) 5px)',

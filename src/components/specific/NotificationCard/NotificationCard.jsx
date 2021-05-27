@@ -12,6 +12,7 @@ import InteractiveCard from '../../generic/InteractiveCard';
 import LiveRelativeDate from '../../generic/LiveRelativeDate';
 import Text from '../../generic/Text';
 import BlockDescriptionLayout from '../../generic/layouts/BlockDescriptionLayout';
+import Tag from './Tag';
 
 import styles from './NotificationCard.styles';
 
@@ -24,22 +25,28 @@ function NotificationCard({ id, title, status, time, author, index }) {
   const currentUser = useRecoilValue(userDataState);
 
   return (
-    <InteractiveCard
-      index={index}
-      link={`/notifications/${id}`}
-      className={classNames(classes.notification, classes[status])}>
-      <BlockDescriptionLayout>
-        <BlockDescriptionLayout.Block alignY="start">
-          <LiveRelativeDate className={classes.time} type="hint" date={time} />
-        </BlockDescriptionLayout.Block>
-        <BlockDescriptionLayout.Description>
-          <Text type="small">[{formatName(author || currentUser)}]:</Text>
-          <Text type="common" bold>
-            {title}
-          </Text>
-        </BlockDescriptionLayout.Description>
-      </BlockDescriptionLayout>
-    </InteractiveCard>
+    <Tag classes={classes} tag={_.capitalize(status)}>
+      <InteractiveCard
+        index={index}
+        link={`/notifications/${id}`}
+        className={classNames(classes.notification, classes[status])}>
+        <BlockDescriptionLayout>
+          <BlockDescriptionLayout.Block alignY="start">
+            <LiveRelativeDate
+              className={classes.time}
+              type="hint"
+              date={time}
+            />
+          </BlockDescriptionLayout.Block>
+          <BlockDescriptionLayout.Description>
+            <Text type="small">[{formatName(author || currentUser)}]:</Text>
+            <Text type="common" bold lines={2}>
+              {title}
+            </Text>
+          </BlockDescriptionLayout.Description>
+        </BlockDescriptionLayout>
+      </InteractiveCard>
+    </Tag>
   );
 }
 

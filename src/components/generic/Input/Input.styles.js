@@ -6,8 +6,9 @@ const styles = {
     width: '100%',
     boxSizing: 'border-box',
     margin: 0,
-    padding: '2px',
+    padding: '3px',
     fontSize: (theme) => theme.fontSizes.default,
+    height: '5vh',
   },
 
   textarea: {
@@ -28,7 +29,8 @@ const styles = {
 
   '@global .form-group': {
     position: 'relative',
-    marginBottom: '25px',
+    marginBottom: '30px',
+    width: '100%',
   },
 };
 

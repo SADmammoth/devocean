@@ -10,6 +10,7 @@ import StackLayout from '../../../components/generic/layouts/StackLayout';
 import ClockSidebar from '../../../components/specific/ClockSidebar';
 import NotificationsList from '../../../components/specific/NotificationsList';
 import useLocale from '../../../helpers/hooks/useLocale';
+import TitledPage from '../../../layouts/TitledPage';
 
 import styles from './NotificationsPageContent.styles';
 
@@ -20,31 +21,21 @@ const NotificationsPageContent = () => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
+  const toolbar = {
+    manageNotifications: [
+      {
+        id: 'new',
+        title: locale('New notification'),
+        label: <FaPlusCircle />,
+        link: '/notifications/new',
+      },
+    ],
+  };
+
   return (
-    <GridLayout className={classes.content} stretchLast>
-      <ClockSidebar column={3} className={classes.sidebar} />
-      <Skip column={1} />
-      <StackLayout
-        orientation="vertical"
-        className={classes.marginTop}
-        alignX="start"
-        column={7}>
-        <NotificationsList className={classes.notifications} />
-      </StackLayout>
-      <ExpandableToolBar
-        column={1}
-        name={'Notifications toolbar'}
-        className={classes.marginTop}
-        items={[
-          {
-            id: 'new',
-            title: locale('New notification'),
-            label: <FaPlusCircle className={classes.icon} />,
-            link: '/notifications/new',
-          },
-        ]}
-      />
-    </GridLayout>
+    <TitledPage title={'Notifications'} isClockSidebar toolbarItems={toolbar}>
+      <NotificationsList className={classes.notifications} />
+    </TitledPage>
   );
 };
 

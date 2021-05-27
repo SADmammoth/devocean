@@ -11,6 +11,7 @@ const theme = {
     common: '#F9F9F9',
     light: '#ffffff',
     button: '#c4c4c4',
+    border: '#949494',
 
     card: '#fbfbfb',
   },
