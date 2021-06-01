@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: npm set @sadmammoth:registry https://npm.pkg.github.com/:_authToken=${{secrets.REGISTRY_TOKEN}}
+      - run: npm set registry https://npm.pkg.github.com/:_authToken=${{secrets.REGISTRY_TOKEN}}
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
