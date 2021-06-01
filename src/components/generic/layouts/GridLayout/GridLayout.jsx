@@ -1,9 +1,12 @@
-import React, { useCallback } from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./GridLayout.styles";
-import Skip from "./Skip";
+import React, { useCallback } from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Skip from './Skip';
+
+import styles from './GridLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -53,8 +56,7 @@ function GridLayout({ children, className, gap, columns, stretchLast }) {
       style={{
         gap,
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
-      }}
-    >
+      }}>
       {renderChildren()}
     </div>
   );
@@ -65,11 +67,12 @@ GridLayout.propTypes = {
   columns: PropTypes.number,
   gap: PropTypes.string,
   stretchLast: PropTypes.bool,
+  children: PropTypes.node.isRequired,
 };
 
 GridLayout.defaultProps = {
   columns: 12,
-  gap: "30px",
+  gap: '30px',
   stretchLast: false,
 };
 

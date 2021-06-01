@@ -1,43 +1,54 @@
-import React, { useState, useCallback } from "react";
-import PropTypes from "prop-types";
-import { useTheme, createUseStyles } from "react-jss";
-import { Button } from "reakit";
-import styles from "./ToggleButton.styles";
+import React, { useState, useCallback, useEffect } from 'react';
+
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Button from '../Button';
+import sizes from '../Button/sizes';
+
+import styles from './ToggleButton.styles';
 
 const useStyles = createUseStyles(styles);
 
-const ToggleButton = ({ states, current }) => {
+function ToggleButton({ className, states, current, size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
   const [index, setIndex] = useState(current);
 
-  const getNextIndex = useCallback(() => {
+  const getNext = (index) => {
     if (index >= states.length - 1) {
       return 0;
     }
 
     return index + 1;
+  };
+
+  const onClick = useCallback(() => {
+    states[index].action();
+    setIndex((index) => getNext(index));
   }, [index, states]);
 
+  const showLabel = useCallback(() => {
+    return states[index].label;
+  }, [states, index]);
+
   return (
-    <Button
-      onClick={() => {
-        const currentIndex = getNextIndex();
-        setIndex(currentIndex);
-        states[currentIndex].action();
-      }}
-    >
-      {states[getNextIndex()].label}
+    <Button className={className} onClick={onClick} size={size}>
+      {showLabel()}
     </Button>
   );
-};
+}
 
 ToggleButton.propTypes = {
-  states: PropTypes.shape({
-    label: PropTypes.string.isRequired,
-    action: PropTypes.func.isRequired,
-  }).isRequired,
+  className: PropTypes.string,
+  states: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      action: PropTypes.func.isRequired,
+    }),
+  ).isRequired,
   current: PropTypes.number,
+  size: PropTypes.oneOf(Object.keys(sizes)),
 };
 
 ToggleButton.defaultProps = {

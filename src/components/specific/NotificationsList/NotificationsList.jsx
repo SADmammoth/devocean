@@ -1,62 +1,70 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { Composite, CompositeItem, useCompositeState } from "reakit";
-import { useRecoilValueLoadable } from "recoil";
-import notificationsState from "../../../recoil/states/notificationsState";
-import InteractiveCard from "../../generic/InteractiveCard/InteractiveCard";
-import StackLayout from "../../generic/layouts/StackLayout";
-import NotificationContent from "../NotificationContent";
-import Interactive from "../../generic/Interactive";
+import React, { useMemo } from 'react';
 
-const NotificationsList = ({ items, showCount }) => {
-  const composite = useCompositeState();
+import PropTypes from 'prop-types';
+import { useRecoilValueLoadable } from 'recoil';
+
+import StateMonade from '../../../helpers/components/StateMonade';
+import useLocale from '../../../helpers/hooks/useLocale';
+import notificationsState from '../../../recoil/states/notificationsState';
+import Button from '../../generic/Button';
+import Interactive from '../../generic/Interactive';
+import InteractiveCard from '../../generic/InteractiveCard';
+import ItemsList from '../../generic/ItemsList';
+import LoadableItemsList from '../../generic/LoadableItemsList';
+import ScrollLayout from '../../generic/layouts/ScrollLayout/ScrollLayout';
+import StackLayout from '../../generic/layouts/StackLayout';
+import NotificationCard from '../NotificationCard';
+
+function NotificationsList({ className, showCount }) {
   const notificationsLoadable = useRecoilValueLoadable(notificationsState);
+  const locale = useLocale();
 
-  const renderNotification = ({ id, time, title, author }) => {
+  const renderNotification = ({ id, time, status, title, author }) => {
     return (
-      <InteractiveCard composite={composite} link={id}>
-        <NotificationContent
-          time={time}
-          title={title}
-          author={author}
-          composite={composite}
-        />
-      </InteractiveCard>
+      <NotificationCard
+        id={id}
+        time={time}
+        status={status}
+        title={title}
+        author={author}
+      />
     );
   };
 
-  const notificationsToShow = useMemo(() => {
-    if (notificationsLoadable.state === "hasValue") {
-      if (showCount) {
-        return notificationsLoadable.contents.slice(0, showCount);
-      }
-      return notificationsLoadable.contents;
-    }
-    return [];
-  }, [notificationsLoadable]);
+  const InteractiveButton = Interactive(Button);
 
-  const notShownCount = useMemo(
-    () => notificationsLoadable.contents.length - notificationsToShow.length,
-    [notificationsLoadable, notificationsToShow]
+  const ItemsContainer = ({ children }) => (
+    <ScrollLayout
+      className={className}
+      orientation="vertical"
+      scrollOrientation="vertical"
+      gap="10px"
+      blockSnapType="start"
+      scrollPaddingStart="5px"
+      nowrap>
+      {children.slice(0, showCount || -1)}
+      {!(showCount && children.length - showCount > 0) || (
+        <InteractiveButton link="/notifications">{`${
+          children.length - showCount
+        } more`}</InteractiveButton>
+      )}
+    </ScrollLayout>
   );
 
   return (
-    <StackLayout orientation="vertical" gap="10px">
-      {notificationsLoadable.state === "hasValue" ? (
-        <Composite {...composite}>
-          {notificationsToShow.map(renderNotification)}
-          {!(showCount && notShownCount > 0) ||
-            Interactive(
-              <CompositeItem
-                {...composite}
-              >{`${notShownCount} more`}</CompositeItem>,
-              { link: "/notifications" }
-            )}
-        </Composite>
-      ) : (
-        "Loading..."
-      )}
-    </StackLayout>
+    <LoadableItemsList
+      showCount={showCount}
+      as={ItemsContainer}
+      items={notificationsLoadable}
+      renderItem={renderNotification}
+      emptyMessage={'Currently no notifications received'}
+    />
   );
+}
+
+NotificationsList.propTypes = {
+  items: PropTypes.array.isRequired,
+  showCount: PropTypes.number,
 };
 
 export default NotificationsList;

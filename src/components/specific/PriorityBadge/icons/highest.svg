@@ -1,0 +1,17 @@
+<svg id="highest" data-name="highest" xmlns="http://www.w3.org/2000/svg" width="21" height="16" viewBox="0 0 21 16">
+  <defs>
+    <style>
+      .highest-1 {
+        fill: #ffc300;
+      }
+      .highest-2 {
+        fill: #dedede;
+        stroke-width: 1px
+      }
+    </style>
+  </defs>
+  <circle id="Ellipse_40" data-name="Ellipse 40" class="highest-1" cx="4" cy="4" r="4" transform="translate(0 8)"/>
+  <circle id="Ellipse_41" data-name="Ellipse 41" class="highest-1" cx="4" cy="4" r="4" transform="translate(12 8) rotate(180)"/>
+  <circle id="Ellipse_42" data-name="Ellipse 42" class="highest-1" cx="4" cy="4" r="4" transform="translate(9 8)"/>
+  <circle id="Ellipse_43" data-name="Ellipse 43" class="highest-1" cx="4" cy="4" r="4" transform="translate(13)"/>
+</svg>

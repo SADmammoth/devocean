@@ -1,8 +1,8 @@
 const styles = {
   toolbar: {
     background: (theme) => theme.background.common,
-    paddingTop: "3rem",
-    marginLeft: "2rem",
+    paddingTop: '3rem',
+    marginLeft: '2rem',
   },
   list: {
     marginBlockStart: 0,
@@ -12,13 +12,16 @@ const styles = {
     paddingInlineStart: 0,
   },
   itemContainer: {
-    listStyleType: "none",
+    listStyleType: 'none',
+    width: '100%',
   },
   item: {
-    background: "none",
-    border: "none",
+    background: 'none !important',
+    border: 'none',
     margin: 0,
-    padding: 0,
+    padding: '10px',
+    width: '100%',
+    borderBottom: (theme) => `2px solid ${theme.background.dark}`,
   },
 };
 

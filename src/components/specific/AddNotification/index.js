@@ -1,3 +1,3 @@
-import AddNotification from "./AddNotification";
+import AddNotification from './AddNotification';
 
 export default AddNotification;

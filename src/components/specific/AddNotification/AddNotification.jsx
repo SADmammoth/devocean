@@ -1,9 +1,12 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import { Button } from "reakit";
-import { useSetRecoilState } from "recoil";
-import notificationsState from "../../../recoil/states/notificationsState";
-import styles from "./AddNotification.styles";
+import React from 'react';
+
+import { useTheme, createUseStyles } from 'react-jss';
+import { useSetRecoilState } from 'recoil';
+
+import notificationsState from '../../../recoil/states/notificationsState';
+import Button from '../../generic/Button';
+
+import styles from './AddNotification.styles';
 
 const useStyles = createUseStyles(styles);
 
@@ -18,12 +21,11 @@ const AddNotification = () => {
       <Button
         onClick={() =>
           addNotification({
-            time: "4h ago",
-            title: "Notification",
-            author: "Doe",
+            time: '4h ago',
+            title: 'Notification',
+            author: 'Doe',
           })
-        }
-      >
+        }>
         Add notification
       </Button>
     </>

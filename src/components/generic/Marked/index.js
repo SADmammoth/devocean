@@ -1,3 +1,3 @@
-import Marked from "./Marked";
+import Marked from './Marked';
 
 export default Marked;

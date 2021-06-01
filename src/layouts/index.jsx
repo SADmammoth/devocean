@@ -1,21 +1,27 @@
-import React, { Suspense } from "react";
-import { ThemeProvider } from "react-jss";
-import theme from "../theme";
-import Header from "../components/generic/Header";
-import { RecoilRoot } from "recoil";
-import DebugObserver from "../dev/DebugObserver";
-import ContentElement from "./ContentElement";
+import React, { Suspense } from 'react';
 
-export default function _layout({ children }) {
+import ContentElement from '../components/generic/ContentElement';
+import Header from '../components/specific/Header';
+
+function _layout({ children }) {
+  const path = window.location.pathname;
   return (
-    <RecoilRoot>
-      <DebugObserver />
-      <Suspense fallback="Loading...">
-        <ThemeProvider theme={theme}>
-          <Header />
-          <ContentElement>{children}</ContentElement>
-        </ThemeProvider>
-      </Suspense>
-    </RecoilRoot>
+    <>
+      <Header
+        hideNotificationBadge={path.startsWith('/auth') || path === '/'}
+        hideNavigation={path.startsWith('/auth') || path === '/'}
+      />
+      <ContentElement>{children}</ContentElement>
+    </>
   );
 }
+
+_layout.wrappers = [
+  '@/wrappers/errorBoundary',
+  '@/wrappers/recoil',
+  '@/wrappers/jss',
+  '@/wrappers/login',
+  '@/wrappers/popups',
+];
+
+export default _layout;

@@ -5,11 +5,20 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-chrome",
+      "name": "Chrome",
+      "type": "chrome",
       "request": "launch",
-      "name": "Launch Chrome against localhost",
       "url": "http://localhost:8001",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///./src/*": "${webRoot}/*"
+      },
+      "skipFiles": ["./node_modules"],
+      "preLaunchTask": "npm: start",
+      "console": "integratedTerminal",
+      "sourceMaps": true,
+      "breakOnLoad": false,
+      "outFiles": ["./src"]
     }
   ]
 }

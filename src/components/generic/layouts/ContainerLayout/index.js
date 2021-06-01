@@ -1,3 +1,3 @@
-import ContainerLayout from "./ContainerLayout";
+import ContainerLayout from './ContainerLayout';
 
 export default ContainerLayout;

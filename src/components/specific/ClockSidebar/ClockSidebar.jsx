@@ -1,14 +1,18 @@
-import React from "react";
-import classNames from "classnames";
-import Clock from "../../generic/Clock";
-import Sidebar from "../../generic/Sidebar";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./ClockSidebar.styles";
-import StackLayout from "../../generic/layouts/StackLayout";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import Clock from '../../generic/Clock';
+import Sidebar from '../../generic/Sidebar';
+import StackLayout from '../../generic/layouts/StackLayout';
+
+import styles from './ClockSidebar.styles';
 
 const useStyles = createUseStyles(styles);
 
-const ClockSidebar = ({ className, ...props }) => {
+function ClockSidebar({ className, ...props }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -17,16 +21,15 @@ const ClockSidebar = ({ className, ...props }) => {
       <StackLayout
         className={classes.content}
         orientation="vertical"
-        alignX="center"
-        gap="2rem"
-      >
+        alignX="center">
         <Clock city="Belarus, Minsk" size="big" />
-        <StackLayout className={classes.secondaryClocks} alignX="center">
-          <Clock city="Country, City" size="small" />
-        </StackLayout>
       </StackLayout>
     </Sidebar>
   );
+}
+
+ClockSidebar.propTypes = {
+  className: PropTypes.string,
 };
 
 export default ClockSidebar;

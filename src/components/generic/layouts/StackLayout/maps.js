@@ -1,8 +1,10 @@
-export const orientations = { vertical: "vertical", horizontal: "horizontal" };
+export const orientations = { vertical: 'vertical', horizontal: 'horizontal' };
 
 export const aligns = {
-  center: "center",
-  stretch: "stretch",
-  start: "flex-start",
-  end: "flex-end",
+  center: 'center',
+  stretch: 'stretch',
+  start: 'flex-start',
+  end: 'flex-end',
+  spaceBetween: 'space-between',
+  spaceAround: 'space-around',
 };

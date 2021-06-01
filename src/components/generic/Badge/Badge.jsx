@@ -1,14 +1,32 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import styles from "./Badge.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import StackLayout from '../layouts/StackLayout';
+
+import styles from './Badge.styles';
 
 const useStyles = createUseStyles(styles);
 
-const Badge = ({ children }) => {
+function Badge({ className, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  return <div className={classes.badge}>{children}</div>;
+  return (
+    <StackLayout
+      alignX="center"
+      alignY="center"
+      className={classNames(className, classes.badge)}>
+      {children}
+    </StackLayout>
+  );
+}
+
+Badge.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
 export default Badge;

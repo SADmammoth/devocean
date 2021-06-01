@@ -1,6 +1,6 @@
 export default {
-  center: "center",
-  justify: "justify",
-  left: "left",
-  right: "right",
+  center: 'center',
+  justify: 'justify',
+  left: 'left',
+  right: 'right',
 };

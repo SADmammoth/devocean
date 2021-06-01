@@ -1,15 +1,27 @@
-import React from "react";
-import { useTheme, createUseStyles } from "react-jss";
-import classNames from "classnames";
-import styles from "./StretchLayout.styles";
+import React from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { useTheme, createUseStyles } from 'react-jss';
+
+import styles from './StretchLayout.styles';
 
 const useStyles = createUseStyles(styles);
 
-export default function StretchLayout({ className, children }) {
+function StretchLayout({ className, style, children }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <div className={classNames(className, classes.container)}>{children}</div>
+    <div className={classNames(className, classes.container)} style={style}>
+      {children}
+    </div>
   );
 }
+
+StretchLayout.propTypes = {
+  className: PropTypes.string,
+  children: PropTypes.node.isRequired,
+};
+
+export default StretchLayout;

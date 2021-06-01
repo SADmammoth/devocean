@@ -1,3 +1,3 @@
-import InteractiveCard from "./InteractiveCard";
+import InteractiveCard from './InteractiveCard';
 
 export default InteractiveCard;

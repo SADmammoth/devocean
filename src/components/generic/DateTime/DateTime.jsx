@@ -1,30 +1,19 @@
-import React, { useEffect, useState, useMemo } from "react";
-import classNames from "classnames";
-import clockUpdater from "./clockUpdater.js";
-import { createUseStyles, useTheme } from "react-jss";
-import styles from "./DateTime.styles";
-import dateToString from "../../../helpers/dateToString.js";
+import React, { useEffect, useState, useMemo } from 'react';
+
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import { createUseStyles, useTheme } from 'react-jss';
+
+import dateToString from '../../../helpers/converters/dateToString';
+import clockUpdater from './clockUpdater';
+import { months, weekdays } from './enums';
+import sizes from './sizes';
+
+import styles from './DateTime.styles';
 
 const useStyles = createUseStyles(styles);
 
-const months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
-  "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec",
-];
-
-const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-export default function DateTime({ size }) {
+function DateTime({ size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -56,7 +45,7 @@ export default function DateTime({ size }) {
     const index = new Date(
       new Date().getFullYear(),
       date.month - 1,
-      date.day
+      date.day,
     ).getDay();
 
     return weekdays[index];
@@ -65,12 +54,11 @@ export default function DateTime({ size }) {
   return (
     <time
       className={classNames(classes.dateTime, classes[size])}
-      dateTime={dateToString(date)}
-    >
+      dateTime={dateToString(date)}>
       <div className={classes.time}>
-        <span>{date.hours.toString().padStart(2, "0")}</span>
+        <span>{date.hours.toString().padStart(2, '0')}</span>
         <span className={classes.blinking}>:</span>
-        <span>{date.minutes.toString().padStart(2, "0")}</span>
+        <span>{date.minutes.toString().padStart(2, '0')}</span>
       </div>
       <hr className={classes.divider} />
       <div className={classes.date}>
@@ -79,3 +67,13 @@ export default function DateTime({ size }) {
     </time>
   );
 }
+
+DateTime.propTypes = {
+  size: PropTypes.oneOf(sizes),
+};
+
+DateTime.defaultProps = {
+  size: 'small',
+};
+
+export default DateTime;
