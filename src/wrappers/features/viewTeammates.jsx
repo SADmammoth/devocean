@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { useRecoilValue } from 'recoil';
 
 import { userDataState } from '../../recoil/states/userState';
-import FeatureAccess from './featureAccess';
+import FeatureAccess from './FeatureAccess';
 
 function viewTeammates({
   children,

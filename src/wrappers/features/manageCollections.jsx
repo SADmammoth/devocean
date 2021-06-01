@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import FeatureAccess from './featureAccess';
+import FeatureAccess from './FeatureAccess';
 
 function manageCollections({ children }) {
   return <FeatureAccess feature="manageCollections">{children}</FeatureAccess>;
