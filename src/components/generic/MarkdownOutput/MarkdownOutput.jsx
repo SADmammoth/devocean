@@ -1,9 +1,10 @@
 import React from 'react';
 
-import { MarkdownOutput as ReactFormMarkdown } from '@bit/sadmammoth.components.react-form';
 import { identity } from 'lodash';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
+
+import { MarkdownOutput as ReactFormMarkdown } from '@sadmammoth/react-form';
 
 import styles from './MarkdownOutput.styles';
 

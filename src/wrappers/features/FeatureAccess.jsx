@@ -5,7 +5,7 @@ import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { Redirect } from 'umi';
 
 import StateMonade from '../../helpers/components/StateMonade';
-import featureAccessState from '../../recoil/state/featureAccessState';
+import featureAccessState from '../../recoil/states/featureAccessState';
 
 function FeatureAccess({ children, feature }) {
   const hasAccess = useRecoilValueLoadable(featureAccessState(feature));
