@@ -12,8 +12,6 @@ export default function getLeavesOfTree(nodeId, treeMap, leafKey) {
           return item;
         }
 
-        console.log(item);
-
         const { children, [leafKey]: leaves } = item;
 
         if (children) {

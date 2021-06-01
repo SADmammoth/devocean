@@ -1,6 +1,6 @@
 import { selectorFamily } from 'recoil';
 
-export default function updateSelector(baseKey, atom, idKey = 'id') {
+export default function deleteSelector(baseKey, atom, idKey = 'id') {
   return selectorFamily({
     key: baseKey + 'update',
     get: (id) => ({ get }) => {

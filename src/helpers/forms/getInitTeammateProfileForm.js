@@ -185,14 +185,6 @@ export default function getInitTeammateProfileForm({
       type: 'image',
       label: 'Avatar',
       value: avatar,
-      converters: {
-        out: ({ url }) => url,
-        in: (url) => ({
-          url,
-          fileName: '',
-          fileSize: 0,
-        }),
-      },
     },
     {
       id: 'tags',

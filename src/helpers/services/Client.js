@@ -1,3 +1,4 @@
+import { instanceOf } from 'prop-types';
 import request from 'superagent';
 import prefix from 'superagent-prefix';
 
@@ -13,6 +14,34 @@ import RelativeDate from '../types/RelativeDate';
 
 const apiPath = prefix(process.env.API_PATH || API_PATH);
 const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
+
+!request.Request.prototype.fields &&
+  Object.defineProperty(request.Request.prototype, 'fields', {
+    value: function (items) {
+      if (items && typeof items === 'object') {
+        for (let key in items) {
+          if (items.hasOwnProperty(key)) {
+            let item = items[key];
+
+            if (typeof item === 'function') {
+              continue;
+            } else if (item instanceof Array) {
+              for (let i in item) {
+                this.field(key, item[i]);
+              }
+              continue;
+            } else if (typeof item === 'object') {
+              item = JSON.stringify(item);
+            }
+
+            this.field(key, item);
+          }
+        }
+      }
+
+      return this;
+    },
+  });
 
 const Client = {
   notifications: {
@@ -395,19 +424,21 @@ const Client = {
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
-    post: (teammate, userToken) => {
+    post: ({ id, avatar, ...teammate }, userToken) => {
       return request
         .post(`/teammates`)
         .use(apiPath)
-        .send(teammate)
+        .fields(teammate)
+        .attach('avatar', avatar)
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },
-    patch: (id, teammate, userToken) => {
+    patch: (id, { avatar, ...teammate }, userToken) => {
       return request
         .patch(`/teammates/${id}`)
         .use(apiPath)
-        .send(teammate)
+        .fields(teammate)
+        .attach('avatar', avatar)
         .auth(userToken, { type: 'bearer' })
         .then(({ body }) => body);
     },

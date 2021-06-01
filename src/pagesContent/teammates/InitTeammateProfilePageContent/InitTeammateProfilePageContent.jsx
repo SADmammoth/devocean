@@ -86,7 +86,14 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
         })
       }
       onSubmit={onSubmit}
-      inputsAtSidebar={['name', 'lastName', 'subteams', 'tags', 'joinedAt']}
+      inputsAtSidebar={[
+        'name',
+        'lastName',
+        'subteams',
+        'tags',
+        'joinedAt',
+        'avatar',
+      ]}
       inputsAtBody={[
         'login',
         'email',
