@@ -85,7 +85,11 @@ NavItems.propTypes = {
   ]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
+      label: PropTypes.oneOfType([
+        PropTypes.node,
+        PropTypes.string,
+        PropTypes.func,
+      ]).isRequired,
       link: PropTypes.string,
       onClick: PropTypes.func,
     }),

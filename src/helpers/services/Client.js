@@ -114,7 +114,6 @@ const Client = {
     register: (login, password, userToken) => {
       return request
         .post('/register')
-        .auth(userToken, { type: 'bearer' })
         .use(authPath)
         .send({ login, password })
         .then(({ body }) => body);
@@ -122,6 +121,13 @@ const Client = {
     getData: (userToken) => {
       return request
         .post('/checkToken')
+        .use(authPath)
+        .send({ token: userToken })
+        .then(({ body }) => body);
+    },
+    delete: (userToken) => {
+      return request
+        .delete('/delete')
         .use(authPath)
         .send({ token: userToken })
         .then(({ body }) => body);

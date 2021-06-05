@@ -36,7 +36,10 @@ const HomePageContent = () => {
   return (
     <SidebarPage isClockSidebar>
       <Skip column={1} />
-      <StackLayout>
+      <StackLayout
+        column={3}
+        orientation="vertical"
+        className={classes.topPadding}>
         <Text className={classes.appname} type="h1" alignment="left">
           {locale('Welcome back', {
             appname: <AppName locale={locale} classes={classes} />,
@@ -50,6 +53,7 @@ const HomePageContent = () => {
         </StateMonade>
       </StackLayout>
       <StackLayout
+        column={4}
         orientation="vertical"
         alignX="start"
         className={classes.topPadding}>

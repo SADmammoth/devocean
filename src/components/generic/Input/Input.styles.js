@@ -32,6 +32,20 @@ const styles = {
     marginBottom: '30px',
     width: '100%',
   },
+  '@global .show_password-checkbox': {
+    position: 'absolute',
+    right: '5px',
+    top: '50%',
+    transform: 'translateY(-50%)',
+    zIndex: '999',
+    width: '30px',
+    height: '20px',
+  },
+  '@global .show_password-checkbox::before': {
+    width: '30px',
+    height: '20px',
+    textAlign: 'right',
+  },
   '@global .select-header': {
     border: '0 !important',
     height: '5vh',

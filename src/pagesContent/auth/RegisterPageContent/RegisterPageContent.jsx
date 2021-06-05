@@ -9,9 +9,15 @@ import MultiStepForm from '../../../components/generic/MultiStepForm/MultiStepFo
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
+import getCreateOwnProfileForm from '../../../helpers/forms/getCreateOwnProfileForm';
+import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
 import getLoginForm from '../../../helpers/forms/getLoginForm';
 import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
-import { userState_login } from '../../../recoil/states/userState';
+import Client from '../../../helpers/services/Client';
+import userState, {
+  userState_login,
+  userState_register,
+} from '../../../recoil/states/userState';
 
 import styles from './RegisterPageContent.styles';
 
@@ -21,8 +27,9 @@ function RegisterPageContent(props) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const localizedForm = useLocalizedForm(getLoginForm());
-  const login = useSetRecoilState(userState_login);
+  const localizedLoginForm = useLocalizedForm(getLoginForm());
+  const localizedNewProfileForm = useLocalizedForm(getCreateOwnProfileForm());
+  const setUserToken = useSetRecoilState(userState);
 
   return (
     <GridLayout>
@@ -30,72 +37,29 @@ function RegisterPageContent(props) {
       <StackLayout column={4} className={classes.form}>
         <MultiStepForm
           steps={[
-            { $title: 'Your new account', inputs: localizedForm },
-            {
-              $title: 'Your new project',
-              inputs: [
-                {
-                  type: 'text',
-                  label: 'Project title',
-                  id: 'title',
-                  name: 'title',
-                },
-                {
-                  type: 'textarea',
-                  label: 'Project description',
-                  id: 'description',
-                  name: 'description',
-                },
-              ],
-            },
-            {
-              $title: 'Your new profile',
-              inputs: [
-                {
-                  id: 'name',
-                  type: 'text',
-                  id: 'name',
-                  name: 'name',
-                  label: 'Name',
-                },
-                {
-                  id: 'lastName',
-                  type: 'text',
-                  name: 'lastName',
-                  label: 'Last name',
-                },
-                {
-                  id: 'referAs',
-                  type: 'select',
-                  name: 'referAs',
-                  label: 'Refer to me as',
-                  valueOptions: [
-                    {
-                      label: 'He/him',
-                      value: 'he',
-                    },
-                    {
-                      label: 'She/her',
-                      value: 'she',
-                    },
-                    {
-                      label: 'They/them',
-                      value: 'they',
-                    },
-                  ],
-                },
-                {
-                  id: 'email',
-                  type: 'text',
-                  name: 'email',
-                  label: 'Email',
-                  validator: 'email',
-                },
-              ],
-            },
+            { $title: 'Your new account', inputs: localizedLoginForm },
+            { $title: 'Your new profile', inputs: localizedNewProfileForm },
           ]}
           onSubmit={async (data) => {
-            await login(data);
+            const loginData = await userState_register({
+              login: data.login + '_temp',
+              password: data.password,
+            });
+
+            await Client.teammateProfiles.post(
+              { ...data, temporaryPassword: data.password },
+              loginData.token,
+            );
+
+            await Client.user.delete(loginData.token);
+
+            const newLoginData = await userState_register({
+              login: data.login,
+              password: data.password,
+            });
+
+            setUserToken(newLoginData.token);
+
             history.push('/');
           }}
           alignX="center"

@@ -65,12 +65,13 @@ function TeammateProfileCard({
                 {actualStatus}
               </Text>,
             )}
-            {Marked(
-              status === 'working' ? 'active' : 'unactive',
-              <Text type="hint" alignY="end">
-                {status}
-              </Text>,
-            )}
+            {!status ||
+              Marked(
+                status === 'working' ? 'active' : 'unactive',
+                <Text type="hint" alignY="end">
+                  {status}
+                </Text>,
+              )}
           </StackLayout>
         </StackLayout>
       </InteractiveCard>

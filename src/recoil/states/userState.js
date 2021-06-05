@@ -23,23 +23,16 @@ export const userState_logout = async (teammateId) => {
   await Client.user.logout(teammateId);
 };
 
-export const userState_register = selector({
-  key: baseKey + 'register',
-  set: async ({ set }, { login, password }) => {
-    const res = await Client.user
-      .register(login, password)
-      .then((res) => {
-        return res;
-      })
-      .catch((res) => null);
+export const userState_register = async ({ login, password }) => {
+  const res = await Client.user
+    .register(login, password)
+    .then((res) => {
+      return res;
+    })
+    .catch((res) => null);
 
-    if (res) {
-      set(userState_login, { login, password });
-    }
-
-    return res;
-  },
-});
+  return await userState_login({ login, password });
+};
 
 const getUserData = (userToken) =>
   userToken ? Client.user.getData(userToken) : userToken;

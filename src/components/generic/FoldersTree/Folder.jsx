@@ -60,7 +60,7 @@ function Folder({
 
 Folder.propTypes = {
   id: PropTypes.string.isRequired,
-  as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
+  as: PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.func]),
   classes: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['list', 'folder']),

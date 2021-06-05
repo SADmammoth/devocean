@@ -54,22 +54,27 @@ function TeammatePageContent({ initialValues }) {
           <PanelCard orientation="vertical">
             <TeammateStatusBadge status={status} actualStatus={actualStatus} />
           </PanelCard>
-          <PanelCard orientation="vertical">
-            <Text type="common" bold>
-              Working days
-            </Text>
-            <WorkDaysBadge days={workDays} />
-          </PanelCard>
-          <PanelCard orientation="vertical">
-            <Text type="common" bold>
-              Working hours
-            </Text>
-            <WorkHoursBadge
-              type={workHours}
-              start={workHoursStart}
-              end={workHoursEnd}
-            />
-          </PanelCard>
+          {!workDays || (
+            <PanelCard orientation="vertical">
+              <Text type="common" bold>
+                Working days
+              </Text>
+              <WorkDaysBadge days={workDays} />
+            </PanelCard>
+          )}
+          {(!workHoursStart && !workHoursEnd) || (
+            <PanelCard orientation="vertical">
+              <Text type="common" bold>
+                Working hours
+              </Text>
+
+              <WorkHoursBadge
+                type={workHours}
+                start={workHoursStart}
+                end={workHoursEnd}
+              />
+            </PanelCard>
+          )}
         </StackLayout>
       </Sidebar>
       <StackLayout

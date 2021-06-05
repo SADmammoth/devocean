@@ -8,11 +8,13 @@ const subscribeToEndpoint = (endpoint) => {
   return (onUpdate) => {
     if (!io.socket.eventQueue[endpoint]) {
       io.socket.get(`/${endpoint}/subscribe`, '', (res, jwres) => {
-        console.log('Subscriber: ' + res.message);
+        if (process.env.NODE_ENV === 'development')
+          console.log('Subscriber: ' + res.message);
       });
 
       io.socket.on(endpoint, async (res) => {
-        console.log('Subscriber: ' + res.message);
+        if (process.env.NODE_ENV === 'development')
+          console.log('Subscriber: ' + res.message);
         await onUpdate();
       });
     }

@@ -33,7 +33,11 @@ function TeammatesList({ classes, subteamId }) {
       as={ItemsContainer}
       items={teammates}
       renderItem={(teammate) => (
-        <TeammateProfileCard className={classes.card} {...teammate} />
+        <TeammateProfileCard
+          key={teammate.id}
+          className={classes.card}
+          {...teammate}
+        />
       )}
     />
   );

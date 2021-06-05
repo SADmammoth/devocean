@@ -52,10 +52,11 @@ function NotificationCard({ id, title, status, time, author, index }) {
 
 NotificationCard.propTypes = {
   title: PropTypes.string,
-  time: PropTypes.shape({
-    toString: PropTypes.func,
+  time: PropTypes.string,
+  author: PropTypes.shape({
+    name: PropTypes.string,
+    lastName: PropTypes.string,
   }),
-  author: PropTypes.string,
 };
 
 export default NotificationCard;

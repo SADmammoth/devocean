@@ -22,6 +22,7 @@ function NotificationsList({ className, showCount }) {
   const renderNotification = ({ id, time, status, title, author }) => {
     return (
       <NotificationCard
+        key={id}
         id={id}
         time={time}
         status={status}
@@ -63,7 +64,6 @@ function NotificationsList({ className, showCount }) {
 }
 
 NotificationsList.propTypes = {
-  items: PropTypes.array.isRequired,
   showCount: PropTypes.number,
 };
 

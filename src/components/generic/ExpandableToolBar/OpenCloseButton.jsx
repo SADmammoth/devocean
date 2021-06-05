@@ -8,7 +8,7 @@ import ToggleButton from '../ToggleButton';
 function OpenCloseButton({ classes, setState }) {
   return (
     <ToggleButton
-      size="auto"
+      size="fluid"
       className={classes.openCloseButton}
       states={[
         {

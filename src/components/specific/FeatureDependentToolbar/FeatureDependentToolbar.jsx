@@ -23,7 +23,7 @@ function FeatureDependentToolbar({ expandable, items, props }) {
   );
 
   const renderItems = useCallback(() => {
-    if (features.state !== 'hasValue') return;
+    if (features.state !== 'hasValue') return [];
     const renderedItems = [...(items.all || [])];
     Object.entries(_.omit(items, ['all'])).forEach(
       ([feature, allowedItems]) => {

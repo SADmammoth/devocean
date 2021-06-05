@@ -1,13 +1,15 @@
 import React, { Suspense } from 'react';
 
+import { useLocation } from 'umi';
+
 import ContentElement from '../components/generic/ContentElement';
 import SimpleHeader from '../components/generic/SimpleHeader';
 import Header from '../components/specific/Header';
 
 function _layout({ children }) {
-  const path = window.location.pathname;
-  const isIndexPage = path === '/';
-  const isAuthPage = path.startsWith('/auth');
+  const { pathname } = useLocation();
+  const isIndexPage = pathname === '/';
+  const isAuthPage = pathname.startsWith('/auth');
   const header = isAuthPage ? (
     <SimpleHeader />
   ) : (

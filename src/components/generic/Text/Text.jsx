@@ -26,7 +26,8 @@ const Text = React.forwardRef(
       ellipsis,
       lines,
       hyphenated,
-
+      alignX,
+      alignY,
       ...props
     },
 

@@ -24,14 +24,16 @@ function TeammateStatusBadge({ status, actualStatus }) {
         })}>
         {_.capitalize(actualStatus)}
       </Text>
-      <Text
-        type="common"
-        className={classNames({
-          [classes.working]: status === 'working',
-          [classes.notWorking]: status === 'not working',
-        })}>
-        {_.capitalize(status)}
-      </Text>
+      {!status || (
+        <Text
+          type="common"
+          className={classNames({
+            [classes.working]: status === 'working',
+            [classes.notWorking]: status === 'not working',
+          })}>
+          {_.capitalize(status)}
+        </Text>
+      )}
     </>
   );
 }
