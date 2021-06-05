@@ -1,10 +1,3 @@
-const styles = {
-  grid: {
-    height: '100%',
-  },
-  paddingTop: {
-    paddingTop: (theme) => theme.spaces.small,
-  },
-};
+const styles = {};
 
 export default styles;

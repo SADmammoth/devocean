@@ -1,4 +1,4 @@
-import en from '../../locales/en-EN.js';
+import en from '../../locales/en-US.js';
 import ru from '../../locales/ru-RU.js';
 
 const locales = {

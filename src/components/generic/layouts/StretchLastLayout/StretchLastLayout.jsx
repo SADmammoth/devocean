@@ -46,8 +46,8 @@ function StretchLastLayout({
 
 StretchLastLayout.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
-  orientation: PropTypes.oneOfType(['vertical', 'horizontal']),
+  children: PropTypes.any,
+  orientation: PropTypes.oneOf(['vertical', 'horizontal']),
   reverse: PropTypes.bool,
 };
 

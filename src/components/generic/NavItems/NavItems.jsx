@@ -78,7 +78,11 @@ function NavItems({
 }
 
 NavItems.propTypes = {
-  as: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  as: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+    PropTypes.func,
+  ]),
   items: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string.isRequired,

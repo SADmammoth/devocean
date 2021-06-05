@@ -35,7 +35,6 @@ const LoginContent = () => {
 
   const [inputs, setInputs] = useState({});
 
-  console.log(inputs);
   return (
     <GridLayout>
       <Skip column={4} />

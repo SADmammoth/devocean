@@ -12,7 +12,6 @@ class Table extends editorjsTable {
   }
 
   onPaste(event) {
-    console.log(event.type);
     switch (event.type) {
       case 'tag':
         let countOfEmptyRows = -3;

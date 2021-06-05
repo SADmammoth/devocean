@@ -9,8 +9,11 @@ import GridLayout from '../../components/generic/layouts/GridLayout';
 import Skip from '../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../components/generic/layouts/StackLayout';
 import AppName from '../../components/specific/AppName';
+import ClockSidebar from '../../components/specific/ClockSidebar';
 import StateMonade from '../../helpers/components/StateMonade';
 import useLocale from '../../helpers/hooks/useLocale';
+import SidebarPage from '../../layouts/SidebarPage';
+import TitledPage from '../../layouts/TitledPage';
 
 import styles from './WelcomePageContent.styles';
 
@@ -22,8 +25,8 @@ function WelcomePageContent(props) {
   const locale = useLocale();
 
   return (
-    <GridLayout>
-      <Skip column={4} />
+    <SidebarPage isClockSidebar>
+      <Skip column={1} />
       <StackLayout
         column={4}
         orientation="vertical"
@@ -41,7 +44,6 @@ function WelcomePageContent(props) {
         <Text type="sub" italic>
           {locale('Welcome subtitle')}
         </Text>
-
         <NavList
           items={[
             {
@@ -58,8 +60,9 @@ function WelcomePageContent(props) {
             },
           ]}
         />
+        <div className={classes.background}></div>
       </StackLayout>
-    </GridLayout>
+    </SidebarPage>
   );
 }
 

@@ -38,7 +38,7 @@ function StackItems({ classes, children, orientation }) {
 
 StackItems.propTypes = {
   classes: PropTypes.object.isRequired,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.any,
   orientation: PropTypes.oneOf(Object.keys(orientations)),
 };
 

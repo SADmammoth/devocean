@@ -12,7 +12,6 @@ function NewDoc(props) {
     <>
       <EditDocumentPageContent
         onSubmit={async (data) => {
-          console.log(data);
           return await addDoc(data);
         }}
       />

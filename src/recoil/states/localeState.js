@@ -7,7 +7,10 @@ export const validLocales = getAllLocales();
 
 const localeState = selector({
   key: baseKey,
-  get: () => getLocale(),
+  get: () => {
+    const currentLocale = getLocale();
+    return currentLocale;
+  },
   set: ({}, value) => {
     if (validLocales.includes(value)) {
       setLocale(value);

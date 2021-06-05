@@ -49,8 +49,6 @@ function MultiStepForm({
     [data, steps],
   );
 
-  console.log(step);
-
   return (
     <StackLayout orientation="vertical" gap="20px">
       <Text type="big" bold>

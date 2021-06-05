@@ -5,7 +5,6 @@ export default function optionalArrayProcession(array, processors) {
   let processorArguments;
 
   processors.forEach((processor) => {
-    console.log(processor);
     [processorKey, processorArguments] = Object.entries(processor)[0];
     resultArray = resultArray[processorKey](...processorArguments);
   });

@@ -10,6 +10,7 @@ import StretchLastLayout from '../../components/generic/layouts/StretchLastLayou
 import StretchLayout from '../../components/generic/layouts/StretchLayout';
 import ClockSidebar from '../../components/specific/ClockSidebar';
 import FeatureDependentToolbar from '../../components/specific/FeatureDependentToolbar/FeatureDependentToolbar';
+import SidebarPage from '../SidebarPage/SidebarPage';
 
 import styles from './ItemsPage.styles';
 
@@ -26,21 +27,17 @@ function ItemsPage({
   const classes = useStyles(theme);
 
   return (
-    <GridLayout className={classes.grid}>
-      {isClockSidebar ? (
-        <ClockSidebar column={3} className={classes.paddingTop} />
-      ) : (
-        <Sidebar title={sidebarTitle} column={3} className={classes.paddingTop}>
-          {sidebarContent}
-        </Sidebar>
-      )}
+    <SidebarPage
+      isClockSidebar={isClockSidebar}
+      sidebarTitle={sidebarTitle}
+      sidebarContent={sidebarContent}>
       <StretchLayout className={classNames(classes.paddingTop)} column={7}>
         {children}
       </StretchLayout>
       {toolbarItems ? (
         <FeatureDependentToolbar column={1} expandable items={toolbarItems} />
       ) : null}
-    </GridLayout>
+    </SidebarPage>
   );
 }
 

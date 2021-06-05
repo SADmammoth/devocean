@@ -11,17 +11,30 @@ import styles from './TitledPage.styles';
 
 const useStyles = createUseStyles(styles);
 
-function TitledPage({ title, children, ...props }) {
+function TitledPage({
+  isClockSidebar,
+  sidebarTitle,
+  sidebarContent,
+  toolbarItems,
+  title,
+  children,
+  ...props
+}) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
   return (
-    <ItemsPage {...props}>
+    <ItemsPage
+      isClockSidebar={isClockSidebar}
+      sidebarTitle={sidebarTitle}
+      sidebarContent={sidebarContent}
+      toolbarItems={toolbarItems}
+      {...props}>
       <StretchLastLayout
         orientation="vertical"
         className={classes.workArea}
         nowrap>
-        <Text type="h1">{title}</Text>
+        {!title || <Text type="h1">{title}</Text>}
         {children}
       </StretchLastLayout>
     </ItemsPage>

@@ -55,7 +55,7 @@ const StackLayout = ({
 
 StackLayout.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.node.isRequired,
+  children: PropTypes.any,
   style: PropTypes.object,
   orientation: PropTypes.oneOf(Object.keys(orientations)),
   alignY: PropTypes.oneOf(Object.keys(aligns)),

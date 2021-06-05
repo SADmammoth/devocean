@@ -22,7 +22,6 @@ const useStyles = createUseStyles(styles);
 function DocumentContentPage({ initialValues }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  console.log(initialValues);
 
   const InteractiveButton = Interactive(Button);
 
@@ -55,7 +54,6 @@ function DocumentContentPage({ initialValues }) {
             data={initialValues.content || { blocks: [] }}
             renderers={{
               simpleImage: ({ data, className = '' }) => {
-                console.log(data);
                 return (
                   <picture>
                     <img src={data.url} alt={data.caption} />

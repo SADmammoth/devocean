@@ -8,7 +8,7 @@ export default {
     writeToDisk: true,
   },
   locale: {
-    default: 'en-EN',
+    default: 'en-US',
     antd: false,
     title: false,
     baseNavigator: true,

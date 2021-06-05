@@ -67,7 +67,6 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
               new Undo({ editor: editor.current.editor });
               new DragDrop(editor.current.editor);
             }
-            console.log(editor.current.editor);
             window.loadtoeditor = editor.current.editor.blocks.renderFromHTML;
           }}
         />
