@@ -12,9 +12,10 @@ export default function showPopup(props) {
   ReactDOM.render(
     <PopupWindow
       {...props}
-      onClose={(data) => {
+      onClose={async (data) => {
         root.removeChild(popup);
         resolvePromise(data);
+        return data;
       }}
     />,
     popup,

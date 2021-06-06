@@ -57,12 +57,17 @@ function TaskSidebar({
       ) : null}
       {status ? (
         <PanelCard orientation="vertical">
-          <StatusBadge
-            status={status.name}
-            timeInStatus={status.timeInStatus}
-          />
-          {estimate && reportedTime ? (
-            <TimeReportsBadge estimate={estimate} reportedTime={reportedTime} />
+          {!status || (
+            <StatusBadge
+              status={status.name}
+              timeInStatus={status.timeInStatus}
+            />
+          )}
+          {reportedTime ? (
+            <TimeReportsBadge
+              estimate={estimate || {}}
+              reportedTime={reportedTime}
+            />
           ) : null}
         </PanelCard>
       ) : null}
@@ -76,7 +81,10 @@ function TaskSidebar({
       <FeatureMonade feature="manageTasks">
         <ButtonLink
           onClick={() => {
-            popup().then(() => {
+            popup().then((result) => {
+              if (!result) {
+                return;
+              }
               history.push('/tasks');
               deleteTask();
             });
@@ -91,8 +99,16 @@ function TaskSidebar({
 TaskSidebar.propTypes = {
   classes: PropTypes.object.isRequired,
   priority: PropTypes.string,
-  assignee: PropTypes.string,
-  status: PropTypes.string,
+  assignee: PropTypes.shape({
+    name: PropTypes.string,
+    lastName: PropTypes.string,
+  }),
+  status: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ]),
   estimate: PropTypes.object,
   reportedTime: PropTypes.object,
 };

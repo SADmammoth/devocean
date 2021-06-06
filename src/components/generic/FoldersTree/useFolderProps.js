@@ -25,6 +25,7 @@ export default function useFolderProps(
 
       return {
         id,
+        index,
         classes,
         FolderBase,
         type: !!tasks ? 'list' : 'folder',

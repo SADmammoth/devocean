@@ -21,6 +21,7 @@ function FieldsChanges({ className, classes, index, fields, author, time }) {
           {Object.entries(fields || {}).map(([field, [from, to]]) => {
             return (
               <FieldChange
+                key={field}
                 classes={classes}
                 field={field}
                 from={from}

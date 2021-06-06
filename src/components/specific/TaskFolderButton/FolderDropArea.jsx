@@ -11,12 +11,13 @@ import {
   folderTreeState_removeTask,
 } from '../../../recoil/states/folderTreeState';
 
-function FolderDropArea({ id, selectFolder, children }) {
+function FolderDropArea({ id, index, selectFolder, children }) {
   const addTaskToList = useSetRecoilState(folderTreeState_addTask(id));
   const removeTask = useSetRecoilState(folderTreeState_removeTask);
 
   return (
     <DropArea
+      index={{ y: index, x: 0 }}
       onHovered={(dragging, index, accepted, mergeStyles) => {
         if (accepted) {
           dragging.style.visibility = 'hidden';

@@ -42,7 +42,7 @@ function DraggableList({
 DraggableList.propTypes = {
   id: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(PropTypes.node).isRequired,
-  onOrderChange: PropTypes.func.isRequired,
+  onOrderChange: PropTypes.func,
   draggableType: PropTypes.string,
   draggableAreaSize: PropTypes.string,
 };

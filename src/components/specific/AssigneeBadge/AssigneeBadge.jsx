@@ -27,7 +27,9 @@ function AssigneeBadge({ id, image, displayName, assignedDate }) {
           <Text type="common" bold ellipsis>
             {displayName}
           </Text>
-          <LiveRelativeDate type="small" date={assignedDate} />
+          {!assignedDate || (
+            <LiveRelativeDate type="small" date={assignedDate} />
+          )}
         </BlockDescriptionLayout.Description>
       </BlockDescriptionLayout>
     </HiddenLink>

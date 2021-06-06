@@ -127,9 +127,17 @@ const Client = {
     },
     delete: (userToken) => {
       return request
-        .delete('/delete')
+        .delete('/self')
         .use(authPath)
         .send({ token: userToken })
+        .then(({ body }) => body);
+    },
+    delete: (login, userToken) => {
+      return request
+        .delete('/user')
+        .use(authPath)
+        .auth(userToken, { type: 'bearer' })
+        .send({ login })
         .then(({ body }) => body);
     },
   },

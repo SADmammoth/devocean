@@ -48,12 +48,16 @@ function ReportsPageContent({ id }) {
       nowrap
       gap="28px">
       <StackLayout orientation="vertical" gap="10px">
-        <Text className={classes.title} type="h1">
-          {'Time reports for task'}
-          <Text type="big" lines={1} title={task?.title}>
-            {task?.title}
+        <h1>
+          <Text className={classes.title} type="h1" as="span">
+            {'Time reports for task'}
           </Text>
-        </Text>
+          {!task || (
+            <Text type="big" as="span" lines={1} title={task.title}>
+              {task.title}
+            </Text>
+          )}
+        </h1>
         <LoadableItemsList
           className={classes.reports}
           placeholderClassName={classNames(
@@ -65,6 +69,7 @@ function ReportsPageContent({ id }) {
           renderItem={(reportsItem) => {
             return (
               <ReportCard
+                key={reportsItem.id}
                 estimate={new Duration(reportsItem.estimate + 'h')}
                 reportedTime={new Duration(reportsItem.reportedTime + 'h')}
                 totalReportedTime={

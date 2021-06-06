@@ -6,6 +6,8 @@ import { useTheme, createUseStyles } from 'react-jss';
 import { useSetRecoilState } from 'recoil';
 
 import showPopup from '../../../helpers/components/showPopup';
+import getTimeReportForm from '../../../helpers/forms/getTimeReportForm';
+import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import Duration from '../../../helpers/types/Duration';
 import reportsState from '../../../recoil/states/reportsState';
 import Button from '../../generic/Button';
@@ -19,34 +21,11 @@ function ReportPopup({ id }) {
   const classes = useStyles(theme);
 
   const addReport = useSetRecoilState(reportsState(id));
+  const localizedForm = useLocalizedForm(getTimeReportForm());
 
   const popup = () =>
     showPopup({
-      inputs: [
-        {
-          type: 'text',
-          name: 'reportedTime',
-          label: 'Reported time',
-          validator: (input) => {
-            return !_.isNaN(new Duration(input).value);
-          },
-        },
-        {
-          type: 'select',
-          name: 'activity',
-          label: 'Activity',
-          valueOptions: [
-            {
-              label: 'Development',
-              value: 'Development',
-            },
-            {
-              label: 'Testing',
-              value: 'Testing',
-            },
-          ],
-        },
-      ],
+      inputs: localizedForm,
       children: [],
       closeButtonContent: 'Report',
     });
@@ -54,7 +33,11 @@ function ReportPopup({ id }) {
   return (
     <Button
       onClick={() => {
-        popup().then(({ reportedTime, activity }) => {
+        popup().then((result) => {
+          if (!result) {
+            return;
+          }
+          const { reportedTime, activity } = result;
           addReport({
             reportedTime: new Duration(reportedTime).getHours(),
             activity,

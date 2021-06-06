@@ -58,12 +58,16 @@ function HistoryPageContent({ id }) {
       className={classes.content}
       nowrap
       gap="10px">
-      <Text className={classes.title} type="h1">
-        {'Changes history for task'}
-        <Text type="big" lines={1} title={task?.title}>
-          {task?.title}
+      <h1>
+        <Text as="span" className={classes.title} type="h1">
+          {'Changes history for task'}
         </Text>
-      </Text>
+        {!task || (
+          <Text as="span" type="big" lines={1} title={task.title}>
+            {task.title}
+          </Text>
+        )}
+      </h1>
       <LoadableItemsList
         placeholderClassName={classNames(classes.placeholder)}
         as={ItemsContainer}
@@ -73,6 +77,7 @@ function HistoryPageContent({ id }) {
           if (_.isEmpty(fields)) return;
           return (
             <ChangesCard
+              key={historyItem.id}
               className={classes.history}
               fields={fields}
               time={historyItem.time}

@@ -42,12 +42,16 @@ function DiscussionsPageContent({ id }) {
 
   return (
     <StackLayout orientation="vertical" className={classes.discussions} nowrap>
-      <Text className={classes.title} type="h1">
-        {locale('Comments for task')}
-        <Text type="big" lines={1} title={task.contents?.title}>
-          {task.contents?.title}
+      <h1>
+        <Text as="span" className={classes.title} type="h1">
+          {locale('Comments for task')}
         </Text>
-      </Text>
+        {!task.contents || (
+          <Text as="span" type="big" lines={1} title={task.contents.title}>
+            {task.contents.title}
+          </Text>
+        )}
+      </h1>
       <LoadableItemsList
         className={classes.messageBoard}
         placeholderClassName={classNames(

@@ -34,6 +34,7 @@ function TaskFolderButton({
   isConstant,
   toggleSubfolders,
   parent,
+  index,
   ...props
 }) {
   const theme = useTheme();
@@ -82,7 +83,7 @@ function TaskFolderButton({
       onClick={() => selectFolder(selected ? parent : id)}
       label={locale(type, { name })}>
       {type === 'list' && !selected && !selectedParent ? (
-        <FolderDropArea id={id} selectFolder={selectFolder}>
+        <FolderDropArea id={id} index={index} selectFolder={selectFolder}>
           {ButtonContent}
         </FolderDropArea>
       ) : (
@@ -95,7 +96,6 @@ function TaskFolderButton({
 TaskFolderButton.propTypes = {
   id: PropTypes.string.isRequired,
   as: PropTypes.oneOfType([PropTypes.func, PropTypes.node]),
-  classes: PropTypes.object.isRequired,
   type: PropTypes.oneOf(['list', 'folder']),
   selected: PropTypes.bool,
   selectedParent: PropTypes.bool,

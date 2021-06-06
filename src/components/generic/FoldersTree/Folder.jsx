@@ -9,6 +9,7 @@ import StackLayout from '../layouts/StackLayout';
 
 function Folder({
   id,
+  index,
   classes,
   name,
   type,
@@ -42,6 +43,7 @@ function Folder({
         [classes.selectedTree]: selected,
       })}>
       <FolderBase
+        index={index}
         type={type}
         selected={selected}
         selectedParent={selectedParent}

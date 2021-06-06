@@ -41,7 +41,7 @@ const DraggableElement = ({
 
 DraggableElement.propTypes = {
   id: PropTypes.string.isRequired,
-  height: PropTypes.string.isRequired,
+  height: PropTypes.number.isRequired,
   draggableType: PropTypes.string,
   content: PropTypes.node.isRequired,
   avatar: PropTypes.node.isRequired,

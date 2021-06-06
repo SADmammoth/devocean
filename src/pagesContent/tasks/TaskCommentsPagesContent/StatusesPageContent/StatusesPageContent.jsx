@@ -37,12 +37,16 @@ function StatusesPageContent({ id }) {
 
   return (
     <StackLayout orientation="vertical" nowrap gap="10px">
-      <Text className={classes.title} type="h1">
-        {'Status changes for task'}
-        <Text type="big" lines={1} title={task?.title}>
-          {task?.title}
-        </Text>
-      </Text>
+      <h1>
+        <Text as="span" className={classes.title} type="h1">
+          {'Status changes for task'}
+        </Text>{' '}
+        {!task || (
+          <Text as="span" type="big" lines={1} title={task.title}>
+            {task.title}
+          </Text>
+        )}
+      </h1>
       <LoadableItemsList
         className={classes.content}
         placeholderClassName={classNames(classes.content, classes.placeholder)}
@@ -51,6 +55,7 @@ function StatusesPageContent({ id }) {
         renderItem={(statusChange) => {
           return (
             <ChangesCard
+              key={statuses.id}
               className={classes.statuses}
               fields={[
                 statusChange.fromStatus?.name,

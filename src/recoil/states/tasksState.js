@@ -71,9 +71,13 @@ export const tasksState_getByFolder = subtreeSelector(
 
 export const tasksState_requestContent = selectorFamily({
   key: baseKey + 'requestContent',
-  get: (taskId) => ({ get }) => {
+  get: (taskId) => async ({ get }) => {
     const userToken = get(userState);
-    return Client.tasks.getById(taskId, userToken);
+    const tasks = get(tasksStateAtom);
+    return {
+      ...tasks.find(({ id }) => id === taskId),
+      ...(await Client.tasks.getById(taskId, userToken)),
+    };
   },
 });
 

@@ -68,10 +68,16 @@ function PopupWindow({
 
 PopupWindow.propTypes = {};
 
-export default (props) => (
-  <IntlProvider>
-    <ThemeProvider theme={themeGlobal}>
-      <PopupWindow {...props} />
-    </ThemeProvider>
-  </IntlProvider>
-);
+export default (props) => {
+  const currentLocale = localStorage.getItem('umi_locale');
+
+  return (
+    <IntlProvider
+      locale={currentLocale}
+      messages={require('../../../locales/' + currentLocale).default}>
+      <ThemeProvider theme={themeGlobal}>
+        <PopupWindow {...props} />
+      </ThemeProvider>
+    </IntlProvider>
+  );
+};

@@ -85,7 +85,12 @@ TaskCard.propTypes = {
   priority: PropTypes.string.isRequired,
   reportedTime: PropTypes.object,
   estimate: PropTypes.object,
-  status: PropTypes.string,
+  status: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ]),
   tag: PropTypes.shape({
     color: PropTypes.string,
     name: PropTypes.string,

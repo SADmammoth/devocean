@@ -34,7 +34,12 @@ function TaskInfo({ classes, status, reportedTime, estimate }) {
 
 TaskInfo.propTypes = {
   classes: PropTypes.object.isRequired,
-  status: PropTypes.string.isRequired,
+  status: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.shape({
+      name: PropTypes.string,
+    }),
+  ]).isRequired,
   reportedTime: PropTypes.object,
   estimate: PropTypes.object,
 };

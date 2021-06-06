@@ -4,7 +4,7 @@ const styles = {
     top: '-12px',
     left: '6px',
     padding: '0 5px',
-    zIndex: '9999',
+    zIndex: '2',
   },
   inputContainer: {
     boxSizing: 'content-box',
