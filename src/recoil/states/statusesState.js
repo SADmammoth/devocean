@@ -2,6 +2,8 @@ import _ from 'lodash';
 import { atom, selector, selectorFamily, waitForAll } from 'recoil';
 
 import Client from '../../helpers/services/Client';
+import Subscriber from '../../helpers/services/Subscriber';
+import serverRealtimeStateSync from '../helpers/effects/serverRealtimeStateSync';
 import serverStateSync from '../helpers/effects/serverStateSync';
 import getPostState from '../helpers/getPostState';
 import noRequest from '../helpers/noRequest';
@@ -19,7 +21,9 @@ const postState = getPostState(postOne);
 const statusesStateAtom = atom({
   key: baseKey,
   default: [],
-  effects_UNSTABLE: [serverStateSync(getState, postState)],
+  effects_UNSTABLE: [
+    serverRealtimeStateSync(Subscriber.tasks, getState, postState),
+  ],
 });
 
 const statusesState = mergeSelector(baseKey, statusesStateAtom);

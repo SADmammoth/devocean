@@ -3,6 +3,8 @@ import React, { useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
+import { DropArea } from '@sadmammoth/react-dnd';
+
 import optionalArrayProcession from '../../../helpers/functions/optionalArrayProcession';
 import Text from '../Text';
 import ScrollLayout from '../layouts/ScrollLayout';
@@ -20,6 +22,8 @@ function ItemsList({
   renderItem,
   emptyMessage,
   processors,
+  dropareaOnEmpty,
+  onDrop,
   ...props
 }) {
   const theme = useTheme();
@@ -39,11 +43,26 @@ function ItemsList({
     [renderItem],
   );
 
-  return items.length ? (
-    <As className={className} {...props}>
-      {renderItems(items)}
-    </As>
-  ) : (
+  if (items.length) {
+    return (
+      <As className={className} {...props}>
+        {renderItems(items)}
+      </As>
+    );
+  }
+  if (dropareaOnEmpty) {
+    return (
+      <StackLayout
+        className={placeholderClassName}
+        alignX="center"
+        alignY="center">
+        <DropArea index={{ y: 0, x: 0 }} setData={onDrop}>
+          <Text type="big">{emptyMessage || 'No items here'}</Text>
+        </DropArea>
+      </StackLayout>
+    );
+  }
+  return (
     <StackLayout
       className={placeholderClassName}
       alignX="center"

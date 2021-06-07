@@ -30,8 +30,9 @@ function DiscussionsPageContent({ id }) {
   const discussions = useRecoilValueLoadable(discussionsState(id));
   const task = useRecoilValueLoadable(tasksState_getById(id));
 
-  const ItemsContainer = ({ children, ...props }) => (
+  const ItemsContainer = ({ className, children, ...props }) => (
     <ScrollLayout
+      className={className}
       orientation="vertical"
       scrollOrientation="vertical"
       nowrap

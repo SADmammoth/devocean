@@ -177,7 +177,7 @@ const Client = {
       const body = filterFalsy({
         ...task,
         estimate: new Duration(task.estimate).getHours(),
-        // reportedTime: task.reportedTime.getTime(),
+        reportedTime: task.reportedTime.getHours(),
         // timeInStatus: new Duration(new Date(task.timeInStatus)),
       });
 

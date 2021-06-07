@@ -23,10 +23,6 @@ function ListViewTasks({ folderId, style }) {
 
   const tasks = useRecoilValueLoadable(tasksState_getByFolder(folderId));
 
-  const [draggableAreaSize, setDraggableAreaSize] = useState(
-    theme.draggableAreaDefaultSize,
-  );
-
   const ItemsContainer = ({ children, ...props }) => {
     return (
       <StackLayout orientation="vertical" alignY="start">
@@ -38,12 +34,7 @@ function ListViewTasks({ folderId, style }) {
           alignX="start"
           aria-label={locale('TaskList')}
           scrollPaddingEnd="0px">
-          <DraggableList
-            id="list"
-            list={children || []}
-            draggableType="task"
-            draggableAreaSize={draggableAreaSize}
-          />
+          <DraggableList id="list" list={children || []} draggableType="task" />
         </ScrollLayout>
       </StackLayout>
     );
@@ -54,19 +45,7 @@ function ListViewTasks({ folderId, style }) {
       as={ItemsContainer}
       items={tasks}
       renderItem={(task) => {
-        if (task)
-          return (
-            <DraggableTask
-              key={task.id}
-              {...task}
-              onDragStart={({ height }) => {
-                setDraggableAreaSize(height);
-              }}
-              onDragEnd={() =>
-                setDraggableAreaSize(theme.draggableAreaDefaultSize)
-              }
-            />
-          );
+        if (task) return <DraggableTask key={task.id} {...task} />;
       }}
       emptyMessage="Added tasks are showing up here"
     />

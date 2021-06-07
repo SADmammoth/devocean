@@ -18,7 +18,8 @@
       "console": "integratedTerminal",
       "sourceMaps": true,
       "breakOnLoad": false,
-      "outFiles": ["./src"]
+      "outFiles": ["./src"],
+      "userDataDir": "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
     }
   ]
 }

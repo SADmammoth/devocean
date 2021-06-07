@@ -55,7 +55,7 @@ function StatusesPageContent({ id }) {
         renderItem={(statusChange) => {
           return (
             <ChangesCard
-              key={statuses.id}
+              key={statusChange.id}
               className={classes.statuses}
               fields={[
                 statusChange.fromStatus?.name,

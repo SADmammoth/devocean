@@ -69,7 +69,7 @@ function PopupWindow({
 PopupWindow.propTypes = {};
 
 export default (props) => {
-  const currentLocale = localStorage.getItem('umi_locale');
+  const currentLocale = localStorage.getItem('umi_locale') || 'en-US';
 
   return (
     <IntlProvider

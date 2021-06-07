@@ -41,13 +41,15 @@ function HistoryPageContent({ id }) {
     );
   };
 
-  const ItemsContainer = ({ children }) => (
+  const ItemsContainer = ({ className, children }) => (
     <ScrollLayout
+      className={className}
       orientation="vertical"
       scrollOrientation="vertical"
       gap="10px"
       blockSnapType="start"
-      scrollPaddingStart="5px">
+      scrollPaddingStart="5px"
+      nowrap>
       {children}
     </ScrollLayout>
   );
@@ -69,6 +71,7 @@ function HistoryPageContent({ id }) {
         )}
       </h1>
       <LoadableItemsList
+        className={classes.content}
         placeholderClassName={classNames(classes.placeholder)}
         as={ItemsContainer}
         items={history}

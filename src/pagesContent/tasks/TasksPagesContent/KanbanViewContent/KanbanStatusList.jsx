@@ -22,9 +22,6 @@ import {
 function KanbanStatusList({ classes, tasks, status, showTitle }) {
   const locale = useLocale();
   const theme = useTheme();
-  const [draggableAreaSize, setDraggableAreaSize] = useState(
-    theme.draggableAreaDefaultSize,
-  );
 
   const changeStatus = useSetRecoilState(statusesState_addTask(status));
   const removeTask = useSetRecoilState(statusesState_removeTask);
@@ -51,6 +48,7 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
 
   const ItemsContainer = ({ children, ...props }) => (
     <ScrollLayout
+      key="items"
       className={classNames({ [classes.list]: showTitle })}
       orientation="vertical"
       scrollOrientation="vertical"
@@ -60,9 +58,9 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
       aria-label={locale('TaskList')}
       nowrap>
       <DraggableList
+        id="Tasks"
         list={children || []}
         draggableType="task"
-        draggableAreaSize={draggableAreaSize}
         onNewItem={onNewItem}
       />
     </ScrollLayout>
@@ -79,23 +77,13 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
         as={ItemsContainer}
         items={tasks}
         renderItem={(task) => {
-          if (task)
-            return (
-              <DraggableTask
-                key={task.id}
-                {...task}
-                onDragStart={({ height }) => {
-                  setDraggableAreaSize(height);
-                }}
-                onDragEnd={() =>
-                  setDraggableAreaSize(theme.draggableAreaDefaultSize)
-                }
-              />
-            );
+          if (task) return <DraggableTask key={task.id} {...task} />;
         }}
         emptyMessage={`Drag and drop task cards there to set status "${locale(
           status,
         )}"`}
+        dropareaOnEmpty
+        onDrop={onNewItem}
       />
     </StretchLastLayout>
   );

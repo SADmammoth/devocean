@@ -16,6 +16,7 @@ function DraggableTask({
   reportedTime,
   onDragStart,
   onDragEnd,
+  onReject,
   index,
   ...taskProps
 }) {
@@ -55,6 +56,7 @@ function DraggableTask({
       height={duration}
       onDragStart={onDragStart}
       onDragEnd={onDragEnd}
+      onReject={onReject}
       content={content}
       avatar={avatar}
       data={taskProps}
@@ -68,6 +70,12 @@ DraggableTask.propTypes = {
   reportedTime: PropTypes.object,
   onDragStart: PropTypes.func,
   onDragEnd: PropTypes.func,
+  onReject: PropTypes.func,
 };
 
+DraggableTask.defaultProps = {
+  onDragStart: () => {},
+  onDragEnd: () => {},
+  onReject: () => {},
+};
 export default DraggableTask;

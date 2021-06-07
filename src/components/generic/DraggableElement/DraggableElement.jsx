@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
@@ -19,21 +20,34 @@ const DraggableElement = ({
   data,
   onDragStart,
   onDragEnd,
+  onReject,
 }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
 
+  const [dragging, setDragging] = useState(false);
+
   return (
     <DndDraggableElement
-      className={className}
+      className={classNames(className, { [classes.dragging]: dragging })}
       id={id}
       key={id}
       data={{ 'data-type': draggableType, id, ...data }}
       avatar={avatar}
       rootElement={document}
       height={height}
-      onDragStart={onDragStart}
-      onDragEnd={onDragEnd}>
+      onDragStart={(...data) => {
+        setDragging(true);
+        onDragStart(...data);
+      }}
+      onReject={(...data) => {
+        setDragging(false);
+        onReject(...data);
+      }}
+      onDragEnd={(...data) => {
+        setDragging(false);
+        onDragEnd(...data);
+      }}>
       {content}
     </DndDraggableElement>
   );
@@ -48,6 +62,7 @@ DraggableElement.propTypes = {
   data: PropTypes.object.isRequired,
   onDragStart: PropTypes.func,
   onDragEnd: PropTypes.func,
+  onReject: PropTypes.func,
 };
 
 export default DraggableElement;
