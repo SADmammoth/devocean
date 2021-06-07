@@ -46,7 +46,7 @@ function LoadableItemsList({
 
   return (
     <StateMonade state={items.state}>
-      {items.contents.length ? (
+      {renderedItems.length ? (
         <As {...props}>{renderedItems}</As>
       ) : (
         <StackLayout

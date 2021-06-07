@@ -30,12 +30,14 @@ function ItemsList({
   const classes = useStyles(theme);
 
   const As = as || ScrollLayout;
+  const list = optionalArrayProcession(items, processors).filter(
+    (item) => !!item,
+  );
 
   const renderItems = useCallback(
     (items) => {
-      return optionalArrayProcession(items, processors)
+      return list
         .map(renderItem)
-        .filter((item) => !!item)
         .map((item, index) =>
           React.cloneElement(item, { ...item.props, index }),
         );
@@ -43,7 +45,7 @@ function ItemsList({
     [renderItem],
   );
 
-  if (items.length) {
+  if (list.length) {
     return (
       <As className={className} {...props}>
         {renderItems(items)}
