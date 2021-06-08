@@ -13,7 +13,7 @@ export default function login({ children }) {
   const path = window.location.pathname;
 
   if (!user && !path.startsWith('/auth') && path !== '/')
-    return <Redirect to="/auth/login" />;
+    return <Redirect to="/" />;
 
   if (currentUserData?.invited && path !== '/teammates/init')
     return <Redirect to={'/teammates/init'} />;

@@ -6,6 +6,7 @@ import AppLogo from '../../specific/AppLogo/AppLogo';
 import AppName from '../../specific/AppName';
 import LanguageSwitcher from '../../specific/LanguageSwitcher';
 import ContainerLayout from '../layouts/ContainerLayout';
+import GridLayout from '../layouts/GridLayout';
 import StackLayout from '../layouts/StackLayout';
 import StretchLastLayout from '../layouts/StretchLastLayout';
 
@@ -20,18 +21,20 @@ const SimpleHeader = () => {
   return (
     <header className={classes.header}>
       <ContainerLayout>
-        <StretchLastLayout
-          gap="10px"
-          className={classes.stack}
-          reverse
-          alignY="center">
-          <StackLayout className={classes.branding} alignY="center">
+        <GridLayout stretchLast>
+          <StackLayout
+            column={3}
+            className={classes.branding}
+            alignY="center"
+            alignX="center">
             <AppLogo />
-            <AppName />
+            {/* <AppName /> */}
           </StackLayout>
 
-          <LanguageSwitcher />
-        </StretchLastLayout>
+          <StackLayout alignX="end" alignY="center" gap="10px">
+            <LanguageSwitcher />
+          </StackLayout>
+        </GridLayout>
       </ContainerLayout>
     </header>
   );

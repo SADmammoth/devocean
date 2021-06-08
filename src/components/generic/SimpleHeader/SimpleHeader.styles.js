@@ -1,13 +1,14 @@
 const styles = {
   header: {
     background: (theme) => theme.background.common,
-    height: '7vh',
+    height: (theme) => theme.headerHeight,
   },
   stack: {
-    height: '7vh',
+    height: (theme) => theme.headerHeight,
   },
   branding: {
-    height: '7vh',
+    height: (theme) => theme.headerHeight,
+    background: (theme) => theme.background.light,
   },
 };
 
