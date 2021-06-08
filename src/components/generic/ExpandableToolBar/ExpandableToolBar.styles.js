@@ -9,6 +9,7 @@ const styles = {
     background: 'none',
     borderRadius: '5px',
     background: (theme) => theme.background.dark,
+    color: (theme) => theme.text.common,
 
     width: '24px',
     height: '24px',

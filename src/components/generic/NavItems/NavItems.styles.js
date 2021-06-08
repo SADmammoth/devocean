@@ -9,6 +9,7 @@ const styles = {
     background: 'none',
     border: 0,
     padding: 0,
+    color: (theme) => theme.text.common,
   },
 };
 

@@ -3,24 +3,28 @@ const theme = {
     common: '#003c58',
     saturated: '#7a878e',
     highlighted: '#005c86',
-    button: '#003c58',
+    button: '#ffffff',
+    secondaryButton: '#ffffff',
   },
   background: {
-    shadows: '#c4c4c4',
-    dark: '#EAEAEA',
-    common: '#F9F9F9',
-    light: '#ffffff',
-    button: '#c4c4c4',
+    shadows: '#063a5d2b',
+    dark: '#dae3ea',
+    common: '#f0f4f6',
+    light: '#fffef9',
+    button: '#1476B8',
+    secondaryButton: '#8eb4cd',
     border: '#949494',
-
-    card: '#fbfbfb',
+    card: '#fffef9',
   },
   shadows: {
-    card: `0 0 4px #e4e4e4`,
+    card: `0px 0px 6px 1px #063a5d2b`,
   },
   '@global': {
     fontFamily: 'SF Pro Display',
     fontSize: '19px',
+    '& body': {
+      background: '#f4eed1',
+    },
   },
   noTypeList: {
     listStyleType: 'none',
@@ -37,7 +41,7 @@ const theme = {
     special: '4.37rem', //83px
     specialSmall: '2.58rem', //49px
   },
-  headerHeight: '7vh',
+  headerHeight: '9vh',
   spinner: {
     size: '10px',
     background: '#ffffff',

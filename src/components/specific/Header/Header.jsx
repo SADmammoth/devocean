@@ -16,6 +16,7 @@ import userState, {
 import Button from '../../generic/Button';
 import NavItems from '../../generic/NavItems/NavItems';
 import ContainerLayout from '../../generic/layouts/ContainerLayout';
+import GridLayout from '../../generic/layouts/GridLayout';
 import StackLayout from '../../generic/layouts/StackLayout';
 import StretchLastLayout from '../../generic/layouts/StretchLastLayout';
 import AppLogo from '../AppLogo';
@@ -39,46 +40,49 @@ const Header = ({ hideNotificationBadge, hideNavigation }) => {
   return (
     <header className={classes.header}>
       <ContainerLayout>
-        <StretchLastLayout
-          gap="10px"
-          className={classes.stack}
-          reverse
-          alignY="center">
-          <StackLayout className={classes.branding} alignY="center">
+        <GridLayout stretchLast>
+          <StackLayout
+            column={3}
+            className={classes.branding}
+            alignY="center"
+            alignX="center">
             <AppLogo />
-            <AppName />
+            {/* <AppName /> */}
           </StackLayout>
-          {hideNavigation || (
-            <NavItems
-              as={StackLayout}
-              className={classes.navigation}
-              itemClass={classes.navButton}
-              items={navItems}
-            />
-          )}
-          {hideNotificationBadge || <NotificationsBadge />}
-          <LanguageSwitcher />
-          <StateMonade state={userData.state}>
-            {userData.contents ? (
-              <>
-                <TeammateTitle
-                  id={userData.contents.id}
-                  image={userData.contents.avatar}
-                  displayName={formatName(userData.contents)}
-                />
 
-                <Button
-                  size="fluid"
-                  onClick={async () => {
-                    await userState_logout(userData.contents.id);
-                    setUser(null);
-                  }}>
-                  Logout
-                </Button>
-              </>
-            ) : null}
-          </StateMonade>
-        </StretchLastLayout>
+          <StackLayout alignX="end" alignY="center" gap="10px">
+            {hideNavigation || (
+              <NavItems
+                as={StackLayout}
+                className={classes.navigation}
+                itemClass={classes.navButton}
+                items={navItems}
+              />
+            )}
+            {hideNotificationBadge || <NotificationsBadge />}
+            <LanguageSwitcher />
+            <StateMonade state={userData.state}>
+              {userData.contents ? (
+                <>
+                  <TeammateTitle
+                    id={userData.contents.id}
+                    image={userData.contents.avatar}
+                    displayName={formatName(userData.contents)}
+                  />
+
+                  <Button
+                    size="fluid"
+                    onClick={async () => {
+                      await userState_logout(userData.contents.id);
+                      setUser(null);
+                    }}>
+                    Logout
+                  </Button>
+                </>
+              ) : null}
+            </StateMonade>
+          </StackLayout>
+        </GridLayout>
       </ContainerLayout>
     </header>
   );

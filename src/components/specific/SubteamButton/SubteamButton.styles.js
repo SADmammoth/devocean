@@ -4,6 +4,7 @@ const styles = {
     background: (theme) => theme.background.light,
     border: (theme) => `3px solid ${theme.background.light}`,
     padding: '5px',
+    color: (theme) => theme.text.common,
   },
   selected: {
     border: (theme) => `2px solid ${theme.text.highlighted}`,

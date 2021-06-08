@@ -3,7 +3,7 @@ import React from 'react';
 import { useTheme, createUseStyles } from 'react-jss';
 import { Link } from 'umi';
 
-import logo from '../../../assets/images/logo.png';
+import logo from '../../../assets/images/logo.svg';
 import HiddenLink from '../../generic/HiddenLink';
 
 import styles from './AppLogo.styles';

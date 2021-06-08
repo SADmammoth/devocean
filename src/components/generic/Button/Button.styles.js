@@ -1,6 +1,7 @@
 const styles = {
   button: {
     background: (theme) => theme.background.button,
+    color: (theme) => theme.text.button,
     border: 0,
     cursor: 'pointer',
     borderRadius: '5px',

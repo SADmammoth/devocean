@@ -2,6 +2,7 @@ const styles = {
   default: {
     '--heightUnit': '88px',
     width: '252px',
+    maxWidth: '99%',
     minHeight: 'var(--heightUnit)',
   },
   task: {

@@ -17,6 +17,7 @@ const styles = {
   },
   item: {
     background: 'none !important',
+    color: (theme) => theme.text.common,
     border: 'none',
     margin: 0,
     padding: '10px',

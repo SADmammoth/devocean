@@ -24,6 +24,7 @@ const styles = {
     background: 'none',
     padding: 0,
     margin: 0,
+    color: (theme) => theme.text.common,
 
     fontSize: (theme) => theme.fontSizes.bigger,
   },

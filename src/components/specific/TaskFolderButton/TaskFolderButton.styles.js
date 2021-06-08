@@ -3,12 +3,14 @@ const styles = {
     height: '40px',
     background: (theme) => theme.background.light,
     border: (theme) => `3px solid ${theme.background.light}`,
+    color: (theme) => theme.text.common,
     padding: '5px',
   },
   folder: {
     height: '40px',
     background: (theme) => theme.background.common,
     border: (theme) => `3px solid ${theme.background.common}`,
+    color: (theme) => theme.text.common,
     padding: '5px',
   },
   selected: {
