@@ -10,7 +10,7 @@ import {
   docsState_update,
 } from '../../../recoil/states/docsState';
 
-function EditDoc({
+function EditDocPage({
   match: {
     params: { id },
   },
@@ -30,8 +30,10 @@ function EditDoc({
   );
 }
 
-EditDoc.wrappers = ['@/wrappers/features/manageDocuments'];
+EditDocPage.wrappers = ['@/wrappers/features/manageDocuments'];
 
-EditDoc.propTypes = {};
+EditDocPage.propTypes = {};
 
-export default EditDoc;
+EditDocPage.title = 'documents.edit.title';
+
+export default EditDocPage;

@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import ListViewContent from '../../pagesContent/tasks/TasksPagesContent/ListViewContent';
 import lastTaskViewState from '../../recoil/states/lastTaskViewState';
 
-function List() {
+function ListViewPage() {
   const setLastView = useSetRecoilState(lastTaskViewState);
   useEffect(() => {
     setLastView('list');
@@ -18,6 +18,8 @@ function List() {
   );
 }
 
-List.wrappers = ['@/wrappers/features/viewTasks'];
+ListViewPage.wrappers = ['@/wrappers/features/viewTasks'];
 
-export default List;
+ListViewPage.title = 'tasks.list.title';
+
+export default ListViewPage;

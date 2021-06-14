@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import KanbanViewContent from '../../pagesContent/tasks/TasksPagesContent/KanbanViewContent';
 import lastTaskViewState from '../../recoil/states/lastTaskViewState';
 
-function Kanban() {
+function KanbanViewPage() {
   const setLastView = useSetRecoilState(lastTaskViewState);
   setLastView('kanban');
   useEffect(() => {
@@ -19,6 +19,8 @@ function Kanban() {
   );
 }
 
-Kanban.wrappers = ['@/wrappers/features/viewTasks'];
+KanbanViewPage.wrappers = ['@/wrappers/features/viewTasks'];
 
-export default Kanban;
+KanbanViewPage.title = 'tasks.kanban.title';
+
+export default KanbanViewPage;

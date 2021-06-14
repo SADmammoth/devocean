@@ -132,7 +132,7 @@ const Client = {
         .send({ token: userToken })
         .then(({ body }) => body);
     },
-    delete: (login, userToken) => {
+    deleteByLogin: (login, userToken) => {
       return request
         .delete('/user')
         .use(authPath)
@@ -249,12 +249,17 @@ const Client = {
         .use(apiPath)
         .then(foldersConverter);
     },
-    post: ({ id, name, color, ...folder }, userToken) => {
+    post: ({ id, name, color, type, ...folder }, userToken) => {
       return request
         .post('/folders')
         .auth(userToken, { type: 'bearer' })
         .use(apiPath)
-        .send({ ...folder, name, tag: { color, name } })
+        .send({
+          ...folder,
+          type,
+          name,
+          tag: type === 'list' ? { color, name } : undefined,
+        })
         .then(({ body }) => body);
     },
     patch: (id, { name, color, ...folder }, userToken) => {

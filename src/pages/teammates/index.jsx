@@ -16,4 +16,6 @@ Index.propTypes = {};
 
 Index.wrappers = ['@/wrappers/features/viewTeammates'];
 
+Index.title = 'teammates.title';
+
 export default Index;

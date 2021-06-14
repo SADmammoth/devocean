@@ -8,7 +8,7 @@ import subteamsState from '../../recoil/states/subteamsState';
 import tagsState from '../../recoil/states/tagsState';
 import teammateProfilesState from '../../recoil/states/teammatesProfilesState';
 
-function New() {
+function NewProfilePage() {
   const postTeammate = useSetRecoilState(teammateProfilesState);
 
   const [hideWorkHours, setHideWorkHours] = useState(true);
@@ -42,8 +42,10 @@ function New() {
   );
 }
 
-New.propTypes = {};
+NewProfilePage.propTypes = {};
 
-New.wrappers = ['@/wrappers/features/manageTeammates'];
+NewProfilePage.wrappers = ['@/wrappers/features/manageTeammates'];
 
-export default New;
+NewProfilePage.title = 'teammates.new.title';
+
+export default NewProfilePage;

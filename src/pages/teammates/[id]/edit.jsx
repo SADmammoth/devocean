@@ -18,7 +18,7 @@ import {
 } from '../../../recoil/states/teammatesProfilesState';
 import userState from '../../../recoil/states/userState';
 
-function EditProfile({
+function EditProfilePage({
   match: {
     params: { id },
   },
@@ -71,8 +71,10 @@ function EditProfile({
   );
 }
 
-EditProfile.propTypes = {};
+EditProfilePage.propTypes = {};
 
-EditProfile.wrappers = ['@/wrappers/features/manageTeammates'];
+EditProfilePage.wrappers = ['@/wrappers/features/manageTeammates'];
 
-export default EditProfile;
+EditProfilePage.title = 'teammates.edit.title';
+
+export default EditProfilePage;

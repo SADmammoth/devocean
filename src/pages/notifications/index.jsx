@@ -2,10 +2,16 @@ import React from 'react';
 
 import NotificationsPageContent from '../../pagesContent/notifications/NotificationsPageContent';
 
-export default function Notifications() {
+function NotificationsPage() {
   return (
     <>
       <NotificationsPageContent />
     </>
   );
 }
+
+NotificationsPage.wrappers = ['@/wrappers/features/viewNotifications'];
+
+NotificationsPage.title = 'notifications.title';
+
+export default NotificationsPage;

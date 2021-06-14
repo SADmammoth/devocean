@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import TeamViewContent from '../../pagesContent/tasks/TasksPagesContent/TeamViewContent';
 import lastTaskViewState from '../../recoil/states/lastTaskViewState';
 
-function Team() {
+function TeamViewPage() {
   const setLastView = useSetRecoilState(lastTaskViewState);
   setLastView('team');
   useEffect(() => {
@@ -19,6 +19,8 @@ function Team() {
   );
 }
 
-Team.wrappers = ['@/wrappers/features/viewTasks'];
+TeamViewPage.wrappers = ['@/wrappers/features/viewTasks'];
 
-export default Team;
+TeamViewPage.title = 'tasks.team.title';
+
+export default TeamViewPage;

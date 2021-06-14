@@ -18,4 +18,6 @@ TaskPage.propTypes = {};
 
 TaskPage.wrappers = ['@/wrappers/features/viewTasks'];
 
+TaskPage.title = 'tasks.id.title';
+
 export default TaskPage;

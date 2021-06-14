@@ -25,4 +25,6 @@ TeammatePage.propTypes = {};
 
 TeammatePage.wrappers = ['@/wrappers/features/viewTeammates'];
 
+TeammatePage.title = 'teammates.id.title';
+
 export default TeammatePage;

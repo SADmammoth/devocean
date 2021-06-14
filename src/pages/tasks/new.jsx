@@ -9,7 +9,7 @@ import folderTreeState from '../../recoil/states/folderTreeState';
 import tasksState from '../../recoil/states/tasksState';
 import { teammatesState_Raw } from '../../recoil/states/teammatesState';
 
-export default function NewTask() {
+function NewTaskPage() {
   const addTask = useSetRecoilState(tasksState);
 
   const teammates = useRecoilValue(teammatesState_Raw);
@@ -41,7 +41,11 @@ export default function NewTask() {
   );
 }
 
-NewTask.wrappers = [
+NewTaskPage.wrappers = [
   '@/wrappers/features/viewTasks',
   '@/wrappers/features/manageTasks',
 ];
+
+NewTaskPage.title = 'tasks.new.title';
+
+export default NewTaskPage;

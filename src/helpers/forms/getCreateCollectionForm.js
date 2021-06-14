@@ -34,7 +34,7 @@ export default ({ type, name, parent, color, parentValueOptions }) => {
       value: parent,
       valueOptions: parentValueOptions,
     },
-    (type && type === 'folder') || {
+    {
       id: 'color',
       type: 'color',
       name: 'color',

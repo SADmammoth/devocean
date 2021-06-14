@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { useRecoilStateLoadable, useRecoilValue } from 'recoil';
-import { history } from 'umi';
+import { useHistory } from 'umi';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import EditCollectionPageContent from '../../../pagesContent/collections/EditCollectionPageContent';
@@ -9,7 +9,7 @@ import folderTreeState, {
   folderTreeState_update,
 } from '../../../recoil/states/folderTreeState';
 
-function EditCollection({
+function EditCollectionPage({
   match: {
     params: { id },
   },
@@ -17,6 +17,7 @@ function EditCollection({
   const [collection, editCollection] = useRecoilStateLoadable(
     folderTreeState_update(id),
   );
+  const history = useHistory();
 
   const parents = useRecoilValue(folderTreeState);
 
@@ -34,15 +35,20 @@ function EditCollection({
             .map(({ name, id }) => {
               return { label: name, value: id };
             }),
+          hideType: true,
         }}
         onSubmit={async (data) => {
           await editCollection(data);
+          history.push('/tasks');
         }}
+        edit
       />
     </StateMonade>
   );
 }
 
-EditCollection.wrappers = ['@/wrappers/features/manageCollections'];
+EditCollectionPage.wrappers = ['@/wrappers/features/manageCollections'];
 
-export default EditCollection;
+EditCollectionPage.title = 'collections.edit.title';
+
+export default EditCollectionPage;

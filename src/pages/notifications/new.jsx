@@ -10,7 +10,7 @@ import teammatesState, {
   teammatesState_Raw,
 } from '../../recoil/states/teammatesState';
 
-function NewNotification() {
+function NewNotificationPage() {
   const addNotification = useSetRecoilState(notificationsState);
 
   const teammates = useRecoilValue(teammatesState_Raw);
@@ -37,6 +37,8 @@ function NewNotification() {
   );
 }
 
-NewNotification.wrappers = ['@/wrappers/features/manageNotifications'];
+NewNotificationPage.wrappers = ['@/wrappers/features/manageNotifications'];
 
-export default NewNotification;
+NewNotificationPage.title = 'notifications.new.title';
+
+export default NewNotificationPage;

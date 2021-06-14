@@ -1,29 +1,22 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 
-import { useLocation } from 'umi';
+import PropTypes from 'prop-types';
+import { Helmet } from 'umi';
 
-import ContentElement from '../components/generic/ContentElement';
-import SimpleHeader from '../components/generic/SimpleHeader';
-import Header from '../components/specific/Header';
+import IndexLayout from './IndexLayout';
 
-function _layout({ children }) {
-  const { pathname } = useLocation();
-  const isIndexPage = pathname === '/';
-  const isAuthPage = pathname.startsWith('/auth');
-  const header = isAuthPage ? (
-    <SimpleHeader />
-  ) : (
-    <Header hideNotificationBadge={isIndexPage} hideNavigation={isIndexPage} />
-  );
+function Index(props) {
   return (
     <>
-      {header}
-      <ContentElement>{children}</ContentElement>
+      <Helmet></Helmet>
+      <IndexLayout {...props} />
     </>
   );
 }
 
-_layout.wrappers = [
+Index.propTypes = {};
+
+Index.wrappers = [
   '@/wrappers/errorBoundary',
   '@/wrappers/recoil',
   '@/wrappers/jss',
@@ -31,4 +24,4 @@ _layout.wrappers = [
   '@/wrappers/popups',
 ];
 
-export default _layout;
+export default Index;

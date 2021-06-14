@@ -18,7 +18,7 @@ import teammatesState, {
   teammatesState_Raw,
 } from '../../../recoil/states/teammatesState';
 
-export default function EditTask({
+function EditTaskPage({
   match: {
     params: { id },
   },
@@ -74,4 +74,8 @@ export default function EditTask({
   );
 }
 
-EditTask.wrappers = ['@/wrappers/features/manageTasks'];
+EditTaskPage.wrappers = ['@/wrappers/features/manageTasks'];
+
+EditTaskPage.title = 'tasks.edit.title';
+
+export default EditTaskPage;

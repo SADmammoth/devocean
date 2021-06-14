@@ -6,9 +6,10 @@ const styles = {
     paddingTop: (theme) => theme.spaces.big,
   },
   background: {
-    backgroundImage: `url(${require('../../assets/images/ship.gif')})`,
+    backgroundImage: `url(${require('../../assets/images/loginpage.png')})`,
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'right center',
+    backgroundSize: 'auto 90%',
     height: '100%',
     width: '100%',
     position: 'absolute',

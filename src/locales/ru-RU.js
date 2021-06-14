@@ -71,4 +71,7 @@ export default {
 
   delayed: 'Отложено',
   cancelled: 'Отменено',
+
+  pageTitle: 'DEVOCEAN – ',
+  Register: 'Регистрация',
 };

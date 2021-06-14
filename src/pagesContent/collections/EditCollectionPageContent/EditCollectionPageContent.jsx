@@ -35,7 +35,7 @@ function EditCollectionPageContent({ edit, initialValues, onSubmit }) {
           ? ['parent', 'folder', 'color']
           : ['parent', 'folder']
       }
-      inputsAtBody={['name', 'type']}
+      inputsAtBody={edit ? ['name'] : ['name', 'type']}
       onSubmit={onSubmit}
     />
   );

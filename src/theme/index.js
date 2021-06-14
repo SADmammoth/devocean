@@ -19,13 +19,7 @@ const theme = {
   shadows: {
     card: `0px 0px 6px 1px #063a5d2b`,
   },
-  '@global': {
-    fontFamily: 'SF Pro Display',
-    fontSize: '19px',
-    '& body': {
-      background: '#f4eed1',
-    },
-  },
+
   noTypeList: {
     listStyleType: 'none',
   },

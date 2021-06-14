@@ -1,3 +1,5 @@
+const pageTitlePrefix = 'DEVOCEAN – ';
+
 export default {
   'Welcome back': 'Welcome back to {appname}!',
   Welcome: 'Welcome to {appname}!',
@@ -72,4 +74,11 @@ export default {
 
   delayed: 'Delayed',
   cancelled: 'Cancelled',
+
+  'register.title': `${pageTitlePrefix} Register`,
+  'welcome.title': `${pageTitlePrefix} Welcome`,
+  'home.title': `${pageTitlePrefix} Home`,
+  'login.title': `${pageTitlePrefix} Log in`,
+  'collections.new.title': `${pageTitlePrefix} New task collection`,
+  'collections.edit.title': `${pageTitlePrefix} Edit task collection`,
 };

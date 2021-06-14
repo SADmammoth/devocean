@@ -10,7 +10,7 @@ export default {
   locale: {
     default: 'en-US',
     antd: false,
-    title: false,
+    title: true,
     baseNavigator: true,
     baseSeparator: '-',
   },
@@ -20,4 +20,5 @@ export default {
     SUBSCRIPTION_SERVER: 'http://localhost:1338',
     AUTH_PATH: 'http://localhost:1339',
   },
+  favicon: '/favicon.svg',
 };

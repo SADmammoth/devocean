@@ -11,7 +11,7 @@ import teammatesState, {
   teammatesState_Raw,
 } from '../../../recoil/states/teammatesState';
 
-function EditNotification({ match: { params } }) {
+function EditNotificationPage({ match: { params } }) {
   const { id } = params;
   const [notification, updateNotification] = useRecoilStateLoadable(
     notificationsState_update(id),
@@ -43,6 +43,8 @@ function EditNotification({ match: { params } }) {
   );
 }
 
-EditNotification.wrappers = ['@/wrappers/features/manageNotifications'];
+EditNotificationPage.wrappers = ['@/wrappers/features/manageNotifications'];
 
-export default EditNotification;
+EditNotificationPage.title = 'notifications.title';
+
+export default EditNotificationPage;

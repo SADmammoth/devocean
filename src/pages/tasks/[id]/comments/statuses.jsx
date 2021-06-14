@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import StatusesPageContent from '../../../../pagesContent/tasks/TaskCommentsPagesContent/StatusesPageContent';
 import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
-export default function StatusesPage({
+function StatusesPage({
   match: {
     params: { id },
   },
@@ -21,3 +21,7 @@ export default function StatusesPage({
     </>
   );
 }
+
+StatusesPage.title = 'tasks.comments.statuses.title';
+
+export default StatusesPage;

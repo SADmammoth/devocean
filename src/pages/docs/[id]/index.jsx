@@ -25,4 +25,6 @@ DocPage.wrappers = ['@/wrappers/features/viewDocuments'];
 
 DocPage.propTypes = {};
 
+DocPage.title = 'documents.id.title';
+
 export default DocPage;

@@ -1,13 +1,21 @@
-<svg id="Group_137" data-name="Group 137" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="452.952" height="232.476" viewBox="0 0 452.952 232.476">
-  <defs>
-    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
-      <stop offset="0" stop-color="#f4eed4"/>
-      <stop offset="1" stop-color="#f4eec3"/>
-    </linearGradient>
-  </defs>
-  <text id="DEV" transform="translate(210.952 128.264)" fill="#2b7faa" font-size="122" font-family="CenturyGothic, Century Gothic"><tspan x="0" y="0">DEV</tspan></text>
-  <text id="ocean" transform="translate(218.019 186.153)" fill="#2b7faa" font-size="64" font-family="CenturyGothic, Century Gothic"><tspan x="0" y="0">ocean</tspan></text>
-  <ellipse id="Ellipse_89" data-name="Ellipse 89" cx="90.329" cy="94.929" rx="90.329" ry="94.929" transform="matrix(0.961, -0.277, 0.277, 0.961, 0, 50.049)" fill="#2b7faa"/>
-  <path id="Path_14" data-name="Path 14" d="M274.735,410.932c-14.674,23.359-37.309,37.059-70.767,38.566-49.349,2.218-90.291-29.3-91.443-70.4-.595-21.219,9.719-43.812,26.448-58.137l2.459-38.854c23.915-4.831,105.517-19.3,135.094,36.768C291.782,347.8,291.821,385.09,274.735,410.932Z" transform="translate(-90.917 -242.993)" fill="url(#linear-gradient)"/>
-  <path id="Path_15" data-name="Path 15" d="M218.934,321.155a70.948,70.948,0,0,1,41.3,9.957c-17.278-2.261-22.627,33.579-40.1,41,16.722,17.474,3.021,52.483,29.563,54.239-21.945,7.5-47.688,1.786-60.938-4.48-14.46-6.839-20.972-20.067-26.938-30.564-8.2,31.886,15.38,47.568,38.642,52.955-35.015.506-56.578-23.61-56.543-49.661.02-15.458,5.892-27.5,15.826-40.084C172.643,338.187,192.689,323.139,218.934,321.155Z" transform="translate(-97.21 -251.836)" fill="#2b7faa"/>
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.1.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Group_137" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 453 198.7" style="enable-background:new 0 0 453 198.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#2B7FAA;}
+	.st4{fill:url(#Path_14_1_);}
+</style>
+<text transform="matrix(1 0 0 1 198.8467 111.9659)" font-size="122" font-family="CenturyGothic, Century Gothic" class="st0">DEV</text>
+<text transform="matrix(1 0 0 1 206.2676 172.752)" font-size="64" font-family="CenturyGothic, Century Gothic" class="st0">ocean</text>
+<ellipse id="Ellipse_89" transform="matrix(0.9609 -0.277 0.277 0.9609 -23.7587 30.5028)" class="st0" cx="96.1" cy="99.4" rx="94.9" ry="99.7"/>
+<linearGradient id="Path_14_1_" gradientUnits="userSpaceOnUse" x1="-70.718" y1="522.4878" x2="-69.668" y2="522.4878" gradientTransform="matrix(175.2671 0 0 -172.7962 12394.5469 90387.4375)">
+	<stop  offset="0" style="stop-color:#F4EED4"/>
+	<stop  offset="1" style="stop-color:#F4EEC3"/>
+</linearGradient>
+<path id="Path_14" class="st4" d="M170.4,153.6c-15.4,24.5-39.2,38.9-74.3,40.5c-51.8,2.3-94.8-30.8-96-73.9
+	c-0.6-22.3,10.2-46,27.8-61l2.6-40.8C55.5,13.3,141.2-1.9,172.2,57C188.3,87.3,188.3,126.5,170.4,153.6z"/>
+<path id="Path_15" class="st0" d="M105.2,50.1c15.2-1,30.3,2.6,43.4,10.5c-18.1-2.4-23.8,35.3-42.1,43.1c17.6,18.3,3.2,55.1,31,57
+	c-23,7.9-50.1,1.9-64-4.7c-15.2-7.2-22-21.1-28.3-32.1c-8.6,33.5,16.1,49.9,40.6,55.6c-36.8,0.5-59.4-24.8-59.4-52.1
+	c0-16.2,6.2-28.9,16.6-42.1C56.5,68,77.6,52.2,105.2,50.1z"/>
 </svg>

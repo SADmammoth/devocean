@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useSetRecoilState } from 'recoil';
@@ -6,7 +6,7 @@ import { useSetRecoilState } from 'recoil';
 import EditDocumentPageContent from '../../pagesContent/docs/EditDocumentPageContent';
 import docsState from '../../recoil/states/docsState';
 
-function NewDoc(props) {
+function NewDocPage(props) {
   const addDoc = useSetRecoilState(docsState);
   return (
     <>
@@ -19,8 +19,10 @@ function NewDoc(props) {
   );
 }
 
-NewDoc.propTypes = {};
+NewDocPage.propTypes = {};
 
-NewDoc.wrappers = ['@/wrappers/features/manageDocuments'];
+NewDocPage.wrappers = ['@/wrappers/features/manageDocuments'];
 
-export default NewDoc;
+NewDocPage.title = 'documents.new.title';
+
+export default NewDocPage;

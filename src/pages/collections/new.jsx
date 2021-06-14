@@ -1,13 +1,14 @@
 import React from 'react';
 
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { history } from 'umi';
+import { useHistory } from 'umi';
 
 import EditCollectionPageContent from '../../pagesContent/collections/EditCollectionPageContent';
 import folderTreeState from '../../recoil/states/folderTreeState';
 
-function NewCollection() {
+function NewCollectionPage() {
   const addCollection = useSetRecoilState(folderTreeState);
+  const history = useHistory();
 
   const parents = useRecoilValue(folderTreeState);
 
@@ -23,12 +24,15 @@ function NewCollection() {
         }}
         onSubmit={async (data) => {
           await addCollection(data);
+          history.push('/tasks');
         }}
       />
     </>
   );
 }
 
-NewCollection.wrappers = ['@/wrappers/features/manageCollections'];
+NewCollectionPage.wrappers = ['@/wrappers/features/manageCollections'];
 
-export default NewCollection;
+NewCollectionPage.title = 'collections.new.title';
+
+export default NewCollectionPage;

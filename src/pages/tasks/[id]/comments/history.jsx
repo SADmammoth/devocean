@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import HistoryPageContent from '../../../../pagesContent/tasks/TaskCommentsPagesContent/HistoryPageContent';
 import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
-export default function HistoryPage({
+function HistoryPage({
   match: {
     params: { id },
   },
@@ -21,3 +21,7 @@ export default function HistoryPage({
     </>
   );
 }
+
+HistoryPage.title = 'tasks.comments.history.title';
+
+export default HistoryPage;

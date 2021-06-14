@@ -5,7 +5,7 @@ import { useSetRecoilState } from 'recoil';
 import DiscussionsPageContent from '../../../../pagesContent/tasks/TaskCommentsPagesContent/DiscussionsPageContent';
 import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
-export default function DiscussionsPage({
+function DiscussionsPage({
   match: {
     params: { id },
   },
@@ -21,3 +21,7 @@ export default function DiscussionsPage({
     </>
   );
 }
+
+DiscussionsPage.title = 'tasks.comments.discussions.title';
+
+export default DiscussionsPage;

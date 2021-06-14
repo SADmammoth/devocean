@@ -6,7 +6,7 @@ import StateMonade from '../../../helpers/components/StateMonade';
 import NotificationPageContent from '../../../pagesContent/notifications/NotificationPageContent';
 import { notificationsState_getById } from '../../../recoil/states/notificationsState';
 
-export default function Notification({ match: { params } }) {
+function NotificationPage({ match: { params } }) {
   const { id } = params;
   const notification = useRecoilValueLoadable(notificationsState_getById(id));
 
@@ -18,3 +18,9 @@ export default function Notification({ match: { params } }) {
     </>
   );
 }
+
+NotificationPage.wrappers = ['@/wrappers/features/viewNotifications'];
+
+NotificationPage.title = 'notifications.id';
+
+export default NotificationPage;

@@ -3,7 +3,7 @@ import { useRecoilValue } from 'recoil';
 
 import lastTaskCommentsViewState from '../../../../recoil/states/lastTaskCommentsViewState';
 
-export default function Index({
+function Index({
   match: {
     params: { id },
   },
@@ -12,3 +12,7 @@ export default function Index({
 
   return <Redirect to={`/tasks/${id}/comments/${lastView}`} />;
 }
+
+Index.title = 'tasks.comments.title';
+
+export default Index;

@@ -16,4 +16,6 @@ Index.propTypes = {};
 
 Index.wrappers = ['@/wrappers/features/viewDocuments'];
 
+Index.title = 'documents.title';
+
 export default Index;

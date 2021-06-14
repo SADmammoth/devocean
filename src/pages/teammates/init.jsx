@@ -20,7 +20,7 @@ import {
 } from '../../recoil/states/teammatesProfilesState';
 import userState, { userDataState } from '../../recoil/states/userState';
 
-function InitProfile() {
+function InitProfilePage() {
   const userData = useRecoilValue(userDataState);
   const initialValues = useRecoilValueLoadable(
     teammateProfilesState_getById(userData?.id),
@@ -72,8 +72,10 @@ function InitProfile() {
   );
 }
 
-InitProfile.propTypes = {};
+InitProfilePage.propTypes = {};
 
-InitProfile.wrappers = ['@/wrappers/features/manageTeammates'];
+InitProfilePage.wrappers = ['@/wrappers/features/manageTeammates'];
 
-export default InitProfile;
+InitProfilePage.title = 'teammates.init.title';
+
+export default InitProfilePage;

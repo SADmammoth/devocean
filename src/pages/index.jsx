@@ -4,7 +4,7 @@ import { Redirect } from 'umi';
 import HomePageContent from '../pagesContent/HomePageContent';
 import userState from '../recoil/states/userState';
 
-export default function IndexPage() {
+function IndexPage() {
   const userToken = useRecoilValue(userState);
 
   if (userToken) {
@@ -13,3 +13,7 @@ export default function IndexPage() {
 
   return <Redirect to="/auth/welcome" />;
 }
+
+IndexPage.title = 'DEVOCEAN &ndash; HOME';
+
+export default IndexPage;
