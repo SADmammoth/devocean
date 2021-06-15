@@ -13,6 +13,4 @@ function Index({
   return <Redirect to={`/tasks/${id}/comments/${lastView}`} />;
 }
 
-Index.title = 'tasks.comments.title';
-
 export default Index;

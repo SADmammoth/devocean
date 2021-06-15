@@ -14,6 +14,6 @@ function IndexPage() {
   return <Redirect to="/auth/welcome" />;
 }
 
-IndexPage.title = 'DEVOCEAN &ndash; HOME';
+IndexPage.title = 'home.title';
 
 export default IndexPage;

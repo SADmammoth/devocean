@@ -21,6 +21,6 @@ function NotificationPage({ match: { params } }) {
 
 NotificationPage.wrappers = ['@/wrappers/features/viewNotifications'];
 
-NotificationPage.title = 'notifications.id';
+NotificationPage.title = 'notifications.id.title';
 
 export default NotificationPage;

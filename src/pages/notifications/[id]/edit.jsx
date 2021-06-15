@@ -45,6 +45,6 @@ function EditNotificationPage({ match: { params } }) {
 
 EditNotificationPage.wrappers = ['@/wrappers/features/manageNotifications'];
 
-EditNotificationPage.title = 'notifications.title';
+EditNotificationPage.title = 'notifications.edit.title';
 
 export default EditNotificationPage;

@@ -11,6 +11,4 @@ function Index() {
 
 Index.wrappers = ['@/wrappers/features/viewTasks'];
 
-Index.title = 'tasks.title';
-
 export default Index;
