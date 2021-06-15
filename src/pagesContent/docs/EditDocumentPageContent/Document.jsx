@@ -8,11 +8,14 @@ import PropTypes from 'prop-types';
 import Button from '../../../components/generic/Button';
 import Form from '../../../components/generic/Form';
 import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
+import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import tools from './tools';
 
 function Document({ classes, title: defaultTitle, content, onSubmit }) {
   const editor = useRef({});
   const [title, setTitle] = useState(defaultTitle);
+  const locale = useLocale();
 
   useEffect(() => {
     setTitle(defaultTitle);
@@ -27,30 +30,22 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
     }
   }, [title, onSubmit]);
 
+  const localizedForm = useLocalizedForm([
+    {
+      type: 'text',
+      name: 'title',
+      value: title,
+      placeholder: 'Untitled',
+      onChange: (name, value) => {
+        setTitle(value);
+      },
+    },
+  ]);
+
   return (
     <div className={classes.docForm}>
       <div className={classes.title}>
-        <Form
-          inputs={[
-            {
-              type: 'text',
-              name: 'title',
-              value: title,
-              placeholder: 'Untitled',
-              onChange: (name, value) => {
-                //   if (!value || !value.trim()) {
-                //     setTitle('Untitled');
-                //     return;
-                //   }
-                setTitle(value);
-              },
-              attributes: {
-                autoComplete: 'off',
-              },
-            },
-          ]}
-          submitButton={<></>}
-        />
+        <Form inputs={localizedForm} submitButton={<></>} />
       </div>
       <ScrollLayout
         orientation="vertical"
@@ -59,7 +54,7 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
         blockSnapType="none">
         <EditorJs
           ref={editor}
-          placeholder={'Type to add new block...'}
+          placeholder={locale('Type to add new block...')}
           tools={tools}
           data={content}
           onReady={(...data) => {
@@ -71,7 +66,7 @@ function Document({ classes, title: defaultTitle, content, onSubmit }) {
           }}
         />
       </ScrollLayout>
-      <Button onClick={save}>Save</Button>
+      <Button onClick={save}>{locale('Save')}</Button>
     </div>
   );
 }

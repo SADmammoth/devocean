@@ -57,7 +57,7 @@ function TeammatePageContent({ initialValues }) {
           {!workDays || (
             <PanelCard orientation="vertical">
               <Text type="common" bold>
-                Working days
+                {locale('Working days')}
               </Text>
               <WorkDaysBadge days={workDays} />
             </PanelCard>
@@ -65,7 +65,7 @@ function TeammatePageContent({ initialValues }) {
           {(!workHoursStart && !workHoursEnd) || (
             <PanelCard orientation="vertical">
               <Text type="common" bold>
-                Working hours
+                {locale('Working hours')}
               </Text>
 
               <WorkHoursBadge

@@ -33,7 +33,10 @@ const NotificationsPageContent = () => {
   };
 
   return (
-    <TitledPage title={'Notifications'} isClockSidebar toolbarItems={toolbar}>
+    <TitledPage
+      title={locale('Notifications')}
+      isClockSidebar
+      toolbarItems={toolbar}>
       <NotificationsList className={classes.notifications} />
     </TitledPage>
   );

@@ -10,8 +10,8 @@ import Text from '../../../components/generic/Text';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import getCreateTaskForm from '../../../helpers/forms/getCreateTaskForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import useTemplate from './useTemplate';
 
 import styles from './EditTaskPageContent.styles';

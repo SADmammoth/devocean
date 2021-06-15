@@ -12,7 +12,8 @@ import StackLayout from '../../../components/generic/layouts/StackLayout';
 import getCreateOwnProfileForm from '../../../helpers/forms/getCreateOwnProfileForm';
 import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
 import getLoginForm from '../../../helpers/forms/getLoginForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import Client from '../../../helpers/services/Client';
 import userState, {
   userState_login,
@@ -30,6 +31,8 @@ function RegisterPageContent(props) {
   const localizedLoginForm = useLocalizedForm(getLoginForm());
   const localizedNewProfileForm = useLocalizedForm(getCreateOwnProfileForm());
   const setUserToken = useSetRecoilState(userState);
+
+  const locale = useLocale();
 
   return (
     <GridLayout>
@@ -63,7 +66,7 @@ function RegisterPageContent(props) {
             history.push('/');
           }}
           alignX="center"
-          submitText="Register"
+          submitText={locale('Register')}
         />
       </StackLayout>
     </GridLayout>

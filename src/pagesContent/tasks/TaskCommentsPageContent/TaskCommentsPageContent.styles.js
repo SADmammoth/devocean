@@ -24,6 +24,7 @@ const styles = {
     fontWeight: 'bold',
     outline: 'none',
     border: 'none',
+    color: (theme) => theme.text.common,
     background: (theme) => theme.background.light,
     margin: '2px 0',
     '&$active': {

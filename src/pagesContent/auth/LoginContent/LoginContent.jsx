@@ -17,7 +17,8 @@ import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
 import getLoginForm from '../../../helpers/forms/getLoginForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import Client from '../../../helpers/services/Client';
 import userState, { userState_login } from '../../../recoil/states/userState';
 
@@ -35,6 +36,8 @@ const LoginContent = () => {
 
   const [inputs, setInputs] = useState({});
 
+  const locale = useLocale();
+
   return (
     <GridLayout>
       <Skip column={4} />
@@ -50,7 +53,7 @@ const LoginContent = () => {
             setInputs(inputs);
           }}
           alignX="center"
-          submitText="Log in">
+          submitText={locale('Log in')}>
           {inputs.login}
           {inputs.password}
         </Form>

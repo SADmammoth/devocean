@@ -28,9 +28,11 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
 
   const onNewItem = async ({ id: taskId, status: oldStatus, index }) => {
     const { text } = await showPopup({
-      children: `Changing status to ${locale(status)}`,
-      closeButtonContent: 'Confirm',
-      cancelText: 'Cancel',
+      children: locale('Changing status', {
+        status: locale(status),
+      }) /*`Changing status to ${locale(status)}` */,
+      closeButtonContent: locale('Confirm'),
+      cancelText: locale('Cancel'),
       inputs: [
         {
           type: 'textarea',
@@ -79,9 +81,13 @@ function KanbanStatusList({ classes, tasks, status, showTitle }) {
         renderItem={(task) => {
           if (task) return <DraggableTask key={task.id} {...task} />;
         }}
-        emptyMessage={`Drag and drop task cards there to set status "${locale(
+        emptyMessage={
+          locale('No tasks', {
+            status,
+          }) /*`Drag and drop task cards there to set status "${locale(
           status,
-        )}"`}
+        )}"` */
+        }
         dropareaOnEmpty
         onDrop={onNewItem}
       />

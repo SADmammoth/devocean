@@ -7,6 +7,7 @@ import { history } from 'umi';
 import Button from '../../../components/generic/Button';
 import Interactive from '../../../components/generic/Interactive';
 import PanelCard from '../../../components/generic/PanelCard';
+import Text from '../../../components/generic/Text';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import AssigneeBadge from '../../../components/specific/AssigneeBadge';
 import PriorityBadge from '../../../components/specific/PriorityBadge';
@@ -15,6 +16,7 @@ import StatusBadge from '../../../components/specific/StatusBadge';
 import TimeReportsBadge from '../../../components/specific/TimeReportsBadge';
 import FeatureMonade from '../../../helpers/components/FeatureMonade';
 import showPopup from '../../../helpers/components/showPopup';
+import useLocale from '../../../helpers/hooks/useLocale';
 import { tasksState_delete } from '../../../recoil/states/tasksState';
 
 function TaskSidebar({
@@ -28,13 +30,16 @@ function TaskSidebar({
   reportedTime,
 }) {
   const ButtonLink = Interactive(Button);
+  const locale = useLocale();
 
   const deleteTask = useSetRecoilState(tasksState_delete(id));
 
   const popup = () =>
     showPopup({
-      children: `Delete task "${title}"?`,
-      closeButtonContent: 'Yes',
+      children: (
+        <Text type="common">{locale('Delete task?', { task: title })}</Text>
+      ),
+      closeButtonContent: locale('Yes'),
     });
 
   return (
@@ -89,7 +94,7 @@ function TaskSidebar({
               deleteTask();
             });
           }}>
-          Delete
+          {locale('Delete')}
         </ButtonLink>
       </FeatureMonade>
     </StackLayout>

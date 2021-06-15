@@ -1,3 +1,5 @@
+import { getLocale } from 'umi';
+
 function Duration(input) {
   if (!input) {
     this.value = NaN;
@@ -36,7 +38,8 @@ Duration.prototype.getTime = function () {
 };
 
 Duration.prototype.toString = function () {
-  return truncate(this.getHours().toString(), 100) + 'h';
+  const hoursWord = getLocale() === 'ru-RU' ? 'ч' : 'h';
+  return truncate(this.getHours().toString(), 100) + hoursWord;
 };
 
 function truncate(value, precision) {

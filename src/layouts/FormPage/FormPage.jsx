@@ -12,8 +12,8 @@ import Text from '../../components/generic/Text';
 import GridLayout from '../../components/generic/layouts/GridLayout';
 import ScrollLayout from '../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../components/generic/layouts/StackLayout';
-import useLocalizedForm from '../../helpers/forms/useLocalizedForm';
 import useArrayState from '../../helpers/hooks/useArrayState';
+import useLocalizedForm from '../../helpers/hooks/useLocalizedForm';
 
 import styles from './FormPage.styles';
 

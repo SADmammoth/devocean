@@ -56,7 +56,7 @@ const ListViewContent = () => {
     manageTasks: [
       {
         label: <FaPlusCircle />,
-        title: 'Add new task',
+        title: locale('Add new task'),
         link: '/tasks/new',
         id: 'new-task',
       },
@@ -64,7 +64,7 @@ const ListViewContent = () => {
     manageCollections: [
       {
         label: <FaFolderPlus />,
-        title: 'Add task collection',
+        title: locale('Add task collection'),
         link: '/collections/new',
         id: 'add-collection',
       },
@@ -73,7 +73,7 @@ const ListViewContent = () => {
       {
         label: <FaTable />,
         menu: getTaskViewMenu('list'),
-        title: 'Switch view',
+        title: locale('Switch view'),
         id: 'switch-view',
       },
     ],

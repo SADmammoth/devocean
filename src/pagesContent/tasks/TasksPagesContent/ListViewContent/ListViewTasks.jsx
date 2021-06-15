@@ -47,7 +47,7 @@ function ListViewTasks({ folderId, style }) {
       renderItem={(task) => {
         if (task) return <DraggableTask key={task.id} {...task} />;
       }}
-      emptyMessage="Added tasks are showing up here"
+      emptyMessage={locale('Added tasks are showing up here')}
     />
   );
 }

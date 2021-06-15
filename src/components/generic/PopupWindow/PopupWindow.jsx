@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles, ThemeProvider } from 'react-jss';
 import { IntlProvider } from 'umi';
 
+import useLocale from '../../../helpers/hooks/useLocale';
 import themeGlobal from '../../../theme';
 import Button from '../Button';
 import PanelCard from '../PanelCard';
@@ -24,6 +25,7 @@ function PopupWindow({
 }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const renderContent = useCallback(() => {
     if (inputs) {
@@ -34,7 +36,7 @@ function PopupWindow({
           submitText={closeButtonContent}>
           {!showCancelButton || (
             <Button onClick={() => onClose(false)}>
-              {cancelText || 'Cancel'}
+              {cancelText || locale('Cancel')}
             </Button>
           )}
         </PopupForm>
@@ -45,7 +47,7 @@ function PopupWindow({
           <Button onClick={() => onClose(true)}>{closeButtonContent}</Button>,
           {!showCancelButton || (
             <Button onClick={() => onClose(false)}>
-              {cancelText || 'Cancel'}
+              {cancelText || locale('Cancel')}
             </Button>
           )}
         </StackLayout>

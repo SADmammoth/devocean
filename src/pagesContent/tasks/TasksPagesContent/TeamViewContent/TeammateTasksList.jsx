@@ -27,10 +27,6 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const [draggableAreaSize, setDraggableAreaSize] = useState(
-    theme.draggableAreaDefaultSize,
-  );
-
   const removeTask = useSetRecoilState(teammatesState_removeTask);
   const addTask = useSetRecoilState(teammatesState_addTask(id));
 
@@ -45,7 +41,6 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
       <DraggableList
         list={children}
         draggableType="task"
-        draggableAreaSize={draggableAreaSize}
         onNewItem={({ id: taskId, assignee, index }) => {
           if (assignee) removeTask({ taskId, teammateId: assignee });
           addTask({ taskId, index });
@@ -67,22 +62,15 @@ function TeammateTasksList({ id, displayName, avatar, tasks }) {
         as={ItemsContainer}
         items={tasks}
         renderItem={(task) => {
-          if (task)
-            return (
-              <DraggableTask
-                {...task}
-                onDragStart={({ height }) => {
-                  setDraggableAreaSize(height);
-                }}
-                onDragEnd={() =>
-                  setDraggableAreaSize(theme.draggableAreaDefaultSize)
-                }
-              />
-            );
+          if (task) return <DraggableTask {...task} />;
         }}
-        emptyMessage={`Drag and drop task cards here to ${
+        emptyMessage={
+          locale('No tasks assigned', {
+            name: displayName ? `assign to ${displayName}` : 'unassign',
+          }) /*`Drag and drop task cards here to ${
           displayName ? `assign to ${displayName}` : 'unassign'
-        }`}
+        }`*/
+        }
       />
     </StretchLastLayout>
   );

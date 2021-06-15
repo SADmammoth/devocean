@@ -11,6 +11,7 @@ import Text from '../../../../components/generic/Text';
 import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import ChangesCard from '../../../../components/specific/ChangesCard';
+import useLocale from '../../../../helpers/hooks/useLocale';
 import historyState from '../../../../recoil/states/historyState';
 import { tasksState_getById } from '../../../../recoil/states/tasksState';
 
@@ -21,6 +22,7 @@ const useStyles = createUseStyles(styles);
 function HistoryPageContent({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const history = useRecoilValueLoadable(historyState(id));
   const task = useRecoilValue(tasksState_getById(id));
@@ -62,7 +64,7 @@ function HistoryPageContent({ id }) {
       gap="10px">
       <h1>
         <Text as="span" className={classes.title} type="h1">
-          {'Changes history for task'}
+          {locale('Changes history for task')}
         </Text>
         {!task || (
           <Text as="span" type="big" lines={1} title={task.title}>

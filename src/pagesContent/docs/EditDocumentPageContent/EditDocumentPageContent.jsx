@@ -9,6 +9,7 @@ import Sidebar from '../../../components/generic/Sidebar';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
+import useLocale from '../../../helpers/hooks/useLocale';
 import Document from './Document';
 
 import styles from './EditDocumentPageContent.styles';
@@ -33,25 +34,24 @@ function EditDocumentPageContent({ initialValues, onSubmit }) {
     [abstract],
   );
 
+  const localizedForm = useLocalizedForm([
+    {
+      type: 'textarea',
+      name: 'abstract',
+      id: 'abstract',
+      label: 'Abstract',
+      placeholder: 'Write a few words what is this document about',
+      value: abstract,
+      onChange: (name, value) => {
+        setAbstract(value);
+      },
+    },
+  ]);
+
   return (
     <GridLayout className={classes.content}>
       <Sidebar column={3} className={classes.paddingTop}>
-        <Form
-          inputs={[
-            {
-              type: 'textarea',
-              name: 'abstract',
-              id: 'abstract',
-              label: 'Abstract',
-              placeholder: 'Write a few words what is this document about',
-              value: abstract,
-              onChange: (name, value) => {
-                setAbstract(value);
-              },
-            },
-          ]}
-          submitButton={<></>}
-        />
+        <Form inputs={localizedForm} submitButton={<></>} />
       </Sidebar>
       <Skip column={1} />
       <StackLayout

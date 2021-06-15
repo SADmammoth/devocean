@@ -10,6 +10,7 @@ import Text from '../../../components/generic/Text';
 import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
 import StretchLastLayout from '../../../components/generic/layouts/StretchLastLayout';
 import DocumentAbstractCard from '../../../components/specific/DocumentAbstractCard';
+import useLocale from '../../../helpers/hooks/useLocale';
 import TitledPage from '../../../layouts/TitledPage';
 import docsState from '../../../recoil/states/docsState';
 
@@ -20,6 +21,7 @@ const useStyles = createUseStyles(styles);
 function DocumentsPageContent(props) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const docs = useRecoilValueLoadable(docsState);
 
@@ -61,7 +63,7 @@ function DocumentsPageContent(props) {
     manageDocuments: [
       {
         label: <FaPlusCircle />,
-        title: 'Add new document',
+        title: locale('Add new document'),
         link: '/docs/new',
         id: 'new-doc',
       },

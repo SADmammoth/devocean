@@ -10,6 +10,7 @@ import Text from '../../../../components/generic/Text';
 import ScrollLayout from '../../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import ChangesCard from '../../../../components/specific/ChangesCard';
+import useLocale from '../../../../helpers/hooks/useLocale';
 import statusChangesState from '../../../../recoil/states/statusChangesState';
 import { tasksState_getById } from '../../../../recoil/states/tasksState';
 
@@ -20,6 +21,7 @@ const useStyles = createUseStyles(styles);
 function StatusesPageContent({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const statusChanges = useRecoilValueLoadable(statusChangesState(id));
   const task = useRecoilValue(tasksState_getById(id));
@@ -39,7 +41,7 @@ function StatusesPageContent({ id }) {
     <StackLayout orientation="vertical" nowrap gap="10px">
       <h1>
         <Text as="span" className={classes.title} type="h1">
-          {'Status changes for task'}
+          {locale('Status changes for task')}
         </Text>{' '}
         {!task || (
           <Text as="span" type="big" lines={1} title={task.title}>

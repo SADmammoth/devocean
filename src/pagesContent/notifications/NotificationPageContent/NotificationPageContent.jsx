@@ -62,11 +62,15 @@ function NotificationPageContent({
                 const approved = await showPopup({
                   children: [
                     <Text type="common">
-                      Do you really like to cancel notification "{title}"?
+                      {
+                        locale('Confirm cancel', {
+                          title,
+                        }) /* Do you really like to cancel notification "{title}"?*/
+                      }
                     </Text>,
                   ],
-                  closeButtonContent: 'Yes',
-                  cancelText: 'No',
+                  closeButtonContent: locale('Yes'),
+                  cancelText: locale('No'),
                 });
                 if (approved) {
                   cancelNotification(id);

@@ -19,6 +19,7 @@ import SubteamButton from '../../../components/specific/SubteamButton/SubteamBut
 import TaskFolderButton from '../../../components/specific/TaskFolderButton';
 import TeammateProfileCard from '../../../components/specific/TeammateProfileCard/TeammateProfileCard';
 import StateMonade from '../../../helpers/components/StateMonade';
+import useLocale from '../../../helpers/hooks/useLocale';
 import TitledPage from '../../../layouts/TitledPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import { teammateProfilesState_getBySubteam } from '../../../recoil/states/teammatesProfilesState';
@@ -32,6 +33,7 @@ const useStyles = createUseStyles(styles);
 function TeammatesPageContent(props) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const subteams = useRecoilValueLoadable(subteamsState);
 
@@ -61,7 +63,7 @@ function TeammatesPageContent(props) {
     manageTeammates: [
       {
         label: <FaPlusCircle />,
-        title: 'Add new teammate',
+        title: locale('Add new teammate'),
         link: '/teammates/new',
         id: 'new-teammate',
       },
@@ -70,9 +72,9 @@ function TeammatesPageContent(props) {
 
   return (
     <TitledPage
-      title={'Our team'}
+      title={locale('Our team')}
       sidebarContent={sidebar}
-      sidebarTitle={'Subteams'}
+      sidebarTitle={locale('Subteams')}
       toolbarItems={toolbar}>
       <StateMonade state={!!currentSubteamId}>
         <TeammatesList classes={classes} subteamId={currentSubteamId} />

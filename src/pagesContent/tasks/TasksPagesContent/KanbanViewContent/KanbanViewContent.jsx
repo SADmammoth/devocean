@@ -64,7 +64,7 @@ const KanbanViewContent = () => {
     manageTasks: [
       {
         label: <FaPlusCircle />,
-        title: 'Add new task',
+        title: locale('Add new task'),
         link: '/tasks/new',
         id: 'new-task',
       },
@@ -73,7 +73,7 @@ const KanbanViewContent = () => {
       {
         label: <FaTable />,
         menu: getTaskViewMenu('kanban'),
-        title: 'Switch view',
+        title: locale('Switch view'),
         id: 'switch-view',
       },
     ],
@@ -81,7 +81,7 @@ const KanbanViewContent = () => {
 
   return (
     <TitledPage
-      title={'Kanban board'}
+      title={locale('Kanban board')}
       sidebarTitle={locale('backlog')}
       sidebarContent={sidebar}
       toolbarItems={toolbar}>

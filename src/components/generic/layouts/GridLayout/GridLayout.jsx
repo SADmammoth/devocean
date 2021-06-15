@@ -20,6 +20,9 @@ function GridLayout({ children, className, gap, columns, stretchLast }) {
     let newChild;
 
     return React.Children.map(children, (child, i) => {
+      if (!child) {
+        return child;
+      }
       columnCount = child.props.column;
 
       if (child.type === Skip) {

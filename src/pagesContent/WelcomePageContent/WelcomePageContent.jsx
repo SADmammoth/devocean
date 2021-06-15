@@ -47,14 +47,14 @@ function WelcomePageContent(props) {
         <NavList
           items={[
             {
-              label: 'Create new team',
-              title: 'Create new team',
+              label: locale('Create new team'),
+              title: locale('Create new team'),
               id: 'register',
               link: '/auth/register',
             },
             {
-              label: 'Log in',
-              title: 'Log in',
+              label: locale('Log in'),
+              title: locale('Log in'),
               id: 'login',
               link: '/auth/login',
             },

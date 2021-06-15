@@ -7,10 +7,12 @@ import { useSetRecoilState } from 'recoil';
 import Button from '../../../../components/generic/Button';
 import Form from '../../../../components/generic/Form';
 import StackLayout from '../../../../components/generic/layouts/StackLayout';
+import useLocale from '../../../../helpers/hooks/useLocale';
 import discussionsState from '../../../../recoil/states/discussionsState';
 
 function CreateCommentForm({ classes, id }) {
   const addComment = useSetRecoilState(discussionsState(id));
+  const locale = useLocale();
 
   return (
     <StackLayout
@@ -25,7 +27,7 @@ function CreateCommentForm({ classes, id }) {
             type: 'textarea',
             id: 'comment',
             name: 'comment',
-            placeholder: 'Type comment',
+            placeholder: locale('Type comment'),
             attributes: {
               autoComplete: 'off',
             },

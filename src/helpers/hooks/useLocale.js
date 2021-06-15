@@ -11,6 +11,9 @@ export default function useLocale() {
       return id;
     }
     if (!locales.isInEvery(id)) {
+      if (process.env.NODE_ENV === 'development') {
+        debug(id, vars);
+      }
       return id;
     }
     let newMessage;
@@ -20,4 +23,18 @@ export default function useLocale() {
 
     return newMessage;
   });
+}
+
+function debug(id, vars) {
+  const locales = JSON.parse(
+    localStorage.getItem('DEV_unassigned_locales') || '{}',
+  );
+  let itemToSave = id;
+  if (vars && !_.isEmpty(vars)) {
+    itemToSave = vars;
+  }
+  localStorage.setItem(
+    'DEV_unassigned_locales',
+    JSON.stringify({ ...locales, [id]: itemToSave }),
+  );
 }

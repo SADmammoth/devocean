@@ -15,7 +15,7 @@ import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import showPopup from '../../../helpers/components/showPopup';
 import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import FormPage from '../../../layouts/FormPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
@@ -27,6 +27,7 @@ const useStyles = createUseStyles(styles);
 function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const addTag = useSetRecoilState(tagsState);
   const addSubteam = useSetRecoilState(subteamsState);
@@ -38,11 +39,11 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
           type: 'text',
           name: 'name',
           id: 'name',
-          label: 'Tag name',
+          label: locale('Tag name'),
         },
       ],
-      children: <Text type="h2">New tag</Text>,
-      closeButtonContent: 'Create',
+      children: <Text type="h2">{locale('New tag')}</Text>,
+      closeButtonContent: locale('Create'),
     });
 
     if (!tag) return;
@@ -59,11 +60,11 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
           type: 'text',
           name: 'name',
           id: 'name',
-          label: 'Subteam name',
+          label: locale('Subteam name'),
         },
       ],
-      children: <Text type="h2">New subteam</Text>,
-      closeButtonContent: 'Create',
+      children: <Text type="h2">{locale('New subteam')}</Text>,
+      closeButtonContent: locale('Create'),
     });
 
     if (!subteam) return;
@@ -73,7 +74,7 @@ function InitTeammateProfilePageContent({ initialValues, edit, onSubmit }) {
     return [...value, subteam.name];
   };
 
-  const title = edit ? 'Edit profile' : 'Create profile';
+  const title = edit ? locale('Edit profile') : locale('Create profile');
 
   return (
     <FormPage

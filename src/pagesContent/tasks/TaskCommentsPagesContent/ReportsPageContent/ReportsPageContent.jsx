@@ -15,6 +15,7 @@ import StackLayout from '../../../../components/generic/layouts/StackLayout';
 import ReportCard from '../../../../components/specific/ReportCard';
 import TimeReportsBadge from '../../../../components/specific/TimeReportsBadge';
 import StateMonade from '../../../../helpers/components/StateMonade';
+import useLocale from '../../../../helpers/hooks/useLocale';
 import Duration from '../../../../helpers/types/Duration';
 import reportsState from '../../../../recoil/states/reportsState';
 import { tasksState_getById } from '../../../../recoil/states/tasksState';
@@ -26,6 +27,7 @@ const useStyles = createUseStyles(styles);
 function ReportsPageContent({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const reports = useRecoilValueLoadable(reportsState(id));
   const task = useRecoilValue(tasksState_getById(id));
@@ -50,7 +52,7 @@ function ReportsPageContent({ id }) {
       <StackLayout orientation="vertical" gap="10px">
         <h1>
           <Text className={classes.title} type="h1" as="span">
-            {'Time reports for task'}
+            {locale('Time reports for task')}
           </Text>
           {!task || (
             <Text type="big" as="span" lines={1} title={task.title}>

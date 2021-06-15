@@ -9,8 +9,8 @@ import Text from '../../../components/generic/Text';
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import getCreateCollectionForm from '../../../helpers/forms/getCreateCollectionForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import FormPage from '../../../layouts/FormPage';
 
 import styles from './EditCollectionPageContent.styles';

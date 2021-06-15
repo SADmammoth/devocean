@@ -13,6 +13,7 @@ import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import FeatureMonade from '../../../helpers/components/FeatureMonade';
+import useLocale from '../../../helpers/hooks/useLocale';
 import TitledPage from '../../../layouts/TitledPage';
 
 import styles from './DocumentContentPage.styles';
@@ -22,6 +23,7 @@ const useStyles = createUseStyles(styles);
 function DocumentContentPage({ initialValues }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const InteractiveButton = Interactive(Button);
 
@@ -34,7 +36,7 @@ function DocumentContentPage({ initialValues }) {
       )}
       <FeatureMonade feature="manageDocuments">
         <InteractiveButton link={`/docs/${initialValues.id}/edit`}>
-          Edit
+          {locale('Edit')}
         </InteractiveButton>
       </FeatureMonade>
     </StackLayout>
@@ -97,7 +99,12 @@ function DocumentContentPage({ initialValues }) {
           />
         ) : (
           <Text className={classes.placeholder} type="big">
-            Document is empty. Press "Edit" to add content
+            {
+              locale(
+                'Empty document',
+              ) /* Document is empty. Press "Edit" to add
+            content*/
+            }
           </Text>
         )}
       </ScrollLayout>

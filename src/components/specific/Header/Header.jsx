@@ -6,6 +6,8 @@ import { useRecoilValue } from 'recoil';
 
 import StateMonade from '../../../helpers/components/StateMonade';
 import formatName from '../../../helpers/functions/formatName';
+import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedNavItems from '../../../helpers/hooks/useLocalizedNavitems';
 import navitemsState, {
   navitemsState_getShort,
 } from '../../../recoil/states/navitemsState';
@@ -32,10 +34,13 @@ const useStyles = createUseStyles(styles);
 const Header = ({ hideNotificationBadge, hideNavigation }) => {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const userData = useRecoilValueLoadable(userDataState);
   const navItems = useRecoilValue(navitemsState_getShort);
   const setUser = useSetRecoilState(userState);
+
+  const localizedNavItems = useLocalizedNavItems(navItems);
 
   return (
     <header className={classes.header}>
@@ -76,7 +81,7 @@ const Header = ({ hideNotificationBadge, hideNavigation }) => {
                       await userState_logout(userData.contents.id);
                       setUser(null);
                     }}>
-                    Logout
+                    {locale('Logout')}
                   </Button>
                 </>
               ) : null}

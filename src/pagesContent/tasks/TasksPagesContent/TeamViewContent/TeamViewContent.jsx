@@ -63,7 +63,7 @@ const TeamViewContent = () => {
     manageTasks: [
       {
         label: <FaPlusCircle />,
-        title: 'Add new task',
+        title: locale('Add new task'),
         link: '/tasks/new',
         id: 'new-task',
       },
@@ -72,7 +72,7 @@ const TeamViewContent = () => {
       {
         label: <FaTable />,
         menu: getTaskViewMenu('team'),
-        title: 'Switch view',
+        title: locale('Switch view'),
         id: 'switch-view',
       },
     ],
@@ -80,7 +80,7 @@ const TeamViewContent = () => {
 
   return (
     <TitledPage
-      title={'Tasks by assignees'}
+      title={locale('Tasks by assignees')}
       sidebarTitle={locale('Unassigned')}
       sidebarContent={sidebar}
       toolbarItems={toolbar}>

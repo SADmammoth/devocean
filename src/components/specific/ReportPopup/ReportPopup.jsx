@@ -7,7 +7,8 @@ import { useSetRecoilState } from 'recoil';
 
 import showPopup from '../../../helpers/components/showPopup';
 import getTimeReportForm from '../../../helpers/forms/getTimeReportForm';
-import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
+import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import Duration from '../../../helpers/types/Duration';
 import reportsState from '../../../recoil/states/reportsState';
 import Button from '../../generic/Button';
@@ -19,6 +20,7 @@ const useStyles = createUseStyles(styles);
 function ReportPopup({ id }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const addReport = useSetRecoilState(reportsState(id));
   const localizedForm = useLocalizedForm(getTimeReportForm());
@@ -27,7 +29,7 @@ function ReportPopup({ id }) {
     showPopup({
       inputs: localizedForm,
       children: [],
-      closeButtonContent: 'Report',
+      closeButtonContent: locale('Report'),
     });
 
   return (
@@ -45,7 +47,7 @@ function ReportPopup({ id }) {
           });
         });
       }}>
-      Report
+      {locale('Report')}
     </Button>
   );
 }
