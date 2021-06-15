@@ -6,6 +6,10 @@ const styles = {
     left: '-7px',
     top: '-7px',
   },
+
+  invalid: {
+    borderColor: (theme) => theme.text.error,
+  },
 };
 
 export default styles;

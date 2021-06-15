@@ -18,6 +18,10 @@ const styles = {
     padding: '10px',
     paddingTop: '15px',
   },
+  notifications: {
+    position: 'relative',
+    paddingTop: (theme) => `calc(${theme.spaces.small} * 3 - 5px)`,
+  },
 };
 
 export default styles;

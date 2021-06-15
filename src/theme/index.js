@@ -5,6 +5,7 @@ const theme = {
     highlighted: '#005c86',
     button: '#ffffff',
     secondaryButton: '#ffffff',
+    error: '#ff6666',
   },
   background: {
     shadows: '#063a5d2b',
@@ -15,6 +16,7 @@ const theme = {
     secondaryButton: '#8eb4cd',
     border: '#949494',
     card: '#fffef9',
+    error: '#ffe7e7',
   },
   shadows: {
     card: `0px 0px 6px 1px #063a5d2b`,

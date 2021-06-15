@@ -6,12 +6,14 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 
 import Form from '../../components/generic/Form';
+import FormToast from '../../components/generic/FormToast/FormToast';
 import Sidebar from '../../components/generic/Sidebar';
 import Text from '../../components/generic/Text';
 import GridLayout from '../../components/generic/layouts/GridLayout';
 import ScrollLayout from '../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../components/generic/layouts/StackLayout';
 import useLocalizedForm from '../../helpers/forms/useLocalizedForm';
+import useArrayState from '../../helpers/hooks/useArrayState';
 
 import styles from './FormPage.styles';
 
@@ -36,6 +38,13 @@ function FormPage({
     setInputs(inputs);
   };
 
+  const [
+    notifications,
+    addNotification,
+    closeNotification,
+    clearNotifications,
+  ] = useArrayState(0);
+
   return (
     <GridLayout className={classes.content}>
       <Sidebar
@@ -57,6 +66,10 @@ function FormPage({
           orientation="vertical"
           scrollOrientation="vertical">
           <Form
+            notify={(type, message) => {
+              clearNotifications();
+              addNotification({ type, message });
+            }}
             inputs={localizedForm}
             onSubmit={onSubmit}
             onInputsUpdate={onInputsUpdate}>
@@ -65,6 +78,24 @@ function FormPage({
               : inputsAtBody.map((key) => inputs[key])}
           </Form>
         </ScrollLayout>
+      </StackLayout>
+      <StackLayout
+        className={classes.notifications}
+        column={3}
+        orientation="vertical"
+        alignY="start"
+        gap="10px">
+        {notifications.map(({ id, type, message }, index) => {
+          console.log(id);
+          return (
+            <FormToast
+              key={id}
+              type={type}
+              message={message}
+              onClose={() => closeNotification(id)}
+            />
+          );
+        })}
       </StackLayout>
     </GridLayout>
   );
