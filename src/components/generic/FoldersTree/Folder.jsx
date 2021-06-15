@@ -24,9 +24,13 @@ function Folder({
 }) {
   const locale = useLocale();
 
+  const [opened, setOpened] = useState(false);
+
   const renderSubFolders = useCallback(() => {
     const subfolders =
-      childrenIds && childrenIds.length && (selected || selectedParent)
+      childrenIds &&
+      childrenIds.length &&
+      (selected || opened || selectedParent)
         ? childrenIds.map((id) => {
             const folder = requestFolderProps(id);
             if (folder) return <Folder key={id} {...folder} />;
@@ -34,7 +38,7 @@ function Folder({
         : null;
 
     return subfolders;
-  }, [selected, selectedParent, childrenIds, id, requestFolderProps]);
+  }, [selected, selectedParent, childrenIds, id, requestFolderProps, opened]);
 
   return (
     <StackLayout
@@ -47,6 +51,8 @@ function Folder({
         type={type}
         selected={selected}
         selectedParent={selectedParent}
+        opened={opened}
+        setOpened={setOpened}
         name={name}
         id={id}
         selectFolder={selectFolder}

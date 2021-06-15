@@ -35,6 +35,7 @@ function TaskFolderButton({
   toggleSubfolders,
   parent,
   index,
+  setOpened,
   ...props
 }) {
   const theme = useTheme();
@@ -53,26 +54,6 @@ function TaskFolderButton({
       : FaArrowRight;
 
   const ButtonContent = (
-    <StackLayout alignX="spaceBetween" alignY="center" gap="5px">
-      <StackLayout alignY="center">
-        <Icon />
-        <Text type="common" ellipsis>
-          {name}
-        </Text>
-      </StackLayout>
-
-      <StackLayout alignY="center">
-        {isConstant || (
-          <HiddenLink to={`/collections/${id}/edit`}>
-            <FaEdit />
-          </HiddenLink>
-        )}
-        <OpenActionIcon />
-      </StackLayout>
-    </StackLayout>
-  );
-
-  return (
     <InteractiveButton
       {...props}
       focusable={false}
@@ -82,14 +63,39 @@ function TaskFolderButton({
       })}
       onClick={() => selectFolder(selected ? parent : id)}
       label={locale(type, { name })}>
-      {type === 'list' && !selected && !selectedParent ? (
-        <FolderDropArea id={id} index={index} selectFolder={selectFolder}>
-          {ButtonContent}
-        </FolderDropArea>
-      ) : (
-        ButtonContent
-      )}
+      <StackLayout alignX="spaceBetween" alignY="center" gap="5px">
+        <StackLayout alignY="center">
+          <Icon />
+          <Text type="common" ellipsis>
+            {name}
+          </Text>
+        </StackLayout>
+
+        <StackLayout alignY="center">
+          {isConstant || (
+            <HiddenLink to={`/collections/${id}/edit`}>
+              <FaEdit />
+            </HiddenLink>
+          )}
+          <OpenActionIcon />
+        </StackLayout>
+      </StackLayout>
     </InteractiveButton>
+  );
+
+  return !selected && !selectedParent ? (
+    <FolderDropArea
+      type={type}
+      classes={classes}
+      theme={theme}
+      id={id}
+      index={index}
+      selectFolder={selectFolder}
+      setOpened={setOpened}>
+      {ButtonContent}
+    </FolderDropArea>
+  ) : (
+    ButtonContent
   );
 }
 

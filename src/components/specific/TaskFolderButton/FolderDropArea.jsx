@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { useSetRecoilState } from 'recoil';
@@ -11,27 +11,36 @@ import {
   folderTreeState_removeTask,
 } from '../../../recoil/states/folderTreeState';
 
-function FolderDropArea({ id, index, selectFolder, children }) {
+function FolderDropArea({
+  id,
+  classes,
+  type,
+  theme,
+  index,
+  selectFolder,
+  children,
+  setOpened,
+}) {
   const addTaskToList = useSetRecoilState(folderTreeState_addTask(id));
   const removeTask = useSetRecoilState(folderTreeState_removeTask);
 
   return (
     <DropArea
+      className={classes.dropArea}
       index={{ y: index, x: 0 }}
       onHovered={(dragging, index, accepted, mergeStyles) => {
-        if (accepted) {
-          dragging.style.visibility = 'hidden';
+        dragging.style.visibility = 'hidden';
+        setOpened(true);
+        if (accepted && type === 'list') {
           mergeStyles({
-            border: '2px solid red',
+            filter: 'brightness(0.98)',
           });
         }
       }}
       onUnhovered={(dragging, index, accepted, mergeStyles) => {
-        if (accepted) {
-          dragging.style.visibility = 'visible';
-          mergeStyles({
-            border: 'none',
-          });
+        dragging.style.visibility = 'visible';
+        if (accepted && type === 'list') {
+          mergeStyles({ filter: 'brightness(1)' });
         }
       }}
       setData={({ id: taskId, list }) => {
@@ -40,14 +49,16 @@ function FolderDropArea({ id, index, selectFolder, children }) {
         selectFolder(id);
       }}
       onAcceptedDragStart={(data, index, accepted, mergeStyles) => {
-        mergeStyles({
-          border: '2px solid green',
-        });
+        if (accepted && type === 'list')
+          mergeStyles({ filter: 'brightness(1.5)' });
       }}
       onAcceptedDragEnd={(data, index, accepted, mergeStyles) => {
-        mergeStyles({
-          border: 'none',
-        });
+        if (accepted && type === 'list')
+          mergeStyles({ filter: 'brightness(1)' });
+
+        dragging.style.visibility = 'visible';
+
+        setOpened(false);
       }}>
       {children}
     </DropArea>

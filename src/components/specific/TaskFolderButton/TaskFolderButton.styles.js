@@ -17,6 +17,9 @@ const styles = {
     border: (theme) => `2px solid ${theme.text.highlighted}`,
     boxShadow: (theme) => `inset 0 0 2px ${theme.background.shadows}`,
   },
+  dropArea: {
+    borderRadius: '5px',
+  },
 };
 
 export default styles;
