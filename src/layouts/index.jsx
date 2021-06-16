@@ -8,7 +8,6 @@ import IndexLayout from './IndexLayout';
 function Index(props) {
   return (
     <>
-      <Helmet></Helmet>
       <IndexLayout {...props} />
     </>
   );

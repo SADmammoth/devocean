@@ -30,10 +30,13 @@ const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
                 this.field(key, item[i]);
               }
               continue;
+            } else if (item instanceof Date) {
+              item = item.toISOString();
             } else if (typeof item === 'object') {
               item = JSON.stringify(item);
             }
 
+            if (!item) continue;
             this.field(key, item);
           }
         }
@@ -177,7 +180,7 @@ const Client = {
       const body = filterFalsy({
         ...task,
         estimate: new Duration(task.estimate).getHours(),
-        reportedTime: task.reportedTime.getHours(),
+        reportedTime: task.reportedTime?.getHours(),
         // timeInStatus: new Duration(new Date(task.timeInStatus)),
       });
 

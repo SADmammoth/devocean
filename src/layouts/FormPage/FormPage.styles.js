@@ -16,7 +16,9 @@ const styles = {
   },
   scrollArea: {
     padding: '10px',
+    paddingRight: '20px',
     paddingTop: '15px',
+    height: '55vh',
   },
   notifications: {
     position: 'relative',

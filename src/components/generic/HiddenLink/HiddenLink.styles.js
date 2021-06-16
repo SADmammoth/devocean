@@ -3,6 +3,9 @@ const styles = {
     outline: 'none',
     color: 'inherit',
     underline: 'inherit',
+    '&:hover': {
+      color: 'inherit',
+    },
   },
 };
 

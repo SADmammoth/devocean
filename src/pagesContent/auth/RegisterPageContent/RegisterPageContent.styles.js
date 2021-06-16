@@ -8,6 +8,10 @@ const styles = {
       width: '100%',
     },
   },
+  notifications: {
+    position: 'relative',
+    paddingTop: (theme) => theme.spaces.big,
+  },
 };
 
 export default styles;

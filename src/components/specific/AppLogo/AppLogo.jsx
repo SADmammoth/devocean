@@ -3,7 +3,7 @@ import React from 'react';
 import { useTheme, createUseStyles } from 'react-jss';
 import { Link } from 'umi';
 
-import logo from '../../../assets/images/logo.svg';
+import { ReactComponent as Logo } from '../../../assets/images/logo.svg';
 import HiddenLink from '../../generic/HiddenLink';
 
 import styles from './AppLogo.styles';
@@ -16,12 +16,7 @@ export default function AppLogo() {
 
   return (
     <HiddenLink to="/">
-      <img
-        className={classes.appLogo}
-        src={logo}
-        alt="DEVocean"
-        title="DEVocean"
-      />
+      <Logo className={classes.appLogo} />
     </HiddenLink>
   );
 }

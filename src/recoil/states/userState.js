@@ -29,7 +29,9 @@ export const userState_register = async ({ login, password }) => {
     .then((res) => {
       return res;
     })
-    .catch((res) => null);
+    .catch((res) => {
+      throw res.response.text;
+    });
 
   return await userState_login({ login, password });
 };

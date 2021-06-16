@@ -1,4 +1,4 @@
-import { Validator } from '@sadmammoth/react-form';
+import { DateMaskConverters, Validator } from '@sadmammoth/react-form';
 
 export default function getInitTeammateProfileForm({
   hideWorkHours,
@@ -118,8 +118,22 @@ export default function getInitTeammateProfileForm({
             label: 'Work day start',
             mask: '99:99',
             maskType: 'invisible',
-            validator: (input) => Validator.dateTime(input, ['hh:mm']),
-            byCharValidator: (input) => Validator.dateByChar(input, ['hh:mm']),
+            validator: (input) => Validator.dateTime(input, ['HH:mm']),
+            byCharValidator: (input) => Validator.dateByChar(input, ['HH:mm']),
+            converters: {
+              in: (value) => {
+                return value ? new Date(value) : value;
+              },
+              out: (value) => {
+                if (value) {
+                  const start = new Date(0);
+                  let date = DateMaskConverters.parseDateByMask(value, 'HH:mm');
+                  start.setHours(date.getHours(), date.getMinutes());
+                  return start.getTime();
+                }
+                return value;
+              },
+            },
 
             value: workHoursStart,
           },
@@ -130,8 +144,22 @@ export default function getInitTeammateProfileForm({
             label: 'Work day end',
             mask: '99:99',
             maskType: 'invisible',
-            validator: (input) => Validator.dateTime(input, ['hh:mm']),
-            byCharValidator: (input) => Validator.dateByChar(input, ['hh:mm']),
+            validator: (input) => Validator.dateTime(input, ['HH:mm']),
+            byCharValidator: (input) => Validator.dateByChar(input, ['HH:mm']),
+            converters: {
+              in: (value) => {
+                return value ? new Date(value) : value;
+              },
+              out: (value) => {
+                if (value) {
+                  const start = new Date(0);
+                  let date = DateMaskConverters.parseDateByMask(value, 'HH:mm');
+                  start.setHours(date.getHours(), date.getMinutes());
+                  return start.getTime();
+                }
+                return value;
+              },
+            },
 
             value: workHoursEnd,
           },

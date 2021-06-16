@@ -6,8 +6,8 @@
 	.st0{fill:#2B7FAA;}
 	.st4{fill:url(#Path_14_1_);}
 </style>
-<text transform="matrix(1 0 0 1 198.8467 111.9659)" font-size="122" font-family="CenturyGothic, Century Gothic" class="st0">DEV</text>
-<text transform="matrix(1 0 0 1 206.2676 172.752)" font-size="64" font-family="CenturyGothic, Century Gothic" class="st0">ocean</text>
+<text transform="matrix(1 0 0 1 198.8467 111.9659)" font-weight="bold" font-size="105" font-family="Comfortaa" class="st0">DEV</text>
+<text transform="matrix(1 0 0 1 206.2676 172.752)" font-weight="bold" font-size="64" font-family="Comfortaa" class="st0">ocean</text>
 <ellipse id="Ellipse_89" transform="matrix(0.9609 -0.277 0.277 0.9609 -23.7587 30.5028)" class="st0" cx="96.1" cy="99.4" rx="94.9" ry="99.7"/>
 <linearGradient id="Path_14_1_" gradientUnits="userSpaceOnUse" x1="-70.718" y1="522.4878" x2="-69.668" y2="522.4878" gradientTransform="matrix(175.2671 0 0 -172.7962 12394.5469 90387.4375)">
 	<stop  offset="0" style="stop-color:#F4EED4"/>
