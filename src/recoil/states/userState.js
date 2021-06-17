@@ -1,4 +1,10 @@
-import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  atom,
+  atomFamily,
+  selector,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
 
 import Client from '../../helpers/services/Client';
 import localStorageSync from '../helpers/effects/localStorageSync';
@@ -39,18 +45,20 @@ export const userState_register = async ({ login, password }) => {
 const getUserData = (userToken) =>
   userToken ? Client.user.getData(userToken) : userToken;
 
-const userDataAtom = atom({
+const userDataAtom = atomFamily({
   key: baseKey + 'data',
   default: {},
-  effects_UNSTABLE: [serverStateSync(getUserData)],
+  effects_UNSTABLE: (userToken) => [
+    serverStateSync(() => getUserData(userToken)),
+  ],
 });
 
 export const userDataState = selector({
   key: baseKey + 'data_selector',
-  get: ({ get }) => {
-    const user = get(userDataAtom);
+  get: async ({ get }) => {
+    const userToken = get(userState);
+    const user = get(userDataAtom(userToken));
 
-    if (!user || _.isEmpty(user)) return;
     const { teammateId, invited } = user;
     const teammates = get(teammateProfilesState);
     const teammate = teammates.find(({ id }) => id === teammateId);

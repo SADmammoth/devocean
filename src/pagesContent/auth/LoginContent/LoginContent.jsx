@@ -19,6 +19,7 @@ import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammatePr
 import getLoginForm from '../../../helpers/forms/getLoginForm';
 import useLocalizedForm from '../../../helpers/forms/useLocalizedForm';
 import Client from '../../../helpers/services/Client';
+import serverStateSync from '../../../recoil/helpers/effects/serverStateSync';
 import userState, { userState_login } from '../../../recoil/states/userState';
 
 import styles from './LoginContent.styles';

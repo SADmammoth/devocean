@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import { userDataState } from '../../../recoil/states/userState';
 import Card from '../../generic/Card';
@@ -19,7 +19,7 @@ function DiscussionCard({ id, author, text, time, index }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const currentUser = useRecoilValue(userDataState);
+  const currentUser = useRecoilValueLoadable(userDataState);
 
   return (
     <Card
@@ -27,7 +27,10 @@ function DiscussionCard({ id, author, text, time, index }) {
       orientation="vertical"
       className={classes.discussionCard}>
       <StackLayout orientation="vertical" gap="10px">
-        <CommentAuthorBadge time={time} author={author || currentUser} />
+        <CommentAuthorBadge
+          time={time}
+          author={author || currentUser?.contents}
+        />
         <Text type="common" className={classes.message}>
           {text}
         </Text>

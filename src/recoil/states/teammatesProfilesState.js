@@ -18,7 +18,7 @@ const postState = (userToken, teammate) =>
 const patchState = (userToken, teammate) =>
   Client.teammateProfiles.patch(teammate.id, teammate, userToken);
 
-const teammateProfilesAtom = atom({
+export const teammateProfilesAtom = atom({
   key: baseKey,
   default: [],
   effects_UNSTABLE: [

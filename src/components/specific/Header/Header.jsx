@@ -61,7 +61,9 @@ const Header = ({ hideNotificationBadge, hideNavigation }) => {
             )}
             {hideNotificationBadge || <NotificationsBadge />}
             <LanguageSwitcher />
-            <StateMonade state={userData.state}>
+            <StateMonade
+              state={userData.state}
+              onError={() => userData.contents}>
               {userData.contents ? (
                 <>
                   <TeammateTitle

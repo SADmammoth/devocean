@@ -3,7 +3,7 @@ import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 
 import formatName from '../../../helpers/functions/formatName';
 import RelativeDate from '../../../helpers/types/RelativeDate';
@@ -22,7 +22,7 @@ function NotificationCard({ id, title, status, time, author, index }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const currentUser = useRecoilValue(userDataState);
+  const currentUser = useRecoilValueLoadable(userDataState);
 
   return (
     <Tag classes={classes} tag={_.capitalize(status)}>
@@ -39,7 +39,9 @@ function NotificationCard({ id, title, status, time, author, index }) {
             />
           </BlockDescriptionLayout.Block>
           <BlockDescriptionLayout.Description>
-            <Text type="small">[{formatName(author || currentUser)}]:</Text>
+            <Text type="small">
+              [{formatName(author || currentUser?.contents)}]:
+            </Text>
             <Text type="common" bold lines={2}>
               {title}
             </Text>

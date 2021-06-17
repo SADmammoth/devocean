@@ -49,7 +49,7 @@ function TeammatePageContent({ initialValues }) {
     actualStatus,
   } = initialValues;
 
-  const userData = useRecoilValue(userDataState);
+  const userData = useRecoilValueLoadable(userDataState);
 
   const ButtonLink = Interactive(Button);
 
@@ -85,7 +85,7 @@ function TeammatePageContent({ initialValues }) {
               />
             </PanelCard>
           )}
-          {userData && id === userData.id ? (
+          {userData?.contents && id === userData.contents?.id ? (
             editButton
           ) : (
             <FeatureMonade feature="manageTeammates">

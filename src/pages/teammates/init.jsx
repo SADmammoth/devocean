@@ -21,12 +21,12 @@ import {
 import userState, { userDataState } from '../../recoil/states/userState';
 
 function InitProfilePage() {
-  const userData = useRecoilValue(userDataState);
+  const userData = useRecoilValueLoadable(userDataState);
   const initialValues = useRecoilValueLoadable(
-    teammateProfilesState_getById(userData?.id),
+    teammateProfilesState_getById(userData?.contents?.id),
   );
   const patchTeammate = useSetRecoilState(
-    teammateProfilesState_update(userData?.id),
+    teammateProfilesState_update(userData?.contents?.id),
   );
 
   const [hideWorkHours, setHideWorkHours] = useState(true);
