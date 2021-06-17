@@ -12,8 +12,8 @@ function manageTeammates({
     params: { id },
   },
 }) {
-  const userData = useRecoilValueLoadable(userDataState);
-  if (userData.contents && id === userData.contents?.id) {
+  const userData = useRecoilValue(userDataState);
+  if (userData && id === userData.id) {
     return children;
   }
   return <FeatureAccess feature="manageTeammates">{children}</FeatureAccess>;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
 import CreateTeammateProfilePageContent from '../../pagesContent/teammates/CreateTeammateProfilePageContent/CreateTeammateProfilePageContent';
@@ -15,6 +16,8 @@ function NewProfilePage() {
   const [hideWorkHours, setHideWorkHours] = useState(true);
   const subteams = useRecoilValue(subteamsState);
   const tags = useRecoilValue(tagsState);
+
+  const history = useHistory();
 
   return (
     <>
@@ -31,13 +34,14 @@ function NewProfilePage() {
             value: name,
           })),
         }}
-        onSubmit={(data) =>
+        onSubmit={async (data) => {
           postTeammate({
             ...data,
             hidden: true,
             invited: true,
-          })
-        }
+          });
+          history.push('/teammates');
+        }}
       />
     </>
   );

@@ -10,7 +10,7 @@ const styles = {
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'right center',
     backgroundSize: 'auto 90%',
-    height: '100%',
+    height: '75%',
     width: '100%',
     position: 'absolute',
     zIndex: -1,

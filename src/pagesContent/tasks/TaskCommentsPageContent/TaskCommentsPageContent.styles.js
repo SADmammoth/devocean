@@ -25,6 +25,7 @@ const styles = {
     outline: 'none',
     border: 'none',
     background: (theme) => theme.background.light,
+    color: (theme) => theme.text.common,
     margin: '2px 0',
     '&$active': {
       border: (theme) => `2px solid ${theme.text.highlighted}`,

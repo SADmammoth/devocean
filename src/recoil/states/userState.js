@@ -21,7 +21,7 @@ const userState = atom({
 });
 
 export const userState_login = async ({ login, password }) => {
-  const token = await Client.user.login(login, password).catch((res) => null);
+  const token = await Client.user.login(login, password);
   return { ...(await Client.user.getData(token)), token };
 };
 

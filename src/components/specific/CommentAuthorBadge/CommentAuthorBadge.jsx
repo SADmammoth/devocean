@@ -20,18 +20,18 @@ function CommentAuthorBadge({ className, author, time }) {
   const classes = useStyles(theme);
 
   return (
-    <HiddenLink to={`/teammates/${author.id}`}>
+    <HiddenLink to={`/teammates/${author?.id}`}>
       <BlockDescriptionLayout className={className}>
         <BlockDescriptionLayout.Block>
           <Avatar
-            image={author.avatar}
+            image={author?.avatar}
             displayName={formatName(author || {})}
             size="50px"
           />
         </BlockDescriptionLayout.Block>
         <BlockDescriptionLayout.Description>
           <Text type="common" bold>
-            {formatName(author || {})}
+            {formatName(author || { name: 'Former user' })}
           </Text>
           <LiveRelativeDate type="small" date={time} />
         </BlockDescriptionLayout.Description>

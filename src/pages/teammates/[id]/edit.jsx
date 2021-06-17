@@ -62,6 +62,7 @@ function EditProfilePage({
         onSubmit={async (data) => {
           await patchTeammate({ ...data });
           setUserToken(userToken);
+          history.push('/teammates');
         }}
       />
     </StateMonade>

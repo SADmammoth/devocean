@@ -33,10 +33,13 @@ const styles = {
     width: '100%',
   },
   '@global .file_label': {
-    height: '200px',
+    height: '280px',
     position: 'relative',
     marginBottom: '20px',
     padding: 'none',
+  },
+  '@global .file_label caption': {
+    display: 'none',
   },
   '@global .file_label .button': {
     position: 'absolute',
@@ -66,10 +69,11 @@ const styles = {
     padding: '5px',
   },
   '@global .image': {
-    width: '180px',
+    width: '245px !important',
+    height: '245px !important',
   },
   '@global .image-file': {
-    width: '180px',
+    width: '245px',
     border: 'none',
     padding: 'none',
   },

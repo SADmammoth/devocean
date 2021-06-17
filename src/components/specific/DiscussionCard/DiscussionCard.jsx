@@ -19,7 +19,7 @@ function DiscussionCard({ id, author, text, time, index }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
-  const currentUser = useRecoilValueLoadable(userDataState);
+  const currentUser = useRecoilValue(userDataState);
 
   return (
     <Card
@@ -27,10 +27,7 @@ function DiscussionCard({ id, author, text, time, index }) {
       orientation="vertical"
       className={classes.discussionCard}>
       <StackLayout orientation="vertical" gap="10px">
-        <CommentAuthorBadge
-          time={time}
-          author={author || currentUser?.contents}
-        />
+        <CommentAuthorBadge time={time} author={author || currentUser} />
         <Text type="common" className={classes.message}>
           {text}
         </Text>
