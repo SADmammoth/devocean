@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 
+import CreateTeammateProfilePageContent from '../../pagesContent/teammates/CreateTeammateProfilePageContent/CreateTeammateProfilePageContent';
 import InitTeammateProfilePageContent from '../../pagesContent/teammates/InitTeammateProfilePageContent';
 import subteamsState from '../../recoil/states/subteamsState';
 import tagsState from '../../recoil/states/tagsState';
@@ -17,7 +18,7 @@ function NewProfilePage() {
 
   return (
     <>
-      <InitTeammateProfilePageContent
+      <CreateTeammateProfilePageContent
         initialValues={{
           hideWorkHours,
           setHideWorkHours,

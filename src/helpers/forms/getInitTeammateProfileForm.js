@@ -3,11 +3,6 @@ import { DateMaskConverters, Validator } from '@sadmammoth/react-form';
 export default function getInitTeammateProfileForm({
   hideWorkHours,
   setHideWorkHours,
-  hideLogin,
-  hidePassword,
-  hideJoinedAt,
-  hideWorkHoursSelect,
-  hideEmail,
   joinedAt,
   workMode,
   workHours,
@@ -26,36 +21,6 @@ export default function getInitTeammateProfileForm({
   addSubteamAction,
 }) {
   return [
-    ...(hideLogin
-      ? []
-      : [
-          {
-            id: 'login',
-            type: 'text',
-            name: 'login',
-            label: 'Login',
-          },
-        ]),
-    ...(hideEmail
-      ? []
-      : [
-          {
-            id: 'email',
-            type: 'text',
-            name: 'email',
-            label: 'Email',
-          },
-        ]),
-    ...(hidePassword
-      ? []
-      : [
-          {
-            id: 'temporaryPassword',
-            type: 'password',
-            name: 'temporaryPassword',
-            label: 'Temporary password',
-          },
-        ]),
     {
       id: 'workMode',
       type: 'select',
@@ -73,41 +38,49 @@ export default function getInitTeammateProfileForm({
       ],
       value: workMode,
     },
-    ...(hideWorkHoursSelect
-      ? []
-      : [
-          {
-            id: 'workHours',
-            type: 'select',
-            name: 'workHours',
-            label: 'Work hours',
-            valueOptions: [
-              {
-                label: 'Fixed',
-                value: 'fixed',
-              },
-              {
-                label: 'Flexible',
-                value: 'flexible',
-              },
-            ],
-            onChange: (name, value) => setHideWorkHours(value === 'flexible'),
-            value: workHours,
-          },
-        ]),
-    ...(hideJoinedAt
-      ? []
-      : [
-          {
-            id: 'joinedAt',
-            name: 'joinedAt',
-            type: 'text',
-            label: 'Joined at',
-            validator: 'dateByCharWithInvisibleMask',
-            converters: 'date',
-            value: joinedAt || new Date(),
-          },
-        ]),
+
+    {
+      id: 'workHours',
+      type: 'select',
+      name: 'workHours',
+      label: 'Work hours',
+      valueOptions: [
+        {
+          label: 'Fixed',
+          value: 'fixed',
+        },
+        {
+          label: 'Flexible',
+          value: 'flexible',
+        },
+      ],
+      onChange: (name, value) => setHideWorkHours(value === 'flexible'),
+      value: workHours,
+    },
+
+    {
+      id: 'joinedAt',
+      name: 'joinedAt',
+      type: 'text',
+      label: 'Joined at',
+      validator: 'dateByCharWithInvisibleMask',
+      value: joinedAt || new Date(),
+      converters: {
+        in: (value) => {
+          return DateMaskConverters.fromDateToMask(
+            new Date(value),
+            'dd-MM-yyyy',
+          );
+        },
+        out: (value) => {
+          return DateMaskConverters.parseDateByMask(
+            value,
+            'dd-MM-yyyy',
+          ).toISOString();
+        },
+      },
+    },
+
     ...(hideWorkHours
       ? []
       : [
@@ -122,7 +95,7 @@ export default function getInitTeammateProfileForm({
             byCharValidator: (input) => Validator.dateByChar(input, ['HH:mm']),
             converters: {
               in: (value) => {
-                return value ? new Date(value) : value;
+                return value ? new Date(value) : null;
               },
               out: (value) => {
                 if (value) {
@@ -131,7 +104,7 @@ export default function getInitTeammateProfileForm({
                   start.setHours(date.getHours(), date.getMinutes());
                   return start.getTime();
                 }
-                return value;
+                return null;
               },
             },
 
@@ -148,7 +121,7 @@ export default function getInitTeammateProfileForm({
             byCharValidator: (input) => Validator.dateByChar(input, ['HH:mm']),
             converters: {
               in: (value) => {
-                return value ? new Date(value) : value;
+                return value ? new Date(value) : null;
               },
               out: (value) => {
                 if (value) {
@@ -157,7 +130,7 @@ export default function getInitTeammateProfileForm({
                   start.setHours(date.getHours(), date.getMinutes());
                   return start.getTime();
                 }
-                return value;
+                return null;
               },
             },
 
@@ -170,6 +143,7 @@ export default function getInitTeammateProfileForm({
       type: 'text',
       label: 'Name',
       value: name,
+      required: true,
     },
     {
       id: 'lastName',
@@ -177,6 +151,7 @@ export default function getInitTeammateProfileForm({
       type: 'text',
       label: 'Last name',
       value: lastName,
+      required: true,
     },
     {
       id: 'referAs',

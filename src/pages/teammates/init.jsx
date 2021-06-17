@@ -29,6 +29,8 @@ function InitProfilePage() {
     teammateProfilesState_update(userData?.id),
   );
 
+  const [hideWorkHours, setHideWorkHours] = useState(true);
+
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
   if (userData?.invited === false) return <Redirect to="/error/404" />;
@@ -39,14 +41,9 @@ function InitProfilePage() {
         return initialValues.contents;
       }}>
       <InitTeammateProfilePageContent
-        edit
         initialValues={{
-          hideLogin: true,
-          hideWorkHours: true,
-          hidePassword: true,
-          hideWorkHoursSelect: true,
-          hideJoinedAt: true,
-          hideEmail: true,
+          hideWorkHours,
+          setHideWorkHours,
           ...initialValues.contents,
           tags: initialValues.contents.tags
             ? initialValues.contents.tags.map(({ name }) => name)

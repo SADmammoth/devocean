@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useSetRecoilState } from 'recoil';
 
 import Text from '../../../components/generic/Text';
 import showPopup from '../../../helpers/components/showPopup';
-import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
+import getEditTeammateProfileForm from '../../../helpers/forms/getEditTeammateProfileForm';
 import FormPage from '../../../layouts/FormPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 
-import styles from './InitTeammateProfilePageContent.styles';
+import styles from './EditTeammateProfilePageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
-function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
+function EditTeammateProfilePageContent({ initialValues, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -64,13 +65,13 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
     return [...value, subteam.name];
   };
 
-  const title = 'Before we start...';
+  const title = 'Edit profile';
 
   return (
     <FormPage
       title={title}
       getInputs={() =>
-        getInitTeammateProfileForm({
+        getEditTeammateProfileForm({
           ...initialValues,
           addTagAction,
           addSubteamAction,
@@ -90,6 +91,6 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
   );
 }
 
-InitTeammateProfilePageContent.propTypes = {};
+EditTeammateProfilePageContent.propTypes = {};
 
-export default InitTeammateProfilePageContent;
+export default EditTeammateProfilePageContent;

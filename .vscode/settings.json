@@ -7,7 +7,7 @@
     "**/.DS_Store": true,
     "**/.umi": false,
     "**/node_modules": true,
-    "**/build": true,
+    "**/build": false,
     "**/yarn.lock": true,
     ".vscode": false,
     "**/yarn-error.log": true

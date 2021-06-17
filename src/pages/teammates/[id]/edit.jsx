@@ -9,7 +9,7 @@ import {
 } from 'recoil';
 
 import StateMonade from '../../../helpers/components/StateMonade';
-import InitTeammateProfilePageContent from '../../../pagesContent/teammates/InitTeammateProfilePageContent';
+import EditTeammateProfilePageContent from '../../../pagesContent/teammates/EditTeammateProfilePageContent';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 import {
@@ -31,21 +31,18 @@ function EditProfilePage({
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
 
+  const [hideWorkHours, setHideWorkHours] = useState(true);
+
   return (
     <StateMonade
       state={initialValues.state}
       onError={() => {
         return initialValues.contents;
       }}>
-      <InitTeammateProfilePageContent
-        edit
+      <EditTeammateProfilePageContent
         initialValues={{
-          hideLogin: true,
-          hideWorkHours: true,
-          hidePassword: true,
-          hideWorkHoursSelect: true,
-          hideJoinedAt: true,
-          hideEmail: true,
+          hideWorkHours,
+          setHideWorkHours,
           ...initialValues.contents,
           tags: initialValues.contents.tags
             ? initialValues.contents.tags.map(({ id }) => id)

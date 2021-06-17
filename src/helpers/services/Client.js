@@ -447,6 +447,14 @@ const Client = {
         .then(({ body }) => body);
     },
     post: ({ id, avatar, ...teammate }, userToken) => {
+      if (!avatar) {
+        return request
+          .post(`/teammates`)
+          .use(apiPath)
+          .send(teammate)
+          .auth(userToken, { type: 'bearer' })
+          .then(({ body }) => body);
+      }
       return request
         .post(`/teammates`)
         .use(apiPath)
@@ -456,6 +464,14 @@ const Client = {
         .then(({ body }) => body);
     },
     patch: (id, { avatar, ...teammate }, userToken) => {
+      if (!avatar) {
+        return request
+          .patch(`/teammates/${id}`)
+          .use(apiPath)
+          .send(teammate)
+          .auth(userToken, { type: 'bearer' })
+          .then(({ body }) => body);
+      }
       return request
         .patch(`/teammates/${id}`)
         .use(apiPath)

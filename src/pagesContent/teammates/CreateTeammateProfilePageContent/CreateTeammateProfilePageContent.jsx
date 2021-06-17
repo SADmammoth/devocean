@@ -6,16 +6,16 @@ import { useSetRecoilState } from 'recoil';
 
 import Text from '../../../components/generic/Text';
 import showPopup from '../../../helpers/components/showPopup';
-import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
+import getCreateTeammateProfileForm from '../../../helpers/forms/getCreateTeammateProfileForm';
 import FormPage from '../../../layouts/FormPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 
-import styles from './InitTeammateProfilePageContent.styles';
+import styles from './CreateTeammateProfilePageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
-function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
+function CreateTeammateProfilePageContent({ initialValues, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
 
@@ -64,23 +64,24 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
     return [...value, subteam.name];
   };
 
-  const title = 'Before we start...';
+  const title = 'Create profile';
 
   return (
     <FormPage
       title={title}
       getInputs={() =>
-        getInitTeammateProfileForm({
+        getCreateTeammateProfileForm({
           ...initialValues,
           addTagAction,
           addSubteamAction,
         })
       }
       onSubmit={onSubmit}
-      inputsAtSidebar={['avatar', 'subteams', 'tags', 'joinedAt']}
+      inputsAtSidebar={['name', 'lastName', 'subteams', 'tags', 'joinedAt']}
       inputsAtBody={[
-        'name',
-        'lastName',
+        'login',
+        'temporaryPassword',
+        'email',
         'workMode',
         'workHours',
         'workHoursStart',
@@ -90,6 +91,6 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
   );
 }
 
-InitTeammateProfilePageContent.propTypes = {};
+CreateTeammateProfilePageContent.propTypes = {};
 
-export default InitTeammateProfilePageContent;
+export default CreateTeammateProfilePageContent;
