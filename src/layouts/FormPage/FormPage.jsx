@@ -47,7 +47,16 @@ function FormPage({
 
   const renderInput = (inputComponent) => {
     if (inputComponent?.$title) {
-      return Object.values(_.omit(inputComponent, ['$title']));
+      return (
+        <ScrollLayout
+          className={classes.scrollArea}
+          scrollOrientation="vertical"
+          blockSnapType="start"
+          scrollPaddingStart="20px"
+          scrollPaddingEnd="20px">
+          {Object.values(_.omit(inputComponent, ['$title']))}
+        </ScrollLayout>
+      );
     }
     return inputComponent;
   };
@@ -68,13 +77,10 @@ function FormPage({
         orientation="vertical"
         alignY="start">
         <Text type="h1">{title}</Text>
-        <ScrollLayout
-          className={classes.scrollArea}
+        <StackLayout
+          className={classes.body}
           orientation="vertical"
-          scrollOrientation="vertical"
-          blockSnapType="start"
-          scrollPaddingStart="20px"
-          scrollPaddingEnd="20px">
+          alignY="stretch">
           <Form
             notify={(type, message) => {
               if (type === 'error') {
@@ -89,7 +95,7 @@ function FormPage({
               ? inputsAtBody(inputs).map((key) => renderInput(inputs[key]))
               : inputsAtBody.map((key) => renderInput(inputs[key]))}
           </Form>
-        </ScrollLayout>
+        </StackLayout>
       </StackLayout>
       <StackLayout
         className={classes.notifications}

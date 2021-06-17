@@ -8,7 +8,12 @@ function FormView({ classes, children, ...props }) {
   return (
     <form {...props}>
       {!children || (
-        <StackLayout orientation="vertical" gap="10px" alignX="start">
+        <StackLayout
+          className="form-stack"
+          orientation="vertical"
+          gap="10px"
+          alignX="start"
+          nowrap>
           {children}
         </StackLayout>
       )}
