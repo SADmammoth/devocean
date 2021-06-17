@@ -37,12 +37,12 @@ function EditTaskPageContent({ edit, initialValues, onSubmit }) {
         getCreateTaskForm({ ...initialValues, ...templateProps })
       }
       inputsAtSidebar={[
+        'template',
         'priority',
         'estimate',
         'teammate',
         'list',
         'status',
-        'template',
       ]}
       inputsAtBody={['title', 'customFields']}
       onSubmit={onSubmit}></FormPage>

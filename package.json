@@ -19,7 +19,7 @@
   "dependencies": {
     "@editorjs/editorjs": "^2.21.0",
     "@sadmammoth/react-dnd": "^2.1.1",
-    "@sadmammoth/react-form": "^1.5.17",
+    "@sadmammoth/react-form": "^1.6.29",
     "@sadmammoth/react-list": "^1.0.1",
     "@umijs/preset-react": "1.x",
     "classnames": "^2.2.6",
