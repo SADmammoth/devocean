@@ -55,8 +55,10 @@ const userDataAtom = atomFamily({
 
 export const userDataState = selector({
   key: baseKey + 'data_selector',
-  get: async ({ get }) => {
+  get: ({ get }) => {
     const userToken = get(userState);
+    console.log(userToken);
+    if (!userToken) return {};
     const user = get(userDataAtom(userToken));
 
     const { teammateId, invited } = user;

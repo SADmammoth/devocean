@@ -21,19 +21,19 @@ import {
 import userState, { userDataState } from '../../recoil/states/userState';
 
 function InitProfilePage() {
-  const userData = useRecoilValueLoadable(userDataState);
+  const userData = useRecoilValue(userDataState);
   const initialValues = useRecoilValueLoadable(
-    teammateProfilesState_getById(userData?.contents?.id),
+    teammateProfilesState_getById(userData?.id),
   );
   const patchTeammate = useSetRecoilState(
-    teammateProfilesState_update(userData?.contents?.id),
+    teammateProfilesState_update(userData?.id),
   );
 
   const [hideWorkHours, setHideWorkHours] = useState(true);
 
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
-  if (userData?.invited === false) return <Redirect to="/error/404" />;
+  if (userData?.invited === false) return <Redirect to="/" />;
   return (
     <StateMonade
       state={initialValues.state}
@@ -61,8 +61,12 @@ function InitProfilePage() {
           })),
         }}
         onSubmit={async (data) => {
-          await patchTeammate({ ...data, isOnInvite: true });
-          serverStateSync.handSync['userState_data']();
+          await patchTeammate({ ...data, invited: false, isOnInvite: true });
+          console.log(serverStateSync.handSync);
+          Object.entries(serverStateSync.handSync).find(
+            ([key, func]) => !key.startsWith('userState_data') || func(),
+          );
+          history.push('/');
         }}
       />
     </StateMonade>

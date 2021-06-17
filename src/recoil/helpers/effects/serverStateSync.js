@@ -9,6 +9,7 @@ export default function serverStateSync(get, post, abortGet, abortPost) {
 
       const getData = async () => {
         initialized = true;
+        console.log(await initialize(userToken));
         setSelf(await initialize(userToken));
       };
 
