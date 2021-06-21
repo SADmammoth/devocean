@@ -57,14 +57,14 @@ export const userDataState = selector({
   key: baseKey + 'data_selector',
   get: ({ get }) => {
     const userToken = get(userState);
-    console.log(userToken);
+
     if (!userToken) return {};
     const user = get(userDataAtom(userToken));
 
     const { teammateId, invited } = user;
     const teammates = get(teammateProfilesState);
     const teammate = teammates.find(({ id }) => id === teammateId);
-    if (teammate) return { ...teammate, invited };
+    if (teammate) return { ...teammate, ...user };
   },
 });
 

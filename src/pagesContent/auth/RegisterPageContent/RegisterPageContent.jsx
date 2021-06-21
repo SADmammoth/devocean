@@ -51,6 +51,7 @@ function RegisterPageContent(props) {
       });
 
       setUserToken(newLoginData.token);
+      localStorage.setItem('userState_', newLoginData.token);
 
       history.push('/');
     },
@@ -87,6 +88,7 @@ function RegisterPageContent(props) {
                 password: data.password,
               }).then((loginData) => {
                 setTempToken(loginData.token);
+                localStorage.setItem('userState_', loginData.token);
                 proceed();
               });
           }}

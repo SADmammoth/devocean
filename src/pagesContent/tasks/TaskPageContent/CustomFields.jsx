@@ -14,7 +14,9 @@ function CustomFields({ classes, customFields }) {
         <Text type="h2" className={classes.clearHeading}>
           {label}
         </Text>
-        <Text type="common">{value}</Text>
+        <Text type="common" hyphenated>
+          {value}
+        </Text>
       </StackLayout>
     );
   };

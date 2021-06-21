@@ -7,7 +7,7 @@ import {
   useRecoilValueLoadable,
   useSetRecoilState,
 } from 'recoil';
-import { Redirect } from 'umi';
+import { Redirect, useHistory } from 'umi';
 
 import StateMonade from '../../helpers/components/StateMonade';
 import InitTeammateProfilePageContent from '../../pagesContent/teammates/InitTeammateProfilePageContent';
@@ -22,11 +22,13 @@ import userState, { userDataState } from '../../recoil/states/userState';
 
 function InitProfilePage() {
   const userData = useRecoilValue(userDataState);
+
+  const history = useHistory();
   const initialValues = useRecoilValueLoadable(
-    teammateProfilesState_getById(userData?.id),
+    teammateProfilesState_getById(userData?.teammateId),
   );
   const patchTeammate = useSetRecoilState(
-    teammateProfilesState_update(userData?.id),
+    teammateProfilesState_update(userData?.teammateId),
   );
 
   const [hideWorkHours, setHideWorkHours] = useState(true);

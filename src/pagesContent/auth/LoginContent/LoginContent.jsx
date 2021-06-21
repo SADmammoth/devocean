@@ -45,6 +45,9 @@ const LoginContent = () => {
           onSubmit={async (data) => {
             const loginData = await userState_login(data);
             setUserToken(loginData.token);
+            localStorage.setItem('userState_', loginData.token);
+            !serverStateSync.handSync['navitemsState_'] ||
+              serverStateSync.handSync['navitemsState_']();
             history.push('/');
           }}
           onInputsUpdate={(inputs) => {

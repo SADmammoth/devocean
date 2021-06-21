@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useSetRecoilState } from 'recoil';
+import { useHistory } from 'umi';
 
 import Text from '../../../components/generic/Text';
 import showPopup from '../../../helpers/components/showPopup';

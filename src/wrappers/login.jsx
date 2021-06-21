@@ -15,6 +15,8 @@ export default function login({ children }) {
   if (!user && !path.startsWith('/auth') && path !== '/')
     return <Redirect to="/" />;
 
+  console.log('fwer', currentUserData);
+
   if (currentUserData?.invited && path !== '/teammates/init')
     return <Redirect to={'/teammates/init'} />;
 

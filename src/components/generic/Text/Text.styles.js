@@ -70,6 +70,10 @@ const styles = {
     overflow: 'hidden',
   },
 
+  hyphenated: {
+    textAlign: 'justify',
+  },
+
   ...alignmentStyles,
 };
 
