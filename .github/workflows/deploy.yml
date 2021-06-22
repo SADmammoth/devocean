@@ -10,13 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Init
-        env:
-          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}
-        run: |
-          echo 'registry=https://registry.npmjs.org/' > .npmrc
-          echo '@sadmammoth:registry=https://npm.pkg.github.com/sadmammoth' >> .npmrc
-          echo '//npm.pkg.github.com/:_authToken=$REGISTRY_TOKEN' >> .npmrc
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
