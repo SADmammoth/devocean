@@ -16,7 +16,9 @@ jobs:
         run: |
           echo 'registry=https://registry.npmjs.org/' > .npmrc
           echo '@sadmammoth:registry=https://npm.pkg.github.com/' >> .npmrc
-          echo '//npm.pkg.github.com/:_authToken=$REGISTRY_TOKEN' >> .npmrc
+          echo '//npm.pkg.github.com/:_username=sadmammoth' >> .npmrc
+          echo '//npm.pkg.github.com/:_password=$REGISTRY_TOKEN' >> .npmrc
+          echo '//npm.pkg.github.com/:_email=lo.ma200018@gmail.com' >> .npmrc
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
