@@ -13,7 +13,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           registry-url: 'https://npm.pkg.github.com/'
-          scope: '@OWNER'
+          scope: '@sadmammoth'
       - name: Authenticate with GitHub package registry
         run: echo "//npm.pkg.github.com:_authToken=${{ secrets.REGISTRY_TOKEN }}" > ~/.npmrc
       - uses: actions/checkout@v2
