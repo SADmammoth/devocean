@@ -9,13 +9,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Authenticate with GitHub package registry
-        run: |
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.REGISTRY_TOKEN }}" > ~/.npmrc
-          echo "@sadmammoth:registry=https://npm.pkg.github.com/" >> ~/.npmrc
-          echo "registry=https://registry.npmjs.org/" >> ~/.npmrc
       - uses: actions/checkout@v2
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+        env:
+          CI: true
+          REGISTRY_TOKEN: ${{ secrets.REGISTRY_TOKEN }}  
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "devocean-client" #Must be unique in Heroku
