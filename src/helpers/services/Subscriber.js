@@ -3,7 +3,7 @@ import sailsIoClient from 'sails.io.js-dist';
 import socketIoClient from 'socket.io-client';
 
 const io = sailsIoClient(socketIoClient);
-io.sails.url = env().REACT_APP_SUBSCRIPTION_SERVER || SUBSCRIPTION_SERVER;
+io.sails.url = env().JS_RUNTIME_SUBSCRIPTION_SERVER || SUBSCRIPTION_SERVER;
 
 const subscribeToEndpoint = (endpoint) => {
   return (onUpdate) => {
