@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import { atom, selectorFamily } from 'recoil';
+import { atom, selectorFamily, selector } from 'recoil';
 
 import Client from '../../helpers/services/Client';
 import serverStateSync from '../helpers/effects/serverStateSync';
@@ -8,7 +8,7 @@ import mergeSelector from '../helpers/selectors/mergeSelector';
 import subtreeSelector from '../helpers/selectors/subtreeSelector';
 import updateSelector from '../helpers/selectors/updateSelector';
 import subteamsState from './subteamsState';
-import userState from './userState';
+import userState, { userDataState } from './userState';
 
 const baseKey = 'teammateProfilesState_';
 
@@ -18,7 +18,7 @@ const postState = (userToken, teammate) =>
 const patchState = (userToken, teammate) =>
   Client.teammateProfiles.patch(teammate.id, teammate, userToken);
 
-const teammateProfilesAtom = atom({
+export const teammateProfilesAtom = atom({
   key: baseKey,
   default: [],
   effects_UNSTABLE: [
@@ -32,8 +32,22 @@ export const teammateProfilesState_getById = selectorFamily({
   key: baseKey + 'getById',
   get: (teammateProfileId) => async ({ get }) => {
     const userToken = get(userState);
+
+    if (!userToken || !teammateProfileId) return {};
     const teammateProfiles = get(teammateProfilesAtom);
     return await Client.teammateProfiles.getById(teammateProfileId, userToken);
+  },
+});
+
+export const teammateProfilesState_current = selector({
+  key: baseKey + 'current',
+  get: async ({ get }) => {
+    const userToken = get(userState);
+    const user = get(userDataState);
+
+    if (!userToken || !user || !user.id) return {};
+    const teammateProfiles = get(teammateProfilesAtom);
+    return await Client.teammateProfiles.getById(user.id, userToken);
   },
 });
 

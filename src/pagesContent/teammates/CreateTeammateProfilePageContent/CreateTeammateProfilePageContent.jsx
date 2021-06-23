@@ -3,23 +3,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useSetRecoilState } from 'recoil';
-import { useHistory } from 'umi';
 
 import Text from '../../../components/generic/Text';
 import showPopup from '../../../helpers/components/showPopup';
-import getInitTeammateProfileForm from '../../../helpers/forms/getInitTeammateProfileForm';
+import getCreateTeammateProfileForm from '../../../helpers/forms/getCreateTeammateProfileForm';
 import FormPage from '../../../layouts/FormPage';
 import subteamsState from '../../../recoil/states/subteamsState';
 import tagsState from '../../../recoil/states/tagsState';
 
-import styles from './InitTeammateProfilePageContent.styles';
+import styles from './CreateTeammateProfilePageContent.styles';
 
 const useStyles = createUseStyles(styles);
 
-function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
+function CreateTeammateProfilePageContent({ initialValues, onSubmit }) {
   const theme = useTheme();
   const classes = useStyles(theme);
-  const locale = useLocale();
 
   const addTag = useSetRecoilState(tagsState);
   const addSubteam = useSetRecoilState(subteamsState);
@@ -31,11 +29,11 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
           type: 'text',
           name: 'name',
           id: 'name',
-          label: locale('Tag name'),
+          label: 'Tag name',
         },
       ],
-      children: <Text type="h2">{locale('New tag')}</Text>,
-      closeButtonContent: locale('Create'),
+      children: <Text type="h2">New tag</Text>,
+      closeButtonContent: 'Create',
     });
 
     if (!tag) return;
@@ -52,11 +50,11 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
           type: 'text',
           name: 'name',
           id: 'name',
-          label: locale('Subteam name'),
+          label: 'Subteam name',
         },
       ],
-      children: <Text type="h2">{locale('New subteam')}</Text>,
-      closeButtonContent: locale('Create'),
+      children: <Text type="h2">New subteam</Text>,
+      closeButtonContent: 'Create',
     });
 
     if (!subteam) return;
@@ -66,23 +64,24 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
     return [...value, subteam.name];
   };
 
-  const title = edit ? locale('Edit profile') : locale('Create profile');
+  const title = 'Create profile';
 
   return (
     <FormPage
       title={title}
       getInputs={() =>
-        getInitTeammateProfileForm({
+        getCreateTeammateProfileForm({
           ...initialValues,
           addTagAction,
           addSubteamAction,
         })
       }
       onSubmit={onSubmit}
-      inputsAtSidebar={['avatar', 'subteams', 'tags', 'joinedAt']}
+      inputsAtSidebar={['name', 'lastName', 'subteams', 'tags', 'joinedAt']}
       inputsAtBody={[
-        'name',
-        'lastName',
+        'login',
+        'temporaryPassword',
+        'email',
         'workMode',
         'workHours',
         'workHoursStart',
@@ -92,6 +91,6 @@ function InitTeammateProfilePageContent({ initialValues, onSubmit }) {
   );
 }
 
-InitTeammateProfilePageContent.propTypes = {};
+CreateTeammateProfilePageContent.propTypes = {};
 
-export default InitTeammateProfilePageContent;
+export default CreateTeammateProfilePageContent;

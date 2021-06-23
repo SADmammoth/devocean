@@ -17,10 +17,21 @@ const styles = {
   scrollArea: {
     padding: '10px',
     paddingTop: '15px',
+    paddingRight: '5%',
+    width: '105%',
+    marginLeft: '-10px',
+    flexShrink: 10,
+  },
+  body: {
+    padding: '10px',
+    paddingTop: '15px',
   },
   notifications: {
     position: 'relative',
     paddingTop: (theme) => `calc(${theme.spaces.small} * 3 - 5px)`,
+  },
+  '@global .form-stack': {
+    height: '60vh',
   },
 };
 

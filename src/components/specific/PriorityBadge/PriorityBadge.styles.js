@@ -1,3 +1,5 @@
-const styles = {};
+const styles = {
+  high: {},
+};
 
 export default styles;

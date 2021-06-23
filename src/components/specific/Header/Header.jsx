@@ -36,7 +36,7 @@ const Header = ({ hideNotificationBadge, hideNavigation }) => {
   const classes = useStyles(theme);
   const locale = useLocale();
 
-  const userData = useRecoilValueLoadable(userDataState);
+  const userData = useRecoilValue(userDataState);
   const navItems = useRecoilValue(navitemsState_getShort);
   const setUser = useSetRecoilState(userState);
 
@@ -66,26 +66,24 @@ const Header = ({ hideNotificationBadge, hideNavigation }) => {
             )}
             {hideNotificationBadge || <NotificationsBadge />}
             <LanguageSwitcher />
-            <StateMonade state={userData.state}>
-              {userData.contents ? (
-                <>
-                  <TeammateTitle
-                    id={userData.contents.id}
-                    image={userData.contents.avatar}
-                    displayName={formatName(userData.contents)}
-                  />
+            {userData ? (
+              <>
+                <TeammateTitle
+                  id={userData.id}
+                  image={userData.avatar}
+                  displayName={formatName(userData)}
+                />
 
-                  <Button
-                    size="fluid"
-                    onClick={async () => {
-                      await userState_logout(userData.contents.id);
-                      setUser(null);
-                    }}>
-                    {locale('Logout')}
-                  </Button>
-                </>
-              ) : null}
-            </StateMonade>
+                <Button
+                  size="fluid"
+                  onClick={async () => {
+                    await userState_logout(userData.id);
+                    setUser(null);
+                  }}>
+                  {locale('Logout')}
+                </Button>
+              </>
+            ) : null}
           </StackLayout>
         </GridLayout>
       </ContainerLayout>

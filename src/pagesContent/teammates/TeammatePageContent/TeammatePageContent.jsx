@@ -2,10 +2,12 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
-import { useRecoilValueLoadable } from 'recoil';
+import { useRecoilValue, useRecoilValueLoadable } from 'recoil';
 import { getLocale } from 'umi';
 
 import Avatar from '../../../components/generic/Avatar';
+import Button from '../../../components/generic/Button';
+import Interactive from '../../../components/generic/Interactive/Interactive';
 import PanelCard from '../../../components/generic/PanelCard';
 import Sidebar from '../../../components/generic/Sidebar';
 import Text from '../../../components/generic/Text';
@@ -15,9 +17,11 @@ import BlockDescriptionLayout from '../../../components/generic/layouts/BlockDes
 import GridLayout from '../../../components/generic/layouts/GridLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import TeammateStatusBadge from '../../../components/specific/TeammateStatusBadge/TeammateStatusBadge';
+import FeatureMonade from '../../../helpers/components/FeatureMonade';
 import formatName from '../../../helpers/functions/formatName';
 import useLocale from '../../../helpers/hooks/useLocale';
 import { teammatesState_getWithTasks } from '../../../recoil/states/teammatesState';
+import { userDataState } from '../../../recoil/states/userState';
 
 import styles from './TeammatePageContent.styles';
 
@@ -45,7 +49,13 @@ function TeammatePageContent({ initialValues }) {
     actualStatus,
   } = initialValues;
 
-  const tasks = useRecoilValueLoadable(teammatesState_getWithTasks);
+  const userData = useRecoilValue(userDataState);
+
+  const ButtonLink = Interactive(Button);
+
+  const editButton = (
+    <ButtonLink link={`/teammates/${id}/edit`}>{locale('Edit')}</ButtonLink>
+  );
 
   return (
     <GridLayout className={classes.content}>
@@ -74,6 +84,13 @@ function TeammatePageContent({ initialValues }) {
                 end={workHoursEnd}
               />
             </PanelCard>
+          )}
+          {userData && id === userData.id ? (
+            editButton
+          ) : (
+            <FeatureMonade feature="manageTeammates">
+              {editButton}
+            </FeatureMonade>
           )}
         </StackLayout>
       </Sidebar>

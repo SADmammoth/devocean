@@ -4,6 +4,7 @@ import _ from 'lodash';
 import PropTypes from 'prop-types';
 
 import Text from '../../../components/generic/Text';
+import ScrollLayout from '../../../components/generic/layouts/ScrollLayout';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 
 function CustomFields({ classes, customFields }) {
@@ -13,14 +14,21 @@ function CustomFields({ classes, customFields }) {
         <Text type="h2" className={classes.clearHeading}>
           {label}
         </Text>
-        <Text type="common">{value}</Text>
+        <Text type="common" hyphenated>
+          {value}
+        </Text>
       </StackLayout>
     );
   };
   return (
-    <StackLayout orientation="vertical" gap="10px">
-      {Object.entries(customFields).map(renderCustomField)}
-    </StackLayout>
+    <ScrollLayout
+      scrollOrientation="vertical"
+      orientation="vertical"
+      gap="10px">
+      {Object.entries(customFields)
+        .filter(([name, { value }]) => !!value)
+        .map(renderCustomField)}
+    </ScrollLayout>
   );
 }
 

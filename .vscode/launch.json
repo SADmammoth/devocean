@@ -19,7 +19,7 @@
       "sourceMaps": true,
       "breakOnLoad": false,
       "outFiles": ["./src"],
-      "userDataDir": "${workspaceFolder}/.vscode/vscode-chrome-debug-userdatadir"
+      "userDataDir": "D:/Works/Practice/vscode-chrome-debug-userdatadir"
     }
   ]
 }

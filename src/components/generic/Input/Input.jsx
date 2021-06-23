@@ -28,6 +28,7 @@ function Input({ type, ...props }) {
   return (
     <ReakitInput
       type={type}
+      autoComplete="off"
       {...props}
       className={classNames(classes.formControl, classes[as], props.className)}
       as={as}

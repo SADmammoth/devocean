@@ -37,7 +37,7 @@ export default function getLeavesOfTree(nodeId, treeMap, leafKey) {
     }
   };
 
-  if (!node) return null;
-  if (node.children && node.children.length) return getTasks([node]);
-  return node[leafKey];
+  if (!node) return [];
+  if (node.children) return getTasks([node]);
+  return node[leafKey] || [];
 }

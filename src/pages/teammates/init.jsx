@@ -7,7 +7,7 @@ import {
   useRecoilValueLoadable,
   useSetRecoilState,
 } from 'recoil';
-import { Redirect } from 'umi';
+import { Redirect, useHistory } from 'umi';
 
 import StateMonade from '../../helpers/components/StateMonade';
 import InitTeammateProfilePageContent from '../../pagesContent/teammates/InitTeammateProfilePageContent';
@@ -22,16 +22,20 @@ import userState, { userDataState } from '../../recoil/states/userState';
 
 function InitProfilePage() {
   const userData = useRecoilValue(userDataState);
+
+  const history = useHistory();
   const initialValues = useRecoilValueLoadable(
-    teammateProfilesState_getById(userData?.id),
+    teammateProfilesState_getById(userData?.teammateId),
   );
   const patchTeammate = useSetRecoilState(
-    teammateProfilesState_update(userData?.id),
+    teammateProfilesState_update(userData?.teammateId),
   );
+
+  const [hideWorkHours, setHideWorkHours] = useState(true);
 
   const subteamsOptions = useRecoilValue(subteamsState);
   const tagsOptions = useRecoilValue(tagsState);
-  if (userData?.invited === false) return <Redirect to="/error/404" />;
+  if (userData?.invited === false) return <Redirect to="/" />;
   return (
     <StateMonade
       state={initialValues.state}
@@ -39,14 +43,9 @@ function InitProfilePage() {
         return initialValues.contents;
       }}>
       <InitTeammateProfilePageContent
-        edit
         initialValues={{
-          hideLogin: true,
-          hideWorkHours: true,
-          hidePassword: true,
-          hideWorkHoursSelect: true,
-          hideJoinedAt: true,
-          hideEmail: true,
+          hideWorkHours,
+          setHideWorkHours,
           ...initialValues.contents,
           tags: initialValues.contents.tags
             ? initialValues.contents.tags.map(({ name }) => name)
@@ -64,8 +63,12 @@ function InitProfilePage() {
           })),
         }}
         onSubmit={async (data) => {
-          await patchTeammate({ ...data, isOnInvite: true });
-          serverStateSync.handSync['userState_data']();
+          await patchTeammate({ ...data, invited: false, isOnInvite: true });
+          console.log(serverStateSync.handSync);
+          Object.entries(serverStateSync.handSync).find(
+            ([key, func]) => !key.startsWith('userState_data') || func(),
+          );
+          history.push('/');
         }}
       />
     </StateMonade>

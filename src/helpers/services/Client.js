@@ -1,3 +1,4 @@
+import env from '@mars/heroku-js-runtime-env';
 import { instanceOf } from 'prop-types';
 import request from 'superagent';
 import prefix from 'superagent-prefix';
@@ -12,8 +13,8 @@ import {
 import Duration from '../types/Duration';
 import RelativeDate from '../types/RelativeDate';
 
-const apiPath = prefix(process.env.API_PATH || API_PATH);
-const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
+const apiPath = prefix(env().REACT_APP_API_PATH || API_PATH);
+const authPath = prefix(env().REACT_APP_AUTH_PATH || AUTH_PATH);
 
 !request.Request.prototype.fields &&
   Object.defineProperty(request.Request.prototype, 'fields', {
@@ -30,10 +31,13 @@ const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
                 this.field(key, item[i]);
               }
               continue;
+            } else if (item instanceof Date) {
+              item = item.toISOString();
             } else if (typeof item === 'object') {
               item = JSON.stringify(item);
             }
 
+            if (!item) continue;
             this.field(key, item);
           }
         }
@@ -177,7 +181,7 @@ const Client = {
       const body = filterFalsy({
         ...task,
         estimate: new Duration(task.estimate).getHours(),
-        reportedTime: task.reportedTime.getHours(),
+        reportedTime: task.reportedTime?.getHours(),
         // timeInStatus: new Duration(new Date(task.timeInStatus)),
       });
 
@@ -444,6 +448,14 @@ const Client = {
         .then(({ body }) => body);
     },
     post: ({ id, avatar, ...teammate }, userToken) => {
+      if (!avatar) {
+        return request
+          .post(`/teammates`)
+          .use(apiPath)
+          .send(teammate)
+          .auth(userToken, { type: 'bearer' })
+          .then(({ body }) => body);
+      }
       return request
         .post(`/teammates`)
         .use(apiPath)
@@ -453,6 +465,14 @@ const Client = {
         .then(({ body }) => body);
     },
     patch: (id, { avatar, ...teammate }, userToken) => {
+      if (!avatar) {
+        return request
+          .patch(`/teammates/${id}`)
+          .use(apiPath)
+          .send(teammate)
+          .auth(userToken, { type: 'bearer' })
+          .then(({ body }) => body);
+      }
       return request
         .patch(`/teammates/${id}`)
         .use(apiPath)

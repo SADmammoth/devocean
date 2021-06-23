@@ -1,4 +1,10 @@
-import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+  atom,
+  atomFamily,
+  selector,
+  useRecoilValue,
+  useSetRecoilState,
+} from 'recoil';
 
 import Client from '../../helpers/services/Client';
 import localStorageSync from '../helpers/effects/localStorageSync';
@@ -15,7 +21,7 @@ const userState = atom({
 });
 
 export const userState_login = async ({ login, password }) => {
-  const token = await Client.user.login(login, password).catch((res) => null);
+  const token = await Client.user.login(login, password);
   return { ...(await Client.user.getData(token)), token };
 };
 
@@ -29,7 +35,9 @@ export const userState_register = async ({ login, password }) => {
     .then((res) => {
       return res;
     })
-    .catch((res) => null);
+    .catch((res) => {
+      throw res.response.text;
+    });
 
   return await userState_login({ login, password });
 };
@@ -37,22 +45,26 @@ export const userState_register = async ({ login, password }) => {
 const getUserData = (userToken) =>
   userToken ? Client.user.getData(userToken) : userToken;
 
-const userDataAtom = atom({
+const userDataAtom = atomFamily({
   key: baseKey + 'data',
   default: {},
-  effects_UNSTABLE: [serverStateSync(getUserData)],
+  effects_UNSTABLE: (userToken) => [
+    serverStateSync(() => getUserData(userToken)),
+  ],
 });
 
 export const userDataState = selector({
   key: baseKey + 'data_selector',
   get: ({ get }) => {
-    const user = get(userDataAtom);
+    const userToken = get(userState);
 
-    if (!user || _.isEmpty(user)) return;
+    if (!userToken) return {};
+    const user = get(userDataAtom(userToken));
+
     const { teammateId, invited } = user;
     const teammates = get(teammateProfilesState);
     const teammate = teammates.find(({ id }) => id === teammateId);
-    if (teammate) return { ...teammate, invited };
+    if (teammate) return { ...teammate, ...user };
   },
 });
 

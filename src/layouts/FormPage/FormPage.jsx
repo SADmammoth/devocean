@@ -45,14 +45,30 @@ function FormPage({
     clearNotifications,
   ] = useArrayState(0);
 
+  const renderInput = (inputComponent) => {
+    if (inputComponent?.$title) {
+      return (
+        <ScrollLayout
+          className={classes.scrollArea}
+          scrollOrientation="vertical"
+          blockSnapType="start"
+          scrollPaddingStart="20px"
+          scrollPaddingEnd="20px">
+          {Object.values(_.omit(inputComponent, ['$title']))}
+        </ScrollLayout>
+      );
+    }
+    return inputComponent;
+  };
+
   return (
     <GridLayout className={classes.content}>
       <Sidebar
         column={3}
         className={classNames(classes.sidebar, classes.paddingTop)}>
         {typeof inputsAtSidebar === 'function'
-          ? inputsAtSidebar(inputs).map((key) => inputs[key])
-          : inputsAtSidebar.map((key) => inputs[key])}
+          ? inputsAtSidebar(inputs).map((key) => renderInput(inputs[key]))
+          : inputsAtSidebar.map((key) => renderInput(inputs[key]))}
         {sidebarContent}
       </Sidebar>
       <StackLayout
@@ -61,23 +77,25 @@ function FormPage({
         orientation="vertical"
         alignY="start">
         <Text type="h1">{title}</Text>
-        <ScrollLayout
-          className={classes.scrollArea}
+        <StackLayout
+          className={classes.body}
           orientation="vertical"
-          scrollOrientation="vertical">
+          alignY="stretch">
           <Form
             notify={(type, message) => {
-              clearNotifications();
-              addNotification({ type, message });
+              if (type === 'error') {
+                clearNotifications();
+                addNotification({ type, message });
+              }
             }}
             inputs={localizedForm}
             onSubmit={onSubmit}
             onInputsUpdate={onInputsUpdate}>
             {typeof inputsAtBody === 'function'
-              ? inputsAtBody(inputs).map((key) => inputs[key])
-              : inputsAtBody.map((key) => inputs[key])}
+              ? inputsAtBody(inputs).map((key) => renderInput(inputs[key]))
+              : inputsAtBody.map((key) => renderInput(inputs[key]))}
           </Form>
-        </ScrollLayout>
+        </StackLayout>
       </StackLayout>
       <StackLayout
         className={classes.notifications}

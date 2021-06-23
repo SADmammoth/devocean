@@ -20,6 +20,7 @@ import getLoginForm from '../../../helpers/forms/getLoginForm';
 import useLocale from '../../../helpers/hooks/useLocale';
 import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import Client from '../../../helpers/services/Client';
+import serverStateSync from '../../../recoil/helpers/effects/serverStateSync';
 import userState, { userState_login } from '../../../recoil/states/userState';
 
 import styles from './LoginContent.styles';
@@ -47,6 +48,9 @@ const LoginContent = () => {
           onSubmit={async (data) => {
             const loginData = await userState_login(data);
             setUserToken(loginData.token);
+            localStorage.setItem('userState_', loginData.token);
+            !serverStateSync.handSync['navitemsState_'] ||
+              serverStateSync.handSync['navitemsState_']();
             history.push('/');
           }}
           onInputsUpdate={(inputs) => {
