@@ -16,9 +16,9 @@ export default {
   },
   outputPath: './build',
   define: {
-    API_PATH: 'http://localhost:1337',
-    SUBSCRIPTION_SERVER: 'http://localhost:1338',
-    AUTH_PATH: 'http://localhost:1339',
+    API_PATH: 'http://devocean-back.herokuapp.com',
+    SUBSCRIPTION_SERVER: 'http://devocean-comm.herokuapp.com',
+    AUTH_PATH: 'http://devocean-users.herokuapp.com',
   },
   favicon: '/favicon.svg',
 };

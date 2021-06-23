@@ -13,8 +13,8 @@ import {
 import Duration from '../types/Duration';
 import RelativeDate from '../types/RelativeDate';
 
-const apiPath = prefix(env().JS_RUNTIME_API_PATH || API_PATH);
-const authPath = prefix(env().JS_RUNTIME_AUTH_PATH || AUTH_PATH);
+const apiPath = prefix(env().REACT_APP_API_PATH || API_PATH);
+const authPath = prefix(env().REACT_APP_AUTH_PATH || AUTH_PATH);
 
 !request.Request.prototype.fields &&
   Object.defineProperty(request.Request.prototype, 'fields', {
