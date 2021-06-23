@@ -1,3 +1,4 @@
+import env from '@mars/heroku-js-runtime-env';
 import { instanceOf } from 'prop-types';
 import request from 'superagent';
 import prefix from 'superagent-prefix';
@@ -12,8 +13,8 @@ import {
 import Duration from '../types/Duration';
 import RelativeDate from '../types/RelativeDate';
 
-const apiPath = prefix(process.env.API_PATH || API_PATH);
-const authPath = prefix(process.env.AUTH_PATH || AUTH_PATH);
+const apiPath = prefix(env().REACT_APP_API_PATH || API_PATH);
+const authPath = prefix(env().REACT_APP_AUTH_PATH || AUTH_PATH);
 
 !request.Request.prototype.fields &&
   Object.defineProperty(request.Request.prototype, 'fields', {

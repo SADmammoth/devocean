@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@editorjs/editorjs": "^2.21.0",
+    "@mars/heroku-js-runtime-env": "^3.0.2",
     "@sadmammoth/react-dnd": "^2.1.1",
     "@sadmammoth/react-form": "^1.6.29",
     "@sadmammoth/react-list": "^1.0.1",
