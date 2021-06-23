@@ -45,9 +45,9 @@ function NotificationsList({ className, showCount }) {
       nowrap>
       {children.slice(0, showCount || -1)}
       {!(showCount && children.length - showCount > 0) || (
-        <InteractiveButton link="/notifications">{`${
-          children.length - showCount
-        } more`}</InteractiveButton>
+        <InteractiveButton link="/notifications">
+          {locale('more', { count: children.length - showCount })}
+        </InteractiveButton>
       )}
     </ScrollLayout>
   );

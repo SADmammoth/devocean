@@ -16,7 +16,7 @@ function Clock({ city, size }) {
 
   return (
     <div className={classNames(classes.clock, classes[size])}>
-      <p className={classes.cityText}>{city}</p>
+      {/* <p className={classes.cityText}>{city}</p> */}
       <DateTime size={size} />
     </div>
   );

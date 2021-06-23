@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { createUseStyles, useTheme } from 'react-jss';
 
 import dateToString from '../../../helpers/converters/dateToString';
+import useLocale from '../../../helpers/hooks/useLocale';
 import clockUpdater from './clockUpdater';
 import { months, weekdays } from './enums';
 import sizes from './sizes';
@@ -16,6 +17,7 @@ const useStyles = createUseStyles(styles);
 function DateTime({ size }) {
   const theme = useTheme();
   const classes = useStyles(theme);
+  const locale = useLocale();
 
   const [minutesUpdater] = useState(clockUpdater());
   const [date, setDate] = useState({
@@ -62,7 +64,9 @@ function DateTime({ size }) {
       </div>
       <hr className={classes.divider} />
       <div className={classes.date}>
-        <span>{`${weekday}, ${months[date.month - 1]} ${date.day}`}</span>
+        <span>{`${locale(weekday)}, ${locale(months[date.month - 1])} ${
+          date.day
+        }`}</span>
       </div>
     </time>
   );
