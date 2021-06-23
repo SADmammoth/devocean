@@ -10,6 +10,7 @@ import GridLayout from '../../../components/generic/layouts/GridLayout';
 import Skip from '../../../components/generic/layouts/GridLayout/Skip';
 import StackLayout from '../../../components/generic/layouts/StackLayout';
 import useLocale from '../../../helpers/hooks/useLocale';
+import useLocalizedForm from '../../../helpers/hooks/useLocalizedForm';
 import Document from './Document';
 
 import styles from './EditDocumentPageContent.styles';

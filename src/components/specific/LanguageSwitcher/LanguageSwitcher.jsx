@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRecoilState } from 'recoil';
 
+import useLocale from '../../../helpers/hooks/useLocale';
 import localeState, { validLocales } from '../../../recoil/states/localeState';
 import ToggleButton from '../../generic/ToggleButton';
 
@@ -16,11 +17,13 @@ function LanguageSwitcher({ className }) {
   const classes = useStyles(theme);
   const [locale, setLocale] = useRecoilState(localeState);
 
+  const localize = useLocale();
+
   const states = useMemo(
     () =>
       validLocales.map((validLocale) => ({
         action: () => setLocale(validLocale),
-        label: 'Switch to ' + validLocale,
+        label: localize('Switch to ' + validLocale),
       })),
     [validLocales],
   );

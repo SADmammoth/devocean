@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { useTheme, createUseStyles } from 'react-jss';
 import { useRouteMatch, useLocation, matchPath } from 'umi';
 
+import useLocale from '../../../helpers/hooks/useLocale';
 import Button from '../Button';
 import Interactive from '../Interactive';
 import PanelCard from '../PanelCard';
@@ -25,6 +26,7 @@ function NavItems({
   const theme = useTheme();
   const classes = useStyles(theme);
   const location = useLocation();
+  const locale = useLocale();
 
   const InteractiveButton = Interactive(Button);
   const renderItems = useMemo(
@@ -34,8 +36,8 @@ function NavItems({
         return (
           <li
             key={id}
-            title={title}
-            aria-label={title}
+            title={locale(title)}
+            aria-label={locale(title)}
             className={itemContainerClass}
             style={{ '--index': index }}>
             {menu ? (
@@ -43,7 +45,9 @@ function NavItems({
                 className={classNames(itemClass, {
                   [activeItemClass]: location.pathname.endsWith(link),
                 })}
-                buttonContent={label}
+                buttonContent={
+                  typeof label === 'string' ? locale(label) : label
+                }
                 position="right">
                 <PanelCard>
                   <NavItems
@@ -61,7 +65,7 @@ function NavItems({
                 className={classNames(itemClass, {
                   [activeItemClass]: location.pathname.endsWith(link),
                 })}>
-                {label}
+                {typeof label === 'string' ? locale(label) : label}
               </InteractiveButton>
             )}
           </li>
